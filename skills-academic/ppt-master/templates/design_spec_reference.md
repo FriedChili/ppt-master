@@ -40,9 +40,7 @@ Angle-bracketed text is authoring notation. Resolve every universal value before
 | AI Image Acquisition Path | <confirmed path or not applicable> |
 | Generation Mode | <continuous or split> |
 | Spec Refinement | <enabled or disabled> |
-| Speaker Notes | <enabled or disabled> — <explicit user instruction, final Stage-2 proactive policy, workflow default, or enabled Narration Audio dependency> |
-| Custom Animations | <enabled or disabled> — <explicit instruction and object/all-motion scope, final Stage-2 proactive policy, or workflow default> |
-| Narration Audio | <enabled or disabled> — <explicit user instruction, final Stage-2 proactive policy, or workflow default> |
+| Speaker Notes | <enabled or disabled> — <explicit user instruction, final Stage-2 proactive policy, or workflow default> |
 | Created Date | <YYYY-MM-DD> |
 
 ## II. Canvas Specification

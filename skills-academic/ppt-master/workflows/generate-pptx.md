@@ -105,7 +105,6 @@ Read ${SKILL_DIR}/references/canvas-formats.md
 | Trigger | Additional Strategist reference |
 |---|---|
 | Stage 1 confirmed and a Brand/Style/Layout/Deck workspace installed | `references/strategist-template.md` before Stage 2 |
-| Confirmed `delivery_context` is recorded/self-running/video, or input is a final/literal narration script | `references/video-design.md` before the three Stage-2 solutions and page roster |
 
 After Stage 1 and the template handoff, load the fixed planning-capability block in one batch before authoring any Stage-2 solution, image recommendation, or roster:
 
@@ -168,11 +167,10 @@ If the user selects chat after launch, apply `confirm-surface.md`'s in-run switc
 | Split-mode note | Only when the confirmed mode is `split` or the run is heavy (long page count, bulky sources, substantial research retained in this chat — an isolated `topic-research` worker's fetches do not count) | Recommend or confirm stopping after Step 5 and entering the execution session with `继续生成 projects/<project_name>` ([`resume-execute`](stages/resume-execute.md)); no response or "continue" means `continuous`, and the default path prints no reminder |
 | Spec-refinement note | Always | Offer review of the complete Design Spec before the lock (default OFF; only explicit opt-in or `refine_spec: true` runs `refine-spec`) |
 
-**Production fields**: resolve Speaker Notes, Custom Animations, and Narration Audio as latest explicit user instruction → final Stage-2 proactive value → default `true` / `false` / `false`. Enabled Narration Audio raises a non-explicitly-disabled Speaker Notes outcome and names that dependency. Persist the effective outcomes with provenance as the three rows in `design_spec.md §I`, keep the raw proactive fields as evidence only, and project neither into `spec_lock.md`. A later explicit request updates only its §I outcome and resumes the owning step without reopening Confirm UI. Disabling notes while audio stays enabled asks one question (disable audio too, or keep its required notes) before writing either row.
+**Production field — Speaker Notes**: resolve as latest explicit user instruction → final Stage-2 proactive value → default `true`. Persist the effective outcome with provenance as the `Speaker Notes` row in `design_spec.md §I`, keep the raw proactive field as evidence only, and project it into neither `spec_lock.md` nor any other artifact. A later explicit request updates only its §I outcome and resumes the owning step without reopening Confirm UI.
 
 **Formulas and hyperlinks** are §IX content, not confirmation fields or resources: Strategist records the delimiter-free LaTeX body or the exact URI / 1-based slide target, and Executor chooses the realization (text, inline, or block math; inline or whole-object link carrier) under [`native-formula.md`](../references/native-formula.md) / [`native-hyperlinks.md`](../references/native-hyperlinks.md). No manifest or lock entry exists for either.
 
-**Prepared final narration**: when an explicit final/literal script will become notes or audio, follow `video-design.md` §1 and §3 — segment it by scene in Stage 2, give each segment a supporting visible state in §IX, record source and verbatim policy in §X, and after Gate 2 (before Step 5 or the split handoff) write the exact segments once to `notes/total.md`, split only in Step 7.1.
 
 **Output**: `design_spec.md`, `spec_lock.md`, and `notes/total.md` only on the narration branch.
 
@@ -232,7 +230,7 @@ Read ${SKILL_DIR}/references/visual-styles/<resolved-id>.md # one preset id, or 
 # and read every triggered module in this same batch.
 ```
 
-Read the core as one batch with the exact detail files named by the retained `spec_lock.md`, then every module the roster sweep triggers. Never reopen the planning indexes, infer adjacent bases, glob a catalog, or blend unselected identities (an unreferenced custom follows its behavior alone). Conditional modules load on [`executor-base.md`](../references/executor-base.md)'s routing table, never by analogy; `video-design.md` is read before the first SVG when §I records recorded/self-running/video delivery or §X a literal script. Read each reference once per valid context.
+Read the core as one batch with the exact detail files named by the retained `spec_lock.md`, then every module the roster sweep triggers. Never reopen the planning indexes, infer adjacent bases, glob a catalog, or blend unselected identities (an unreferenced custom follows its behavior alone). Conditional modules load on [`executor-base.md`](../references/executor-base.md)'s routing table, never by analogy. Read each reference once per valid context.
 
 **Context validity**: reuse the retained Design Spec and lock for every page while the context is unchanged and uncompacted; do not reread or poll them. On local uncertainty consult the retained lock, then only the owning Design Spec fragment — sources supply facts only, and the Design Spec wins a conflict.
 
@@ -267,7 +265,6 @@ Default first free port from `6060` (`--port N` binds strictly); read the URL fr
 | `mirror` / `layout` | Start from the complete `page_layouts` SVG and preserve inherited visuals, root identity, atoms, and slots. Strict keeps the contract; `layout` may reflow carrier text inside unchanged slot bounds; adaptive uses a Strategist-declared Layout. A required atom or slot change returns upstream; Executor never edits `spec_lock.md`. |
 | `style`, free design, brand-only | Flat per `executor-base.md` and [`semantic-svg.md`](../references/semantic-svg.md). |
 
-**Motion endpoints**: when custom motion is active — an explicit user motion instruction, an enabled Custom Animations outcome in §I, or an existing `animations.json` — author the visible endpoint states now under [`executor-base.md`](../references/executor-base.md) §1; a §IX suggestion alone activates nothing.
 
 **Early gate (Mandatory)** — after the fifth SVG, before page 6; a planned roster of six or fewer pages skips this gate and goes straight to the final gate:
 
@@ -351,17 +348,13 @@ python3 ${SKILL_DIR}/scripts/finalize_svg.py <project_path>
 |---|---|
 | Explicit editable Chart/Table delivery decision, or a structured `chart` / `table` placeholder slot | Append `--native-charts-and-tables` (markers, templates, semantic tables, and imported charts never activate it; formulas are always native) |
 | Final checker reports oversized images | Append `--image-sizing display` |
-| Preserved or produced `animations.json` | Keep the base command; the exporter reads the sidecar |
-| Explicit Custom Animations disable | Keep the sidecar and append `-a none` |
-| Explicit all-motion disable | `--no-animations` |
-| Final Stage-2 `false` | Neither flag |
 | Conversion trace | Do not add `--conversion-trace` to every base export; an explicit `--conversion-trace <path>` writes to that destination instead of the default |
 
 **Success criterion**: the command exits 0 and produces `exports/<project_name>_<timestamp>.pptx`, `validation/<project_name>_<timestamp>.report.json` with `passed` or `passed-with-warnings`, and `validation/<project_name>_<timestamp>.trace.json` when `--conversion-trace` was enabled. The exporter itself requires the current matching `final` quality report and exits nonzero on a missing, unreadable, unsupported, non-final, blocking, stale, or unverifiable one. Read the compact `[POSTFLIGHT]` receipt (`status`, `quality_gate`, slide count, warning counts, paths), disclose material warnings, and never `cat` the full report on success. Retain the report path for a later `deck_motion` handoff; postflight proves the package, not a later MP4 audio track.
 
 ### Revision Round (delivered project)
 
-A delivered project that comes back with a change stays in this route; planning does not restart. Act at the owning layer. A wording change, an added condition, or a re-titled page edits the SVG, then its §IX block, `notes/total.md`, and every page that repeats the line (a chapter page's route, the contents page). A page inserted, dropped, or moved renumbers the roster first — files, footers, contents-page numbers, §IX blocks, `page_rhythm` / `page_visualizations` rows, `animations.json` keys, `notes/total.md` headings, same-deck hyperlink targets — then authors or removes the page; whatever the moved page carried moves with it: a Morph `from` names the new preceding page and a "next chapter" preview group follows its boundary. A deck-wide colour or family runs [`update_spec.py`](../scripts/docs/update_spec.md); derived tints, pages designed around the old value, and spec prose naming it are edited by hand; a generated image that painted the old accent does not follow, and regenerating it redraws the composition, so report it instead of regenerating unprompted; a hand-edited Chart/Table fallback is re-stamped before the gate. A renumbered roster first clears the per-page files under `notes/` and `svg_final/`, which 7.1 and 7.2 only write. Rerun the final quality gate (it compares §IX with `svg_output/`), `animation_config.py validate`, 7.1 when notes changed, 7.2, and 7.3; calibration, the early gate, and `verify-charts` return only when a type role, the first pages, or a chart's geometry changed. Earlier exports stay; the new ones carry their own timestamp.
+A delivered project that comes back with a change stays in this route; planning does not restart. Act at the owning layer. A wording change, an added condition, or a re-titled page edits the SVG, then its §IX block, `notes/total.md`, and every page that repeats the line (a chapter page's route, the contents page). A page inserted, dropped, or moved renumbers the roster first — files, footers, contents-page numbers, §IX blocks, `page_rhythm` / `page_visualizations` rows, `notes/total.md` headings, same-deck hyperlink targets — then authors or removes the page; whatever the moved page carried moves with it: a Morph `from` names the new preceding page and a "next chapter" preview group follows its boundary. A deck-wide colour or family runs [`update_spec.py`](../scripts/docs/update_spec.md); derived tints, pages designed around the old value, and spec prose naming it are edited by hand; a generated image that painted the old accent does not follow, and regenerating it redraws the composition, so report it instead of regenerating unprompted; a hand-edited Chart/Table fallback is re-stamped before the gate. A renumbered roster first clears the per-page files under `notes/` and `svg_final/`, which 7.1 and 7.2 only write. Rerun the final quality gate (it compares §IX with `svg_output/`), 7.1 when notes changed, 7.2, and 7.3; calibration, the early gate, and `verify-charts` return only when a type role, the first pages, or a chart's geometry changed. Earlier exports stay; the new ones carry their own timestamp.
 
 ## ✅ Generate PPTX Complete
 

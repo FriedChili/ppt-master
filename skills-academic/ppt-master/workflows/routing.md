@@ -83,15 +83,15 @@ Route selection authority for PPT Master. Select exactly one top-level route, th
 | `layout` | [`create-layout`](./create-template/create-layout.md): brand-neutral, application-neutral structure plus an SVG roster |
 | `deck` | [`create-deck`](./create-template/create-deck.md): descriptive recurring-application context with integrated identity, structure, and an SVG roster |
 
-Create Template remains the fixed route name and owns the shared contract; these four are mutually exclusive child workflows.
+Create Template remains the fixed route name and owns the shared contract; these three are mutually exclusive child workflows.
 
-**Hard rule — classify reusable rules, not source completeness**: a complete PPTX does not automatically select Deck. Brand when only identity is stable; Style when communication method and design direction should travel without identity truth, prototypes, or native structure; Layout when structure is brand-neutral and the application stays downstream-defined; Deck when structure carries identity or reusable scenario/content semantics.
+**Hard rule — classify reusable rules, not source completeness**: a complete PPTX does not automatically select Deck. Style when communication method and design direction should travel without identity truth, prototypes, or native structure; Layout when structure is brand-neutral and the application stays downstream-defined; Deck when structure carries identity or reusable scenario/content semantics.
 
 ---
 
 ## 6. Native and Shared Post-Processing Boundary
 
-an arbitrary finished PPTX whose visible slides must be preserved goes to Edit Native PPTX, whose narration module invokes the same stage rules against the round-trip workspace. Object animation for generated SVG projects uses the animation stage;
+A finished PPTX whose visible slides must be preserved goes to Edit Native PPTX; a generated SVG project owns its own post-processing through [`generate-pptx.md`](./generate-pptx.md) Step 7. This fork ships static decks: neither route adds narration, audio, or animation.
 
 ---
 

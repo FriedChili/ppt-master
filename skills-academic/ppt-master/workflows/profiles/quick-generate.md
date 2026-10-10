@@ -30,17 +30,14 @@ Artifact roles follow [`artifact-ownership.md`](../../references/artifact-owners
 
 **Hard rule — speed removes interaction and durable planning, not capability**: every ordinary source, research, carrier, resource, analysis, authoring, and export capability stays available when it serves the deck — availability, not a requirement to use every carrier. Explicit user facts, wording, choices, exclusions, and permission boundaries still win.
 
-**Default — optional production behavior (may override when useful)**: Speaker Notes, Custom Animations, and narration start off. Enable any of them when the request or deck benefits, with their normal inputs and flags and without asking. Quick never creates or reads a root Design Spec or lock to do so.
+**Default — optional production behavior (may override when useful)**: Speaker Notes start off. Enable them when the request or deck benefits, with their normal inputs and flags and without asking. Quick never creates or reads a root Design Spec or lock to do so.
 
 **Mandatory — discover motion before deciding whether to load it**: once, during §2's pre-P01 planning. Keep the defaults when no row supplies a concrete communication job. When several rows apply, use the earliest load point — a before-authoring signal beats before-export.
 
 | Signal | Action |
 |---|---|
-| One deck-wide entrance policy supplies all staged reveal | Load `animations.md` before export and use an exporter flag such as `-a auto`; no custom stage |
-| A directional/section boundary benefits from a non-default transition | Load `animations.md` before export and choose from its §3 playbook |
 | No signal | Keep `fade` transitions and object animation `none`; load nothing |
 
-**Hard rule — Quick video Custom Animations**: The table above chooses the choreography, not whether Custom Animations exists; pages may stay static. A Quick video run without a validated `animations.json` fails unless the user explicitly asked for static or transition-only playback. Narration-governed motion also activates cue synchronization.
 
 ---
 
@@ -60,7 +57,6 @@ A book-length converted source is located by its heading index and searched phra
 
 **Research scope**: after reading every source, research only the gaps where the requested outcome would otherwise require inventing, omitting, or leaving unsupported an externally verifiable claim. An Image to PPTX surface is a closed corpus whose unreadable regions become `manual_required`; a closed/source-only brief stays within its material.
 
-**Video delivery**: when delivery is recorded, self-running, or video-directed — or a final/literal script will become notes/audio — read `video-design.md` now and retain it through roster, SVG, notes, and motion decisions.
 
 **Template branch** (resolve exactly one before initialization; Image to PPTX always takes free design and installs nothing):
 
@@ -108,7 +104,7 @@ Read ${SKILL_DIR}/templates/tables/table-vocabulary.md
 **Pre-P01 resolution** (apply the §1 motion gate here; freeze the roster after the rhythm check):
 
 - **Beats and states**: narrative beats, mental-map arcs, candidate visible states and their deltas, and enabled notes segments; adopt continuity only when it clarifies, and never alter profile-fixed count/order/content to manufacture endpoints.
-- **Production outcomes**: effective Speaker Notes, Custom Animations, and Narration Audio. Narration requires notes; later recording alone forces neither audio nor object animation; recorded/self-running/video delivery follows `video-design.md` and enables Custom Animations before authoring; direct narrated video also decides before audio whether narration governs group timing.
+- **Production outcome**: effective Speaker Notes. This fork ships static decks.
 - **Roster**: the exact slide roster with one compact core message per page.
 - **Reading and typography**: canvas, deck language written as `lang="<BCP-47>"` on every page's root `<svg>` (Quick's only language channel: export reads the first page's for run proofing language, right-to-left defaults, theme script slots, and docProps), visual direction, wording, viewing distance, and reading mode (`presentation` for distance-first projected or recorded viewing, `balanced` for mixed, `text` for close content-heavy reading). Take the initial body anchor and sanity band from [`canvas-formats.md`](../../references/canvas-formats.md) § Typography Scale Start, then resolve one typography plan for the delivery target of [`shared-standards-core.md`](../../references/shared-standards-core.md) §4.1 — never the authoring host's fonts — with stable anchors for title, body, annotation, and every recurring role. When content does not fit, restructure, shorten, or split within the invariants; if none is permitted, surface the fit rather than shrinking a recurring role.
 - **Color roles**: the semantic color roles the roster needs (background/surface, primary/secondary text, dominant/accent, status), each with a concrete anchor. Honor user, template/brand, fidelity, and resolved-style semantics before deriving the missing roles; decide which dominate, support, or stay rare; keep meaning-bearing text legible; pair any newly authored color-coded distinction with a label, symbol, line, or geometry cue.
