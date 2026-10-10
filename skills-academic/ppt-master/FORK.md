@@ -171,27 +171,42 @@ python skills/ppt-master/scripts/prompt_audit.py --root <staging> --skip-near-du
 > 但它**不在** `requirements.txt` 里。未修改的原树跑同一条命令报**完全相同**的错误。
 > 已 `pip install 'tiktoken>=0.7.0'`。
 
-### 7.2 测试套件
+### 7.2 测试套件 — 全 55 个模块，逐模块带超时
 
-`scripts/tests/` 共 55 个测试文件。与本分支改动直接相关的定向组：
+**方法**：`scripts/tests/` 下 55 个模块逐个在独立子进程里跑，每个 180s 超时
+（整轮 `unittest discover` 会被挂住的模块拖死，且输出缓冲到结束，看不到进度）。
+**每个模块必须继承完整环境变量** —— `config.py` 依赖 `Path.home()`，环境裁剪会让 33 个模块在导入期假失败。
 
-```powershell
-python -m unittest tests.test_apply_template tests.test_template_flow_batch1 `
-  tests.test_template_flow_batch4 tests.test_dogfood_template_route_fixes `
-  tests.test_dogfood_template_material_fixes tests.test_spec_lock_forbidden `
-  tests.test_embed_icons tests.test_svg_quality_checker
-# 75 tests：3 个 failure 已修复，剩 6 个 error
-```
+**结果对照（同一 runner、同一环境，仅换 skill 根）**
 
-**已修复的 3 个 failure**（我的改动造成的夹具失效）：`test_apply_template.py` 原本用
-`templates/brands/<name>` 作夹具 —— brand kind 已从工具移除，故删除该能力专测；
-被删的 `styles/consulting-decision` 换成保留的 `technical-deepdive`；
-deck 不再附带图片，去掉 `images/logo.png` 断言；目的冲突与 dry-run 两测改用 `DECK_ROOT`。
+| 模块 | 原树 | 学术树 | 判定 |
+|---|---|---|---|
+| 其余 48 个 | OK | OK | — |
+| `test_image_backend_tencent` | FAIL | **OK** | 学术树更好 |
+| `test_template_flow_batch1` | TIMEOUT | **OK** | 学术树更好 |
+| `test_dogfood_leaves_fixes` | TIMEOUT | TIMEOUT | 预存在 |
+| `test_edit_native_batch_a` | FAIL | FAIL | 预存在（缺 ffmpeg） |
+| `test_source_to_md_content_loss_docx` | FAIL | FAIL | 预存在（缺 python-docx） |
+| `test_template_flow_batch4` | FAIL | FAIL | 机器级符号链接权限 |
+| `test_web_to_md_security` | FAIL | FAIL | 网络/TLS |
 
-**剩余 6 个 error 是机器级权限问题，非本分支缺陷**：这些测试要创建符号链接做"越界逃逸"安全校验，
-而当前 Windows 账户没有 `SeCreateSymbolicLinkPrivilege`（开发者模式未开），报 `WinError 1314`。
-**已在非受限（danger-full-access）下复跑同一组，6 个 error 完全一致** —— 证实既非沙箱、也非本分支所致。
-开启 Windows 开发者模式后即可通过。
+**学术树 50 OK / 4 FAIL / 1 TIMEOUT，且没有任何一个模块相对原树发生回归。**
+非通过的 5 个模块在原树上**同样**非通过，根因均为环境：
+
+- `test_edit_native_batch_a`（4 个 narration 用例）：`Recorded narration requires readable audio
+  durations. Install ffprobe/ffmpeg` —— 机器未装 ffmpeg
+- `test_source_to_md_content_loss_docx`：`ModuleNotFoundError: No module named 'docx'`
+- `test_template_flow_batch4`：创建符号链接需 `SeCreateSymbolicLinkPrivilege`（开发者模式未开），
+  非受限复跑结果一致
+- `test_web_to_md_security`：公网连接/TLS 校验，沙箱无网络
+- `test_dogfood_leaves_fixes`：原树同样 180s 超时
+
+**本轮修掉的真实回归（全量运行才暴露出来）**：`test_template_flow_batch1` 5 个 error 与
+`test_template_flow_batch3` 1 个 failure —— 两个文件用 `templates/brands/zcare-rescue` 与合成
+`brand` 工作区做夹具，而 brand kind 已从工具移除。已改为存活的 kind（`style` / `layout` /
+捆绑的 `styles/technical-deepdive`），并保持每个用例原本的断言语义：
+N5 不相交根、N5 多 kind 根不可部分选择、N6 外部资产漂移、N8 无关已装 spec 不能完成交接、
+N8 已装资产漂移使交接失效。修复后 batch1 22 tests OK、batch3 15 tests OK。
 
 ### 7.3 导出链端到端（安装后布局）
 

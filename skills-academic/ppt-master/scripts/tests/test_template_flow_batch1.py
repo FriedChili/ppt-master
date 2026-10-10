@@ -132,9 +132,9 @@ class TemplateInstallTests(unittest.TestCase):
                 self.assertEqual(_files(self.project), before)
 
     def test_n5_disjoint_explicit_roots_can_be_confirmed(self) -> None:
-        brand = _workspace(self.tmp / 'brand', 'brand', 'identity')
-        selection = _confirm(self.project, [brand, self.layout])
-        self.assertEqual({item['kind'] for item in selection['selections']}, {'brand', 'layout'})
+        style = _workspace(self.tmp / 'style', 'style', 'method')
+        selection = _confirm(self.project, [style, self.layout])
+        self.assertEqual({item['kind'] for item in selection['selections']}, {'style', 'layout'})
 
     def test_n5_conflicting_roots_are_rejected_in_both_orders(self) -> None:
         other = _workspace(self.tmp / 'other', 'layout', 'other')
@@ -143,8 +143,8 @@ class TemplateInstallTests(unittest.TestCase):
                 _confirm(self.project, roots)
 
     def test_n5_multikind_root_cannot_be_partially_selected(self) -> None:
-        (self.project / 'templates' / 'design_spec.brand.identity.md').write_text(
-            '---\nkind: brand\nbrand_id: identity\n---\n# Identity\n', encoding='utf-8',
+        (self.project / 'templates' / 'design_spec.style.identity.md').write_text(
+            '---\nkind: style\nstyle_id: identity\n---\n# Identity\n', encoding='utf-8',
         )
         _confirm(self.project, [self.project])
         options, candidates = server._build_template_options(self.project / 'confirm_ui')
@@ -191,16 +191,16 @@ class TemplateInstallTests(unittest.TestCase):
             server._read_template_selection(self.project / 'confirm_ui' / server.TEMPLATE_SELECTION_NAME)
 
     def test_n6_external_asset_drift_is_rejected_after_install(self) -> None:
-        brand = _workspace(self.tmp / 'brand', 'brand', 'identity')
-        (brand / 'images').mkdir()
-        (brand / 'images' / 'logo.bin').write_bytes(b'logo')
-        _confirm(self.project, [self.project, brand])
-        apply_template.apply_templates(self.project, [str(self.project), str(brand)], validate=False)
-        (brand / 'images' / 'logo.bin').write_bytes(b'drift')
+        style = _workspace(self.tmp / 'style', 'style', 'method')
+        (style / 'images').mkdir()
+        (style / 'images' / 'logo.bin').write_bytes(b'logo')
+        _confirm(self.project, [self.project, style])
+        apply_template.apply_templates(self.project, [str(self.project), str(style)], validate=False)
+        (style / 'images' / 'logo.bin').write_bytes(b'drift')
         self.assertIsNotNone(server._stage2_ready_error(self.project, self.project / 'confirm_ui'))
 
     def test_n8_unrelated_installed_spec_cannot_complete_handoff(self) -> None:
-        _confirm(self.project, [TEMPLATES / 'brands' / 'zcare-rescue', TEMPLATES / 'layouts' / 'report_core'])
+        _confirm(self.project, [TEMPLATES / 'styles' / 'technical-deepdive', TEMPLATES / 'layouts' / 'report_core'])
         self.assertIsNotNone(server._stage2_ready_error(self.project, self.project / 'confirm_ui'))
 
     def test_n8_correct_filenames_without_installer_receipt_are_rejected(self) -> None:
@@ -209,9 +209,9 @@ class TemplateInstallTests(unittest.TestCase):
         self.assertIsNotNone(server._stage2_ready_error(self.project, self.project / 'confirm_ui'))
 
     def test_n8_installed_asset_drift_invalidates_ready_handoff(self) -> None:
-        _confirm(self.project, [self.project, TEMPLATES / 'brands' / 'zcare-rescue'])
+        _confirm(self.project, [self.project, self.layout])
         apply_template.apply_templates(
-            self.project, [str(self.project), str(TEMPLATES / 'brands' / 'zcare-rescue')], validate=False,
+            self.project, [str(self.project), str(self.layout)], validate=False,
         )
         self.assertIsNone(server._stage2_ready_error(self.project, self.project / 'confirm_ui'))
         (self.project / 'icons' / 'keep.bin').write_bytes(b'changed')

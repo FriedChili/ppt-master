@@ -193,7 +193,7 @@ class TemplateFlowBatch3Tests(unittest.TestCase):
                     'stage': 'stage1', 'options_sha256': options['options_sha256'],
                     'template_selection': {
                         'mode': 'templates' if template else 'free_design',
-                        'selection_keys': ['library:brand:zcare-rescue', 'library:layout:report_core']
+                        'selection_keys': ['library:style:technical-deepdive', 'library:layout:report_core']
                                           if template else [],
                     },
                 })
@@ -206,7 +206,7 @@ class TemplateFlowBatch3Tests(unittest.TestCase):
                     self.assertEqual(response.status_code, 409)
                     self.assertIn('template_install.json', response.get_json()['error'])
                     apply_template.apply_templates(project, [
-                        str(SCRIPTS.parent / 'templates' / 'brands' / 'zcare-rescue'),
+                        str(SCRIPTS.parent / 'templates' / 'styles' / 'technical-deepdive'),
                         str(SCRIPTS.parent / 'templates' / 'layouts' / 'report_core'),
                     ], validate=False)
                 for path in confirm.iterdir():
