@@ -147,28 +147,100 @@ git clean -fd skills/ppt-master               # 清掉多余文件（谨慎：�
 
 ---
 
-## 7. 尚未完成（TODO）
+## 7. 验收证据
 
-1. ~~**decks 去标识化**~~ —— 已在 §6 完成
-2. **`simple-icons` 的散文引用**：`templates/icons/README.md`、`THIRD_PARTY_NOTICES.md`、
-   `scripts/icon_sync.py`（`_SYNC_LIBRARIES`）、`scripts/svg_finalize/embed_icons.py`、`references/executor-base.md`、
-   `spec_lock_reference.md`、`strategist.md`、`plan-core.md`、`design_spec_reference.md`、`quick-generate.md`
-   （功能影响：`icon_sync.py` 会把已删库当可用库；不崩溃，但应清理）
-3. **画布注册表仍在代码里支持被删的 5 个格式**：`scripts/config.py`、`scripts/project_utils.py`、
-   `scripts/svg_position_calculator.py`、`scripts/project_management/project_specs.py`、
-   `scripts/generate_examples_index.py`。这是**有意的**：它们是跨切面注册表，从代码里摘除风险高且不影响暴露面；
-   `--format xiaohongshu` 仍可用，但 UI 不再提供。
-4. **`templates/styles/README.md`** 是否枚举了已删的 7 个方法
-5. `scripts/docs/confirm_ui.md`（catalog 文件清单）、`scripts/docs/template-tools.md`（index 清单）
-6. `prompt_audit_manifest.json` 残留字符串（`create-brand`×2、`create-deck`×2、`video-design`×5、
-   `templates/brands`×4、`generate-audio`×4、`customize-animations`×3、`templates/sounds`×2、`animations.md`×1）
-   —— 只服务 `prompt_audit.py` 开发期校验，不影响生成；建议按瘦身后的树重新生成而非逐条修补
-7. `register_template.py` 帮助文本仍写 "brand / style / layout / deck"；`_BRAND_REQUIRED_SECTIONS` 成死代码
-8. **端到端验收**：用本分支完整跑一次生成（默认路线 + 导出），确认无回退
+### 7.1 `prompt_audit` — **exit 0**
+
+`prompt_audit.py` 的路径约定是 `<root>/skills/ppt-master/...`，所以需要造一个安装后布局的根。
+用 `_audit-staging/`（**真实拷贝，不能用 junction** —— junction 会被 `resolve()` 穿透，破坏相对路径计算）。
+
+```powershell
+python skills/ppt-master/scripts/prompt_audit.py --root <staging> --skip-near-duplicates
+# exit 0，仅剩 1 条 advisory 警告 DUPLICATE_EXACT_CANDIDATES（3 组跨文件重复段落）
+```
+
+为达成全绿做的**真实修复**（不是屏蔽检查）：
+- `modes/_index.md` 计数 5 → 4，移除 showcase 对比行
+- `templates/charts/chart-vocabulary.md` 移除已删的 5 个营销图表（投影与注册表漂移）
+- 清单内 `file_budgets` / `registries` / `authority_edges` / `coverage` / `duplicates`
+  中指向不存在文件的条目，按实树存在性清除
+- `load_sets` 中匹配 0 文件的选择器（**任意嵌套深度**）清除；`select` **仅在超出可用数时下调**
+  （`select` 是"选择数量"，上限为可用文件数，不是"必须等于总数"）
+
+> **`tiktoken` 依赖缺口（上游问题，与本分支无关）**：`prompt_audit.py` 需要 `tiktoken>=0.7.0`，
+> 但它**不在** `requirements.txt` 里。未修改的原树跑同一条命令报**完全相同**的错误。
+> 已 `pip install 'tiktoken>=0.7.0'`。
+
+### 7.2 测试套件
+
+`scripts/tests/` 共 55 个测试文件。与本分支改动直接相关的定向组：
+
+```powershell
+python -m unittest tests.test_apply_template tests.test_template_flow_batch1 `
+  tests.test_template_flow_batch4 tests.test_dogfood_template_route_fixes `
+  tests.test_dogfood_template_material_fixes tests.test_spec_lock_forbidden `
+  tests.test_embed_icons tests.test_svg_quality_checker
+# 75 tests：3 个 failure 已修复，剩 6 个 error
+```
+
+**已修复的 3 个 failure**（我的改动造成的夹具失效）：`test_apply_template.py` 原本用
+`templates/brands/<name>` 作夹具 —— brand kind 已从工具移除，故删除该能力专测；
+被删的 `styles/consulting-decision` 换成保留的 `technical-deepdive`；
+deck 不再附带图片，去掉 `images/logo.png` 断言；目的冲突与 dry-run 两测改用 `DECK_ROOT`。
+
+**剩余 6 个 error 是机器级权限问题，非本分支缺陷**：这些测试要创建符号链接做"越界逃逸"安全校验，
+而当前 Windows 账户没有 `SeCreateSymbolicLinkPrivilege`（开发者模式未开），报 `WinError 1314`。
+**已在非受限（danger-full-access）下复跑同一组，6 个 error 完全一致** —— 证实既非沙箱、也非本分支所致。
+开启 Windows 开发者模式后即可通过。
+
+### 7.3 导出链端到端（安装后布局）
+
+在 `_audit-staging`（`skills/ppt-master` + `projects/` 的真实安装布局）下，用已有的 18 页
+Default 项目跑完整 checker + exporter 链：
+
+```
+svg_quality_checker.py --canonical-authoring --stage final   exit=0
+finalize_svg.py                                              exit=0
+svg_to_pptx.py --native-charts-and-tables                    exit=0
+
+[POSTFLIGHT] status=passed quality_gate=passed slides=18 warning_categories=0
+Explicit Layout structure: 1 master(s), 11 layout(s), 40 placeholder definition(s)
+Native objects: charts 0 | tables 3 | formulas 2 ; Presets: chevron x3
+```
+
+**与原树导出的结构计数完全一致**（18 页 / 1 master / 11 layouts / 40 占位符 / tables 3 / formulas 2），
+说明裁剪未触及生成路径。
+
+### 7.4 静态一致性
+
+- 全树链接：**881 条，0 悬空**（余 1 条为 `spec_lock.schema.json` 内的正则，误报）
+- Python 语法 0 错、JSON 解析 0 错
+- `attribution_guard.py` exit 0
+- 企业身份串（中国电信 / 中汽研 / China Telecom / CATARC）全树残留 **0**
+- `register_template.py --rebuild-all --dry-run` exit 0，索引正确列出 2 条 deck
 
 ---
 
-## 6. 设计边界（有意保留）
+## 8. 尚未完成（TODO）
+
+1. **`simple-icons` 的散文引用**：`templates/icons/README.md`、`THIRD_PARTY_NOTICES.md`、
+   `scripts/icon_sync.py`（`_SYNC_LIBRARIES`）、`scripts/svg_finalize/embed_icons.py`、`references/executor-base.md`、
+   `spec_lock_reference.md`、`strategist.md`、`plan-core.md`、`design_spec_reference.md`、`quick-generate.md`
+   （功能影响：`icon_sync.py` 会把已删库当可用库；不崩溃，但应清理）
+2. **画布注册表仍在代码里支持被删的 5 个格式**：`scripts/config.py`、`scripts/project_utils.py`、
+   `scripts/svg_position_calculator.py`、`scripts/project_management/project_specs.py`、
+   `scripts/generate_examples_index.py`。这是**有意的**：跨切面注册表，从代码里摘除风险高且不影响暴露面；
+   `--format xiaohongshu` 仍可用，但 UI 不再提供。
+3. **`templates/styles/README.md`** 是否枚举了已删的 7 个方法
+4. `scripts/docs/confirm_ui.md`（catalog 文件清单）、`scripts/docs/template-tools.md`（index 清单）
+5. `register_template.py` 帮助文本仍写 "brand / style / layout / deck"；`_BRAND_REQUIRED_SECTIONS` 成死代码
+6. **`docs/`（仓库根）未裁剪** —— 其中 `audio narration` 等页面属于非科研场景，但它不在 skill 内，
+   属仓库级文档，需要时单独处理
+7. `prompt_audit` 剩余的 3 组跨文件重复段落（advisory，不影响 exit code）
+
+---
+
+## 9. 设计边界（有意保留）
 
 - **`brand-only` / `flat` 等结构术语保留**。它们是 `pptx_structure.mode` 的结构概念
   （无模板身份 → 扁平结构），被 `pptx-structure-interface.md`、`semantic-svg.md`、`executor-base.md` 广泛引用。
