@@ -47,8 +47,6 @@ except ImportError:
     CANVAS_FORMATS = {
         'ppt169': {'name': 'PPT 16:9', 'dimensions': '1280×720', 'viewbox': '0 0 1280 720'},
         'ppt43': {'name': 'PPT 4:3', 'dimensions': '1024×768', 'viewbox': '0 0 1024 768'},
-        'xiaohongshu': {'name': 'Xiaohongshu (RED)', 'dimensions': '1242×1660', 'viewbox': '0 0 1242 1660'},
-        'moments': {'name': 'WeChat Moments', 'dimensions': '1080×1080', 'viewbox': '0 0 1080 1080'},
     }
 
 

@@ -308,9 +308,14 @@ Native objects: charts 0 | tables 3 | formulas 2 ; Presets: chevron x3
 
 ### 有意保留的边界（见 §10）
 
-1. **画布注册表仍在代码里支持被删的 5 个格式**（`config.py`、`project_utils.py`、
+1. **画布注册表已在代码层裁剪为 3 个格式**（`config.py` `CANVAS_FORMATS`、`project_utils.py`、
    `svg_position_calculator.py`、`project_specs.py`、`generate_examples_index.py`）。
-   跨切面注册表，从代码里摘除风险高且不影响暴露面：UI 不再提供，`--format xiaohongshu` 仍可用。
+   > **更正**：本文件早期版本在这里写的是"跨切面注册表，从代码里摘除风险高且不影响暴露面：UI 不再提供"。
+   > 这个判断**是错的**。`confirm_ui/server.py::_build_catalogs` 的注释写明 *"canvas synced live from
+   > config"* —— 画布选项以 `config.CANVAS_FORMATS` 为唯一真源，`catalogs.json` 只补文案。
+   > 因此只改 `catalogs.json` 时，UI 实际仍提供全部 8 个格式（含 WeChat / 小红书 / 朋友圈 / 竖屏 / 横幅）。
+   > 现已从所有并列注册表移除这 5 个格式；实测 `/api/catalogs` 返回 3 个，全套测试无新增失败。
+   > **教训**：改一个"选项"前，先确认 UI 的真源在数据文件还是在代码注册表。
 2. **仓库根 `docs/` 未裁剪** —— 其中 `audio narration` 等页面属非科研场景，但它不在 skill 内。
 3. **`prompt_audit` 的 3 组跨文件重复段落**（advisory，不影响 exit code）。
 4. **`register_template.py` 的 `_BRAND_REQUIRED_SECTIONS` 成死代码**；无害，未删以免波及校验路径。
