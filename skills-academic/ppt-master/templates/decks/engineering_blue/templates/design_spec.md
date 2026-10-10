@@ -35,7 +35,7 @@ page_count: 5
 
 | Role | Color | Application |
 | --- | --- | --- |
-| Engineering Blue blue | #004098 | 深色页面背景、章节编号块、结构线 |
+| Primary blue | #004098 | 深色页面背景、章节编号块、结构线 |
 | Deep blue | #003B82 | 封面背景 |
 | Panel gray | #F8FAFC | 内容承载区 |
 | Border gray | #E0E0E0 | 分隔线和面板边界 |

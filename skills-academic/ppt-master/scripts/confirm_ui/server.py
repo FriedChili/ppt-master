@@ -205,7 +205,7 @@ def _safe_template_id(template_id: object) -> bool:
 
 
 _TEMPLATE_SPEC_NAME_RE = re.compile(
-    r'design_spec\.(?P<kind>brand|style|layout|deck)\.(?P<id>[^/\\]+)\.md'
+    r'design_spec\.(?P<kind>style|layout|deck)\.(?P<id>[^/\\]+)\.md'
 )
 
 

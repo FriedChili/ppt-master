@@ -39,7 +39,6 @@
             template_library_hint: "Choose at most one workspace per kind. All four kinds can combine; Layout takes structural precedence over Deck.",
             sec_template_explicit: "Specified templates",
             template_explicit_hint: "Choose exact workspaces supplied for this run with non-overlapping kinds; every kind in each selected root is applied. Source paths are shown for verification.",
-            template_kind_brand: "Brand",
             template_kind_style: "Style",
             template_kind_layout: "Layout",
             template_kind_deck: "Deck",
@@ -224,7 +223,6 @@
             template_library_hint: "種類ごとにワークスペースを1件まで選択できます。4種類はすべて組み合わせ可能で、構造は Layout が Deck より優先されます。",
             sec_template_explicit: "指定テンプレート",
             template_explicit_hint: "この実行で指定されたワークスペースを、種別が重複しない範囲で複数選択できます。各ルートに含まれる全種別が適用され、確認用に参照元パスを表示します。",
-            template_kind_brand: "Brand",
             template_kind_style: "Style",
             template_kind_layout: "Layout",
             template_kind_deck: "Deck",
@@ -409,7 +407,6 @@
             template_library_hint: "每种模板最多选择一个工作区；四种模板均可组合，结构由 Layout 优先于 Deck。",
             sec_template_explicit: "指定模板",
             template_explicit_hint: "可选择本次运行提供的多个精确工作区，各根的模板类型不得重叠；选中的根会采用其全部类型，来源路径供你核对。",
-            template_kind_brand: "Brand",
             template_kind_style: "Style",
             template_kind_layout: "Layout",
             template_kind_deck: "Deck",
@@ -594,7 +591,6 @@
             template_library_hint: "每種範本最多選擇一個工作區；四種範本均可組合，結構由 Layout 優先於 Deck。",
             sec_template_explicit: "指定範本",
             template_explicit_hint: "可選擇本次執行提供的多個精確工作區，各根的範本類型不得重疊；選中的根會採用其全部類型，來源路徑供你核對。",
-            template_kind_brand: "Brand",
             template_kind_style: "Style",
             template_kind_layout: "Layout",
             template_kind_deck: "Deck",
@@ -916,11 +912,11 @@
     function refreshDirectionComponentStates() {
         DIRECTION_COMPONENT_PAINTERS.forEach(function (paint) { paint(); });
     }
-    var TEMPLATE_KINDS = ["brand", "style", "layout", "deck"];
+    var TEMPLATE_KINDS = ["style", "layout", "deck"];
     var TEMPLATE_OPTIONS = null;
     var TEMPLATE_CANDIDATES = [];
     var TEMPLATE_SELECTED_KEYS = [];
-    var TEMPLATE_SELECTIONS = { brand: "", style: "", layout: "", deck: "", explicit: "" };
+    var TEMPLATE_SELECTIONS = { style: "", layout: "", deck: "", explicit: "" };
     var TEMPLATE_MODE = "";
     var REC_ALIASES = {
         icons: {
@@ -1157,7 +1153,7 @@
     }
 
     function emptyTemplateSelections() {
-        return { brand: "", style: "", layout: "", deck: "", explicit: [] };
+        return { style: "", layout: "", deck: "", explicit: [] };
     }
 
     function templateSelectionSlot(candidate) {
