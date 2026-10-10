@@ -22,7 +22,7 @@ Each rendering keeps its own authoritative file with: style paragraph, line / te
 | [`glassmorphism`](./glassmorphism.md) | Frosted-glass translucent panels, soft shadows | Modern SaaS / fintech / health-tech / premium apps |
 | [`3d-isometric`](./3d-isometric.md) | Isometric 3D forms with subtle shadows | Tech architecture / product structure |
 | [`digital-dashboard`](./digital-dashboard.md) | Polished UI / data-viz aesthetic | SaaS demos / data products |
-| [`corporate-photo`](./corporate-photo.md) | Editorial photography, real subjects | Team / lifestyle / product shots |
+| [`professional-photo`](./professional-photo.md) | Editorial photography, real subjects | Field, reportage, and subject photography |
 | [`blueprint`](./blueprint.md) | Technical schematic with grid, monospace cues | Architecture / engineering / AI systems |
 | [`editorial`](./editorial.md) | Magazine-style infographic look | Finance / journalism / explainers |
 

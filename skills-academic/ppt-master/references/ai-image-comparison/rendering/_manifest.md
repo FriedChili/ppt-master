@@ -78,11 +78,11 @@ Polished UI dashboard aesthetic, screen-like surface with cards and chart elemen
 
 ---
 
-### Image 5: corporate-photo.png
+### Image 5: professional-photo.png
 
 | Attribute | Value |
 |---|---|
-| Purpose | Rendering comparison — corporate-photo |
+| Purpose | Rendering comparison — professional-photo |
 | Aspect ratio | 16:9 |
 | Status | Generated |
 
@@ -91,7 +91,7 @@ Polished UI dashboard aesthetic, screen-like surface with cards and chart elemen
 Editorial corporate photography, real human subject in modern office environment, natural soft window lighting, magazine-quality, slight depth of field, photo-realistic. Subject: a confident professional standing beside an upward growth chart projected on a screen or printed on a wall, looking forward. Single dominant subject occupying 60-70% of the canvas (hero composition). Color grading is restrained-corporate: muted off-white #F8F9FA tones in the environment dominate as calm breathing space (about 65%); deep navy #1E3A5F appears as the dominant clothing or screen tone of the subject area; warm gold #D4AF37 grade appears only as a small environmental accent — perhaps a metal detail or warm light glow — under 5% of the area. No saturated extra colors. 12-20% inner safe-zone padding around the subject. No embedded text in the image.
 
 **Alt Text**:
-> Corporate photography hero rendering: real professional in modern office beside growth chart, navy and off-white grade with gold accent
+> Professional photography hero rendering: real professional in modern office beside growth chart, navy and off-white grade with gold accent
 
 ---
 

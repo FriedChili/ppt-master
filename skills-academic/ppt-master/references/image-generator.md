@@ -38,7 +38,7 @@ Pick whatever `page_role` and `text_policy` make the page work; everything else 
 
 | Dimension | Decides | When fixed |
 |---|---|---|
-| **Rendering** | Visual style family (vector / sketch-notes / 3d-isometric / corporate-photo / …) | Once per deck |
+| **Rendering** | Visual style family (vector / sketch-notes / 3d-isometric / professional-photo / …) | Once per deck |
 | **Deck colors** | Core background / primary / accent / secondary-accent / text anchors from `spec_lock.md colors` (Default) or the active-context decisions (Quick) | Default after Stage 2; Quick before acquisition |
 | **Type** | Optional recall for a local structural infographic's skeleton (infographic / flowchart / framework / matrix / cycle / funnel / pyramid / comparison / timeline / map / scene); omit when no template fits, for single-subject/portrait, and for `hero_page` | Per image |
 
@@ -103,7 +103,7 @@ A/B describe a hero or a local single-subject region; C/D are hero-page composit
 
 > **A — 3d-isometric product reveal, `none`, 600×600**: 3D isometric illustration in true 30°/30°/30° projection. One dominant product-form subject — a stylized device or sleek tech object — commands the center of the canvas, rendered in primary electric blue `#0EA5E9` on its lit faces with a 15% darker tonal shift on shadowed faces and a subtle 8%-opacity outer glow. Small supporting context: three thin connecting lines in accent vivid cyan `#06B6D4` arcing from the subject toward the edges, and a soft 8% drop shadow grounding it. Background is deep secondary navy `#0A0E27`, including the shadowed plane. The subject is the singular focal element with deliberate breathing room. Composed as a 600×600 hero block. NO text, letters, numbers, or labels anywhere. Color values are rendering guidance only.
 
-> **B — corporate-photo executive headshot, `none`, 600×800**: Editorial corporate portrait of one professional executive, centered slightly left, chest-up at eye level, looking confidently toward the camera with a relaxed natural expression. Contemporary business attire in a neutral palette. Soft natural light from the upper left, gentle shadow on the right side of the face. Background a softly out-of-focus office — secondary light gray `#F8F9FA` wall with a hint of primary deep navy `#1E3A5F` in a blurred architectural element. Restrained professional grading, shallow depth of field, eyes near the upper-third line with comfortable headroom. Composed as a 600×800 bio portrait. NO text, name tags, or captions. Color values are rendering guidance only.
+> **B — professional-photo executive headshot, `none`, 600×800**: Editorial corporate portrait of one professional executive, centered slightly left, chest-up at eye level, looking confidently toward the camera with a relaxed natural expression. Contemporary business attire in a neutral palette. Soft natural light from the upper left, gentle shadow on the right side of the face. Background a softly out-of-focus office — secondary light gray `#F8F9FA` wall with a hint of primary deep navy `#1E3A5F` in a blurred architectural element. Restrained professional grading, shallow depth of field, eyes near the upper-third line with comfortable headroom. Composed as a 600×800 bio portrait. NO text, name tags, or captions. Color values are rendering guidance only.
 
 > **C — ink-notes big-number stat, `embedded`, 800×500**: Professional hand-drawn visual-note style on pure white. The central content is the hand-lettered number "100x" in bold confident ink strokes, centered with the slight wobble of hand-lettering; a thin hand-drawn underline beneath; one small doodle — a star or upward arrow — beside it for rhythm. Accent coral `#E8655A` appears only as a tiny emphasis dot under 4% of the canvas. Background pure white `#FFFFFF`. Composed as an 800×500 typographic hero with enough room for the letterforms. No other text or labels — just "100x" and the doodle.
 
@@ -398,8 +398,8 @@ Do not ask and do not enter Offline Manual. Retain the filename, attempted path,
 | Methodology / framework | `type: framework`, `local` |
 | Process | `type: flowchart`, `local` |
 | Before/after | `type: comparison`, `local` |
-| Team or lifestyle group | `type: scene`, `local`, `corporate-photo` or `warm-scene` |
-| Headshot | `local` + Primitive B, `corporate-photo` |
+| Team or lifestyle group | `type: scene`, `local`, `professional-photo` or `warm-scene` |
+| Headshot | `local` + Primitive B, `professional-photo` |
 | Big number or hero quote | `hero_page` + Primitive C, `embedded` |
 | Mood transition | `hero_page` + D, or `type: scene` when narrative |
 

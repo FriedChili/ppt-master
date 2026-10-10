@@ -32,7 +32,7 @@ Photo-led editorial — large full-bleed photography dominates the page, text po
 
 ## 5. Paired image-rendering
 
-`corporate-photo` — real editorial photography as the hero imagery the layout is built around.
+`professional-photo` — real editorial photography as the hero imagery the layout is built around.
 
 ## 6. Illustration propensity
 

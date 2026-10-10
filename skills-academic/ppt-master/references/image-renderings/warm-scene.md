@@ -1,6 +1,6 @@
 # Rendering: warm-scene
 
-Golden-hour cinematic warmth — illustrated scenes with intentional warm lighting, soft shadows, atmospheric mood. Sits between `watercolor` (more painterly) and `corporate-photo` (more realistic). Used for personal growth stories, origin stories, brand narratives, lifestyle decks.
+Golden-hour cinematic warmth — illustrated scenes with intentional warm lighting, soft shadows, atmospheric mood. Sits between `watercolor` (more painterly) and `professional-photo` (more realistic). Used for personal growth stories, origin stories, brand narratives, lifestyle decks.
 
 ## 1. Style paragraph (paste-ready, 100 words)
 

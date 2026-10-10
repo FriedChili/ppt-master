@@ -41,7 +41,7 @@ Each style keeps its own authoritative file with: shape & decoration, typography
 | Visual style | Character | Paired rendering | Illus. |
 |---|---|---|---|
 | [`editorial`](./editorial.md) | Magazine hierarchy, rules & columns, serif/sans interplay | `editorial` | supportive |
-| [`photo-editorial`](./photo-editorial.md) | Full-bleed photography dominates, text points & captions | `corporate-photo` | sparse |
+| [`photo-editorial`](./photo-editorial.md) | Full-bleed photography dominates, text points & captions | `professional-photo` | sparse |
 | [`data-journalism`](./data-journalism.md) | Multi-column micro-charts, sidebars, source lines, dense | `editorial` | sparse |
 | [`brutalist`](./brutalist.md) | Newsprint density, ruled boxes, raw structure, flat | `screen-print` / `editorial` | supportive |
 
@@ -100,7 +100,7 @@ an exact authoring preset here.
 > aesthetically related option. It does not select the rendering or create an
 > AI image job; compare it with the actual image roles before using it.
 >
-> Not every image-rendering becomes its own visual style. A rendering earns a layout twin only when it defines a whole-page layout language (shape, whitespace, composition, texture) — not merely how an inserted image looks. Purely atmospheric renderings (`nature`, `warm-scene`, `fantasy-animation`) stay imagery-only: they pair with whichever layout style fits rather than being one. (Note the distinction `photo-editorial` draws: photography as a *rendering* is image-look, but photo-*led composition* is a real layout language — so the style exists, paired with `corporate-photo`.)
+> Not every image-rendering becomes its own visual style. A rendering earns a layout twin only when it defines a whole-page layout language (shape, whitespace, composition, texture) — not merely how an inserted image looks. Purely atmospheric renderings (`nature`, `warm-scene`, `fantasy-animation`) stay imagery-only: they pair with whichever layout style fits rather than being one. (Note the distinction `photo-editorial` draws: photography as a *rendering* is image-look, but photo-*led composition* is a real layout language — so the style exists, paired with `professional-photo`.)
 
 ---
 

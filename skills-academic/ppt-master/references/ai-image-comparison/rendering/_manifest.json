@@ -47,11 +47,11 @@
       "status": "Generated"
     },
     {
-      "filename": "corporate-photo.png",
-      "purpose": "Rendering comparison — corporate-photo",
+      "filename": "professional-photo.png",
+      "purpose": "Rendering comparison — professional-photo",
       "aspect_ratio": "16:9",
       "prompt": "Editorial corporate photography, real human subject in modern office environment, natural soft window lighting, magazine-quality, slight depth of field, photo-realistic. Subject: a confident professional standing beside an upward growth chart projected on a screen or printed on a wall, looking forward. Single dominant subject occupying 60-70% of the canvas (hero composition). Color grading is restrained-corporate: muted off-white #F8F9FA tones in the environment dominate as calm breathing space (about 65%); deep navy #1E3A5F appears as the dominant clothing or screen tone of the subject area; warm gold #D4AF37 grade appears only as a small environmental accent — perhaps a metal detail or warm light glow — under 5% of the area. No saturated extra colors. 12-20% inner safe-zone padding around the subject. No embedded text in the image.",
-      "alt_text": "Corporate photography hero rendering: real professional in modern office beside growth chart, navy and off-white grade with gold accent",
+      "alt_text": "Professional photography hero rendering: real professional in modern office beside growth chart, navy and off-white grade with gold accent",
       "status": "Generated"
     },
     {
