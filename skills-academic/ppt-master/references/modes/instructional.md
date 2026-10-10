@@ -1,6 +1,6 @@
 # Mode: instructional
 
-Teaching-led exposition. Decompose a concept into ordered, digestible parts and build understanding step by step. For training, tutorials, explainers, onboarding, science / knowledge sharing.
+Teaching-led exposition. Decompose a concept into ordered, digestible parts and build understanding step by step. For lectures, lab procedures, method walkthroughs, science communication.
 
 ---
 

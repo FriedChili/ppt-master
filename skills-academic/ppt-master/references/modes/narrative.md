@@ -1,6 +1,6 @@
 # Mode: narrative
 
-Story-arc persuasion. Carry the audience through situation → tension → resolution, using suspense, turns, and human framing so the point lands emotionally before it lands logically. For pitches, case studies, brand journeys, fundraising.
+Story-arc persuasion. Carry the audience through situation → tension → resolution, using suspense, turns, and human framing so the point lands emotionally before it lands logically. For case studies, fieldwork narratives, research proposals.
 
 ---
 

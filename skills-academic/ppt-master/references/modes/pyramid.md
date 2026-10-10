@@ -1,6 +1,6 @@
 # Mode: pyramid
 
-Conclusion-first argumentation. State the answer, then support it with structured evidence — every claim earns its place and data is contextualized without inventing comparisons. For audiences who want the result before the process: executives, boards, investors, decision-makers.
+Conclusion-first argumentation. State the answer, then support it with structured evidence — every claim earns its place and data is contextualized without inventing comparisons. For audiences who want the result before the process: examiners, supervisors, reviewers, seminar audiences.
 
 ---
 

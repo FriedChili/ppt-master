@@ -1,6 +1,6 @@
 # Mode: briefing
 
-Neutral information delivery. Lay the facts out plainly and completely, organized for scanning and lookup — no thesis to argue, no story to tell, no lesson to build, no spectacle. For status updates, reference decks, catalogs, meeting packs, FAQs, data references.
+Neutral information delivery. Lay the facts out plainly and completely, organized for scanning and lookup — no thesis to argue, no story to tell, no lesson to build, no spectacle. For literature reviews, reference packs, FAQs, group-meeting material, data references.
 
 ---
 

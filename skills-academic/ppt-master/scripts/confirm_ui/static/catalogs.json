@@ -1322,10 +1322,10 @@
       "label_zh_tw": "金字塔",
       "label_en": "pyramid",
       "label_ja": "ピラミッド",
-      "desc_zh": "结论先行、相互独立且完全穷尽的论证、每个数据都带比较。适合决策、分析、战略、汇报。",
-      "desc_zh_tw": "結論先行、相互獨立且完全窮盡的論證、每個數據都帶比較。適合決策、分析、戰略、報告。",
-      "desc_en": "Lead with the answer, use MECE reasoning, and compare every key data point. Best for decisions, analysis, strategy, and reporting.",
-      "desc_ja": "結論を先に示し、MECEな論理構成で、主要データは必ず比較を添える。意思決定・分析・戦略・報告に最適。"
+      "desc_zh": "结论先行、相互独立且完全穷尽的论证、每个数据都带比较。适合论文答辩、课程报告、研究结论汇报。",
+      "desc_zh_tw": "結論先行、相互獨立且完全窮盡的論證、每個數據都帶比較。適合論文答辯、課程報告、研究結論匯報。",
+      "desc_en": "Lead with the answer, use MECE reasoning, and compare every key data point. Best for thesis defenses, coursework reports, and research findings.",
+      "desc_ja": "結論を先に示し、MECEな論理構成で、主要データは必ず比較を添える。論文答辩・授業レポート・研究発表に最適。"
     },
     {
       "id": "narrative",
@@ -1334,10 +1334,10 @@
       "label_zh_tw": "敘事",
       "label_en": "narrative",
       "label_ja": "ナラティブ",
-      "desc_zh": "情境、张力、解决方案形成故事弧线，保留悬念与转折。适合路演、案例、品牌、融资。",
-      "desc_zh_tw": "情境、張力、解決方案形成故事弧線，保留懸念與轉折。適合路演、案例、品牌、融資。",
-      "desc_en": "Build a story arc from context to tension to resolution, with suspense and turns. Best for roadshows, cases, brand stories, and fundraising.",
-      "desc_ja": "状況設定から緊張、解決へとストーリーアークを描き、意外性や転換を残す。ロードショー・事例紹介・ブランドストーリー・資金調達向け。"
+      "desc_zh": "情境、张力、解决方案形成故事弧线，保留悬念与转折。适合案例研究、田野调查、开题陈述。",
+      "desc_zh_tw": "情境、張力、解決方案形成故事弧線，保留懸念與轉折。適合案例研究、田野調查、開題陳述。",
+      "desc_en": "Build a story arc from context to tension to resolution, with suspense and turns. Best for case studies, fieldwork narratives, and research proposals.",
+      "desc_ja": "状況設定から緊張、解決へとストーリーアークを描き、意外性や転換を残す。事例研究・フィールド調査・研究計画発表向け。"
     },
     {
       "id": "instructional",
@@ -1346,10 +1346,10 @@
       "label_zh_tw": "教學",
       "label_en": "instructional",
       "label_ja": "教育・解説",
-      "desc_zh": "概念拆解、分步推进、并列讲解。适合培训、教程、科普、知识分享。",
-      "desc_zh_tw": "概念拆解、分步推進、並列講解。適合培訓、教程、科普、知識分享。",
-      "desc_en": "Break concepts down, advance step by step, and explain parallel ideas clearly. Best for training, tutorials, popular science, and knowledge sharing.",
-      "desc_ja": "概念を分解し、段階的に進め、並列する要素を明確に説明する。研修・チュートリアル・科学解説・知識共有に最適。"
+      "desc_zh": "概念拆解、分步推进、并列讲解。适合课程讲解、实验步骤、方法教学、科普报告。",
+      "desc_zh_tw": "概念拆解、分步推進、並列講解。適合課程講解、實驗步驟、方法教學、科普報告。",
+      "desc_en": "Break concepts down, advance step by step, and explain parallel ideas clearly. Best for lectures, lab procedures, method walkthroughs, and science communication.",
+      "desc_ja": "概念を分解し、段階的に進め、並列する要素を明確に説明する。講義・実験手順・手法解説・科学コミュニケーションに最適。"
     },
     {
       "id": "briefing",
@@ -1358,16 +1358,16 @@
       "label_zh_tw": "簡報",
       "label_en": "briefing",
       "label_ja": "ブリーフィング",
-      "desc_zh": "中性完整、便于速览，采用主题式标题和均匀权重。适合周报、参考材料、常见问题、会议包。",
-      "desc_zh_tw": "中性完整、便於速覽，採用主題式標題和均勻權重。適合週報、參考材料、常見問題、會議包。",
-      "desc_en": "Stay neutral, complete, and scannable with topical headings and balanced weight. Best for weekly reports, reference packs, FAQs, and meeting decks.",
-      "desc_ja": "中立的かつ網羅的で一覧しやすく、トピック見出しと均等な重み付けを用いる。週次報告・参考資料・FAQ・会議資料に最適。"
+      "desc_zh": "中性完整、便于速览，采用主题式标题和均匀权重。适合文献综述、资料汇编、常见问题、组会材料。",
+      "desc_zh_tw": "中性完整、便於速覽，採用主題式標題和均勻權重。適合文獻回顧、資料彙編、常見問題、組會材料。",
+      "desc_en": "Stay neutral, complete, and scannable with topical headings and balanced weight. Best for literature reviews, reference packs, FAQs, and group-meeting material.",
+      "desc_ja": "中立的かつ網羅的で一覧しやすく、トピック見出しと均等な重み付けを用いる。文献レビュー・資料集・FAQ・ゼミ資料に最適。"
     }
   ],
   "visual_styles": [
     {
-      "group": "Corporate / product",
-      "group_zh": "企业 / 产品",
+      "group": "Modern / precise",
+      "group_zh": "现代 / 精确",
       "group_zh_tw": "企業 / 產品",
       "group_en": "Corporate / product",
       "group_ja": "企業／プロダクト",
@@ -1635,10 +1635,10 @@
       "label_zh_tw": "幾何實心圖示",
       "label_en": "chunk-filled",
       "label_ja": "幾何学的塗りつぶしアイコン",
-      "desc_zh": "实心、直线几何、锐利厚重，适合科技、工程、企业结构图。",
-      "desc_zh_tw": "實心、直線幾何、銳利厚重，適合科技、工程、企業結構圖。",
-      "desc_en": "Solid, straight, geometric, sharp, and heavy. Good for tech, engineering, and corporate structure diagrams.",
-      "desc_ja": "塗りつぶし・直線的な幾何形状で、鋭くしっかりした印象。テック、エンジニアリング、企業組織図に適する。"
+      "desc_zh": "实心、直线几何、锐利厚重，适合理工科、工程示意与结构图。",
+      "desc_zh_tw": "實心、直線幾何、銳利厚重，適合理工科、工程示意與結構圖。",
+      "desc_en": "Solid, straight, geometric, sharp, and heavy. Good for science and engineering subjects and structure diagrams.",
+      "desc_ja": "塗りつぶし・直線的な幾何形状で、鋭くしっかりした印象。理工系・工学の模式図や構造図に適する。"
     },
     {
       "id": "tabler-filled",
@@ -1671,10 +1671,10 @@
       "label_zh_tw": "雙色層次圖示",
       "label_en": "phosphor-duotone",
       "label_ja": "デュオトーン階調アイコン",
-      "desc_zh": "双色层次、中等重量，适合现代产品和平台类表达。",
-      "desc_zh_tw": "雙色層次、中等重量，適合現代產品和平台類表達。",
-      "desc_en": "Two-tone layering with medium weight. Good for modern product and platform narratives.",
-      "desc_ja": "2色の階調表現で中程度の重み。モダンなプロダクトやプラットフォームの説明に適する。"
+      "desc_zh": "双色层次、中等重量，适合分层概念与流程类表达。",
+      "desc_zh_tw": "雙色層次、中等重量，適合分層概念與流程類表達。",
+      "desc_en": "Two-tone layering with medium weight. Good for layered concepts and process explanations.",
+      "desc_ja": "2色の階調表現で中程度の重み。階層的な概念やプロセスの説明に適する。"
     },
     {
       "id": "emoji",
@@ -1683,10 +1683,10 @@
       "label_zh_tw": "表情符號",
       "label_en": "Emoji",
       "label_ja": "絵文字",
-      "desc_zh": "系统表情符号，适合轻量、社交、教学或快速识别场景；正式企业 / 咨询风谨慎使用。",
-      "desc_zh_tw": "系統表情符號，適合輕量、社交、教學或快速識別場景；正式企業 / 諮詢風謹慎使用。",
-      "desc_en": "System emoji for lightweight, social, instructional, or quick-recognition contexts; use carefully in formal corporate or consulting decks.",
-      "desc_ja": "システム絵文字。軽やかなSNS・教育・素早い視認が求められる場面向き。フォーマルな企業／コンサル資料では慎重に使用すること。"
+      "desc_zh": "系统表情符号，适合轻量、社交或快速识别场景；正式论文与答辩场合谨慎使用。",
+      "desc_zh_tw": "系統表情符號，適合輕量、社交或快速識別場景；正式論文與答辯場合謹慎使用。",
+      "desc_en": "System emoji for lightweight, social, or quick-recognition contexts; use carefully in formal papers and defense decks.",
+      "desc_ja": "システム絵文字。軽やかなSNSや素早い視認が求められる場面向き。正式な論文・答辩資料では慎重に使用すること。"
     },
     {
       "id": "none",
@@ -1849,14 +1849,14 @@
     {
       "id": "balanced",
       "label": "balanced",
-      "label_zh": "均衡 · 商务",
-      "label_zh_tw": "均衡 · 商務",
-      "label_en": "balanced / business",
-      "label_ja": "バランス型・ビジネス",
-      "desc_zh": "页面与讲者共同承担信息：一条主结论配合简短说明、结构化证据或必要列表，适合路演和业务评审。",
-      "desc_zh_tw": "頁面與講者共同承擔資訊：一個主結論配合簡短說明、結構化證據或必要列表，適合路演和業務評審。",
-      "desc_en": "The page and presenter share the load: pair one primary claim with concise explanation, structured evidence, or a necessary list. Best for roadshows and business reviews.",
-      "desc_ja": "ページと話者で情報を分担する構成。主張を一つ置き、短い説明、構造化した根拠、または必要なリストを組み合わせる。ロードショーや事業レビュー向け。"
+      "label_zh": "均衡 · 报告",
+      "label_zh_tw": "均衡 · 報告",
+      "label_en": "balanced / report",
+      "label_ja": "バランス型・レポート",
+      "desc_zh": "页面与讲者共同承担信息：一条主结论配合简短说明、结构化证据或必要列表，适合课程报告与论文答辩。",
+      "desc_zh_tw": "頁面與講者共同承擔資訊：一個主結論配合簡短說明、結構化證據或必要列表，適合課程報告與論文答辯。",
+      "desc_en": "The page and presenter share the load: pair one primary claim with concise explanation, structured evidence, or a necessary list. Best for coursework reports and thesis defenses.",
+      "desc_ja": "ページと話者で情報を分担する構成。主張を一つ置き、短い説明、構造化した根拠、または必要なリストを組み合わせる。授業レポートや論文答辩向け。"
     },
     {
       "id": "presentation",

@@ -26,7 +26,7 @@ Each style keeps its own authoritative file with: shape & decoration, typography
 > lettering is a separate carrier decision; a selected style informs its
 > treatment, never its eligibility.
 
-### 1.1 Corporate / product
+### 1.1 Modern / precise
 
 | Visual style | Character | Paired rendering | Illus. |
 |---|---|---|---|

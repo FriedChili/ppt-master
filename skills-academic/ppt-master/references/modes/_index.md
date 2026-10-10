@@ -12,10 +12,10 @@ Each mode keeps its own authoritative file with: narrative skeleton, page-struct
 
 | Mode | Narrative skeleton | Typical communication context |
 |---|---|---|
-| [`pyramid`](./pyramid.md) | Conclusion first; structured arguments; data contextualized with supported comparisons where useful | Decision support, analysis, strategy, board / exec reports |
-| [`narrative`](./narrative.md) | Story arc — situation → tension → resolution; suspense and turns | Pitches, case studies, brand journeys, fundraising |
-| [`instructional`](./instructional.md) | Concept decomposition; step-by-step; parallel exposition | Training, tutorials, explainers, knowledge sharing |
-| [`briefing`](./briefing.md) | Neutral, complete, scannable; topic titles, even weight, no thesis | Status updates, reference decks, catalogs, meeting packs, FAQs |
+| [`pyramid`](./pyramid.md) | Conclusion first; structured arguments; data contextualized with supported comparisons where useful | Thesis defenses, coursework reports, research findings, lab reviews |
+| [`narrative`](./narrative.md) | Story arc — situation → tension → resolution; suspense and turns | Case studies, fieldwork narratives, research proposals |
+| [`instructional`](./instructional.md) | Concept decomposition; step-by-step; parallel exposition | Lectures, lab procedures, method walkthroughs, science communication |
+| [`briefing`](./briefing.md) | Neutral, complete, scannable; topic titles, even weight, no thesis | Literature reviews, reference packs, FAQs, group-meeting material |
 
 > The four are **argument strategies, not a taxonomy of communication purposes**. A presentation may inform + align + request a decision at once; that composite intent stays as open prose in Default's Stage-1 communication contract or Quick's active brief. Default uses this index to map each whole solution intent into one project-specific custom behavior; Quick resolves one preset or custom direction directly.
 >
@@ -41,7 +41,7 @@ selecting one for the current deck:
 | `narrative` / `pyramid` | the point lands through a story arc, tension → resolution | the point lands as a conclusion stated up front, then supported |
 | `instructional` / `briefing` | the goal is to build understanding step by step | the goal is to lay out a complete reference to scan |
 
-> "Keynote-style" is a *mode* request, not a visual style — it means showcase pacing (a clear primary idea, hero-scale visual treatment, reveal rhythm), skinned by whatever visual style fits the brand (`swiss-minimal` clean, `dark-tech` dramatic, `glassmorphism` premium). Don't reach for a "keynote" visual style — there isn't one, by design.
+> "Keynote-style" is a *mode* request, not a visual style — it means keynote pacing (a clear primary idea, hero-scale visual treatment, reveal rhythm), skinned by whatever visual style fits the subject (`swiss-minimal` clean, `dark-tech` dramatic, `glassmorphism` premium). Don't reach for a "keynote" visual style — there isn't one, by design.
 
 ---
 

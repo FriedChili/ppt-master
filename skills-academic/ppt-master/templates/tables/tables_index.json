@@ -13,8 +13,6 @@
   "aliases": {
     "basic_table": "record_table",
     "comparison_table": "comparison_matrix",
-    "consulting_table": "metric_table",
-    "feature_matrix_table": "feature_matrix",
     "financial_statement_table": "hierarchical_table",
     "harvey_balls_table": "rating_matrix"
   },
