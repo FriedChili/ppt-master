@@ -130,6 +130,25 @@ class PdfClauseAndScanTests(unittest.TestCase):
 class ImportSourcesProjectTreeTests(unittest.TestCase):
     def test_research_web_sources_dir_is_not_a_project(self) -> None:
         PROJECTS_ROOT.mkdir(parents=True, exist_ok=True)
+        # A confined host may deny new entries under a pre-existing projects/.
+        # tempfile.TemporaryDirectory(dir=...) would then not fail fast: on
+        # Windows _mkdtemp treats PermissionError as "name already taken" while
+        # os.access(dir, W_OK) only inspects the read-only attribute, never the
+        # ACL, so it keeps retrying up to TMP_MAX (2**31-1 on this build) and the
+        # module never finishes. Probe once and skip with a reason instead.
+        probe = PROJECTS_ROOT / '.write-probe'
+        try:
+            probe.mkdir()
+        except OSError as exc:
+            self.skipTest(
+                f"projects/ is not writable here ({type(exc).__name__}); "
+                "a temp dir under it would retry mkdir until TMP_MAX"
+            )
+        finally:
+            try:
+                probe.rmdir()
+            except OSError:
+                pass
         with tempfile.TemporaryDirectory(dir=PROJECTS_ROOT) as tmp:
             root = Path(tmp)
             scratch = root.with_name(root.name + "_web_sources")

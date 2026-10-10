@@ -181,17 +181,17 @@ python skills/ppt-master/scripts/prompt_audit.py --root <staging> --skip-near-du
 
 | 模块 | 原树 | 学术树 | 判定 |
 |---|---|---|---|
-| 其余 48 个 | OK | OK | — |
+| 其余 49 个 | OK | OK | — |
 | `test_image_backend_tencent` | FAIL | **OK** | 学术树更好 |
 | `test_template_flow_batch1` | TIMEOUT | **OK** | 学术树更好 |
-| `test_dogfood_leaves_fixes` | TIMEOUT | TIMEOUT | 预存在 |
+| `test_dogfood_leaves_fixes` | TIMEOUT | **OK** | 学术树更好（见 §7.2.1） |
 | `test_edit_native_batch_a` | FAIL | FAIL | 预存在（缺 ffmpeg） |
 | `test_source_to_md_content_loss_docx` | FAIL | FAIL | 预存在（缺 python-docx） |
 | `test_template_flow_batch4` | FAIL | FAIL | 机器级符号链接权限 |
 | `test_web_to_md_security` | FAIL | FAIL | 网络/TLS |
 
-**学术树 50 OK / 4 FAIL / 1 TIMEOUT，且没有任何一个模块相对原树发生回归。**
-非通过的 5 个模块在原树上**同样**非通过，根因均为环境：
+**学术树 51 OK / 4 FAIL / 0 TIMEOUT；原树 48 OK / 5 FAIL / 2 TIMEOUT。
+没有任何一个模块相对原树发生回归，3 个从失败/超时转为通过。**
 
 - `test_edit_native_batch_a`（4 个 narration 用例）：`Recorded narration requires readable audio
   durations. Install ffprobe/ffmpeg` —— 机器未装 ffmpeg
@@ -207,6 +207,31 @@ python skills/ppt-master/scripts/prompt_audit.py --root <staging> --skip-near-du
 捆绑的 `styles/technical-deepdive`），并保持每个用例原本的断言语义：
 N5 不相交根、N5 多 kind 根不可部分选择、N6 外部资产漂移、N8 无关已装 spec 不能完成交接、
 N8 已装资产漂移使交接失效。修复后 batch1 22 tests OK、batch3 15 tests OK。
+
+#### 7.2.1 `test_dogfood_leaves_fixes` 超时的根因（三方交互，非本分支缺陷）
+
+该模块在原树与学术树上**同样**卡满 180s。逐层定位：
+
+1. 卡点是 `ImportSourcesProjectTreeTests.test_research_web_sources_dir_is_not_a_project`
+   的 `tempfile.TemporaryDirectory(dir=PROJECTS_ROOT)` 这一行（插桩计时确认：进到该行前 0.36s，
+   之后不再前进）。
+2. `PROJECTS_ROOT` = `E:\ppt-master-6.7.0\projects`（`config.py:42` `REPO_ROOT = PROJECT_ROOT.parent.parent`；
+   两棵树都恰好在仓库下两层，故解析到同一路径 —— 这正是原树也卡住的原因）。
+3. 该目录**已存在**，而沙箱只允许在根目录与会话内新建的目录里写入 →
+   `os.mkdir(PROJECTS_ROOT / ...)` 抛 `PermissionError [WinError 5]`。
+4. CPython `tempfile._mkdtemp` 在 Windows 上把 `PermissionError` 当作"候选名被占用"处理，
+   判据是 `os.access(dir, os.W_OK)` —— 而 Windows 的 `os.access` **只检查只读属性、不检查 ACL**，
+   于是恒为 True，循环继续。
+5. 本机 Python 构建的 `tempfile.TMP_MAX` 是 **2147483647**，不是常见的 10000。
+
+⇒ 每次 mkdir 立即被拒 → 重试约 21 亿次 → 永远跑不完。
+
+**实验证明**：把 `TMP_MAX` 压到 5 / 50 / 200，同一调用在 0.00 / 0.01 / 0.03 秒内以
+`FileExistsError: No usable temporary directory name found` 返回。在可写 `projects/` 的正常环境里，
+第一次 mkdir 就成功，测试瞬时通过。
+
+**修法**：先用一次真实 `mkdir` 探测 `projects/` 是否可写，不可写则 `skipTest` 并给出原因
+（可写时行为与原来完全一致）。修复后该模块 **1.8s 跑完，51 tests OK (skipped=1)**。
 
 ### 7.3 导出链端到端（安装后布局）
 
