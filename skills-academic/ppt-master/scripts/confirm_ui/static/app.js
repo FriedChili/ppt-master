@@ -136,10 +136,6 @@
             proactive_execution_hint: "These defaults apply only when you have not explicitly instructed otherwise. Your latest explicit instruction always takes priority.",
             proactive_speaker_notes: "Proactively generate speaker notes",
             proactive_speaker_notes_desc: "On by default. The agent generates speaker notes without a separate request.",
-            proactive_custom_animations: "Proactively create custom animations",
-            proactive_custom_animations_desc: "Off by default. Strategist motion suggestions remain available; turn this on to have the agent create custom animations without a separate request.",
-            proactive_narration_audio: "Proactively generate narration audio",
-            proactive_narration_audio_desc: "Off by default. This raw choice does not rewrite the speaker-notes toggle; the Strategist resolves narration's effective notes dependency in the Design Spec.",
             font_heading: "Heading",
             font_body: "Body",
             font_selection: "Font selection",
@@ -325,10 +321,6 @@
             proactive_execution_hint: "これらの初期設定は、明示的な指示がない場合にのみ適用されます。最新の明示的な指示が常に優先されます。",
             proactive_speaker_notes: "発表者ノートを能動的に生成",
             proactive_speaker_notes_desc: "初期設定はオンです。個別の依頼がなくても発表者ノートを生成します。",
-            proactive_custom_animations: "カスタムアニメーションを能動的に作成",
-            proactive_custom_animations_desc: "初期設定はオフです。ストラテジストの動きの提案は維持され、オンにすると個別の依頼がなくてもカスタムアニメーションを作成します。",
-            proactive_narration_audio: "ナレーション音声を能動的に生成",
-            proactive_narration_audio_desc: "初期設定はオフです。この選択は発表者ノートの設定を書き換えません。ナレーションに必要なノートの有効状態は、ストラテジストが設計仕様で解決します。",
             font_heading: "見出し",
             font_body: "本文",
             font_selection: "フォント選択",
@@ -514,10 +506,6 @@
             proactive_execution_hint: "这些默认开关只在你没有明确要求时生效；你最新的明确指令始终优先。",
             proactive_speaker_notes: "主动生成演讲者备注",
             proactive_speaker_notes_desc: "默认开启。无需另行要求，Agent 也会生成演讲者备注。",
-            proactive_custom_animations: "主动生成自定义动画",
-            proactive_custom_animations_desc: "默认关闭。策略师的动画建议仍会保留；开启后，Agent 可在没有另行要求时实际制作自定义动画。",
-            proactive_narration_audio: "主动生成旁白音频",
-            proactive_narration_audio_desc: "默认关闭。这里保留原始选择，不改写演讲者备注开关；策略师会在设计规范中解析旁白所需的最终备注状态。",
             font_heading: "标题",
             font_body: "正文",
             font_selection: "字体选择",
@@ -703,10 +691,6 @@
             proactive_execution_hint: "這些預設開關只在你沒有明確要求時生效；你最新的明確指令始終優先。",
             proactive_speaker_notes: "主動生成演講者備註",
             proactive_speaker_notes_desc: "預設開啟。無需另行要求，Agent 也會生成演講者備註。",
-            proactive_custom_animations: "主動生成自訂動畫",
-            proactive_custom_animations_desc: "預設關閉。策略師的動畫建議仍會保留；開啟後，Agent 可在沒有另行要求時實際製作自訂動畫。",
-            proactive_narration_audio: "主動生成旁白音訊",
-            proactive_narration_audio_desc: "預設關閉。這裡保留原始選擇，不改寫演講者備註開關；策略師會在設計規範中解析旁白所需的最終備註狀態。",
             font_heading: "標題",
             font_body: "正文",
             font_selection: "字型選擇",
@@ -3921,18 +3905,6 @@
             "proactive_speaker_notes",
             true
         );
-        addToggle(
-            "proactive_custom_animations",
-            "proactive_custom_animations_desc",
-            "proactive_custom_animations",
-            false
-        );
-        addToggle(
-            "proactive_narration_audio",
-            "proactive_narration_audio_desc",
-            "proactive_narration_audio",
-            false
-        );
         host.appendChild(sec);
     }
 
@@ -4217,8 +4189,6 @@
     function initProductionState() {
         STATE.image_ai_path = pick("image_ai_path", CAT.image_ai_path);
         STATE.proactive_speaker_notes = booleanRecommendation("proactive_speaker_notes", true);
-        STATE.proactive_custom_animations = booleanRecommendation("proactive_custom_animations", false);
-        STATE.proactive_narration_audio = booleanRecommendation("proactive_narration_audio", false);
 
         STATE.generation_mode = pick("generation_mode", CAT.generation_mode);
         STATE.refine_spec = !!((REC.refine_spec && REC.refine_spec.value) || (REC.recommend && REC.recommend.refine_spec));

@@ -60,8 +60,6 @@ Create only after Stage 1 and verified installation (or `free_design`); bind top
   "page_count": { "value": "12-15" },
   "image_notes": { "value": "封面和章节页用 AI 主视觉；产品页优先用户素材。" },
   "proactive_speaker_notes": { "value": true },
-  "proactive_custom_animations": { "value": false },
-  "proactive_narration_audio": { "value": false },
   "refine_spec": { "value": false },
   "design_spec_depth": { "value": "brief" },
   "template_application": { "value": "选用封面、章节页和数据页原型；跳过示例内容页。品牌标识和页脚保留，正文可按当前材料重组。" },

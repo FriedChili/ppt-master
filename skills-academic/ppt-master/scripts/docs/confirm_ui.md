@@ -266,7 +266,7 @@ template-selection receipt.
 - **Visual examples for hard-to-name choices** — the full-screen confirmation page loads real SVG page samples from `static/style_previews/` for fixed `visual_style` catalog choices, and renders real sample SVGs from `templates/icons` for the base `icons` field. Project-specific `custom` direction cards show their authored summary instead of requesting a nonexistent preset asset. These thumbnails and summaries make style and icon-library choices visually comparable before the user locks them. Preview copy is fixed role text (big title / section title / body / points), not project content from recommendation files, so users compare visual treatment rather than copywriting. These previews are a confirmation aid only: they do not add fields to recommendation stage files or `result.json`, and they do not replace the later Step 6 live preview.
 - **Image usage multi-select** — image sources are selected as one or more catalog ids: `ai` = AI-generated, `web` = Web-sourced, `provided` = User-provided, `placeholder` = Placeholder, `none` = No images. `none` is exclusive. A confirmed non-`none` set is the allowed acquisition-source boundary, not a requirement to use every selected source; only explicit `image_notes` wording can require a source, asset, or page role. Recommendation and result values may be a legacy single string, but new files should use an array. When several sources are recommended, write the source ids to `recommend.image_usage` and write the actual usage strategy to `image_notes`, not a custom prose value.
 - **Closed enumerable** — PPT reading mode (`delivery_purpose` compatibility key), generation mode / refine spec, plus AI source only when image usage includes `ai`. These have no Custom box; out-of-catalog values snap back to the recommended option.
-- **Proactive execution booleans** — Final Stage 2 carries top-level `proactive_speaker_notes`, `proactive_custom_animations`, and `proactive_narration_audio` values. Defaults are `true`, `false`, and `false`, respectively. They control what the Agent does proactively only when the user has not explicitly instructed otherwise; the latest explicit user instruction always wins. These three values are raw confirmation evidence: the UI and server neither couple nor rewrite them, and every boolean combination is valid. When narration audio is enabled, Strategist later resolves the effective Speaker Notes outcome to enabled and records `Narration Audio dependency` as its Design Spec provenance. Disabling proactive custom animation does not suppress the Strategist's advisory motion recommendations.
+- **Proactive execution boolean** — Final Stage 2 carries the top-level `proactive_speaker_notes` value. Its default is `true`. They control what the Agent does proactively only when the user has not explicitly instructed otherwise; the latest explicit user instruction always wins. These three values are raw confirmation evidence: the UI and server neither couple nor rewrite them, and every boolean combination is valid. Disabling proactive custom animation does not suppress the Strategist's advisory motion recommendations.
 - **Open prose** — `audience`, `communication_intent`, `audience_outcome`, `core_message`, `delivery_context`, `artifact_afterlife`, `content_divergence`, and `page_count`. `communication_intent` may carry several purposes plus priority / sequence; common paths appear only as help text. `delivery_context` states one primary presenter-led / reader-led / hybrid / recorded-self-running context plus optional secondary use; a hybrid recommendation names which context leads. `content_divergence` is the source-treatment axis. `page_count` may be a range here; Strategist resolves the exact §IX roster, leaving Executor no pagination latitude.
 - **Coordinated generative directions** — `design_directions` carries exactly three complete candidates authored top-down from the project contract. Each has a unique stable id and bundles `custom` mode, `custom` visual style, color, typography, icon id, and `custom` generated-image rendering regardless of recommended image source. Its localized note is a compact, user-facing style summary. It may reuse localized display labels from `catalogs.visual_styles` when they describe the result concisely, but those labels are optional vocabulary rather than a selection constraint or required mapping. Otherwise it uses concise natural language and never forces the nearest label. The summary stays within one or two short sentences and does not expose catalog ids or reference mechanics. Each candidate is one complete design authored top-down within the confirmed contract, never assembled bottom-up from catalog picks; three exist so a single recommendation cannot lock the user in, while the fixed catalogs stay the manual lower layer. Its custom projections are unrestricted by catalog relationship and may carry one preset unchanged. The candidates are plainly different whole-deck designs; any component may carry the difference or coincide. Names, notes, or reference counts alone do not distinguish them, and identical projections are valid only when authoritative truth leaves nothing open, stated in the note instead of inventing variation. Do not force safe / shifted / bold archetypes. After completing all three bundles, Strategist writes the strongest overall fit's zero-based index to `selected` when no template is installed. With installed template state, every candidate obeys the same resolved context; `selected` identifies the viable candidate that most fully expresses it, while the other two vary only open dimensions—never by weakening template use or splitting segments across cards. Array position does not determine preference. That bundle becomes the initial default and applies its three custom projections coherently. The page can still render legacy top-level `color`, `typography`, and `image_strategy` candidates, but new staged recommendations use the coordinated bundle.
 
@@ -406,64 +406,10 @@ persist it in a new receipt.
 ```json
 {
   "stage": "stage2",
-  "selection_sha256": "<copy from the current template_selection.json>",
-  "lang": "zh",
-  "recommend": {
-    "delivery_purpose": "balanced",
-    "mode": "custom",
-    "visual_style": "custom",
-    "image_strategy": "custom",
-    "image_usage": ["ai", "provided"],
-    "image_ai_path": "auto",
-    "generation_mode": "continuous"
-  },
-  "page_count": { "value": "12-15" },
-  "image_notes": { "value": "封面和章节页用 AI 主视觉；产品页优先用户素材。" },
-  "proactive_speaker_notes": { "value": true },
-  "proactive_custom_animations": { "value": false },
-  "proactive_narration_audio": { "value": false },
-  "refine_spec": { "value": false },
-  "design_spec_depth": { "value": "brief" },
-  "design_directions": {
-    "selected": 1,
-    "candidates": [
-      {
-        "id": "executive-clarity",
-        "name_zh": "稳妥专业",
-        "note_zh": "以瑞士极简为主，融合柔和圆角与编辑出版风格。",
-        "mode": "custom",
-        "mode_behavior_zh": "以 pyramid 作为唯一目录基底，为当前风险决策材料定制两次结论闸门；标题保持判断句，每章先给判断，再用证据展开并以可执行结论收束。",
-        "visual_style": "custom",
-        "visual_style_behavior_zh": "由 swiss-minimal 负责精确栅格和大留白，soft-rounded 负责少量关键容器的轮廓与轻微抬升，editorial 负责细规则、边注与证据层级；标题锐利，正文中性，装饰只标记推理关系。",
-        "icons": "tabler-outline",
-        "color": { "name_zh": "冷静专业", "palette": {
-          "background": "#FFFFFF", "secondary_bg": "#F4F6F8",
-          "primary": "#1A3A6B", "accent": "#E8A317",
-          "secondary_accent": "#4A7BB5", "body_text": "#1D2430"
-        } },
-        "typography": {
-          "name_zh": "微软雅黑 + Arial",
-          "heading": { "primary": "Microsoft YaHei", "english": "Arial", "css": "sans-serif" },
-          "body": { "primary": "Microsoft YaHei", "english": "Arial", "css": "sans-serif" },
-          "body_size": 24
-        },
-        "image_strategy": {
-          "name_zh": "编辑式证据图",
-          "rendering": "custom",
-          "visual_zh": "简化矢量主体配合编辑式注释与局部材质对比",
-          "mood_zh": "审慎、可信，像调查报道中的证据插图",
-          "behavior_zh": "由 vector-illustration 负责清晰轮廓，minimalist-swiss 负责留白构图，screen-print 负责克制的半调纹理，warm-scene 负责暖光与可信氛围；四者服从同一平面主体和当前演示文稿颜色角色，避免写实景深与装饰性渐变。"
-        }
-      }
-    ]
-  }
-}
-```
-
-The example shows one candidate's complete shape; the actual array repeats that shape for exactly three candidates. Every candidate requires a unique stable `id`, literal `custom` mode/style/rendering with localized behavior, an icon value, complete six-role palette, complete heading/body stack, and complete image strategy even when `recommend.image_usage` excludes AI. The server rejects any fixed mode/style/rendering inside a new direction and any explicit `design_directions.selected` outside integer `0` through `2`; omission remains readable as a legacy index-`0` fallback. Legacy grids remain readable only with three complete palettes and complete typography.
+  "selection_sha256": "<copy from the current template_selection. Every candidate requires a unique stable `id`, literal `custom` mode/style/rendering with localized behavior, an icon value, complete six-role palette, complete heading/body stack, and complete image strategy even when `recommend.image_usage` excludes AI. The server rejects any fixed mode/style/rendering inside a new direction and any explicit `design_directions.selected` outside integer `0` through `2`; omission remains readable as a legacy index-`0` fallback. Legacy grids remain readable only with three complete palettes and complete typography.
 
 - `design_directions.selected` owns the initial complete bundle and MUST be the actual zero-based index (`0`, `1`, or `2`) that Strategist chooses only after all three bundles are complete. The chosen card is marked Recommended and initially applies its matching mode, visual-style, and generated-image custom candidates together; array order carries no recommendation meaning. New direction mode/style/rendering values are always literal `custom`; prose stays in the required behavior sibling. `recommend.*` remains a compatibility hint and may mirror `custom`, but it never replaces the selected direction. Legacy aliases remain accepted; new files write canonical ids.
-- The three proactive-execution fields are top-level boolean `{ "value": ... }` objects, not catalog ids. Omitted fields use `true / false / false` for notes / custom animation / narration audio. These are absence-of-instruction defaults, not permission to override the user's latest explicit request. Preserve all three raw values independently through `result.json`; do not couple or rewrite them. Strategist derives effective Speaker Notes as enabled when audio is `true` and records `Narration Audio dependency` as provenance in the Design Spec. `proactive_custom_animations: false` leaves Strategist animation suggestions unchanged; it only prevents unrequested custom-animation execution.
+- The proactive-execution field is a top-level boolean `{ "value": ... }` object, not a catalog id. An omitted field uses `true` for notes. These are absence-of-instruction defaults, not permission to override the user's latest explicit request. Preserve all three raw values independently through `result.json`; do not couple or rewrite them. Strategist derives effective Speaker Notes as enabled when audio is `true` and records `Narration Audio dependency` as provenance in the Design Spec.
 - `custom_candidates` is an optional legacy recommendation-only shape. New files place all three project-specific variants inside `design_directions`; each remains separately selectable and becomes editable in place. A custom behavior may use zero, one, or many exact catalog bases. Reference count has no fixed cap: every named id must contribute a distinct executable job, the behavior omits any id whose contribution it cannot state, and one basis never requires a decorative second. The UI rejects a selected blank and submits only the edited current value. Template-backed variants obey inherited identity, prototype capacity, and `template_application`.
 - Seed `audience`, `communication_intent`, `audience_outcome`, and `delivery_context` when evidence supports them; users need not supply them, and every Stage-1 prose field may end blank. The contract and `primary_language` stay in `result.json` and `design_spec.md`; `spec_lock.md communication` receives `primary_language`, compact `audience` / `objective` / `core_message`, and reading mode. `communication_intent` may preserve multiple purposes and priority/sequence; never add a `primary_job` enum.
 - Do not write `recommend.template_reuse_scope` or `recommend.template_adherence`. Strategist records those internal exporter values later in `spec_lock.md` after inspecting the actual template and current content.
@@ -519,26 +465,11 @@ Template-mode-only Stage-2 fragment:
   "image_usage": ["ai", "provided"],
   "image_notes": "封面和章节页用 AI 主视觉；产品页优先用户素材，缺口页可用占位符。",
   "image_ai_path": "auto",
-  "image_strategy": { "name": "方案 A", "rendering": "custom", "visual": "...", "mood": "...", "behavior": "..." },
-  "proactive_speaker_notes": true,
-  "proactive_custom_animations": false,
-  "proactive_narration_audio": false,
-  "generation_mode": "continuous",
-  "refine_spec": false,
-  "design_spec_depth": "brief",
-  "stage": "final",
-  "status": "confirmed",
-  "confirmed_at": "2026-06-15T11:44:44"
-}
-```
-
-The shape above is final for Strategist confirmation. It intentionally contains
+  "image_strategy": { "name": "方案 A", "rendering": "custom", "visual": "...", "mood": "...", "behavior": "... It intentionally contains
 no template-selection field: `template_selection.json`, its agent handoff, and
 the installed project-local state own the parallel Stage-1 decision. The proactive-execution values
 are independent flat booleans in `result.json`; old recommendations and results
-that omit them resolve to `true / false / false`. They remain raw evidence even
-when `proactive_speaker_notes` is `false` and `proactive_narration_audio` is
-`true`; Strategist owns the effective dependency resolution described above.
+that omit them resolve to `true / false / false`.
 Selected custom values use `mode: custom` + `mode_behavior`, `visual_style:
 custom` + `visual_style_behavior`, or `image_strategy.rendering: custom` +
 `behavior`. During Design Spec and lock authoring, Strategist projects optional
