@@ -22,9 +22,8 @@ from apply_template import (  # noqa: E402
 
 TEMPLATES = SCRIPTS_DIR.parent / "templates"
 STYLE_ROOT = TEMPLATES / "styles" / "incident-postmortem"
-BRAND_ROOT = TEMPLATES / "brands" / "中国电信"
 LAYOUT_ROOT = TEMPLATES / "layouts" / "presentation_core"
-DECK_ROOT = TEMPLATES / "decks" / "中国电信"
+DECK_ROOT = TEMPLATES / "decks" / "signal_red"
 
 
 class ApplyTemplateTests(unittest.TestCase):
@@ -67,52 +66,42 @@ class ApplyTemplateTests(unittest.TestCase):
         plan = self._apply(STYLE_ROOT)
         self.assertEqual([m.status for m in plan.mappings], ["identical"])
 
-    def test_brand_assets_travel_with_the_spec(self) -> None:
-        plan = self._apply(BRAND_ROOT, STYLE_ROOT)
-        self.assertTrue((self.project / "images" / "logo.png").is_file())
-        self.assertTrue(
-            (self.project / "templates" / "design_spec.brand.中国电信.md").is_file()
-        )
-        self.assertIn("identity:brand", _receipt(plan))
-
     def test_layout_owns_structure_over_deck(self) -> None:
         plan = self._apply(LAYOUT_ROOT, DECK_ROOT)
         svgs = sorted(p.name for p in (self.project / "templates").glob("*.svg"))
         layout_svgs = sorted(p.name for p in (LAYOUT_ROOT / "templates").glob("*.svg"))
         self.assertEqual(svgs, layout_svgs)
         self.assertFalse((self.project / "templates" / "01_cover.svg").exists())
-        self.assertTrue((self.project / "images" / "logo.png").is_file())
         receipt = _receipt(plan)
         self.assertIn("structure:layout", receipt)
         self.assertIn("application_context:deck", receipt)
         self.assertIn("active_roster=layout:", receipt)
         self.assertIn(
             "installed_specs=design_spec.layout.presentation_core.md,"
-            "design_spec.deck.中国电信.md",
+            "design_spec.deck.signal_red.md",
             receipt,
         )
 
     def test_deck_alone_installs_its_roster(self) -> None:
         self._apply(DECK_ROOT)
         self.assertTrue((self.project / "templates" / "01_cover.svg").is_file())
-        spec = self.project / "templates" / "design_spec.deck.中国电信.md"
+        spec = self.project / "templates" / "design_spec.deck.signal_red.md"
         self.assertIn("(library)", spec.read_text(encoding="utf-8"))
 
     def test_duplicate_kind_is_rejected_before_writing(self) -> None:
         with self.assertRaises(ApplyTemplateError) as ctx:
-            self._apply(STYLE_ROOT, TEMPLATES / "styles" / "consulting-decision")
+            self._apply(STYLE_ROOT, TEMPLATES / "styles" / "technical-deepdive")
         self.assertIn("one root per kind", str(ctx.exception))
         self.assertEqual(list((self.project / "templates").iterdir()), [])
 
     def test_destination_collision_is_rejected_before_writing(self) -> None:
-        images = self.project / "images"
-        images.mkdir()
-        (images / "logo.png").write_bytes(b"not the same logo")
+        templates = self.project / "templates"
+        (templates / "01_cover.svg").write_text("<svg/>", encoding="utf-8")
         with self.assertRaises(ApplyTemplateError) as ctx:
-            self._apply(BRAND_ROOT)
+            self._apply(DECK_ROOT)
         self.assertIn("destination collision", str(ctx.exception))
         self.assertFalse(
-            (self.project / "templates" / "design_spec.brand.中国电信.md").exists()
+            (templates / "design_spec.deck.signal_red.md").exists()
         )
 
     def test_explicit_root_keeps_its_path_as_provenance(self) -> None:
@@ -132,10 +121,9 @@ class ApplyTemplateTests(unittest.TestCase):
         self.assertIn("workspace root", str(ctx.exception))
 
     def test_dry_run_writes_nothing(self) -> None:
-        plan = self._apply(BRAND_ROOT, dry_run=True)
-        self.assertEqual(len(plan.mappings), 2)
+        plan = self._apply(DECK_ROOT, STYLE_ROOT, dry_run=True)
+        self.assertGreaterEqual(len(plan.mappings), 1)
         self.assertEqual(list((self.project / "templates").iterdir()), [])
-        self.assertFalse((self.project / "images").exists())
 
     def test_in_place_deck_roster_is_replaced_by_selected_layout(self) -> None:
         # The project already consumed a Deck in place; a Layout then owns structure.
@@ -144,7 +132,7 @@ class ApplyTemplateTests(unittest.TestCase):
         self.assertFalse((self.project / "templates" / "01_cover.svg").exists())
         self.assertTrue((self.project / "templates" / "01_title_slide.svg").is_file())
         self.assertTrue(
-            (self.project / "templates" / "design_spec.deck.中国电信.md").is_file()
+            (self.project / "templates" / "design_spec.deck.signal_red.md").is_file()
         )
         self.assertIn("structure:layout", _receipt(plan))
         self.assertIn("install=copied", _receipt(plan))

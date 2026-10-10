@@ -114,10 +114,42 @@ git clean -fd skills/ppt-master               # 清掉多余文件（谨慎：�
 
 ---
 
-## 6. 尚未完成（TODO）
+## 6. 第三轮：decks 去标识化与重命名（已完成）
 
-1. **decks 去标识化**：`中国电信` / `中汽研` → 中性名；剥离 `logo.png`、`header_brand.png`、`slogan_red.png`、
-   `top_emblem.png`、`大型 logo.png`、`右上角 logo.png`；改写 `design_spec.md` 与 `decks_index.json`
+| 旧 | 新 |
+|---|---|
+| 目录 `templates/decks/中国电信/` | `templates/decks/signal_red/` |
+| 目录 `templates/decks/中汽研/` | `templates/decks/engineering_blue/` |
+| `china_telecom_brand_master` / `China Telecom Brand` | `signal_red_brand_master` / `Signal Red Brand` |
+| `china_telecom_content_master` / `China Telecom Content` | `signal_red_content_master` / `Signal Red Content` |
+| `catarc_dark_master` / `CATARC Dark` | `engineering_blue_dark_master` / `Engineering Blue Dark` |
+| `catarc_light_master` / `CATARC Light` | `engineering_blue_light_master` / `Engineering Blue Light` |
+| 元素 id 前缀 `brand-master-` | `deck-master-` |
+
+**企业图形处理**（两张 deck 共 12 个 `<image>`，全部清除）：
+
+| 原图形 | 处理 |
+|---|---|
+| 通栏 footer ribbon（中国电信 ×3 处，master 层） | 换成同几何的中性实色带，保留页脚结构 |
+| 封面/结束页大标识（中汽研 ×2，592×238） | 换成同中心的居中强调线 |
+| 页眉 logo（中国电信 ×2 / 中汽研 ×2，master 与 layout 层） | 直接删除（页眉横线仍在） |
+| slogan 图形（×3）、城市线稿（×3） | 直接删除 |
+| `top_emblem.png` | 未被任何 SVG 引用，直接删除 |
+
+6 + 2 个图片资产全部删除，`images/` 空目录一并移除；两份 `design_spec.md` 的 `summary` / `keywords` /
+§I 应用语境表 / §IV 签名元素 / §V 页表里的企业业务话术与 Logo 描述全部改写为中性学术措辞；
+§VI Assets 小节删除。`decks_index.json` 重写为 `signal_red` / `engineering_blue` 两条中性摘要。
+
+**连带修复**：`scripts/tests/test_apply_template.py`（7 处夹具引用）与 `scripts/svg_quality/cli.py`（1 处）
+改为新名；全树企业身份串残留归零。
+
+**注册表验证**：`register_template.py --rebuild-all --dry-run` exit 0，索引正确列出 2 条。
+
+---
+
+## 7. 尚未完成（TODO）
+
+1. ~~**decks 去标识化**~~ —— 已在 §6 完成
 2. **`simple-icons` 的散文引用**：`templates/icons/README.md`、`THIRD_PARTY_NOTICES.md`、
    `scripts/icon_sync.py`（`_SYNC_LIBRARIES`）、`scripts/svg_finalize/embed_icons.py`、`references/executor-base.md`、
    `spec_lock_reference.md`、`strategist.md`、`plan-core.md`、`design_spec_reference.md`、`quick-generate.md`

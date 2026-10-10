@@ -1,12 +1,12 @@
 {
-  "中国电信": {
-    "summary": "中国电信政企数字化方案、转型规划与内部评审，用于说明方案并对齐决策和下一步；采用克制的红灰品牌视觉。",
+  "signal_red": {
+    "summary": "克制的红灰 16:9 通用 deck 骨架：封面、目录、章节、开放内容、结束语，浅色内容页配深色封面/章节/结束 Master。适合报告、评审与答辩。",
     "canvas_format": "ppt169",
     "page_count": 5,
     "primary_color": "#C00000"
   },
-  "中汽研": {
-    "summary": "中汽研认证展示、评测汇报与技术交流，用于建立可信理解并推进评审或合作；采用专业的深蓝工程视觉。",
+  "engineering_blue": {
+    "summary": "深蓝工程风 16:9 通用 deck 骨架：封面、目录、章节、开放内容、结束语，深色封面/章节/结束 Master 配浅色内容 Master。适合技术汇报与评审。",
     "canvas_format": "ppt169",
     "page_count": 5,
     "primary_color": "#004098"
