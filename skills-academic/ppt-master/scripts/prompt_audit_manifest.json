@@ -12,7 +12,6 @@
       "skills/ppt-master/templates/tables/tables_index.json",
       "skills/ppt-master/templates/schemas/*.json"
     ],
-    "exclude": [],
     "max_tokens": 555000
   },
   "file_budgets": {
@@ -67,6 +66,7 @@
     "skills/ppt-master/references/template-designer.md": 7000,
     "skills/ppt-master/workflows/create-template/create-style.md": 2000,
     "skills/ppt-master/workflows/create-template/create-layout.md": 1500,
+    "skills/ppt-master/workflows/create-template/create-deck.md": 1500,
     "skills/ppt-master/references/svg-image-embedding.md": 1750,
     "skills/ppt-master/references/image-layout-spec.md": 2500,
     "skills/ppt-master/templates/README.md": 1750,
@@ -136,6 +136,7 @@
       ],
       "files": [
         "skills/ppt-master/workflows/create-template.md",
+        "skills/ppt-master/workflows/create-template/create-deck.md",
         "skills/ppt-master/references/template-designer.md",
         "skills/ppt-master/references/native-shape-authoring.md",
         "skills/ppt-master/references/preset-shape-vocabulary.md",
@@ -204,7 +205,7 @@
           "exclude": [
             "*/_index.md"
           ],
-          "select": 5,
+          "select": 4,
           "load_event": "strategist-selected-mode-bases",
           "registry": "modes"
         },
@@ -254,7 +255,7 @@
           "exclude": [
             "*/_index.md"
           ],
-          "select": 5,
+          "select": 4,
           "load_event": "quick-selected-mode-bases",
           "registry": "modes"
         },
@@ -286,7 +287,6 @@
         "route.generate.quick-generate",
         "profile.generate.beautify-pptx"
       ],
-      "files": [],
       "max_tokens": 140000
     },
     "route.generate.quick-generate.image-to-pptx": {
@@ -312,7 +312,6 @@
         "stage.generate.customize-animations",
         "stage.shared.generate-audio"
       ],
-      "files": [],
       "max_tokens": 180000
     },
     "route.generate.quick-generate.template-fusion": {
@@ -334,7 +333,6 @@
         "route.generate.quick-generate",
         "stage.generate.topic-research"
       ],
-      "files": [],
       "max_tokens": 135000
     },
     "route.generate.quick-generate.icon": {
@@ -343,7 +341,6 @@
       "include": [
         "route.generate.quick-generate"
       ],
-      "files": [],
       "max_tokens": 130000
     },
     "route.generate.quick-generate.in-hand-image": {
@@ -353,7 +350,6 @@
         "route.generate.quick-generate",
         "stage.generate.executor.image"
       ],
-      "files": [],
       "max_tokens": 135000
     },
     "route.generate.quick-generate.formula": {
@@ -363,7 +359,6 @@
         "route.generate.quick-generate",
         "stage.generate.executor.formula"
       ],
-      "files": [],
       "max_tokens": 135000
     },
     "route.generate.quick-generate.hyperlink": {
@@ -373,7 +368,6 @@
         "route.generate.quick-generate",
         "stage.generate.executor.hyperlink"
       ],
-      "files": [],
       "max_tokens": 135000
     },
     "route.generate.quick-generate.ai-two-types": {
@@ -384,7 +378,6 @@
         "stage.generate.image.ai-two-types",
         "stage.generate.executor.image"
       ],
-      "files": [],
       "max_tokens": 165000
     },
     "route.generate.quick-generate.web-image": {
@@ -396,7 +389,6 @@
         "stage.generate.image.web-review",
         "stage.generate.executor.web-image"
       ],
-      "files": [],
       "max_tokens": 145000
     },
     "route.generate.quick-generate.visualization": {
@@ -410,7 +402,6 @@
         "stage.generate.executor.native-data",
         "stage.generate.verify-charts"
       ],
-      "files": [],
       "max_tokens": 150000
     },
     "route.generate.planning-image": {
@@ -419,7 +410,6 @@
       "include": [
         "route.generate.planning"
       ],
-      "files": [],
       "max_tokens": 130000
     },
     "route.generate.planning-formula": {
@@ -428,7 +418,6 @@
       "include": [
         "route.generate.planning"
       ],
-      "files": [],
       "max_tokens": 130000
     },
     "route.generate.planning-ai": {
@@ -437,7 +426,6 @@
       "include": [
         "route.generate.planning-image"
       ],
-      "files": [],
       "max_tokens": 130000
     },
     "stage.generate.apply-template-workspace": {
@@ -454,13 +442,6 @@
       "scope": "incremental",
       "include": [
         "stage.generate.apply-template-workspace"
-      ],
-      "files": [
-        {
-          "glob": "skills/ppt-master/templates/brands/*/templates/design_spec.md",
-          "select": 1,
-          "load_event": "template-application"
-        }
       ],
       "max_tokens": 7500
     },
@@ -518,13 +499,6 @@
       "include": [
         "stage.generate.apply-template-workspace"
       ],
-      "files": [
-        {
-          "glob": "skills/ppt-master/templates/brands/*/templates/design_spec.md",
-          "select": 2,
-          "load_event": "template-application"
-        }
-      ],
       "max_tokens": 8500
     },
     "stage.generate.template.fusion-brand-style-layout-deck": {
@@ -537,11 +511,6 @@
         "skills/ppt-master/templates/styles/README.md",
         "skills/ppt-master/templates/layouts/README.md",
         "skills/ppt-master/templates/decks/README.md",
-        {
-          "glob": "skills/ppt-master/templates/brands/*/templates/design_spec.md",
-          "select": 1,
-          "load_event": "template-application"
-        },
         {
           "glob": "skills/ppt-master/templates/styles/*/templates/design_spec.md",
           "select": 1,
@@ -568,7 +537,6 @@
         "stage.generate.executor.flat",
         "stage.generate.executor.notes"
       ],
-      "files": [],
       "max_tokens": 195000
     },
     "route.generate.flat-formula": {
@@ -580,7 +548,6 @@
         "stage.generate.executor.formula",
         "stage.generate.executor.notes"
       ],
-      "files": [],
       "max_tokens": 200000
     },
     "route.generate.flat-hyperlink": {
@@ -592,7 +559,6 @@
         "stage.generate.executor.hyperlink",
         "stage.generate.executor.notes"
       ],
-      "files": [],
       "max_tokens": 200000
     },
     "route.generate.flat-ai-two-types": {
@@ -605,7 +571,6 @@
         "stage.generate.executor.notes",
         "stage.generate.image.ai-two-types"
       ],
-      "files": [],
       "max_tokens": 230000
     },
     "route.generate.flat-in-hand-image": {
@@ -617,7 +582,6 @@
         "stage.generate.executor.image",
         "stage.generate.executor.notes"
       ],
-      "files": [],
       "max_tokens": 200000
     },
     "route.generate.flat-web-image": {
@@ -631,7 +595,6 @@
         "stage.generate.image.web",
         "stage.generate.image.web-review"
       ],
-      "files": [],
       "max_tokens": 215000
     },
     "route.edit-native-pptx.edit": {
@@ -674,7 +637,6 @@
         "route.edit-native-pptx",
         "stage.shared.generate-audio"
       ],
-      "files": [],
       "max_tokens": 21000
     },
     "route.generate.beautify-flat-no-image": {
@@ -684,7 +646,6 @@
         "route.generate.flat-no-image",
         "profile.generate.beautify-pptx"
       ],
-      "files": [],
       "max_tokens": 205000
     },
     "route.generate.flat-no-image.video-design": {
@@ -696,7 +657,6 @@
         "stage.generate.customize-animations",
         "stage.shared.generate-audio"
       ],
-      "files": [],
       "max_tokens": 245000
     },
     "route.generate.flat-no-image-visualization": {
@@ -710,7 +670,6 @@
         "stage.generate.executor.native-data",
         "stage.generate.verify-charts"
       ],
-      "files": [],
       "max_tokens": 215000
     },
     "route.generate.brand-flat-no-image": {
@@ -722,7 +681,6 @@
         "stage.generate.executor.notes",
         "stage.generate.template.brand"
       ],
-      "files": [],
       "max_tokens": 210000
     },
     "route.generate.style-flat-no-image": {
@@ -734,7 +692,6 @@
         "stage.generate.executor.notes",
         "stage.generate.template.style"
       ],
-      "files": [],
       "max_tokens": 210000
     },
     "route.generate.deck-structured-no-image": {
@@ -746,7 +703,6 @@
         "stage.generate.executor.notes",
         "stage.generate.template.deck"
       ],
-      "files": [],
       "max_tokens": 220000
     },
     "route.generate.layout-structured-no-image": {
@@ -758,7 +714,6 @@
         "stage.generate.executor.notes",
         "stage.generate.template.layout"
       ],
-      "files": [],
       "max_tokens": 220000
     },
     "route.generate.topic-only-flat-no-image": {
@@ -768,7 +723,6 @@
         "stage.generate.topic-research",
         "route.generate.flat-no-image"
       ],
-      "files": [],
       "max_tokens": 200000
     },
     "stage.generate.executor.flat": {
@@ -784,7 +738,7 @@
           "exclude": [
             "*/_index.md"
           ],
-          "select": 5,
+          "select": 4,
           "load_event": "executor-selected-mode-bases",
           "registry": "modes",
           "allow_repeat": true
@@ -886,7 +840,6 @@
         "stage.generate.resume-execute",
         "stage.generate.executor.image"
       ],
-      "files": [],
       "max_tokens": 130000
     },
     "stage.generate.topic-research": {
@@ -916,7 +869,6 @@
     "stage.generate.video-design": {
       "description": "Conditional recorded/self-running delivery design and prepared final-script handling shared by Default and Quick.",
       "scope": "incremental",
-      "files": [],
       "max_tokens": 3250
     },
     "stage.generate.refine-spec": {
@@ -966,8 +918,6 @@
       "description": "Object-animation stage plus animation resolution rules. Ceiling raised after BUDGET_LOAD_SET reported 35742 tokens, then 40096 tokens after svg-pipeline.md documented the text-baseline model.",
       "scope": "incremental",
       "files": [
-        "skills/ppt-master/scripts/docs/pptx-animations.md",
-        "skills/ppt-master/scripts/docs/pptx-transitions.md",
         "skills/ppt-master/scripts/docs/svg-pipeline.md"
       ],
       "max_tokens": 45000
@@ -975,27 +925,21 @@
     "stage.generate.sound-selection": {
       "description": "Complete post-motion sound identity vocabulary after a concrete auditory cue job exists.",
       "scope": "incremental",
-      "files": [],
       "max_tokens": 6250
     },
     "stage.generate.video-motion-plan": {
       "description": "Conditional resolved animation-to-video handoff contract.",
       "scope": "incremental",
-      "files": [
-        "skills/ppt-master/scripts/docs/video-motion-plan.md"
-      ],
       "max_tokens": 1250
     },
     "stage.generate.animation-options": {
       "description": "Conditional deck-wide transition, auto-advance, and entrance-animation options.",
       "scope": "incremental",
-      "files": [],
       "max_tokens": 11000
     },
     "stage.shared.generate-audio": {
       "description": "Shared narration-audio stage.",
       "scope": "incremental",
-      "files": [],
       "max_tokens": 8000
     },
     "governance.failure-recovery": {
@@ -1038,7 +982,6 @@
         "route.generate.planning",
         "stage.generate.strategist.template"
       ],
-      "files": [],
       "max_tokens": 135000
     },
     "route.generate.planning-template-ai": {
@@ -1048,7 +991,6 @@
         "route.generate.planning-template",
         "route.generate.planning-ai"
       ],
-      "files": [],
       "max_tokens": 125000
     },
     "stage.generate.executor.chart": {
@@ -1185,7 +1127,6 @@
         "route.generate.quick-generate",
         "stage.generate.executor.effects"
       ],
-      "files": [],
       "max_tokens": 130000
     },
     "route.generate.quick-generate.native-shape": {
@@ -1195,7 +1136,6 @@
         "route.generate.quick-generate",
         "stage.generate.executor.native-shape"
       ],
-      "files": [],
       "max_tokens": 130000
     },
     "route.generate.quick-generate.structure": {
@@ -1205,7 +1145,6 @@
         "route.generate.quick-generate",
         "stage.generate.executor.structure"
       ],
-      "files": [],
       "max_tokens": 130000
     }
   },
@@ -1221,18 +1160,6 @@
     "accepted": [
       {
         "kind": "exact",
-        "fingerprint": "d886e9fcb8dc",
-        "paths": [],
-        "reason": "Brand preset scaffolds share fixed section boilerplate by design."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "0faa93c4c11f",
-        "paths": [],
-        "reason": "Brand preset scaffolds share fixed section boilerplate by design."
-      },
-      {
-        "kind": "exact",
         "fingerprint": "0d0f56615a1f",
         "paths": [
           "skills/ppt-master/references/ai-image-comparison/palette/_manifest.md",
@@ -1243,131 +1170,12 @@
       },
       {
         "kind": "exact",
-        "fingerprint": "890890f28896",
-        "paths": [],
-        "reason": "Consulting brand presets keep the same no-bundled-logo trademark safeguard by design."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "83e5480404c3",
-        "paths": [],
-        "reason": "Corporate brand presets share the same proprietary-font fallback contract by design."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "13dd086d3977",
-        "paths": [],
-        "reason": "Consulting brand presets share the same proprietary-font fallback contract by design."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "f2572d50249b",
-        "paths": [],
-        "reason": "Sibling consulting presets share the same evidence-writing convention by design."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "141b0d6205da",
-        "paths": [],
-        "reason": "Consulting brand presets share the same restrained icon convention by design."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "c5b068fe89b0",
-        "paths": [],
-        "reason": "Corporate brand presets share the same consistent icon convention by design."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "b8f9b97d03fc",
-        "paths": [
-          "skills/ppt-master/templates/styles/academic-research/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/consulting-decision/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/creative-pitch/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/incident-postmortem/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/investor-pitch/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/mbb-consulting/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/narrative-keynote/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/operating-review/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/product-launch/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/science-explainer/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/solution-proposal/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/technical-deepdive/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/workshop-teaching/templates/design_spec.md"
-        ],
-        "reason": "Style preset specs share the same explicit-only visual-review trigger by design."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "ea999949f34d",
-        "paths": [],
-        "reason": "Brand preset specs share the same portable fallback typography table by design."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "1ad663619aa4",
-        "paths": [],
-        "reason": "Sibling corporate brand presets intentionally share the same voice defaults."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "d21d5ba8b91e",
-        "paths": [],
-        "reason": "Sibling corporate brand presets intentionally share the same voice defaults."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "211e050e37d1",
-        "paths": [],
-        "reason": "Sibling formal brand presets intentionally share the same voice defaults."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "efdf8b23a710",
-        "paths": [
-          "skills/ppt-master/templates/styles/academic-research/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/consulting-decision/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/creative-pitch/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/duty-manual/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/incident-postmortem/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/investor-pitch/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/mbb-consulting/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/narrative-keynote/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/operating-review/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/product-launch/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/science-explainer/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/solution-proposal/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/technical-deepdive/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/workshop-teaching/templates/design_spec.md"
-        ],
-        "reason": "Style preset specs share the same method-only scope boundary by design."
-      },
-      {
-        "kind": "exact",
         "fingerprint": "b720d5918a4f",
         "paths": [
           "skills/ppt-master/templates/decks/README.md",
           "skills/ppt-master/templates/layouts/README.md"
         ],
         "reason": "Identical one-line pointer to routing.md §7 and apply-template-workspace in the kind READMEs; the rule owner is routing.md §7 (rule-owners R22)."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "602f1c4f5ee3",
-        "paths": [
-          "skills/ppt-master/templates/styles/consulting-decision/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/mbb-consulting/templates/design_spec.md"
-        ],
-        "reason": "mbb-consulting inherits the consulting-decision method and image direction by design; only its visual system differs."
-      },
-      {
-        "kind": "exact",
-        "fingerprint": "9e4ef33145e2",
-        "paths": [
-          "skills/ppt-master/templates/styles/consulting-decision/templates/design_spec.md",
-          "skills/ppt-master/templates/styles/mbb-consulting/templates/design_spec.md"
-        ],
-        "reason": "mbb-consulting inherits the consulting-decision method and image direction by design; only its visual system differs."
       },
       {
         "kind": "exact",
@@ -1386,6 +1194,15 @@
           "skills/ppt-master/references/visual-styles/dark-tech.md"
         ],
         "reason": "blueprint and dark-tech intentionally state the same sans + monospace font requirement."
+      },
+      {
+        "kind": "exact",
+        "fingerprint": "2b12c90b8142",
+        "paths": [
+          "skills/ppt-master/workflows/create-template/create-deck.md",
+          "skills/ppt-master/workflows/create-template/create-layout.md"
+        ],
+        "reason": "create-deck and create-layout share the same child-workflow entry contract under Create Template by design."
       },
       {
         "kind": "exact",
@@ -1413,6 +1230,15 @@
           "skills/ppt-master/SPONSORS_CN.md"
         ],
         "reason": "Sponsor badge markup is identical across the English and Chinese sponsor pages by design."
+      },
+      {
+        "kind": "exact",
+        "fingerprint": "8fa66eadd0ba",
+        "paths": [
+          "skills/ppt-master/workflows/create-template/create-deck.md",
+          "skills/ppt-master/workflows/create-template/create-layout.md"
+        ],
+        "reason": "create-deck and create-layout share the same child-workflow entry contract under Create Template by design."
       }
     ]
   },
@@ -1466,11 +1292,6 @@
       "concern": "template-model",
       "from": "skills/ppt-master/workflows/stages/apply-template-workspace.md",
       "to": "skills/ppt-master/templates/README.md"
-    },
-    {
-      "concern": "template-kind-schema",
-      "from": "skills/ppt-master/workflows/stages/apply-template-workspace.md",
-      "to": "skills/ppt-master/templates/brands/README.md"
     },
     {
       "concern": "template-kind-schema",
@@ -1596,11 +1417,6 @@
       "concern": "beautify-profile",
       "from": "skills/ppt-master/workflows/routing.md",
       "to": "skills/ppt-master/workflows/profiles/beautify-pptx.md"
-    },
-    {
-      "concern": "create-brand-dispatch",
-      "from": "skills/ppt-master/workflows/create-template.md",
-      "to": "skills/ppt-master/workflows/create-template/create-brand.md"
     },
     {
       "concern": "create-style-dispatch",
@@ -1856,29 +1672,6 @@
         "templates",
         "type",
         "types"
-      ]
-    },
-    {
-      "name": "sound-cues",
-      "kind": "json_collection",
-      "source": "skills/ppt-master/templates/sounds/sounds_index.json",
-      "key": "sounds",
-      "id_field": "id",
-      "projection": {
-        "source": "skills/ppt-master/templates/sounds/sound-vocabulary.md",
-        "entry_pattern": "^\\|\\s*`(?P<id>[a-z0-9-]+/[a-z0-9_]+)`\\s*\\|"
-      },
-      "reference_terms": [
-        "sound-vocabulary.md",
-        "sounds_index.json",
-        "sound catalog",
-        "sound cue vocabulary"
-      ],
-      "claim_nouns": [
-        "sound",
-        "sounds",
-        "cue",
-        "cues"
       ]
     }
   ],
@@ -2248,10 +2041,6 @@
         "reason": "Maintainer-only executable smoke; never loaded by generation roles."
       },
       {
-        "glob": "skills/ppt-master/scripts/docs/advanced-image-motion-smoke.md",
-        "reason": "Maintainer-only executable image-and-motion smoke; never loaded by generation roles."
-      },
-      {
         "glob": "skills/ppt-master/scripts/docs/multilingual-text-smoke.md",
         "reason": "Maintainer-only executable multilingual export smoke; never loaded by generation roles."
       },
@@ -2310,6 +2099,10 @@
       {
         "glob": "skills/ppt-master/scripts/docs/native-data.md",
         "reason": "Closed Chart/Table payload grammar for checker/exporter behavior; native-data-interface.md carries the canonical forms, and generation roles open this file only when a payload check fails."
+      },
+      {
+        "glob": "skills/ppt-master/FORK.md",
+        "reason": "Fork change log, rollback procedure and TODO list; repository governance documentation, never loaded during generation."
       }
     ]
   }

@@ -6,7 +6,7 @@ A **mode** is the deck's **narrative + persuasion skeleton** — how the argumen
 
 ---
 
-## 1. Catalog (5 modes)
+## 1. Catalog (4 modes)
 
 Each mode keeps its own authoritative file with: narrative skeleton, page-structure tendencies, speaker-notes register, and a page skeleton example. Read this index alone while choosing a direction. Only after a preset or custom bases are fixed may the active role read the selected sibling files: one file for a preset, every exact `mode_references` file for a catalog-based custom, and none for a novel custom. Never glob the directory or read an unselected sibling.
 
@@ -17,7 +17,7 @@ Each mode keeps its own authoritative file with: narrative skeleton, page-struct
 | [`instructional`](./instructional.md) | Concept decomposition; step-by-step; parallel exposition | Training, tutorials, explainers, knowledge sharing |
 | [`briefing`](./briefing.md) | Neutral, complete, scannable; topic titles, even weight, no thesis | Status updates, reference decks, catalogs, meeting packs, FAQs |
 
-> The five are **argument strategies, not a taxonomy of communication purposes**. A presentation may inform + align + request a decision at once; that composite intent stays as open prose in Default's Stage-1 communication contract or Quick's active brief. Default uses this index to map each whole solution intent into one project-specific custom behavior; Quick resolves one preset or custom direction directly.
+> The four are **argument strategies, not a taxonomy of communication purposes**. A presentation may inform + align + request a decision at once; that composite intent stays as open prose in Default's Stage-1 communication contract or Quick's active brief. Default uses this index to map each whole solution intent into one project-specific custom behavior; Quick resolves one preset or custom direction directly.
 >
 > **A mode is a lens, not a mandate over an explicitly preserved structure.** Default applies the confirmed `content_divergence`; Quick applies the equivalent user-stated or active-context boundary to a supplied outline. An ordinary source outline is a Reference that the mode may regroup, reorder, or retitle while preserving its facts and intended relationships. Preserve page order, titles, or wording only when the user presents the outline as the final page plan or explicitly requests that boundary. When the user gives no structure, the mode does the structural lifting. To keep reshaping light, `briefing` imposes the least skeleton.
 
@@ -39,7 +39,6 @@ selecting one for the current deck:
 |---|---|---|
 | `pyramid` / `briefing` | it must land a recommendation — conclusion-first, figures contextualized toward a decision | it must inform completely without arguing — topic titles, even weight |
 | `narrative` / `pyramid` | the point lands through a story arc, tension → resolution | the point lands as a conclusion stated up front, then supported |
-| `narrative` / `showcase` | an argument travels through the story | presence leads — concise copy and a clear visual focus |
 | `instructional` / `briefing` | the goal is to build understanding step by step | the goal is to lay out a complete reference to scan |
 
 > "Keynote-style" is a *mode* request, not a visual style — it means showcase pacing (a clear primary idea, hero-scale visual treatment, reveal rhythm), skinned by whatever visual style fits the brand (`swiss-minimal` clean, `dark-tech` dramatic, `glassmorphism` premium). Don't reach for a "keynote" visual style — there isn't one, by design.
@@ -48,7 +47,7 @@ selecting one for the current deck:
 
 ## 3. How to use
 
-**Resolution scope**: deck-wide (one mode per deck). The five are the catalog you select from; if the structure is genuinely mixed, pick the mode of the body pages and let pages vary within it, or use a warranted `custom` blend (§4). Default recommends and confirms under [`strategist.md`](../strategist.md) §d; Quick decides directly under [`quick-generate.md`](../../workflows/profiles/quick-generate.md) §2; Executor reads the confirmed preset file or exact custom references.
+**Resolution scope**: deck-wide (one mode per deck). The four are the catalog you select from; if the structure is genuinely mixed, pick the mode of the body pages and let pages vary within it, or use a warranted `custom` blend (§4). Default recommends and confirms under [`strategist.md`](../strategist.md) §d; Quick decides directly under [`quick-generate.md`](../../workflows/profiles/quick-generate.md) §2; Executor reads the confirmed preset file or exact custom references.
 
 ---
 

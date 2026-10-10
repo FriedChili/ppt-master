@@ -1,0 +1,72 @@
+{
+  "academic-research": {
+    "summary": "Research-reporting method that builds a defensible claim from question, method, and result while keeping limitations visible.",
+    "keywords": [
+      "academic",
+      "research",
+      "thesis-defense",
+      "methodology",
+      "peer-review"
+    ]
+  },
+  "duty-manual": {
+    "summary": "Technical-manual method that gathers scattered rules onto one judgment axis — dark-field grid, mechanism before rule, every rule traceable to its mechanism page.",
+    "keywords": [
+      "technical-manual",
+      "dark-field-grid",
+      "mechanism-first",
+      "judgment-axis",
+      "line-drawing"
+    ]
+  },
+  "incident-postmortem": {
+    "summary": "Blameless incident review method that reconstructs a timeline, separates contributing factors from blame, and commits to verifiable actions.",
+    "keywords": [
+      "postmortem",
+      "incident",
+      "reliability",
+      "root-cause",
+      "blameless"
+    ]
+  },
+  "narrative-keynote": {
+    "summary": "Story-driven keynote method that earns one idea through tension, turn, and concrete human detail.",
+    "keywords": [
+      "keynote",
+      "storytelling",
+      "narrative",
+      "persuasion",
+      "talk"
+    ]
+  },
+  "science-explainer": {
+    "summary": "Public-explanation method that builds understanding from familiar ground through visual analogy, without trading accuracy for accessibility.",
+    "keywords": [
+      "explainer",
+      "science-communication",
+      "popular",
+      "analogy",
+      "public"
+    ]
+  },
+  "technical-deepdive": {
+    "summary": "Mechanism-first technical explanation method that grounds every claim in constraints, trade-offs, and observable behavior.",
+    "keywords": [
+      "technical",
+      "architecture",
+      "engineering",
+      "mechanism",
+      "trade-off"
+    ]
+  },
+  "workshop-teaching": {
+    "summary": "Learn-by-doing training method that sequences objective, worked demonstration, practice, and honest checks for understanding.",
+    "keywords": [
+      "training",
+      "workshop",
+      "teaching",
+      "practice",
+      "onboarding"
+    ]
+  }
+}

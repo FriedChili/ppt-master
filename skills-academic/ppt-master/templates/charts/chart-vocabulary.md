@@ -38,9 +38,6 @@ Chart selections remains valid.
 
 | Canonical reference | Encoded relationship |
 |---|---|
-| `chart/bullet_chart` | Actual values, targets, and optional performance bands on compact linear scales. |
-| `chart/progress_bar_chart` | Bounded completion values encoded as filled portions of linear tracks. |
-| `chart/gauge_chart` | One bounded value positioned against a circular or semicircular domain and reference marks. |
 
 ## 4. Distribution and multivariable relationship
 
@@ -69,7 +66,5 @@ Chart selections remains valid.
 
 | Canonical reference | Encoded relationship |
 |---|---|
-| `chart/funnel_chart` | Ordered stage values encoded as changing widths through a conversion sequence. |
 | `chart/sankey_chart` | Magnitude moving between nodes encoded by connection width. |
 | `chart/gantt_chart` | Tasks positioned and sized by dates or durations along a time axis. |
-| `chart/word_cloud` | Term weight or frequency encoded by type size. |
