@@ -1,6 +1,6 @@
 {
   "meta": {
-    "total": 6,
+    "total": 5,
     "defaultViewBox": "0 0 1280 720",
     "formats": [
       "ppt169"
@@ -21,9 +21,6 @@
   "tables": {
     "comparison_matrix": {
       "summary": "Pick for criteria × alternatives with prose, exact values, or mixed facts. Skip if cells encode only feature states (use feature_matrix) or ordinal ratings (use rating_matrix)."
-    },
-    "feature_matrix": {
-      "summary": "Pick for capabilities × offerings with supported, unsupported, partial, or exception states. Skip for mixed facts (use comparison_matrix) or ordinal scores (use rating_matrix)."
     },
     "hierarchical_table": {
       "summary": "Pick for grouped or indented row hierarchies across stable measure columns, including subtotals and totals. Skip for flat records (use record_table) or geometry driven by numeric magnitude (use a chart)."

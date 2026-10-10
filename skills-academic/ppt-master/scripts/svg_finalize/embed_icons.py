@@ -25,7 +25,6 @@ Project icon namespaces (subdirectories of <project>/icons/):
     tabler-filled/     - 1000+ fill icons, 24x24 viewBox (use prefix: tabler-filled/name)
     tabler-outline/    - 5000+ stroke icons, 24x24 viewBox (use prefix: tabler-outline/name)
     phosphor-duotone/  - 1200+ duotone icons, 256x256 viewBox (single color + 0.2-opacity backplate)
-    simple-icons/      - 3400+ brand logos, 24x24 viewBox (brand-inset library — used alongside the chosen primary library, NOT as a standalone library for generic icons)
     imported/          - extracted vector illustrations with data-icon-style="preserve-color"; preserve source colors and natural viewBox aspect ratio
 
 Bundled icons must first be copied into the project with icon_sync.py. This
@@ -67,7 +66,6 @@ ICON_BASE_SIZES = {
     'tabler-filled': 24,
     'tabler-outline': 24,
     'phosphor-duotone': 256,
-    'simple-icons': 24,
     'imported': 24,
 }
 _ICON_IDENTIFIER_RE = re.compile(

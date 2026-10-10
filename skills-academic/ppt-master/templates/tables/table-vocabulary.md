@@ -16,6 +16,5 @@ Table selections remains valid.
 | `table/record_table` | Each row represents one flat record, and each column represents one stable heterogeneous field. |
 | `table/metric_table` | Entities form rows while metric columns hold current values, changes, statuses, or target progress inside cells. |
 | `table/comparison_matrix` | Criteria and alternatives form the two grid axes, with exact values, prose, or mixed facts at their intersections. |
-| `table/feature_matrix` | Capabilities and offerings form the two grid axes, with supported, unsupported, partial, or exception states in cells. |
 | `table/rating_matrix` | Criteria and alternatives form the two grid axes, with one repeated ordinal scale encoded across their intersections. |
 | `table/hierarchical_table` | Grouped or indented rows preserve a detail hierarchy across stable measure columns, including subtotals and totals. |
