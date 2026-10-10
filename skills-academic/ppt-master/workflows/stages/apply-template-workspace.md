@@ -36,7 +36,6 @@ Read [`templates/README.md`](../../templates/README.md), then only the README fo
 
 | Kind | Schema | Owned segment |
 |---|---|---|
-| `brand` | [`templates/brands/README.md`](../../templates/brands/README.md) | Identity: color, typography, logo, voice/tone, icon style |
 | `style` | [`templates/styles/README.md`](../../templates/styles/README.md) | Direction/method: communication method, visual language, composition, information-expression defaults |
 | `layout` | [`templates/layouts/README.md`](../../templates/layouts/README.md) | Structure: canvas, page structure, semantic text roles, page types, SVG roster |
 | `deck` | [`templates/decks/README.md`](../../templates/decks/README.md) | Application plus integrated identity and structure |

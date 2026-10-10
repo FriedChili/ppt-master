@@ -895,10 +895,6 @@ postflight report and `backup/` snapshot; explicit `-o` retains the ordinary
 no-backup behavior. Existing source, analysis, image/icon, and resource-manifest
 artifacts remain untouched; formula source stays inside its authored SVG marker.
 
-For generated-project narration, follow the
-[`generate-audio`](../../workflows/stages/generate-audio.md) stage. It owns voice
-selection, audio generation, and the narrated re-export workflow.
-
 Behavior:
 - Default output (either Generate profile, no `-o`):
   - `exports/<project_name>_<timestamp>.pptx` — native editable pptx (canonical output)
@@ -974,7 +970,6 @@ Behavior:
   - Voice choices can be listed with `python3 scripts/notes_to_audio.py --list-common-voices`, `python3 scripts/notes_to_audio.py --list-voices --locale zh-CN`, or provider-specific `--provider <name> --list-voices`
 - Page transitions are controlled by `-t/--transition`; per-element object animations are controlled by `-a/--animation`
 - Per-element animation applies to ordinary top-level SVG `<g id="...">` groups; each group is a PowerPoint shape-target anchor, not necessarily one Animation Pane row. Use one group per logical Slide-local content unit rather than targeting a group count
-- For chrome defaults, static role/placeholder overrides, and structural exclusions, see [`animations.md`](../../references/animations.md) §5
 - Start mode is set globally by `--animation-trigger`, mirroring PowerPoint's Start dropdown: `after-previous` (default, cascade with `--animation-stagger` spacing on slide entry), `on-click` (presenter-paced), or `with-previous` (all together on slide entry). A sidecar row may override it with `trigger`; the slide value is only the inherited Start mode
 - `on-click` is for live presentations only; recorded narration rejects every row that resolves to it, including `trigger_shape` and preserved native click/interactive timing that could not be reconstructed into the sidecar. Diagnostics identify the output stem, source slide, and shape ids; the tool does not generate object-level click timings
 - Flat SVG roots without top-level groups fall back to at most 8 visible primitives; beyond that, animation is skipped on the slide
@@ -990,12 +985,10 @@ Behavior:
   supplies the default gap between successive non-trigger-shape rows in
   `after-previous` mode (default `0.5`)
 - Optional object-level overrides live in `<project>/animations.json` or a path passed via `--animation-config`; build and validate them with `animation_config.py scaffold|validate`. The scaffold is neutral (`defaults.animation.effect: none`, untouched groups `{}`). A populated group uses either the fully compatible legacy single-effect fields or a non-empty `effects[]`, never both; every `effects[]` row names an explicit effect
-- Transition/object sound remains off by default. After SVG and visual motion are complete and one row has a concrete auditory job, read the complete [`sound-vocabulary.md`](../../templates/sounds/sound-vocabulary.md), then copy only selected ids with `sound_sync.py <project> <namespace>/<sound_id> [...]`; `list --query <term>` is optional exact filtering after that review. `transition.sound` references a project-relative `.wav`; object-animation `sound` accepts the existing `.m4a`/`.mp3`/`.wav` path contract, while bundled selections use the synced project-relative `.wav`. With no selected cue, do not create `<project>/sounds/`. Export never resolves ids or reads `templates/sounds/` directly
 - One `effects[]` row becomes one Animation Pane record on the group's shape target. Each row may independently set sequence `order`, `delay`, `duration`, `trigger`, and `trigger_shape`; ordinary rows use page-wide order, while `trigger_shape` rows keep relative order in separate interactive sequences and imply `on-click`
 - Animation configuration is strict: unknown effects/modes/triggers, invalid finite/range/order values, missing slides/groups, and structural-layer targets fail export without fallback or silent omission
 - Generated export reads every slide back and verifies animation row order, including repeated rows on one shape target, trigger, shape target, resolved effect tuple and native behavior signature, duration, and offset. Package validation then checks timing placement, `p:cTn` ids, and `p:spTgt` references before publication
 - The animation writer does not emit paragraph/text-range builds (`p:bldP`), custom freeform motion paths, native Chart/SmartArt build sequences, or media playback commands for grouped SVG content. Direct-PPTX routes preserve source object animation and perform structural package validation only; they do not author effects
-- The full registry, OOXML rules, and compatibility boundary are documented in [`pptx-animations.md`](./pptx-animations.md)
 
 Dependency:
 

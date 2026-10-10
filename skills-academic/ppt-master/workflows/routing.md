@@ -91,7 +91,7 @@ Create Template remains the fixed route name and owns the shared contract; these
 
 ## 6. Native and Shared Post-Processing Boundary
 
-A main-generated project with notes and an exported deck narrates through the shared [`generate-audio`](./stages/generate-audio.md) stage; an arbitrary finished PPTX whose visible slides must be preserved goes to Edit Native PPTX, whose narration module invokes the same stage rules against the round-trip workspace. Object animation for generated SVG projects uses the animation stage; Edit Native PPTX preserves source motion by default and writes requested motion as an overlay per [`animations.md`](../references/animations.md).
+an arbitrary finished PPTX whose visible slides must be preserved goes to Edit Native PPTX, whose narration module invokes the same stage rules against the round-trip workspace. Object animation for generated SVG projects uses the animation stage;
 
 ---
 

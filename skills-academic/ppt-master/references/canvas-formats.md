@@ -8,11 +8,6 @@
 |----|--------|------|---------|-------|----------|
 | `ppt169` | PPT 16:9 | `1280x720` | `0 0 1280 720` | 16:9 | Business presentations, meetings, modern devices |
 | `ppt43` | PPT 4:3 | `1024x768` | `0 0 1024 768` | 4:3 | Traditional projectors, academic talks |
-| `xiaohongshu` | Xiaohongshu (RED) | `1242x1660` | `0 0 1242 1660` | 3:4 | Image-text sharing, knowledge posts |
-| `moments` | WeChat Moments / IG | `1080x1080` | `0 0 1080 1080` | 1:1 | Square posters, brand showcases |
-| `story` | Story / TikTok | `1080x1920` | `0 0 1080 1920` | 9:16 | Vertical stories, short video covers |
-| `wechat` | WeChat Article Header | `900x383` | `0 0 900 383` | 2.35:1 | WeChat article cover images |
-| `banner` | Landscape Banner | `1920x1080` | `0 0 1920 1080` | 16:9 | Web banners, digital screens |
 | `a4` | A4 Print | `1240x1754` | `0 0 1240 1754` | 1:sqrt(2) | Print posters, flyers |
 
 Custom canvases likewise use `0 0 W H` with positive integer pixels; a fractional canvas is accepted only as compatible input for an imported custom PowerPoint slide size. All pages and internal Layout prototypes in one export share one numeric canvas within PowerPoint's slide range (914,400–51,206,400 EMU per side, about 96–5,376 SVG px). `ppt169` is exactly `1280x720`; `banner` shares the ratio, not the coordinate system.
@@ -45,11 +40,6 @@ low = round(span * 0.025); start = round(span * 0.029); high = round(span * 0.03
 
 | Canvas | Effective span | Advisory body band | Initial body |
 |---|---:|---:|---:|
-| `wechat` | 900 | 23–30 | 26 |
-| `moments` | 1080 | 27–36 | 31 |
-| `xiaohongshu` | 1660 | 42–55 | 48 |
-| `banner` | 1920 | 48–63 | 56 |
-| `story` | 1920 | 48–63 | 56 |
 | `a4` | 1754 | 44–58 | 51 |
 
 `story` and `banner` share one span but not one measure: the same body sits on a 1920 px line in `banner` and a 1080 px line in `story`, so portrait pages settle low. Executor's layout values and icon sizes are 1280-wide: scale by canvas width ÷ 1280, and stack regions instead of splitting once a column holds under about 30 body characters.

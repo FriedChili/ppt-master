@@ -32,7 +32,6 @@ Compact composition vocabulary for prepared images and illustrations. Use the pa
 | Boolean hole / text subtraction | [`native-shape-authoring.md`](./native-shape-authoring.md) |
 | Faceted or folded native form | [`native-shape-authoring.md`](./native-shape-authoring.md) §7.1 / [`svg-effects.md`](./svg-effects.md) §6.11 |
 | Per-pixel mask / blend | Prepared / baked asset; [`svg-effects.md`](./svg-effects.md) boundary |
-| Chart overlay / motion | [`executor-chart.md`](./executor-chart.md) / [`animations.md`](./animations.md) |
 
 ---
 
@@ -203,7 +202,7 @@ The following three patterns are topologically different and are not interchange
 - **#C2-01 · Cross-page image pan** — show different regions of one wide image across consecutive pages so the audience recognizes one continuous place.
 - **#C2-02 · Cross-page push-in or pull-out** — reuse one source while the crop or scale moves from overview to detail, or detail to overview, across consecutive pages.
 
-If motion is enabled, [`animations.md`](./animations.md) owns its implementation; these patterns only define the static framing relationship.
+These patterns define the static framing relationship only.
 
 ### 6.3 C3 · Matched Framing
 

@@ -153,7 +153,7 @@ Repeating symmetric card grids without a page job is the failure mode these stru
 
 ## 1. Effect Capability Discovery
 
-**Reference — effects beyond the everyday block**: the everyday block above covers most pages. Once [`svg-effects.md`](./svg-effects.md) is loaded on its routing-table trigger, its §6.1 Visual Job Router recalls candidates and §6.13 offers coordinated page recipes. Active cross-page continuous action additionally loads [`animations.md`](./animations.md) §3.1 before authoring both endpoints.
+**Reference — effects beyond the everyday block**: the everyday block above covers most pages. Once [`svg-effects.md`](./svg-effects.md) is loaded on its routing-table trigger, its §6.1 Visual Job Router recalls candidates and §6.13 offers coordinated page recipes.
 
 **Hard rule — discovery does not expand compatibility**: follow `svg-effects.md` syntax and fallbacks. Source/backdrop blur, blend mode, `<mask>` / per-pixel masking, dense texture, and skew stay baked or alternative-only.
 

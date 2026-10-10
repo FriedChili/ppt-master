@@ -85,22 +85,52 @@ git clean -fd skills/ppt-master               # 清掉多余文件（谨慎：�
 
 ---
 
-## 5. 尚未完成（TODO）
+## 5. 第二轮：交互选项面收敛（已完成）
 
-1. **`simple-icons` 的散文引用**：`templates/icons/README.md`、`THIRD_PARTY_NOTICES.md`、
-   `scripts/icon_sync.py`（`_SYNC_LIBRARIES` 仍含 `simple-icons`）、`scripts/svg_finalize/embed_icons.py`（尺寸映射）、
-   `references/executor-base.md`、`spec_lock_reference.md`、`strategist.md`、`plan-core.md`、
-   `design_spec_reference.md`、`quick-generate.md`
-2. **动画/音频/视频的散文引用**：`routing.md §6`、`generate-pptx.md`（Step 7 的 `-a` / `--no-animations` 与 §I 行）、
-   `SKILL.md`、`executor-base.md §1`（motion endpoints）、`executor-notes.md`、`design_spec_reference.md §I`、
-   `spec_lock_reference.md`、`visual-styles/_index.md`、`confirm-surface.md`、`workflows/index.md` 的 `video-design` 行
-3. **decks 去标识化**：`中国电信` / `中汽研` → 中性名；剥离 `logo.png`、`header_brand.png`、`slogan_red.png`、
-   `top_emblem.png`、`大型 logo.png`、`右上角 logo.png` 等企业资产；改写 `design_spec.md` 与 `decks_index.json`
+**UI 选项宇宙**（`scripts/confirm_ui/static/catalogs.json`，这是用户在确认页真正看到的清单）
+
+| 目录 | 之前 | 现在 |
+|---|---|---|
+| `modes` | pyramid / narrative / instructional / **showcase** / briefing | pyramid / narrative / instructional / briefing |
+| `canvas` | ppt169 / ppt43 / **wechat** / **xiaohongshu** / **moments** / **story** / **banner** / a4 | **ppt169 / ppt43 / a4** |
+| `visual_styles` | 5 组 18 个 | 未动（按你的要求保留，作为模板库丰富度） |
+| `icons` / `image_usage` / `image_ai_path` / `generation_mode` / `design_spec_depth` / `delivery_purpose` | — | 未动（本身与场景无关） |
+
+`app.js` 已确认**不引用**任何被删 id。
+
+**社媒版式工作区**：删除 `templates/layouts/{moments_square, story_vertical, xiaohongshu_post}/`（30 个原型文件），
+`layouts_index.json` 7 → 4（`editorial_bleed` / `presentation_core` / `presentation_core_43` / `report_core`）。
+
+**文档同步**：`references/canvas-formats.md` −10 行；`scripts/docs/project.md` −4 行；
+`scripts/project_management/cli.py` 移除 `xhs -> xiaohongshu` 别名提示。
+
+**动画/音频/视频暴露面**：删除开发文档 `scripts/docs/{pptx-animations, pptx-transitions, narration, video-motion-plan}.md`；
+`scripts/README.md` −4 行；`svg-pipeline.md` −4 行；`generate-pptx.md` −4 行；
+`quick-generate.md` −2 行；`edit-native-pptx.md` −2 行；`apply-template-workspace.md` −1 行；
+`modes/_index.md` 移除 showcase 行；`templates/README.md` 移除 Sound Library 小节。
+
+**链接完整性**：全树 954 条链接从 **39 条悬空 → 1 条**（仅剩 `spec_lock.schema.json` 里一条正则误报）。
+修复过程中有 4 处被机械切分切出残句，已逐句还原为完整文本。
+
+---
+
+## 6. 尚未完成（TODO）
+
+1. **decks 去标识化**：`中国电信` / `中汽研` → 中性名；剥离 `logo.png`、`header_brand.png`、`slogan_red.png`、
+   `top_emblem.png`、`大型 logo.png`、`右上角 logo.png`；改写 `design_spec.md` 与 `decks_index.json`
+2. **`simple-icons` 的散文引用**：`templates/icons/README.md`、`THIRD_PARTY_NOTICES.md`、
+   `scripts/icon_sync.py`（`_SYNC_LIBRARIES`）、`scripts/svg_finalize/embed_icons.py`、`references/executor-base.md`、
+   `spec_lock_reference.md`、`strategist.md`、`plan-core.md`、`design_spec_reference.md`、`quick-generate.md`
+   （功能影响：`icon_sync.py` 会把已删库当可用库；不崩溃，但应清理）
+3. **画布注册表仍在代码里支持被删的 5 个格式**：`scripts/config.py`、`scripts/project_utils.py`、
+   `scripts/svg_position_calculator.py`、`scripts/project_management/project_specs.py`、
+   `scripts/generate_examples_index.py`。这是**有意的**：它们是跨切面注册表，从代码里摘除风险高且不影响暴露面；
+   `--format xiaohongshu` 仍可用，但 UI 不再提供。
 4. **`templates/styles/README.md`** 是否枚举了已删的 7 个方法
 5. `scripts/docs/confirm_ui.md`（catalog 文件清单）、`scripts/docs/template-tools.md`（index 清单）
 6. `prompt_audit_manifest.json` 残留字符串（`create-brand`×2、`create-deck`×2、`video-design`×5、
    `templates/brands`×4、`generate-audio`×4、`customize-animations`×3、`templates/sounds`×2、`animations.md`×1）
-   —— 该文件只服务 `prompt_audit.py` 开发期校验，不影响生成；建议按瘦身后的树重新生成而非逐条修补
+   —— 只服务 `prompt_audit.py` 开发期校验，不影响生成；建议按瘦身后的树重新生成而非逐条修补
 7. `register_template.py` 帮助文本仍写 "brand / style / layout / deck"；`_BRAND_REQUIRED_SECTIONS` 成死代码
 8. **端到端验收**：用本分支完整跑一次生成（默认路线 + 导出），确认无回退
 

@@ -159,10 +159,6 @@ context.
 Common formats:
 - `ppt169`
 - `ppt43`
-- `xiaohongshu`
-- `moments`
-- `story`
-- `banner`
 - `a4`
 
 Examples:

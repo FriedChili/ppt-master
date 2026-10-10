@@ -88,10 +88,8 @@ python3 skills/ppt-master/scripts/svg_authoring_view.py "projects/<slug>_<YYYYMM
 | Module | Default | Carrier |
 |---|---|---|
 | Speaker notes | Source notes travel with every page; add or rewrite only where planned | `notes/<svg-stem>.md` |
-| Narration audio | Off unless requested; implies notes on every output page | [`generate-audio`](./stages/generate-audio.md) → `audio/<stem>.*` |
 | Auto-advance from narration | On when narration is requested | `svg_to_pptx.py --use-narration-timings` |
 | Page transitions | Preserve source; replace only on request — a transition the importer reports as `transition-not-reconstructed` still travels natively with its page until replaced, even though the sidecar default reads `none` | `svg_to_pptx.py -t <effect>` or per-slide rows in `animations.json` |
-| Object animations | Preserve source; author only on explicit request | `animations.json`, [`animations.md`](../references/animations.md) |
 | Native chart / table data | Source data unless the plan edits it | Inline JSON authority; export needs `--native-charts-and-tables` (§7) |
 
 ### 4.3 Confirmation
@@ -136,9 +134,9 @@ Skip when no §4.2 module beyond preserving source notes is enabled.
 
 **Notes** are keyed by output SVG stem: `notes/<stem>.md` for a canonical page replaces source notes (delete the file to remove them); for a copied page it applies to that output page only, and without a file the copy inherits the source notes. **Hard rule — spoken prose only**: `svg_to_pptx.py` embeds each note with Markdown markers stripped and `notes_to_audio.py` skips heading lines but reads everything else verbatim, so a `[tag]`, duration line, or stage direction is spoken and shown. Write 2–5 natural sentences per content page, one or two for cover / chapter / ending, transitions as prose, one language per deck, sourced from the page's SVG text or the §3 read-back plus user material — a note never adds a claim the page or material does not carry.
 
-**Narration audio**: run [`generate-audio`](./stages/generate-audio.md) Steps 1–4 with the workspace path after notes are complete; the source deck's own media in `audio/` is left alone; `notes_to_audio.py` resolves the roster from `page_plan.json` (copies inherit) and refuses an incomplete roster. Stop after audio; §7 integrates it.
+**Narration audio**: the source deck's own media in `audio/` is left alone; `notes_to_audio.py` resolves the roster from `page_plan.json` (copies inherit) and refuses an incomplete roster. Stop after audio; §7 integrates it.
 
-**Motion**: load [`animations.md`](../references/animations.md) when transitions or object animations are requested; `animations.json` rows are keyed by output stem, a copied page inherits its source row unless it has its own, a row that omits `transition` keeps the source transition; drop rows for pages the plan omits. A source page often wraps its whole content in one group: regroup its unchanged children into motion units only on a page whose motion needs it, and let the other pages enter as the source grouped them — §5 identity outranks finer motion. **Hard rule — rebuilt animation targets**: removing an object a source animation targets leaves that animation without a target and export stops with `Edited slide removed source animation target(s)` naming the PowerPoint shape id (its imported root group is `shape-<id>`); give the page its own row — `"<stem>": {"animation": {"effect": "none"}}` drops the source build, or author the page's motion — then export again.
+**Motion**: `animations.json` rows are keyed by output stem, a copied page inherits its source row unless it has its own, a row that omits `transition` keeps the source transition; drop rows for pages the plan omits. A source page often wraps its whole content in one group: regroup its unchanged children into motion units only on a page whose motion needs it, and let the other pages enter as the source grouped them — §5 identity outranks finer motion. **Hard rule — rebuilt animation targets**: removing an object a source animation targets leaves that animation without a target and export stops with `Edited slide removed source animation target(s)` naming the PowerPoint shape id (its imported root group is `shape-<id>`); give the page its own row — `"<stem>": {"animation": {"effect": "none"}}` drops the source build, or author the page's motion — then export again.
 
 ---
 

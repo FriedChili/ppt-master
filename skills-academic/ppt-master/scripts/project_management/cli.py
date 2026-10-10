@@ -298,7 +298,7 @@ class ProjectManager:
                 available = ", ".join(sorted(self.CANVAS_FORMATS.keys()))
                 raise ValueError(
                     f"Unsupported canvas format: {canvas_format} "
-                    f"(available: {available}; common alias: xhs -> xiaohongshu)"
+                    f"(available: {available})"
                 )
 
         date_str = datetime.now().strftime("%Y%m%d")

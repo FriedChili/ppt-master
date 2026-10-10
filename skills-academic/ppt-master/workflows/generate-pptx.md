@@ -313,7 +313,6 @@ python3 ${SKILL_DIR}/scripts/svg_quality_checker.py <project_path> \
 >
 > **Visual self-check (opt-in)?** Run [`visual-review`](stages/visual-review.md) before Step 7 only when the user explicitly asked for a per-page visual re-pass ("跑一下视觉自检 / 视觉回看", "visual review", "check pages visually"); never by default, on inferred model capability, or on deck size.
 >
-> **Motion execution (conditional)?** An existing `animations.json` always runs [`customize-animations`](stages/customize-animations.md) before export. Without a sidecar, run it only for an explicit per-slide/per-object request or an enabled Custom Animations outcome in §I (§IX suggestions inform it, never trigger it); a deck-wide request loads [`animations.md`](../references/animations.md) and resolves Step 7.3 flags instead; otherwise keep `fade` / `none` and load nothing. Executor owns effects, options, order, timing, and simplification to `none`; never add motion for coverage. Sound is never a Strategist resource: no id or path in `design_spec.md` / `spec_lock.md`, and any cue is selected only after the motion solution is final under `animations.md` §2.2.
 
 ---
 
@@ -353,13 +352,10 @@ python3 ${SKILL_DIR}/scripts/finalize_svg.py <project_path>
 | Explicit editable Chart/Table delivery decision, or a structured `chart` / `table` placeholder slot | Append `--native-charts-and-tables` (markers, templates, semantic tables, and imported charts never activate it; formulas are always native) |
 | Final checker reports oversized images | Append `--image-sizing display` |
 | Preserved or produced `animations.json` | Keep the base command; the exporter reads the sidecar |
-| Deck-wide motion setting | Append the resolved [`animations.md`](../references/animations.md) flags |
 | Explicit Custom Animations disable | Keep the sidecar and append `-a none` |
 | Explicit all-motion disable | `--no-animations` |
 | Final Stage-2 `false` | Neither flag |
 | Conversion trace | Do not add `--conversion-trace` to every base export; an explicit `--conversion-trace <path>` writes to that destination instead of the default |
-
-Sound: the optional post-motion pass is [`animations.md`](../references/animations.md) §2.2. For a narrated MP4, [`generate-audio`](stages/generate-audio.md) owns the delivery choice.
 
 **Success criterion**: the command exits 0 and produces `exports/<project_name>_<timestamp>.pptx`, `validation/<project_name>_<timestamp>.report.json` with `passed` or `passed-with-warnings`, and `validation/<project_name>_<timestamp>.trace.json` when `--conversion-trace` was enabled. The exporter itself requires the current matching `final` quality report and exits nonzero on a missing, unreadable, unsupported, non-final, blocking, stale, or unverifiable one. Read the compact `[POSTFLIGHT]` receipt (`status`, `quality_gate`, slide count, warning counts, paths), disclose material warnings, and never `cat` the full report on success. Retain the report path for a later `deck_motion` handoff; postflight proves the package, not a later MP4 audio track.
 
@@ -375,4 +371,3 @@ A delivered project that comes back with a change stays in this route; planning 
 - [x] Notes split when enabled; disabled exports used `--no-notes`
 - [x] `svg_final/` preview built
 - [x] Native PPTX published and postflight report written
-- [ ] **Next**: report the exported PPTX path; when the effective Narration Audio outcome in `design_spec.md §I` is enabled, run [`generate-audio`](stages/generate-audio.md); otherwise run a supporting post-export stage only on its explicit trigger

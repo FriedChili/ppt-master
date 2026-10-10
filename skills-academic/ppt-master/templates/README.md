@@ -50,6 +50,3 @@ Page-local Shape-first catalog families, not kinds: Chart — value-driven geome
 
 [`icons/`](./icons/) holds 12,027 vectors across five libraries (`chunk-filled` 641, `tabler-filled` 1,055, `tabler-outline` 5,138, `phosphor-duotone` 1,518, `simple-icons` 3,675 brand logos); usage and style rules in [icons/README.md](./icons/README.md), licenses in [icons/THIRD_PARTY_NOTICES.md](./icons/THIRD_PARTY_NOTICES.md).
 
-## Sound Library
-
-[`sounds/`](./sounds/) is selected only through the post-motion pass in [`animations.md`](../references/animations.md) §2.2 ([usage](./sounds/README.md)); it is never a template or planning resource.

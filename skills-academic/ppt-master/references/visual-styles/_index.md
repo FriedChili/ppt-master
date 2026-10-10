@@ -9,7 +9,6 @@ independent-composition, Boolean, or necessary-freeform authoring vocabulary.
 Page purpose selects the carriers and construction; the style makes the chosen
 forms belong to one visual system.
 
-> **Styles carry NO fixed HEX and define no palette.** Default core color identity and recurring role behavior live in `design_spec.colors` / `spec_lock.colors` (confirmation `e`); Quick resolves equivalent palette anchors in active context. A visual style describes how those anchors behave in SVG composition and may call for contextual tints, gradients, effects, or material transitions; it does not substitute an unrelated palette. Generated images follow the same anchor model through [`image-renderings/`](../image-renderings/). [`image-palettes/`](../image-palettes/) is legacy compatibility material only.
 >
 > A visual style is *not* a mode. **Visual style = how it looks; mode = how you argue** (see [`modes/_index.md`](../modes/_index.md)). Resolve them independently — any style pairs with any mode.
 
