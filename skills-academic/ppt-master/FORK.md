@@ -221,22 +221,61 @@ Native objects: charts 0 | tables 3 | formulas 2 ; Presets: chevron x3
 
 ---
 
-## 8. 尚未完成（TODO）
+## 8. 第四轮：词表、图标库与命名（已完成）
 
-1. **`simple-icons` 的散文引用**：`templates/icons/README.md`、`THIRD_PARTY_NOTICES.md`、
-   `scripts/icon_sync.py`（`_SYNC_LIBRARIES`）、`scripts/svg_finalize/embed_icons.py`、`references/executor-base.md`、
-   `spec_lock_reference.md`、`strategist.md`、`plan-core.md`、`design_spec_reference.md`、`quick-generate.md`
-   （功能影响：`icon_sync.py` 会把已删库当可用库；不崩溃，但应清理）
-2. **画布注册表仍在代码里支持被删的 5 个格式**：`scripts/config.py`、`scripts/project_utils.py`、
-   `scripts/svg_position_calculator.py`、`scripts/project_management/project_specs.py`、
-   `scripts/generate_examples_index.py`。这是**有意的**：跨切面注册表，从代码里摘除风险高且不影响暴露面；
-   `--format xiaohongshu` 仍可用，但 UI 不再提供。
-3. **`templates/styles/README.md`** 是否枚举了已删的 7 个方法
-4. `scripts/docs/confirm_ui.md`（catalog 文件清单）、`scripts/docs/template-tools.md`（index 清单）
-5. `register_template.py` 帮助文本仍写 "brand / style / layout / deck"；`_BRAND_REQUIRED_SECTIONS` 成死代码
-6. **`docs/`（仓库根）未裁剪** —— 其中 `audio narration` 等页面属于非科研场景，但它不在 skill 内，
-   属仓库级文档，需要时单独处理
-7. `prompt_audit` 剩余的 3 组跨文件重复段落（advisory，不影响 exit code）
+**表格词表**：`tables_index.json` 移除 `feature_matrix`（产品能力对比网格）→ 5 个；
+`table-vocabulary.md` 投影同步删除该行。保留 `comparison_matrix` / `hierarchical_table` /
+`metric_table` / `rating_matrix`（准则×方案的序数评分，科研评价可用）/ `record_table`。
+
+**图标库 `simple-icons` 彻底移除**（不只是删目录）：
+
+| 位置 | 处理 |
+|---|---|
+| `scripts/icon_sync.py` | `_SYNC_LIBRARIES` 不再并集 `simple-icons`；docstring 与错误提示同步 |
+| `scripts/svg_finalize/embed_icons.py` | 移除尺寸映射项与 docstring 说明 |
+| `templates/icons/README.md` | 删除库表行、示例、检索示例、Brand-logo exception 段；计数 `12,027 / 五库` → `8,352 / 四库` |
+| `templates/icons/THIRD_PARTY_NOTICES.md` | 删除 Simple Icons 许可与商标声明整节（库已不存在，保留声明是错的） |
+
+**命名去企业化**：`references/image-renderings/corporate-photo.md` → `professional-photo.md`，
+9 个文件同步（`image-generator.md`、`image-renderings/_index.md` 与同级文件、
+`visual-styles/` 配对渲染列、`ai-image-comparison` 清单、Confirm UI）。
+`app.js` 的四语言标签改为 `专业摄影 / 專業攝影 / Professional photo / プロフェッショナル写真`，
+目录描述 `product shots` → `field, reportage, and subject photography`。
+
+**残留 `brand` kind 引用清零**：`routing.md` §4、`edit-native-pptx.md`、
+`scripts/docs/{template-tools,confirm_ui}.md`、`register_template.py`（docstring + 帮助文本）、
+`references/template-designer.md`、`templates/styles/README.md` 优先级表。
+
+**本轮修复的一个自伤**：删除 `icon_sync.py` 里 simple-icons 提示串时拆坏了 `print()` 调用
+（留下孤立参数），已修复并全树复验。
+
+---
+
+## 9. 最终状态
+
+| 项目 | 结果 |
+|---|---|
+| 文件数 | 13,016 → 9,281 |
+| 全树链接 | 881 条，0 悬空（1 条正则误报） |
+| Python 语法 / JSON 解析 | 0 错 / 0 错 |
+| `attribution_guard.py` | exit 0 |
+| `prompt_audit.py` | **exit 0**（1 条 advisory 警告） |
+| 测试（相关定向组） | 69/75 通过；6 个 error 已证实为机器级符号链接权限 |
+| 导出链端到端 | postflight passed，18 页，1 master / 11 layouts / 40 占位符 |
+| 企业身份串残留 | 0 |
+| 非科研 `brand` kind 引用残留 | 0 |
+| 交互选项 | 模式 4 / 画布 3 / 版式 4 / 图标库 4 |
+
+### 有意保留的边界（见 §10）
+
+1. **画布注册表仍在代码里支持被删的 5 个格式**（`config.py`、`project_utils.py`、
+   `svg_position_calculator.py`、`project_specs.py`、`generate_examples_index.py`）。
+   跨切面注册表，从代码里摘除风险高且不影响暴露面：UI 不再提供，`--format xiaohongshu` 仍可用。
+2. **仓库根 `docs/` 未裁剪** —— 其中 `audio narration` 等页面属非科研场景，但它不在 skill 内。
+3. **`prompt_audit` 的 3 组跨文件重复段落**（advisory，不影响 exit code）。
+4. **`register_template.py` 的 `_BRAND_REQUIRED_SECTIONS` 成死代码**；无害，未删以免波及校验路径。
+
+## 10. 设计边界（有意保留）
 
 ---
 

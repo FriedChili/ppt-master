@@ -139,4 +139,4 @@ python3 skills/ppt-master/scripts/register_template.py <template_id> --kind bran
 python3 skills/ppt-master/scripts/register_template.py --kind style|deck|layout --rebuild-all
 ```
 
-Derives the index entry from `templates/design_spec.md` (frontmatter preferred; prose fallback) plus the actual `templates/*.svg` roster and updates `templates/brands/brands_index.json`, `styles/styles_index.json`, `layouts/layouts_index.json`, or `decks/decks_index.json`. The JSON index is the single discovery source for Default Stage-1 template controls and chat listing; READMEs describe kinds in prose and are never edited. `--dry-run` checks the directory/index identity without writing.
+Derives the index entry from `templates/design_spec.md` (frontmatter preferred; prose fallback) plus the actual `templates/*.svg` roster and updates `styles/styles_index.json`, `layouts/layouts_index.json`, or `decks/decks_index.json`. The JSON index is the single discovery source for Default Stage-1 template controls and chat listing; READMEs describe kinds in prose and are never edited. `--dry-run` checks the directory/index identity without writing.

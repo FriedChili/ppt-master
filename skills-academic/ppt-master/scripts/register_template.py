@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Register a brand / style / layout / deck template in the global index.
+"""Register a style / layout / deck template in the global index.
 
 Four kinds, four workspace roots, four index files. The shared model lives
 in ``templates/README.md``; each kind's schema lives in its directory README:
@@ -1417,7 +1417,7 @@ def main() -> int:
     require_skill_integrity()
     parser = argparse.ArgumentParser(
         description=(
-            "Register / refresh templates (brand / style / layout / deck) "
+            "Register / refresh templates (style / layout / deck) "
             "in the index."
         )
     )

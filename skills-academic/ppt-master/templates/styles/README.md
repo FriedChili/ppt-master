@@ -1,10 +1,10 @@
 # Style Workspaces
 
-**Style = a roster-free reusable communication method plus coordinated design defaults**: argument flow, page-role vocabulary, evidence and data-expression discipline, visual-system defaults, image/icon direction, and review focus. It owns no current-project communication contract, brand identity, page geometry, SVG prototypes, or application contract, and does not replace the mode or visual-style catalogs. The shared kind and workspace model lives in the parent [`README.md`](../README.md).
+**Style = a roster-free reusable communication method plus coordinated design defaults**: argument flow, page-role vocabulary, evidence and data-expression discipline, visual-system defaults, image/icon direction, and review focus. It owns no current-project communication contract, project identity, page geometry, SVG prototypes, or application contract, and does not replace the mode or visual-style catalogs. The shared kind and workspace model lives in the parent [`README.md`](../README.md).
 
 ## Axis Separation
 
-`kind: style` (a portable workspace of method and non-binding defaults), final Stage-2 `mode` (the deck's confirmed narrative skeleton), final Stage-2 `visual_style` (the deck's confirmed composition and texture lock), and internal `template_reuse_scope: style` (a flat export plan reusing no structure) are separate contracts. Style-only and Style + Brand produce a flat plan; a Style beside a Layout or Deck may use structured reuse — `kind: style` never forces the reuse scope when another workspace supplies structure.
+`kind: style` (a portable workspace of method and non-binding defaults), final Stage-2 `mode` (the deck's confirmed narrative skeleton), final Stage-2 `visual_style` (the deck's confirmed composition and texture lock), and internal `template_reuse_scope: style` (a flat export plan reusing no structure) are separate contracts. Style-only produces a flat plan; a Style beside a Layout or Deck may use structured reuse — `kind: style` never forces the reuse scope when another workspace supplies structure.
 
 ## Selection, Precedence, and Installation
 
@@ -13,7 +13,7 @@ Selection and installation follow [`routing.md`](../../workflows/routing.md) §7
 | Decision | Precedence |
 |---|---|
 | Current contract, mode, visual style, palette, typography, images, icons | Latest explicit user instruction and confirmed project values |
-| Exact identity values | Brand, then Deck; both override overlapping Style fallbacks |
+| Exact identity values | The Deck workspace, overriding overlapping Style fallbacks |
 | Reusable method and evidence discipline | Style, where compatible with the current contract |
 | Reusable structure | Layout, otherwise Deck; Style never supplies structure |
 | Recurring application context | Deck, subordinate to the Stage-1 contract |

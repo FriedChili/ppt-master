@@ -274,7 +274,7 @@ No optional directory is created merely to exist; no asset placement branches by
 
 **Template Preview**: on request or for multiple Masters, run `template_preview_pptx.py <template_workspace>` after validation ([`template-tools.md`](../scripts/docs/template-tools.md#template_preview_pptxpy)); include the path in the completion summary and omit `exports/` only for an unrequested one-Master package. For import-based templates, note which extracted assets were reused, which references influenced the authored roster, what mirror could not preserve, and any page-type mapping that needed judgment.
 
-**Using an existing library workspace** (downstream reuse, not this role's authoring): copy or stage `templates/` plus `images/` / `icons/` (never `exports/`), adjust colors to the project spec, then customize; query the matching kind index (`brands_index.json`, `styles_index.json`, `layouts_index.json`, `decks_index.json`).
+**Using an existing library workspace** (downstream reuse, not this role's authoring): copy or stage `templates/` plus `images/` / `icons/` (never `exports/`), adjust colors to the project spec, then customize; query the matching kind index (`styles_index.json`, `layouts_index.json`, `decks_index.json`).
 
 ---
 

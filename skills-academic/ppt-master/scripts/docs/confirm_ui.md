@@ -104,7 +104,6 @@ separate artifact from the Strategist contract. Its files live under
 - The array supplies exact-root candidates. The user may select multiple roots
   when their kind sets do not overlap; each root is selected atomically.
 - Do not write library entries into this block. The server reads only
-  `templates/brands/brands_index.json`,
   `templates/styles/styles_index.json`,
   `templates/layouts/layouts_index.json`, and
   `templates/decks/decks_index.json`, derives each direct-child workspace root,

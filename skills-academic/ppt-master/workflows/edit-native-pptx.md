@@ -13,7 +13,7 @@ The source deck becomes a `pptx_to_svg.py --roundtrip` workspace: every slide is
 | Fill a raw PPTX template with new content, keep its design; add notes / narration / auto-advance / transitions; rewrite some pages and keep the rest; drop, reorder, or repeat pages without redesign | This route |
 | Regenerate every page with a new visual design (1:1) | Generate PPTX, [`beautify-pptx`](./profiles/beautify-pptx.md) |
 | Redesign the pages, or split / merge / re-outline into a newly designed deck | Generate PPTX, PPTX as source material |
-| Create a reusable brand / style / layout / deck asset | [`create-template`](./create-template.md) |
+| Create a reusable style / layout / deck asset | [`create-template`](./create-template.md) |
 
 **Hard rule — no Generate pipeline**: never run `pptx_template_import.py`, `project_manager.py init`, or `finalize_svg.py`, and never create `svg_output/`; the round-trip workspace is the project and `svg_to_pptx.py --roundtrip` is the only exporter that restores source slides.
 
