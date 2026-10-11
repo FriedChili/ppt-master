@@ -1,5 +1,5 @@
 ---
-description: Create Template entry workflow and shared contract for the Create Brand, Create Style, Create Layout, and Create Deck sub-workflows.
+description: Create Template entry workflow and shared contract for the Create Style, Create Layout, and Create Deck sub-workflows.
 ---
 
 # Create Template Workflow
@@ -30,7 +30,6 @@ Never create an optional directory or placeholder solely to keep an empty path; 
 
 | Child | Select when | Library output | Exclusive responsibility |
 |---|---|---|---|
-| Create Brand | Reuse identity only: colors, typography, logo, voice, icon style | `templates/brands/<brand_id>/` | Identity-only spec; no SVG roster |
 | Create Style | Reuse a communication method and visual direction without identity truth or prototypes | `templates/styles/<style_id>/` | Method, page-role vocabulary, evidence expression, visual defaults, image/icon direction, advisory review focus; no roster |
 | Create Layout | Reuse a brand-neutral structural skeleton without a recurring application | `templates/layouts/<layout_id>/` | Canvas, page grammar, semantic text roles, Master/Layout/slot contract, SVG roster; no identity or application contract |
 | Create Deck | Reuse a branded structural system or a recurring application | `templates/decks/<deck_id>/` | Descriptive application context, integrated identity/structure, SVG roster |
@@ -49,7 +48,7 @@ Reference Bundle Intake & Analysis → Fact-Based Brief Proposal → User Confir
 
 ## Step 1: Reference Bundle Intake & Analysis
 
-Run every applicable branch for the bundle (one source, several files, mixed types, direct text, or nothing); produce analysis only. Create Brand/Create Style follow their child analysis rules and never run page-topology analysis merely because the reference is a PPTX/PDF.
+Run every applicable branch for the bundle (one source, several files, mixed types, direct text, or nothing); produce analysis only. Create Style follows its child analysis rules and never runs page-topology analysis merely because the reference is a PPTX/PDF.
 
 | Type | Supplied | Tool / read path | Strategies the evidence supports |
 |---|---|---|---|
@@ -88,7 +87,7 @@ Use manifest facts for orientation and screenshots or the original PPTX only for
 
 ### Basic norm extraction (mandatory when reference content exists)
 
-Extract the source's observable operating rules — not generic design advice — so they flow into `design_spec.md`. Create Brand extracts only the identity subset. Create Style extracts argument flow, message/evidence discipline, open page-role vocabulary, data-expression rules, composition/density rhythm, visual defaults, and image/icon direction while discarding source-specific audience, objective, page order/count, mappings, canvas, and structure. Create Layout/Create Deck extract:
+Extract the source's observable operating rules — not generic design advice — so they flow into `design_spec.md`. Create Style extracts argument flow, message/evidence discipline, open page-role vocabulary, data-expression rules, composition/density rhythm, visual defaults, and image/icon direction while discarding source-specific audience, objective, page order/count, mappings, canvas, and structure. Create Layout/Create Deck extract:
 
 | Norm area | Extract from | Record as |
 |---|---|---|
@@ -133,7 +132,7 @@ Direct chat text is valid input. Read Markdown/TXT directly; convert documents/U
 
 ### 1E. No reference material
 
-Skip analysis; Step 2 lists every Required item as `[decision]`. Create Brand may emit an empty skeleton only under its explicit child rule; the other children still require the gate.
+Skip analysis; Step 2 lists every Required item as `[decision]`. Every child still requires the gate.
 
 ---
 
@@ -170,7 +169,7 @@ Compose one concise natural-language proposal, in the user's language, describin
 | Template ID | `[decision]`, or a filesystem-safe ASCII slug `[suggested]`; the library index key |
 | Display name | `[decision]` when supplied, otherwise `[suggested]`; for Type A often from `analysis/manifest.json.source.name` |
 | Category | Per the field table |
-| Applicable scenarios | Brand identity use cases; Style broad best-fit context without binding audience/outcome; Layout supported content shapes and delivery settings without communication ownership; Deck recurring situations |
+| Applicable scenarios | Style broad best-fit context without binding audience/outcome; Layout supported content shapes and delivery settings without communication ownership; Deck recurring situations |
 | Deck application context and representative roles | Deck only |
 | Identity / method / structural summary | Per kind |
 | Style method, visual-system defaults, review focus | Defaults are overrideable seeds, never identity truth or Stage-2 locks; review focus applies only if the user enables visual review |
@@ -179,13 +178,13 @@ Compose one concise natural-language proposal, in the user's language, describin
 | Native structure facts (A / structured B) | `[fact]`: master/layout counts, parentage, assignments, placeholder identities, multi-master status |
 | Structure ownership plan and per-page reference treatment | `[derived]` |
 | Basic norms, reference source | As extracted |
-| Theme color and fonts | Brand/Deck only; C fonts are never derivable |
+| Theme color and fonts | Deck only; C fonts are never derivable |
 | Design style | Required for Style as an overrideable seed |
 | Assets list | Never for Style |
-| Keywords | 3–5 tags; not for Brand |
+| Keywords | 3–5 tags |
 | Type A Layout/Deck additions | The authoring documents the derived strategy requires, a one-line source Master/Layout summary, and whether source structure facts will be preserved or used only as evidence |
 
-**Persist the portable brief into `<design_spec_path>`** in Step 4 as YAML frontmatter with the child ID key (`brand_id` / `style_id` / `layout_id` / `deck_id`) and only child-owned fields: Brand its identity schema; Style only `style_id`, `kind`, `summary`, `keywords`; Layout/Deck the confirmed portable fields (`kind`, `category`, `summary`, `keywords`, `primary_color` for deck, `page_types` for layout, `canvas_format`, `canvas_width`, `canvas_height`, `canvas_viewbox`, `source_viewbox`, `replication_mode`, `native_structure_mode`, …). Never persist a generic `template_id`, `output_scope`, or `target_project`. In library scope `register_template.py` reads this frontmatter in Step 7.
+**Persist the portable brief into `<design_spec_path>`** in Step 4 as YAML frontmatter with the child ID key (`style_id` / `layout_id` / `deck_id`) and only child-owned fields: Style only `style_id`, `kind`, `summary`, `keywords`; Layout/Deck the confirmed portable fields (`kind`, `category`, `summary`, `keywords`, `primary_color` for deck, `page_types` for layout, `canvas_format`, `canvas_width`, `canvas_height`, `canvas_viewbox`, `source_viewbox`, `replication_mode`, `native_structure_mode`, …). Never persist a generic `template_id`, `output_scope`, or `target_project`. In library scope `register_template.py` reads this frontmatter in Step 7.
 
 ---
 
@@ -203,7 +202,6 @@ Before emitting the marker, all of these hold:
 | Style | Method, vocabulary, evidence rules, defaults, direction, and review focus confirmed with project-specific context; identity/structure N/A |
 | Deck | Application context understood without turning it into policy |
 | Layout | No application or identity leaked |
-| Brand | All identity fields confirmed; canvas/replication/structure N/A |
 
 ---
 
@@ -223,7 +221,7 @@ Before emitting the marker, all of these hold:
 | Assets | Resolve every bitmap and vector filename and confirm nothing overwrites an existing file in `images/` or `icons/imported/` |
 | Review PPTX | Check its destination when requested or multi-Master |
 
-**Create Brand / Create Style branch**: continue in the child's §3 with the confirmed brief and resolved paths, then return to that child's branch in Step 5 — no Template_Designer, no SVG, no structure.
+**Create Style branch**: continue in the child's §3 with the confirmed brief and resolved paths, then return to that child's branch in Step 5 — no Template_Designer, no SVG, no structure.
 
 **Create Layout / Create Deck branch**: switch to Template_Designer with `<template_workspace>` bound to `<authoring_workspace>`, `<design_spec_path>`, the Step 3 brief, and the Step 1 analysis bundle.
 
@@ -275,7 +273,7 @@ Never encode package repair in SVGs. Do not package `native_structure.json` or `
 
 ## Step 5: Validate Template Assets
 
-**Create Brand / Create Style**: run the child's §4 checklist and `svg_quality_checker.py "<template_workspace>/templates" --template-mode --canonical-authoring` in both scopes (it detects the kind and validates the roster-free contract); in `library` add `register_template.py <id> --kind brand|style --dry-run`. Then skip the rest of this step and Step 6. Style Review Focus is advisory only and never activates visual review.
+**Create Style**: run the child's §4 checklist and `svg_quality_checker.py "<template_workspace>/templates" --template-mode --canonical-authoring` in both scopes (it detects the kind and validates the roster-free contract); in `library` add `register_template.py <id> --kind style --dry-run`. Then skip the rest of this step and Step 6. Style Review Focus is advisory only and never activates visual review.
 
 **Create Layout / Create Deck**: `<template_source>` is the active authoring root's `templates/`. `ls` it and the `images/` / `icons/` roots, then run read-only validation (Template_Designer writes canonical compact SVG directly; mirror normalizes in memory; authored-preset and native record frames stay unchanged):
 
@@ -336,7 +334,7 @@ A multi-Master failure blocks registration and completion; an unrequested one-Ma
 
 | Scope | Action |
 |---|---|
-| `library` | After Step 5.1 (and Step 6 when requested or required), run `python3 skills/ppt-master/scripts/register_template.py <template_id> --kind brand|style|deck|layout`; it derives the entry from the spec frontmatter (preferred) or prose plus the actual `templates/*.svg` roster and updates that kind's `*_index.json` — the complete discovery source for Default Stage-1 controls and chat listing (neither scans directories) |
+| `library` | After Step 5.1 (and Step 6 when requested or required), run `python3 skills/ppt-master/scripts/register_template.py <template_id> --kind style|deck|layout`; it derives the entry from the spec frontmatter (preferred) or prose plus the actual `templates/*.svg` roster and updates that kind's `*_index.json` — the complete discovery source for Default Stage-1 controls and chat listing (neither scans directories) |
 | `project` | Skip the registrar, edit no index or README, and report `Not registered (project workspace)` |
 
 An exact unregistered root supplied by the user or handed off by this route appears as an `explicit` candidate preselected only when it is the sole root; a root matching a registered canonical root may display as `library`; bare names are never resolved. Frontmatter examples per kind live in the child workflows; `--rebuild-all` rebuilds a kind's index after editing many specs.
@@ -349,7 +347,7 @@ An exact unregistered root supplied by the user or handed off by this route appe
 ## Template Creation Complete
 
 **Template Name**: <template_id> (<display_name>)
-**Kind**: brand | style | layout | deck
+**Kind**: style | layout | deck
 **Output Scope**: library | project
 **Workspace Path**: `<template_workspace>/`
 **Template Source**: `<template_workspace>/templates/`
@@ -358,7 +356,7 @@ An exact unregistered root supplied by the user or handed off by this route appe
 **Imported Vector Path**: `<template_workspace>/icons/imported/`  ← omit when nothing was written or adopted
 **Review PPTX**: `<template_workspace>/exports/<template_id>_template_preview.pptx`  ← Layout/Deck only; omit when an optional one-Master review was not requested
 **Prototype Review**: user-reviewed | delegated  ← Layout/Deck only
-**Primary Color**: <hex>  ← Brand/Deck only
+**Primary Color**: <hex>  ← Deck only
 **Index Registration**: Done | Not registered (project workspace)
 
 ### Files Included
@@ -368,7 +366,7 @@ An exact unregistered root supplied by the user or handed off by this route appe
 | `exports/<template_id>_template_preview.pptx` | Verified, when requested or required |
 ```
 
-Brand lists the spec plus real identity assets; Style lists only its spec; both state `SVG roster: N/A` and `Native structure: N/A`, and Style adds `Visual review trigger: N/A (advisory focus only)`.
+Style lists only its spec; it states `SVG roster: N/A` and `Native structure: N/A`, and adds `Visual review trigger: N/A (advisory focus only)`.
 
 **Handoff**: the exact `<template_workspace>/` root is the current-conversation handoff to Generate Step 3: it appears as the specified candidate, defaults Stage 1 to template mode, and is preselected only when it is the sole root. After Stage 1 confirms it, application resolves its spec(s), ignores `exports/`, and authors new `svg_output/` pages — neither the reference nor the prototypes are upgraded in place, and any older flat or legacy package is evidence only.
 
@@ -378,7 +376,7 @@ Brand lists the spec plus real identity assets; Style lists only its spec; both 
 
 1. Layout/Deck load [`shared-standards-core.md`](../references/shared-standards-core.md) and [`pptx-structure-interface.md`](../references/pptx-structure-interface.md), plus [`svg-effects.md`](../references/svg-effects.md) only when the design uses those effects; Brand and Style author no SVG and load none. Never restate these contracts in a template spec.
 2. Deck SVGs use the spec's §II Color Scheme; Layout owns no identity colors; Style owns only overrideable defaults.
-3. Theme/Master/Layout/Placeholder are compiled PowerPoint objects, not template kinds: Layout owns topology and placement, Brand identity values and assets, Style portable direction, Deck descriptive application context.
+3. Theme/Master/Layout/Placeholder are compiled PowerPoint objects, not template kinds: Layout owns topology and placement, Style portable direction, Deck descriptive application context.
 4. Placeholders use `{{}}` with the canonical names in [template-designer.md §4](../references/template-designer.md#4-placeholder-reference-canonical-convention-overridable-per-template), overridden per template through `placeholders:` frontmatter.
 5. A library template is discoverable only after Step 7; a project workspace stays out of the catalog and is consumed as an exact `explicit` root. Stage 1 confirms communication plus free design/template use together; only a non-free confirmed selection installs a workspace before Stage 2.
-6. The review PPTX is derived local evidence, generated on request and always for multi-Master; Brand and Style never generate it.
+6. The review PPTX is derived local evidence, generated on request and always for multi-Master; Style never generates it.

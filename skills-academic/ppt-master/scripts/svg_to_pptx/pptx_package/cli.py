@@ -1726,7 +1726,7 @@ def _print_structure_contract_error(
     print(
         "Error: unsupported spec_lock.md pptx_structure.mode " + label + ". "
         "Current release modes are flat (style reference / free design / "
-        "brand-only) and structured (mirror/layout reuse).",
+        ") and structured (mirror/layout reuse).",
         file=sys.stderr,
     )
     print(
@@ -2181,7 +2181,7 @@ Recorded narration:
             'spec_lock.md; a legacy lock without pptx_structure.mode defaults to '
             'flat. Quick Generate requires omission and infers flat/structured '
             'from its complete SVG roster. Flat is the style-reference/free-design/'
-            'brand-only release mode and '
+            'release mode and '
             'builds one clean project-owned Master plus Blank Layout while keeping '
             'all SVG objects slide-local; structured is the mirror/layout reuse '
             'mode and requires complete explicit metadata. baseline, template, '

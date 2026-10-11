@@ -2,6 +2,8 @@
 style_id: academic-research
 kind: style
 summary: Research-reporting method that builds a defensible claim from question, method, and result while keeping limitations visible.
+label_zh: 学术研究
+summary_zh: 极简学术风：大留白、只有发丝分隔线、几乎没有装饰；颜色只用来标记分组或条件，全篇同一实体同一色。适合论文答辩、会议报告。
 keywords: [academic, research, thesis-defense, methodology, peer-review]
 ---
 

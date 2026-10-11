@@ -150,7 +150,8 @@ textarea {
 #topbar-preview .style-preview-label {
     margin-bottom: 10px;
 }
-#topbar-preview .style-preview-card {
+#topbar-preview 
+.style-preview-card {
     box-shadow: none;
     flex-direction: column;
     align-items: stretch;
@@ -408,7 +409,8 @@ textarea {
     color: var(--ink);
 }
 .text-input:focus, .num-input:focus { outline: none; border-color: var(--accent); }
-textarea.text-input { resize: vertical; line-height: 1.5; }
+/* 多行输入默认一行高，随内容自动长高；overflow 用 auto 以便手动拖高后仍可滚动。 */
+textarea.text-input { resize: vertical; line-height: 1.5; overflow-y: auto; }
 .num-input { width: 140px; }
 .text-input.locked-field {
     background: #f1f5f9;
@@ -562,8 +564,7 @@ textarea.text-input { resize: vertical; line-height: 1.5; }
 }
 .design-direction-swatches { display: flex; gap: 5px; margin-top: 8px; }
 .design-direction-swatches .swatch { width: 24px; height: 24px; }
-.locked-summary-chip { cursor: default; }
-.locked-summary-chip:hover { border-color: var(--accent); }
+
 .image-strategy-previews {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -736,10 +737,88 @@ textarea.text-input { resize: vertical; line-height: 1.5; }
     font-size: 12.5px;
     line-height: 1.45;
 }
+/* 模板列表按画布过滤 —— 说明为什么只有这些。 */
+/* 预设选中后把"用了哪几个模板"写出来，否则用户改不动。 */
+/* 预设列表：每条预设带一张版式样张，说明它长什么样。 */
+/* 预设挂在「套用模板」下面，不是与它并列的第三个选项：
+   左缩进对齐到该选项卡的文字，左侧竖线表明从属关系。 */
+.template-preset-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin: 8px 0 4px 44px;
+    padding-left: 14px;
+    border-left: 2px solid var(--line);
+}
+.template-preset-choice {
+    width: 100%;
+    padding: 6px 10px;
+    border-color: transparent;
+    background: transparent;
+    align-items: center;
+}
+/* 悬停必须排除已选中项 —— 否则 :hover 的白底会把 .selected 的蓝底盖掉
+   （两者优先级相同，后写的赢）。 */
+.template-preset-choice:not(.selected):hover {
+    border-color: var(--accent);
+    background: var(--card);
+}
+.template-preset-choice.selected:hover {
+    border-color: var(--accent);
+}
+.template-preset-choice.selected {
+    box-shadow: none;
+}
+/* 标题与描述同一行，把六条压进一屏。 */
+.template-preset-choice .template-choice-copy {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 8px;
+}
+.template-preset-choice .template-choice-radio {
+    width: 14px;
+    height: 14px;
+    margin-top: 0;
+    box-shadow: inset 0 0 0 2px #fff;
+}
+.template-preset-choice .template-choice-title {
+    font-size: 12.5px;
+}
+.template-preset-choice .template-choice-desc,
+.template-preset-choice .template-choice-need {
+    font-size: 12px;
+}
+.template-preset-none {
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: var(--muted);
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+/* 画布不匹配的预设灰显而非隐藏 —— 让用户知道它存在、只是画布不对。 */
+.template-preset-choice.unavailable {
+    opacity: .5;
+    cursor: not-allowed;
+}
+.template-preset-choice.unavailable:hover {
+    border-color: var(--line);
+}
+.template-choice-need {
+    color: var(--muted);
+    font-size: 11.5px;
+    line-height: 1.4;
+}
 .template-selector-panel {
-    margin-top: 16px;
-    padding-top: 14px;
-    border-top: 1px solid var(--line);
+    margin-top: 6px;
+}
+/* 校验失败：用 outline 而非 border —— 不占布局、不会让内容位移。 */
+.template-selector-panel.invalid {
+    outline: 2px solid #dc2626;
+    outline-offset: 6px;
+    border-radius: 8px;
+    background: #fef2f2;
 }
 .template-selector-panel[hidden] {
     display: none;
@@ -748,11 +827,6 @@ textarea.text-input { resize: vertical; line-height: 1.5; }
     margin-bottom: 11px;
     color: var(--muted);
     font-size: 12.5px;
-}
-.template-select-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 13px 16px;
 }
 .template-select-field {
     min-width: 0;
@@ -764,6 +838,7 @@ textarea.text-input { resize: vertical; line-height: 1.5; }
     font-size: 12.5px;
     font-weight: 700;
 }
+/* 每类模板给什么 —— 三个下拉并排时最容易被误读的地方。 */
 .template-select {
     width: 100%;
     min-width: 0;
@@ -794,6 +869,24 @@ textarea.text-input { resize: vertical; line-height: 1.5; }
     font-size: 11.5px;
     line-height: 1.45;
 }
+/* 选中模板后的拼版预览：一眼看清这套版式/成套模板长什么样。 */
+.template-preview {
+    margin-top: 10px;
+    padding: 8px;
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 8px;
+    background: #f8fafc;
+}
+.template-preview[hidden] {
+    display: none;
+}
+.template-preview-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    background: #fff;
+}
 .template-selected-path {
     margin-top: 7px;
     min-width: 0;
@@ -821,6 +914,8 @@ textarea.text-input { resize: vertical; line-height: 1.5; }
 /* ---- toggles ---- */
 .toggle-row { display: flex; align-items: center; gap: 12px; }
 .toggle-desc { font-size: 12.5px; color: var(--muted); }
+/* 提示里的换行要保留（如目的清单）。pre-line 只保留换行、仍折叠空格。 */
+.subfield-hint-block { white-space: pre-line; line-height: 1.65; }
 
 /* ---- action bar ---- */
 #actionbar {
@@ -938,11 +1033,18 @@ textarea.text-input { resize: vertical; line-height: 1.5; }
     border-radius: 5px;
     border: 1px solid var(--line);
 }
-.hex-swatch.hex-swatch-empty {
-    /* Subtle checker so an empty / invalid value reads as "no color" */
-    background:
-        linear-gradient(45deg, var(--line) 25%, transparent 25%, transparent 75%, var(--line) 75%) 0 0 / 10px 10px,
-        var(--card);
+/* 取色器：清掉原生内边距，让它和原来的色块一样大。 */
+input.hex-swatch {
+    padding: 0;
+    cursor: pointer;
+    background: none;
+}
+input.hex-swatch::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+input.hex-swatch::-webkit-color-swatch {
+    border: none;
+    border-radius: 4px;
 }
 
 /* ---- typography primary-language / English previews ---- */
@@ -1174,4 +1276,103 @@ textarea.text-input { resize: vertical; line-height: 1.5; }
     .template-mode-choices {
         grid-template-columns: 1fr;
     }
+}
+
+/* ==========================================================================
+   内嵌在「色彩方案」里的预览变体
+   必须放在文件末尾：同优先级下后出现的胜出，而 .style-preview 的基础规则
+   在文件中部（原先把这块插在前面，导致整块被覆盖、完全失效）。
+   该组件原为顶栏宽横条设计，塞进节内窄列需要额外收紧。
+   ========================================================================== */
+.style-preview-inline {
+    position: static;
+    z-index: auto;
+    background: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+.style-preview-inline .style-preview-card {
+    padding: 7px 9px;
+    /* 宽度也要收：原先占满整节，缩了字号后显得空旷。
+       收窄后内容高度不变，比例自然接近 16:9（缩略图观感）。 */
+    max-width: 440px;
+    /* 盒子按内容收紧 —— 不强制 16:9，也不 zoom。
+       zoom 只缩内容不缩盒子（反而留出大片空白）；强制 16:9 会把高度撑到 365px。
+       字号是 paint() 内联写死的真实值，不能为了凑比例去改。 */
+    /* 顶栏版靠 260px 最小高度撑出展示感；内嵌时不需要。 */
+    min-height: 0;
+    padding: 8px 10px;
+    gap: 6px;
+    overflow: hidden;
+    /* 基础规则是 flex 横排；内嵌版必须竖排，否则标题在左、色块被甩到最右，撑成横幅。 */
+    flex-direction: column;
+    align-items: flex-start;
+    /* 去掉浮窗感，融入本节卡片。不能用 background 覆盖 —— 那正是 paint() 要展示的
+       用户所选背景色。 */
+    box-shadow: none;
+    border-radius: 8px;
+}
+.style-preview-inline .style-preview-label {
+    margin-bottom: 3px;
+}
+.style-preview-inline .sp-textcol,
+.style-preview-inline .sp-body-wrap {
+    min-width: 0;
+}
+/* 基础规则里 sp-textcol 是 flex:1（横排时用于占满宽度）。
+   内嵌版改竖排后，flex:1 会吸收所有剩余高度，在正文下方留出一大块空白。
+   竖排下让各项按内容高度排列即可。 */
+.style-preview-inline .sp-textcol {
+    flex: none;
+}
+.style-preview-inline .sp-body {
+    margin-top: 3px;
+    gap: 7px;
+}
+.style-preview-inline .sp-body-primary {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.style-preview-inline .sp-content {
+    gap: 4px;
+}
+.style-preview-inline .sp-content-row {
+    padding: 2px 5px;
+    font-size: 9.5px;
+    gap: 7px;
+}
+.style-preview-inline .sp-chip {
+    padding: 2px 6px;
+    align-self: flex-start;
+    font-size: 9.5px;
+}
+
+/* ---- 「选择其他方式」展开区 ---- */
+.option-disclosure {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.disclosure-toggle {
+    align-self: flex-start;
+    font: inherit;
+    font-size: 12.5px;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 5px 11px;
+    cursor: pointer;
+}
+.disclosure-toggle:hover {
+    color: var(--text);
+    border-color: var(--muted);
+}
+.disclosure-toggle::before {
+    content: "▸ ";
+}
+.disclosure-toggle.open::before {
+    content: "▾ ";
 }

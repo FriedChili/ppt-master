@@ -55,7 +55,7 @@ Before copying a Deck or Layout workspace (Brand and Style skip this), inspect e
 Validate each normalized root once. The effective structural owner is Layout when selected, otherwise Deck; install only its SVG/non-bitmap structural payload, but install every selected spec. A library root's bare `templates/design_spec.md` installs as `design_spec.<kind>.<id>.md` (`<id>` from its frontmatter); a project root's qualified specs keep their validated filenames. Never merge spec bodies, and never copy one multi-kind root's shared SVG or asset pool once per kind. `templates/design_spec.md` is never valid beside qualified project specs. Prepend exactly one provenance line under each copied spec's H1 and leave the rest untouched (an in-place root is not rewritten):
 
 ```markdown
-> **Installed from**: `skills/ppt-master/templates/brands/mckinsey/` (library)
+> **Installed from**: `skills/ppt-master/templates/layouts/report_core/` (library)
 ```
 
 **Root mapping**: copy every selected spec to its qualified destination; if the root is the structural owner, copy its declared SVG roster and other non-bitmap structural files once (including mirror `source_themes.json`), never a Deck roster shadowed by a selected Layout, preserving inline `<metadata type="application/json">` and `data-pptx-native-authority="json"` exactly; copy the root's package-owned `images/` and `icons/` once (a Style-only root has none — reject a Style-only library package carrying asset or review payloads); ignore `exports/`.

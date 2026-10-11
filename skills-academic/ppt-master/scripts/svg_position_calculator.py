@@ -47,7 +47,7 @@ except ImportError:
     CANVAS_FORMATS = {
         'ppt169': {'name': 'PPT 16:9', 'dimensions': '1280×720', 'viewbox': '0 0 1280 720'},
         'ppt43': {'name': 'PPT 4:3', 'dimensions': '1024×768', 'viewbox': '0 0 1024 768'},
-    }
+        }
 
 
 # =============================================================================
@@ -83,7 +83,7 @@ class CoordinateSystem:
         Initialize the coordinate system
 
         Args:
-            canvas_format: Canvas format (ppt169, ppt43, xiaohongshu, moments, etc.)
+            canvas_format: Canvas format (ppt169, ppt43, a4, etc.)
             chart_area: Chart area; uses default values if not specified
         """
         self.canvas_format = canvas_format

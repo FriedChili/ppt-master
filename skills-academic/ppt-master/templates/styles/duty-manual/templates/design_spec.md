@@ -2,6 +2,8 @@
 style_id: duty-manual
 kind: style
 summary: Technical-manual method that gathers scattered rules onto one judgment axis — dark-field grid, mechanism before rule, every rule traceable to its mechanism page.
+label_zh: 规程手册
+summary_zh: 暗底技术手册风：深色底铺发丝网格，刻度线、引线和左侧指示条本身就是信息；结构线用冷色，另有两个强调色分工固定。适合操作规程、技术手册。
 keywords: [technical-manual, dark-field-grid, mechanism-first, judgment-axis, line-drawing]
 ---
 

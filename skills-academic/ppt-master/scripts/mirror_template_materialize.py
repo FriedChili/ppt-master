@@ -2798,7 +2798,7 @@ def _preflight_output(
             raise MirrorMaterializationError(
                 f"Template output is not a directory: {templates_root}"
             )
-        # Brand/Style specs own no roster. During a Layout transition, one Deck
+        # Style specs own no roster. During a Layout transition, one Deck
         # spec may also remain after its lower-priority roster was withheld by
         # the parent workflow. Any other payload would contend with this run.
         existing = sorted(templates_root.iterdir())
@@ -3407,7 +3407,7 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         help=(
             "Template workspace destination (templates/ must own no roster; "
-            "qualified Brand/Style specs or one Deck spec staged for Layout "
+            "qualified Style specs or one Deck spec staged for Layout "
             "supersession may remain)"
         ),
     )

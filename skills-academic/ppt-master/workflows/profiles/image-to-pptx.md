@@ -12,7 +12,7 @@ description: Quick-only Generate profile for reconstructing one or more source i
 
 **Hard rule — Quick only**: always load [`quick-generate.md`](./quick-generate.md), never `generate-pptx.md`, without the user saying "Quick"; skip Strategist, Confirm UI, template selection, Design Spec, lock, and the Default gate cadence. The main agent decides the reconstruction, prepares all resources, hand-authors SVG, runs Quick's checker gates, and exports.
 
-**Hard rule — source surface, not template application**: stay in Quick free design; never install or apply a Brand/Style/Layout/Deck workspace — it would compete with the canonical page geometry. A reusable-system request routes to Create Template.
+**Hard rule — source surface, not template application**: stay in Quick free design; never install or apply a Style/Layout/Deck workspace — it would compete with the canonical page geometry. A reusable-system request routes to Create Template.
 
 ---
 

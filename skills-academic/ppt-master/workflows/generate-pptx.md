@@ -104,7 +104,7 @@ Read ${SKILL_DIR}/references/canvas-formats.md
 
 | Trigger | Additional Strategist reference |
 |---|---|
-| Stage 1 confirmed and a Brand/Style/Layout/Deck workspace installed | `references/strategist-template.md` before Stage 2 |
+| Stage 1 confirmed and a Style/Layout/Deck workspace installed | `references/strategist-template.md` before Stage 2 |
 
 After Stage 1 and the template handoff, load the fixed planning-capability block in one batch before authoring any Stage-2 solution, image recommendation, or roster:
 
@@ -263,7 +263,7 @@ Default first free port from `6060` (`--port N` binds strictly); read the URL fr
 | Structure | Page authoring |
 |---|---|
 | `mirror` / `layout` | Start from the complete `page_layouts` SVG and preserve inherited visuals, root identity, atoms, and slots. Strict keeps the contract; `layout` may reflow carrier text inside unchanged slot bounds; adaptive uses a Strategist-declared Layout. A required atom or slot change returns upstream; Executor never edits `spec_lock.md`. |
-| `style`, free design, brand-only | Flat per `executor-base.md` and [`semantic-svg.md`](../references/semantic-svg.md). |
+| `style`, free design | Flat per `executor-base.md` and [`semantic-svg.md`](../references/semantic-svg.md). |
 
 
 **Early gate (Mandatory)** — after the fifth SVG, before page 6; a planned roster of six or fewer pages skips this gate and goes straight to the final gate:

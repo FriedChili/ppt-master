@@ -2,6 +2,8 @@
 style_id: narrative-keynote
 kind: style
 summary: Story-driven keynote method that earns one idea through tension, turn, and concrete human detail.
+label_zh: 叙事演讲
+summary_zh: 稀疏的杂志风：一页只有一个主角，其余留白；字大而少、行距宽；配色随叙事弧线由暗转亮。适合主题演讲、成果发布。
 keywords: [keynote, storytelling, narrative, persuasion, talk]
 ---
 

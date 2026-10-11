@@ -3,6 +3,8 @@ layout_id: editorial_bleed
 kind: layout
 category: general
 summary: A structure-only 16:9 system with 10 authored PowerPoint Layouts whose images bleed to the canvas edge and whose text sits on the image behind a scrim.
+label_zh: 满版编辑
+summary_zh: 图片铺满整页、四周不留白边，文字压在图上并加深色蒙版以保证看得清。适合以照片或大图为主、文字较少的演示。
 keywords: [editorial, full-bleed, image, scrim, dark]
 canvas_format: ppt169
 canvas_width: 1280

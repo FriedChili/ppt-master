@@ -28,8 +28,7 @@ Usage::
 
     python3 scripts/register_template.py <id> --kind deck     # default kind=deck
     python3 scripts/register_template.py <id> --kind layout
-    python3 scripts/register_template.py <id> --kind brand
-    python3 scripts/register_template.py <id> --kind style
+        python3 scripts/register_template.py <id> --kind style
     python3 scripts/register_template.py --rebuild-all --kind deck
     python3 scripts/register_template.py <id> --dry-run
 
@@ -233,6 +232,8 @@ _STYLE_ALLOWED_FRONTMATTER_FIELDS = frozenset({
     "kind",
     "summary",
     "keywords",
+    "label_zh",
+    "summary_zh",
 })
 _STYLE_REVIEW_TRIGGER_MARKER = "<!-- visual-review-trigger: explicit-user-only -->"
 _HEX_COLOR_RE = re.compile(r"#[0-9A-Fa-f]{6}")
@@ -1145,6 +1146,27 @@ def validate_shadowed_deck_spec(
 # Per-kind extraction
 # ---------------------------------------------------------------------------
 
+
+#: Frontmatter fields carrying Chinese display text. They travel to the
+#: index and the Confirm UI dropdown untouched; absent means "fall back to
+#: the English summary and the template id".
+_LOCALIZED_FRONTMATTER_FIELDS = ("label_zh", "summary_zh")
+
+
+def _localized_fields(fm: dict) -> dict:
+    """Pull the optional Chinese display fields, validating their type."""
+    out: dict = {}
+    for key in _LOCALIZED_FRONTMATTER_FIELDS:
+        raw = fm.get(key)
+        if raw is None:
+            continue
+        if not isinstance(raw, str) or not raw.strip():
+            raise SpecParseError(
+                f"frontmatter {key} must be a non-empty string"
+            )
+        out[key] = raw.strip()
+    return out
+
 def _extract_entry(
     kind: str,
     template_id: str | None,
@@ -1220,6 +1242,7 @@ def _extract_entry(
         )
         entry = OrderedDict(
             summary=summary,
+            **_localized_fields(fm),
             keywords=[item.strip() for item in fm["keywords"]],
         )
     elif kind == "layout":
@@ -1235,6 +1258,7 @@ def _extract_entry(
         page_types = fm["page_types"]
         entry = OrderedDict(
             summary=summary,
+            **_localized_fields(fm),
             canvas_format=str(fm["canvas_format"]),
             page_count=int(fm["page_count"]),
             page_types=list(page_types),
@@ -1251,6 +1275,7 @@ def _extract_entry(
         )
         entry = OrderedDict(
             summary=summary,
+            **_localized_fields(fm),
             canvas_format=str(fm["canvas_format"]),
             page_count=int(fm["page_count"]),
             primary_color=str(primary_color),

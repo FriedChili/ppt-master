@@ -437,6 +437,20 @@ def _build_template_library() -> tuple[dict, dict[str, dict], dict[str, dict], d
                 'summary': summary,
                 'workspace_root': str(workspace_root),
             }
+            # Optional Chinese display text carried by the spec frontmatter. The
+            # UI already prefers `label_zh` / `summary_zh`; without this the
+            # dropdown falls back to the raw id and the English summary.
+            for localized_key in ('label_zh', 'summary_zh'):
+                localized_value = metadata.get(localized_key)
+                if isinstance(localized_value, str) and localized_value.strip():
+                    candidate[localized_key] = localized_value.strip()
+            # Layout and Deck workspaces declare the canvas their SVG prototypes
+            # were authored at; a Style has none. The UI needs it because the
+            # selected template decides the canvas, so the canvas field is only
+            # offered in free-design mode.
+            canvas_format = metadata.get('canvas_format')
+            if isinstance(canvas_format, str) and canvas_format.strip():
+                candidate['canvas_format'] = canvas_format.strip()
             canonical_root = candidate['workspace_root']
             if canonical_root in registered_roots:
                 raise ValueError(
@@ -2317,6 +2331,21 @@ def create_app(
     confirm_dir = project_path / CONFIRM_DIR_NAME
 
     app = Flask(__name__, static_folder='static', static_url_path='/static')
+
+    @app.after_request
+    def _no_store_static(response):
+        """Disable caching for the confirm UI's own assets.
+
+        This page is a local review surface: the user edits and refreshes
+        repeatedly while the AI rewrites app.js / style.css. Flask's default
+        ``no-cache`` + ETag still round-trips, but a stale copy is easy to end
+        up with and reads as "my change did nothing". Serving ``no-store``
+        removes that ambiguity; the cost is nil on localhost.
+        """
+        if request.path.startswith('/static/'):
+            response.headers['Cache-Control'] = 'no-store'
+        return response
+
     app.config['PROJECT_PATH'] = project_path
     app.config['CONFIRM_DIR'] = confirm_dir
     app.config['LOCK_FILE'] = lock_file

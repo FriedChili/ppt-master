@@ -3,6 +3,8 @@ layout_id: presentation_core_43
 kind: layout
 category: general
 summary: A structure-only 4:3 system with 16 authored PowerPoint Layouts for projector, classroom, academic, and meeting-room presentations.
+label_zh: 演示核心 4:3
+summary_zh: 和「演示核心」同一套设计，但画布是 4:3 的方屏比例。用于老式投影仪、打印讲义，或明确要求 4:3 的场合。
 keywords: [general, powerpoint, 4-3, projector, academic]
 canvas_format: ppt43
 canvas_width: 1024

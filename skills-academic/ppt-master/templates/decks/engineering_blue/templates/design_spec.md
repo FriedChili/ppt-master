@@ -3,6 +3,8 @@ deck_id: engineering_blue
 kind: deck
 category: brand
 summary: 深蓝工程风 16:9 通用 deck 骨架：封面、目录、章节、开放内容、结束语；深色封面/章节/结束 Master 配浅色内容 Master，适合技术汇报与评审。
+label_zh: 工程蓝
+summary_zh: 深蓝底、白字的稳重风格：封面和章节页是整片深蓝，内容页白底。适合技术汇报、方案评审、正式答辩。
 keywords: [engineering-blue, technical-report, review, defense, general-purpose]
 primary_color: "#004098"
 canvas_format: ppt169

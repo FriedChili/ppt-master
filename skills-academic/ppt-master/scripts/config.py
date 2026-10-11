@@ -388,14 +388,6 @@ FONT_SIZES = {
 # ============================================================
 
 LAYOUT_MARGINS = {
-    'ppt169': {
-        'top': 60,
-        'right': 60,
-        'bottom': 60,
-        'left': 60,
-        'content_width': 1160,
-        'content_height': 600
-    },
     'ppt43': {
         'top': 50,
         'right': 50,
@@ -403,6 +395,14 @@ LAYOUT_MARGINS = {
         'left': 50,
         'content_width': 924,
         'content_height': 608
+    },
+    'ppt169': {
+        'top': 60,
+        'right': 60,
+        'bottom': 60,
+        'left': 60,
+        'content_width': 1160,
+        'content_height': 600
     },
 }
 
@@ -440,7 +440,7 @@ class Config:
         Get canvas format configuration.
 
         Args:
-            format_key: Format key name (e.g. 'ppt169', 'a4')
+            format_key: Format key name (e.g. 'ppt169', 'ppt43', 'a4')
 
         Returns:
             Format configuration dict, or None if not found

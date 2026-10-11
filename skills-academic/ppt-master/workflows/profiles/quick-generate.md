@@ -179,7 +179,7 @@ Read the execution core together, never file by file: [`shared-standards-core.md
 
 | Structure owner | Page form |
 |---|---|
-| Free design, Brand/Style-only | Flat Slide-local SVG with one root `data-pptx-page-role` (`cover` / `toc` / `section` / `content` / `ending`) and no Master/Layout/layer/placeholder metadata |
+| Free design, Style-only | Flat Slide-local SVG with one root `data-pptx-page-role` (`cover` / `toc` / `section` / `content` / `ending`) and no Master/Layout/layer/placeholder metadata |
 | Layout or Deck | Every page is a complete structured Slide SVG that preserves or deliberately adapts the prototype's root identity, fixed layers, and slots with current content on top — all-or-none across the roster, every reused Layout repeating an identical fixed-layer/slot contract, a new Layout allowed under the selected Master when the application paragraph calls for adaptation, ownership never inferred from repeated geometry, and `data-pptx-page-role` omitted |
 
 A Style never strips structure; only an explicit instruction to use the workspace as visual language permits flat output.

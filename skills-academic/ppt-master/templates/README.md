@@ -22,7 +22,7 @@ New workspaces enter [`Create Template`](../workflows/create-template.md), which
 | Selection source | `library` / `explicit` | Discovery provenance only (index-derived root vs exact unregistered root); no semantic effect |
 | Internal creation strategy | `standard` / `fidelity` / `mirror` | AI-derived Create Layout/Deck implementation (author a compact or broad roster, or materialize validated source facts); persisted for tools, never a user choice |
 | Internal application plan | `template_reuse_scope` plus optional `template_adherence` | Strategist-derived literal, structural, or style-only use and strict/adaptive exporter behavior |
-| PPTX structure | `flat` / `structured` | Plans using template structure compile declared Masters and Layouts; Style-only, style-scope, brand-only, and free design stay Slide-local; a Style beside Layout/Deck never changes the structure plan |
+| PPTX structure | `flat` / `structured` | Plans using template structure compile declared Masters and Layouts; Style-only, style-scope, and free design stay Slide-local; a Style beside Layout/Deck never changes the structure plan |
 
 Never use these axes as synonyms or expose them as a mode matrix; a mirror-created deck is an ordinary reusable `deck` and forces no future page count or order.
 

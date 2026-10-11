@@ -12,10 +12,10 @@ Every new SVG project declares one deterministic route:
 
 | Project | `pptx_structure.mode` | Structure metadata |
 |---|---|---|
-| Free-design, brand-only, `template_reuse_scope: style` | `flat` | none; omit `pptx_masters` / `pptx_layouts` / `page_pptx_layouts` / `page_layouts`; export materializes one clean project-owned Master plus one Blank Layout from the lock and keeps every object Slide-local |
+| Free-design, `template_reuse_scope: style` | `flat` | none; omit `pptx_masters` / `pptx_layouts` / `page_pptx_layouts` / `page_layouts`; export materializes one clean project-owned Master plus one Blank Layout from the lock and keeps every object Slide-local |
 | Layout/Deck template with `template_reuse_scope: mirror\|layout` | `structured` | §2; `standard` / `fidelity` templates use their authored contract, mirror templates use the validated source identities and parentage of the compact workspace |
 
-**Quick exception**: Lock-row/Strategist statements in this file are Default-only. Quick keeps free/Brand/Style-only flat; an installed Layout/Deck owner is structured unless visual-only, with identities on SVG roots and title/body anchors inferred from slot carriers.
+**Quick exception**: Lock-row/Strategist statements in this file are Default-only. Quick keeps free/Style-only flat; an installed Layout/Deck owner is structured unless visual-only, with identities on SVG roots and title/body anchors inferred from slot carriers.
 
 **Hard rule — no structure inference**: Flat export promotes and deduplicates nothing. Structured export compiles only declared root identities, atomic fixed layers, and slot groups; it never assigns Layout families, clusters pages, infers placeholders, repairs missing metadata, or migrates legacy contracts. Create a current workspace through [`create-template`](../workflows/create-template.md) before generating structured pages.
 
@@ -72,7 +72,7 @@ Every new SVG project declares one deterministic route:
 
 ## 3. Legacy Template Input Boundary
 
-Projects or analysis packages carrying `analysis/native_structure.json` / `sources/source.pptx`, `pptx_structure.mode: baseline|template|preserve`, `layout_strategy`, `data-pptx-layout-kind`, `distilled` / `utility`, direct atomic placeholders, or an incomplete root Master identity are not generation/export inputs and are never upgraded in place; create a separate current workspace through [`create-template`](../workflows/create-template.md). A project explicitly declaring `mode: flat` is the current free-design/brand-only route and needs no conversion.
+Projects or analysis packages carrying `analysis/native_structure.json` / `sources/source.pptx`, `pptx_structure.mode: baseline|template|preserve`, `layout_strategy`, `data-pptx-layout-kind`, `distilled` / `utility`, direct atomic placeholders, or an incomplete root Master identity are not generation/export inputs and are never upgraded in place; create a separate current workspace through [`create-template`](../workflows/create-template.md). A project explicitly declaring `mode: flat` is the current free-design route and needs no conversion.
 
 | Available source | Allowed create-template behavior |
 |---|---|

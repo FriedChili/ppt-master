@@ -102,18 +102,6 @@
       ],
       "max_tokens": 1500
     },
-    "route.create-template.brand": {
-      "description": "Create Brand path; it authors no SVG and does not activate Template_Designer or SVG modules.",
-      "scope": "cumulative",
-      "include": [
-        "bootstrap.routing"
-      ],
-      "files": [
-        "skills/ppt-master/workflows/create-template.md",
-        "skills/ppt-master/templates/README.md"
-      ],
-      "max_tokens": 36000
-    },
     "route.create-template.style": {
       "description": "Create Style path; it authors a roster-free direction/method spec and does not activate Template_Designer or SVG modules.",
       "scope": "cumulative",
@@ -315,11 +303,11 @@
       "max_tokens": 180000
     },
     "route.generate.quick-generate.template-fusion": {
-      "description": "Quick Generate with the maximum Brand, Style, Layout, and Deck exact-root fusion; installed Layout/Deck ownership determines flat or structured authoring. Ceiling raised after BUDGET_LOAD_SET reported 150785 tokens.",
+      "description": "Quick Generate with the maximum Style, Layout, and Deck exact-root fusion; installed Layout/Deck ownership determines flat or structured authoring. Ceiling raised after BUDGET_LOAD_SET reported 150785 tokens.",
       "scope": "cumulative",
       "include": [
         "route.generate.quick-generate",
-        "stage.generate.template.fusion-brand-style-layout-deck"
+        "stage.generate.template.fusion-style-layout-deck"
       ],
       "files": [
         "skills/ppt-master/references/pptx-structure-interface.md"
@@ -437,14 +425,6 @@
       ],
       "max_tokens": 6000
     },
-    "stage.generate.template.brand": {
-      "description": "Conditional Brand workspace application with one selected Brand spec.",
-      "scope": "incremental",
-      "include": [
-        "stage.generate.apply-template-workspace"
-      ],
-      "max_tokens": 7500
-    },
     "stage.generate.template.style": {
       "description": "Conditional roster-free Style workspace application. Ceiling raised after BUDGET_LOAD_SET reported 9019 tokens.",
       "scope": "incremental",
@@ -492,42 +472,6 @@
         }
       ],
       "max_tokens": 8500
-    },
-    "stage.generate.template.brand-two": {
-      "description": "Same-kind conflict path with two selected Brand specs.",
-      "scope": "incremental",
-      "include": [
-        "stage.generate.apply-template-workspace"
-      ],
-      "max_tokens": 8500
-    },
-    "stage.generate.template.fusion-brand-style-layout-deck": {
-      "description": "Maximum supported cross-kind fusion with Brand, Style, Layout, and Deck contracts.",
-      "scope": "incremental",
-      "include": [
-        "stage.generate.apply-template-workspace"
-      ],
-      "files": [
-        "skills/ppt-master/templates/styles/README.md",
-        "skills/ppt-master/templates/layouts/README.md",
-        "skills/ppt-master/templates/decks/README.md",
-        {
-          "glob": "skills/ppt-master/templates/styles/*/templates/design_spec.md",
-          "select": 1,
-          "load_event": "template-application"
-        },
-        {
-          "glob": "skills/ppt-master/templates/layouts/*/templates/design_spec.md",
-          "select": 1,
-          "load_event": "template-application"
-        },
-        {
-          "glob": "skills/ppt-master/templates/decks/*/templates/design_spec.md",
-          "select": 1,
-          "load_event": "template-application"
-        }
-      ],
-      "max_tokens": 19000
     },
     "route.generate.flat-no-image": {
       "description": "Default fixed Generate-PPTX context with no image-acquisition role. Ceiling raised after BUDGET_LOAD_SET reported 177085 tokens.",
@@ -671,17 +615,6 @@
         "stage.generate.verify-charts"
       ],
       "max_tokens": 215000
-    },
-    "route.generate.brand-flat-no-image": {
-      "description": "Brand-preset flat Generate-PPTX path without image acquisition. Ceiling raised after BUDGET_LOAD_SET reported 187138 tokens.",
-      "scope": "cumulative",
-      "include": [
-        "route.generate.planning-template",
-        "stage.generate.executor.flat",
-        "stage.generate.executor.notes",
-        "stage.generate.template.brand"
-      ],
-      "max_tokens": 210000
     },
     "route.generate.style-flat-no-image": {
       "description": "Style-workspace flat Generate-PPTX path without image acquisition. Ceiling raised after BUDGET_LOAD_SET reported 188870 tokens.",
@@ -1146,6 +1079,34 @@
         "stage.generate.executor.structure"
       ],
       "max_tokens": 130000
+    },
+    "stage.generate.template.fusion-style-layout-deck": {
+      "description": "Maximum supported cross-kind fusion with Style, Layout, and Deck contracts.",
+      "scope": "incremental",
+      "include": [
+        "stage.generate.apply-template-workspace"
+      ],
+      "files": [
+        "skills/ppt-master/templates/styles/README.md",
+        "skills/ppt-master/templates/layouts/README.md",
+        "skills/ppt-master/templates/decks/README.md",
+        {
+          "glob": "skills/ppt-master/templates/styles/*/templates/design_spec.md",
+          "select": 1,
+          "load_event": "template-application"
+        },
+        {
+          "glob": "skills/ppt-master/templates/layouts/*/templates/design_spec.md",
+          "select": 1,
+          "load_event": "template-application"
+        },
+        {
+          "glob": "skills/ppt-master/templates/decks/*/templates/design_spec.md",
+          "select": 1,
+          "load_event": "template-application"
+        }
+      ],
+      "max_tokens": 19000
     }
   },
   "duplicates": {
@@ -1772,7 +1733,7 @@
             {
               "path": "skills/ppt-master/references/executor-structured.md",
               "role": "consumer",
-              "fingerprint": "b3fa9b13f1a3",
+              "fingerprint": "43c4e4839a7c",
               "reason": "This consumer needs the field contract for deterministic execution."
             },
             {
@@ -1802,7 +1763,7 @@
             {
               "path": "skills/ppt-master/references/executor-structured.md",
               "role": "consumer",
-              "fingerprint": "10af7bec230c",
+              "fingerprint": "95e65173b9ed",
               "reason": "This consumer needs the field contract for deterministic execution."
             },
             {
@@ -1862,7 +1823,7 @@
             {
               "path": "skills/ppt-master/references/strategist.md",
               "role": "producer",
-              "fingerprint": "6c5e08eb6af5",
+              "fingerprint": "102b9ea94723",
               "reason": "This producer projects the owner field into the planning contract."
             },
             {
@@ -1886,7 +1847,7 @@
             {
               "path": "skills/ppt-master/references/executor-structured.md",
               "role": "consumer",
-              "fingerprint": "ca1b1f2fb576",
+              "fingerprint": "c9064a0d29c2",
               "reason": "This consumer needs the field contract for deterministic execution."
             },
             {
@@ -1916,7 +1877,7 @@
             {
               "path": "skills/ppt-master/references/executor-structured.md",
               "role": "consumer",
-              "fingerprint": "d3487eb32e2a",
+              "fingerprint": "9b3b2cdf3fcc",
               "reason": "This consumer needs the field contract for deterministic execution."
             },
             {
@@ -1981,7 +1942,7 @@
       "accepted": [
         {
           "field": "image_ai_path",
-          "owner_fingerprint": "29f97cdb0797",
+          "owner_fingerprint": "4783dc43c021",
           "projections": [
             {
               "path": "skills/ppt-master/references/confirm-surface.md",
@@ -2015,6 +1976,10 @@
       {
         "glob": "skills/ppt-master/scripts/README.md",
         "reason": "Script inventory for maintainers; not loaded by generation roles."
+      },
+      {
+        "glob": "skills/ppt-master/scripts/confirm_ui/static/template_previews/README.md",
+        "reason": "Maintainer-only regeneration notes for the Confirm UI template preview assets; never loaded by a generation role."
       },
       {
         "glob": "skills/ppt-master/scripts/docs/project.md",

@@ -3,6 +3,8 @@ layout_id: presentation_core
 kind: layout
 category: general
 summary: A structure-only 16:9 system with 20 authored PowerPoint Layouts for general, editorial, image, process, and data presentations.
+label_zh: 演示核心
+summary_zh: 浅灰圆角卡片承载内容，标题下一道短强调线，整页干净利落；共 20 种页面（标题页、章节页、两栏对比、图表、时间线、关键数字等）。拿不准选它就对了。
 keywords: [general, powerpoint, business, editorial, image, data-story]
 canvas_format: ppt169
 canvas_width: 1280

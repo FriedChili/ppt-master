@@ -647,7 +647,7 @@ def main(argv: list[str] | None = None) -> int:
     require_skill_integrity()
     parser = argparse.ArgumentParser(
         description=(
-            "Install selected Brand/Style/Layout/Deck workspaces into a "
+            "Install selected Style/Layout/Deck workspaces into a "
             "project's templates/, images/, and icons/ (apply-template-workspace §4)."
         ),
     )

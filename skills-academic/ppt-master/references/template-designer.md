@@ -4,7 +4,7 @@
 
 ## Core Mission
 
-Generate reusable structured page templates inside the workspace selected by Create Template's Create Layout or Create Deck child, and write the Design Spec that captures the source-derived rules making the template reusable — for Deck with descriptive recurring-application context, for Layout brand-neutral and application-neutral. A standalone role triggered only by those two children; Create Brand never invokes it, and this is not the template-selection step of the main pipeline.
+Generate reusable structured page templates inside the workspace selected by Create Template's Create Layout or Create Deck child, and write the Design Spec that captures the source-derived rules making the template reusable — for Deck with descriptive recurring-application context, for Layout brand-neutral and application-neutral. A standalone role triggered only by those two children; No other child invokes it, and this is not the template-selection step of the main pipeline.
 
 ## Usage
 

@@ -1,0 +1,99 @@
+{
+  "schema": "ppt-master.source-manifest.v1",
+  "version": 1,
+  "_comment": "上游工作区 → 补充输入的声明式清单。只列对 PPT 有贡献的产物；不在清单内且不匹配 exclude 的文件一律不读。",
+
+  "fixed": {
+    "_comment": "恒定路径：技能自己读，解析器不作为输出转述。main.tex 仅作图表声明源。",
+    "assignment_profile.json": { "read-by": "skill", "role": "meta" },
+    "output/main.tex": { "read-by": "skill", "role": "declaration-source" },
+    "output/main.pdf": { "read-by": "skill", "role": "primary-deliverable" }
+  },
+
+  "conditional": [
+    {
+      "id": "decision-log",
+      "path": "refine-logs/DECISION_LOG.md",
+      "provides": ["communication_intent", "design_rationale", "audience_outcome"]
+    },
+    {
+      "id": "verification",
+      "path": "refine-logs/VERIFICATION_REPORT.md",
+      "provides": ["audience_outcome", "reliability"]
+    },
+    {
+      "id": "lit-review",
+      "path": "refine-logs/LITERATURE_REVIEW.md",
+      "provides": ["positioning", "mechanism"]
+    },
+    {
+      "id": "method-understanding",
+      "path": "refine-logs/METHOD_UNDERSTANDING.md",
+      "provides": ["mechanism"]
+    },
+    {
+      "id": "experiment-plan",
+      "path": "refine-logs/EXPERIMENT_PLAN.md",
+      "provides": ["design_rationale", "communication_intent"]
+    }
+  ],
+
+  "needs": [
+    "positioning",
+    "mechanism",
+    "design_rationale",
+    "communication_intent",
+    "audience_outcome",
+    "reliability"
+  ],
+
+  "assets": [
+    {
+      "id": "figures",
+      "declared-by": "output/main.tex",
+      "dir": "necessary_materials/figures",
+      "shape": "image",
+      "group-by": "stem",
+      "ext-preference": ["png", "pdf", "svg"],
+      "extract": [],
+      "_note": "只暂存首选扩展名：备选 PDF 会被摄入工具转成 markdown，产生一堆垃圾文件。",
+      "stage-alt": false
+    },
+    {
+      "id": "tables",
+      "declared-by": "output/main.tex",
+      "dir": "necessary_materials/tables",
+      "shape": "table",
+      "group-by": "stem",
+      "ext-preference": ["tex", "csv", "md"],
+      "extract": ["caption"],
+      "_note": "tex 供结构，csv 供原生表格数值；两者都不触发 pandoc 转换。",
+      "stage-alt": true,
+      "inline-fallback": true
+    }
+  ],
+
+  "unknown-scan": {
+    "_comment": "只在这些区域找清单外文件；发现的只记录不读取，供事后 review 清单缺口。",
+    "roots": ["", "refine-logs"],
+    "patterns": ["*.md", "*.json"]
+  },
+
+  "exclude": [
+    "codes/**",
+    "**/__pycache__/**",
+    "**/*.pyc",
+    "output/*.log",
+    "output/*.aux",
+    "output/*.bbl",
+    "output/*.out",
+    "dois/**",
+    "library/**",
+    "contracts/**",
+    "logs/**",
+    "archive/**",
+    "refine-logs/ORCHESTRATOR_COMPACT.md",
+    "refine-logs/VIZ_DATA_NOTES.md",
+    "refine-logs/experiment_run_report.md"
+  ]
+}

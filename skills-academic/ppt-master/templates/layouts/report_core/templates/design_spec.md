@@ -3,6 +3,8 @@ layout_id: report_core
 kind: layout
 category: general
 summary: A structure-only 16:9 system with 13 authored PowerPoint Layouts across two Masters, carrying persistent page chrome and page-number placeholders.
+label_zh: 报告核心
+summary_zh: 像一份正式报告：页眉、页脚和页码固定在版面上，标题下一条细线，内容区干净不加框。适合论文答辩、评审材料、研究汇报。
 keywords: [report, business, dense, chrome, multi-master]
 canvas_format: ppt169
 canvas_width: 1280

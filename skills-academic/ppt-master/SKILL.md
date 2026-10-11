@@ -2,7 +2,7 @@
 name: ppt-master
 description: >
   AI-driven presentation workflow for generating editable PPTX decks and slides,
-  reconstructing page visuals, creating reusable Brand/Style/Layout/Deck
+  reconstructing page visuals, creating reusable Style/Layout/Deck
   workspaces, filling native PPTX templates, and enhancing finished PPTX files.
   Use when the user asks to create, generate, reconstruct, regenerate, beautify,
   redesign, template, fill, or enhance a presentation, PPT, PPTX, slide deck, or

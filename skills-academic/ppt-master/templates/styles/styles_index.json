@@ -1,6 +1,8 @@
 {
   "academic-research": {
     "summary": "Research-reporting method that builds a defensible claim from question, method, and result while keeping limitations visible.",
+    "label_zh": "学术研究",
+    "summary_zh": "极简学术风：大留白、只有发丝分隔线、几乎没有装饰；颜色只用来标记分组或条件，全篇同一实体同一色。适合论文答辩、会议报告。",
     "keywords": [
       "academic",
       "research",
@@ -11,6 +13,8 @@
   },
   "duty-manual": {
     "summary": "Technical-manual method that gathers scattered rules onto one judgment axis — dark-field grid, mechanism before rule, every rule traceable to its mechanism page.",
+    "label_zh": "规程手册",
+    "summary_zh": "暗底技术手册风：深色底铺发丝网格，刻度线、引线和左侧指示条本身就是信息；结构线用冷色，另有两个强调色分工固定。适合操作规程、技术手册。",
     "keywords": [
       "technical-manual",
       "dark-field-grid",
@@ -21,6 +25,8 @@
   },
   "incident-postmortem": {
     "summary": "Blameless incident review method that reconstructs a timeline, separates contributing factors from blame, and commits to verifiable actions.",
+    "label_zh": "事故复盘",
+    "summary_zh": "克制的记录风：中性底、几乎无装饰，颜色只留给标注严重度与状态；时间戳、标识符和日志用等宽字体。适合故障复盘、事故调查。",
     "keywords": [
       "postmortem",
       "incident",
@@ -31,6 +37,8 @@
   },
   "narrative-keynote": {
     "summary": "Story-driven keynote method that earns one idea through tension, turn, and concrete human detail.",
+    "label_zh": "叙事演讲",
+    "summary_zh": "稀疏的杂志风：一页只有一个主角，其余留白；字大而少、行距宽；配色随叙事弧线由暗转亮。适合主题演讲、成果发布。",
     "keywords": [
       "keynote",
       "storytelling",
@@ -41,6 +49,8 @@
   },
   "science-explainer": {
     "summary": "Public-explanation method that builds understanding from familiar ground through visual analogy, without trading accuracy for accessibility.",
+    "label_zh": "科学解释",
+    "summary_zh": "温暖的剪纸风：明亮的底、分层色块，箭头指方向、大小表量级；颜色固定代表某个物质或阶段。适合科普讲解、方法教学。",
     "keywords": [
       "explainer",
       "science-communication",
@@ -51,6 +61,8 @@
   },
   "technical-deepdive": {
     "summary": "Mechanism-first technical explanation method that grounds every claim in constraints, trade-offs, and observable behavior.",
+    "label_zh": "技术深潜",
+    "summary_zh": "蓝图风：克制的技术底配精确线稿，线宽、虚线、箭头都承载含义；颜色编码层次或路径类型，命令与标识符用等宽字体。适合架构评审、技术方案。",
     "keywords": [
       "technical",
       "architecture",
@@ -61,6 +73,8 @@
   },
   "workshop-teaching": {
     "summary": "Learn-by-doing training method that sequences objective, worked demonstration, practice, and honest checks for understanding.",
+    "label_zh": "工作坊教学",
+    "summary_zh": "手绘笔记风：暖色浅底配手写感线条、圈画与页边标注；颜色区分「新的 / 变了的 / 对的 / 错的」。适合培训、动手课程。",
     "keywords": [
       "training",
       "workshop",

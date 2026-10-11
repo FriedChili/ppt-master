@@ -3,6 +3,8 @@ deck_id: signal_red
 kind: deck
 category: brand
 summary: 克制的红灰 16:9 通用 deck 骨架：封面、目录、章节、开放内容、结束语；浅色内容 Master 配深色封面/章节/结束 Master，适合报告、评审与答辩。
+label_zh: 信号红
+summary_zh: 白底配红黑两色：红色顶栏底栏加左侧红竖条，清爽又有力度。适合报告、评审、答辩，以及需要一点警示感的内容。
 keywords: [signal-red, report, review, defense, general-purpose]
 primary_color: "#C00000"
 canvas_format: ppt169

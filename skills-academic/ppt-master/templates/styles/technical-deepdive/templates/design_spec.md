@@ -2,6 +2,8 @@
 style_id: technical-deepdive
 kind: style
 summary: Mechanism-first technical explanation method that grounds every claim in constraints, trade-offs, and observable behavior.
+label_zh: 技术深潜
+summary_zh: 蓝图风：克制的技术底配精确线稿，线宽、虚线、箭头都承载含义；颜色编码层次或路径类型，命令与标识符用等宽字体。适合架构评审、技术方案。
 keywords: [technical, architecture, engineering, mechanism, trade-off]
 ---
 

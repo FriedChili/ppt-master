@@ -2,6 +2,8 @@
 style_id: incident-postmortem
 kind: style
 summary: Blameless incident review method that reconstructs a timeline, separates contributing factors from blame, and commits to verifiable actions.
+label_zh: 事故复盘
+summary_zh: 克制的记录风：中性底、几乎无装饰，颜色只留给标注严重度与状态；时间戳、标识符和日志用等宽字体。适合故障复盘、事故调查。
 keywords: [postmortem, incident, reliability, root-cause, blameless]
 ---
 

@@ -135,7 +135,7 @@ Successful installation also writes `<project>/template_install.json` in that tr
 ## `register_template.py`
 
 ```bash
-python3 skills/ppt-master/scripts/register_template.py <template_id> --kind brand|style|layout|deck [--dry-run]
+python3 skills/ppt-master/scripts/register_template.py <template_id> --kind style|layout|deck [--dry-run]
 python3 skills/ppt-master/scripts/register_template.py --kind style|deck|layout --rebuild-all
 ```
 

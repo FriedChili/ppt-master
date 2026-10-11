@@ -2,6 +2,8 @@
 style_id: workshop-teaching
 kind: style
 summary: Learn-by-doing training method that sequences objective, worked demonstration, practice, and honest checks for understanding.
+label_zh: 工作坊教学
+summary_zh: 手绘笔记风：暖色浅底配手写感线条、圈画与页边标注；颜色区分「新的 / 变了的 / 对的 / 错的」。适合培训、动手课程。
 keywords: [training, workshop, teaching, practice, onboarding]
 ---
 

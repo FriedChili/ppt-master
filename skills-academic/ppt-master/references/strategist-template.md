@@ -2,7 +2,7 @@
 
 # Strategist Template Planning
 
-Conditional extension for applying an installed Brand/Style/Layout/Deck workspace to Stage 2 recommendations and the execution lock.
+Conditional extension for applying an installed Style/Layout/Deck workspace to Stage 2 recommendations and the execution lock.
 
 **Trigger**: Load only after Stage 1 confirms a library or explicit workspace selection and the post-confirmation apply stage installs it into `<project_path>/templates/` or confirms in-place consumption. Bare template names, style words, and free-design projects do not trigger this module.
 
@@ -36,7 +36,7 @@ Conditional extension for applying an installed Brand/Style/Layout/Deck workspac
 
 **Hard rule — Slide prototypes drive authoring**: every template SVG is a complete Slide prototype with resolved Master + Layout + Slide context; use these files for `page_layouts`. Standalone Master/Layout definition SVGs are invalid. An unselected authored prototype may still supply a `pptx_layouts` definition; mirror exposes only actual source Slides.
 
-**Plan wording**: for Layout/Deck, state prototype use/order, what stays literal, and what may change, naming exact SVG basenames for prototype-specific exceptions rather than roles such as "cover". For Brand/Style, state identity or Direction / method constraints and free composition unless structure comes from another workspace.
+**Plan wording**: for Layout/Deck, state prototype use/order, what stays literal, and what may change, naming exact SVG basenames for prototype-specific exceptions rather than roles such as "cover". For Style, state Direction / method constraints and free composition unless structure comes from another workspace.
 
 **Two-stage boundary**: an installed template changes the content of final Stage 2, never the confirmation sequence. Run Stage 1 → Stage 2 in order in both Confirm UI and chat fallback; template inspection is not user confirmation.
 
@@ -54,9 +54,9 @@ Conditional extension for applying an installed Brand/Style/Layout/Deck workspac
 
 When the communication contract conflicts with the workspace, state the best-fit plan in the Stage-2 solution and surface the mismatch only when it materially limits the result; no mode questionnaire. Template capability constrains what is legal; scenario fit decides what is useful. (`content_divergence` controls source reorganization; `template_reuse_scope` records the reused layer; `template_adherence` records whether a structured plan keeps or extends Layout identities.)
 
-**Precedence**: explicit current user instructions and final confirmation win. The installed set contributes at most one of each kind; all four may coexist. Brand overrides Deck identity. Layout overrides Deck structure; Deck keeps application context and identity not overridden by Brand; without Layout, Deck owns structure. Style owns Direction / method only: its visual values are candidate defaults that yield to resolved Brand/Deck identity, and its preferred Mode / Visual Style seed the single final locks. Style takes this segment ahead of ordinary Stage-2 defaults; active prototypes and Deck Signature facts remain compatibility constraints.
+**Precedence**: explicit current user instructions and final confirmation win. The installed set contributes at most one of each kind; all three may coexist. Layout overrides Deck structure; Deck keeps application context and identity; without Layout, Deck owns structure. Style owns Direction / method only: its visual values are candidate defaults that yield to resolved Deck identity, and its preferred Mode / Visual Style seed the single final locks. Style takes this segment ahead of ordinary Stage-2 defaults; active prototypes and Deck Signature facts remain compatibility constraints.
 
-**Default — template-led recommendation (may override for explicit user or confirmed-contract requirements)**: all three directions obey the same resolved template context. Repeat fixed Brand/Deck palette roles and complete fonts with `typography.fixed: true`; keep resolved icon/image constraints and vary only open roles or dimensions. Mark as `design_directions.selected` the viable direction that most fully expresses the template-owned structure, visual language, and application rules. Never weaken template use or split its segments across cards to manufacture alternatives. Style Review Focus never activates [`visual-review`](../workflows/stages/visual-review.md); only an explicit user request does.
+**Default — template-led recommendation (may override for explicit user or confirmed-contract requirements)**: all three directions obey the same resolved template context. Repeat fixed Deck palette roles and complete fonts with `typography.fixed: true`; keep resolved icon/image constraints and vary only open roles or dimensions. Mark as `design_directions.selected` the viable direction that most fully expresses the template-owned structure, visual language, and application rules. Never weaken template use or split its segments across cards to manufacture alternatives. Style Review Focus never activates [`visual-review`](../workflows/stages/visual-review.md); only an explicit user request does.
 
 ---
 

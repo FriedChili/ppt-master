@@ -266,7 +266,7 @@ Generate Step 4 owns the sequence: `design_spec.md` is the complete human-readab
 - **page_rhythm is mandatory**: one of `anchor` / `dense` / `breathing` per §IX page — what breaks the uniform card-grid feel; consumer omission behavior is `executor-base.md` §2.2's.
 - **Fact IDs and scenario labels**: list the stable IDs actually used per page, never one whose claim is absent; mark invented KPIs, targets, and ratios `Data class: scenario` and say which values they are.
 - **Whole-roster rhythm check, cover impact, and closing impact** are [`plan-core.md`](./plan-core.md) §4 and apply while composing §IX; the cover hook and closing takeaway bind, their compositions are References, and Beautify preservation is exempt.
-- **pptx_structure and page_visualizations**: free-design, brand-only, and `template_reuse_scope: style` write `mode: flat` and omit every structured mapping section; `mirror|layout` writes `mode: structured` with `template_adherence` and the four mapping sections under [`strategist-template.md`](./strategist-template.md). Project at most one §VII `P<NN>: <chart|table>/<key>` per page; grammar in [`spec_lock_reference.md`](../templates/spec_lock_reference.md) §3–4.
+- **pptx_structure and page_visualizations**: free-design and `template_reuse_scope: style` write `mode: flat` and omit every structured mapping section; `mirror|layout` writes `mode: structured` with `template_adherence` and the four mapping sections under [`strategist-template.md`](./strategist-template.md). Project at most one §VII `P<NN>: <chart|table>/<key>` per page; grammar in [`spec_lock_reference.md`](../templates/spec_lock_reference.md) §3–4.
 
 ---
 

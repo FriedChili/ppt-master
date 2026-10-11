@@ -7656,7 +7656,7 @@ class SVGQualityChecker:
             self._pptx_structure_issues.append((
                 'error',
                 'release SVG projects require spec_lock.md pptx_structure.mode: '
-                'flat (free design / brand-only) or structured (deck/layout '
+                'flat (free design) or structured (deck/layout '
                 f'template); found {declared_mode!r}. Create a template '
                 'workspace through skills/ppt-master/workflows/create-template.md '
                 'before generating structured SVG pages. Existing PPTX/SVG files '

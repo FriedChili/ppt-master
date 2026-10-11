@@ -1,6 +1,8 @@
 {
   "editorial_bleed": {
     "summary": "A structure-only 16:9 system with 10 authored PowerPoint Layouts whose images bleed to the canvas edge and whose text sits on the image behind a scrim.",
+    "label_zh": "满版编辑",
+    "summary_zh": "图片铺满整页、四周不留白边，文字压在图上并加深色蒙版以保证看得清。适合以照片或大图为主、文字较少的演示。",
     "canvas_format": "ppt169",
     "page_count": 10,
     "page_types": [
@@ -18,6 +20,8 @@
   },
   "presentation_core": {
     "summary": "A structure-only 16:9 system with 20 authored PowerPoint Layouts for general, editorial, image, process, and data presentations.",
+    "label_zh": "演示核心",
+    "summary_zh": "浅灰圆角卡片承载内容，标题下一道短强调线，整页干净利落；共 20 种页面（标题页、章节页、两栏对比、图表、时间线、关键数字等）。拿不准选它就对了。",
     "canvas_format": "ppt169",
     "page_count": 20,
     "page_types": [
@@ -45,6 +49,8 @@
   },
   "presentation_core_43": {
     "summary": "A structure-only 4:3 system with 16 authored PowerPoint Layouts for projector, classroom, academic, and meeting-room presentations.",
+    "label_zh": "演示核心 4:3",
+    "summary_zh": "和「演示核心」同一套设计，但画布是 4:3 的方屏比例。用于老式投影仪、打印讲义，或明确要求 4:3 的场合。",
     "canvas_format": "ppt43",
     "page_count": 16,
     "page_types": [
@@ -68,6 +74,8 @@
   },
   "report_core": {
     "summary": "A structure-only 16:9 system with 13 authored PowerPoint Layouts across two Masters, carrying persistent page chrome and page-number placeholders.",
+    "label_zh": "报告核心",
+    "summary_zh": "像一份正式报告：页眉、页脚和页码固定在版面上，标题下一条细线，内容区干净不加框。适合论文答辩、评审材料、研究汇报。",
     "canvas_format": "ppt169",
     "page_count": 13,
     "page_types": [

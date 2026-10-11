@@ -2,6 +2,8 @@
 style_id: science-explainer
 kind: style
 summary: Public-explanation method that builds understanding from familiar ground through visual analogy, without trading accuracy for accessibility.
+label_zh: 科学解释
+summary_zh: 温暖的剪纸风：明亮的底、分层色块，箭头指方向、大小表量级；颜色固定代表某个物质或阶段。适合科普讲解、方法教学。
 keywords: [explainer, science-communication, popular, analogy, public]
 ---
 
