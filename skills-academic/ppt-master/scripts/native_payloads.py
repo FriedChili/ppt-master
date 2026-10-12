@@ -29,8 +29,8 @@ from pathlib import Path, PurePosixPath
 from xml.etree import ElementTree as ET
 
 
-LEGACY_PAYLOAD_STORE_SCHEMA = "ppt-master.native-payload-store.v1"
-PAYLOAD_STORE_SCHEMA = "ppt-master.native-payload-store.v2"
+LEGACY_PAYLOAD_STORE_SCHEMA = "deck.native-payload-store.v1"
+PAYLOAD_STORE_SCHEMA = "deck.native-payload-store.v2"
 PAYLOAD_STORE_FILENAME = "native_payloads.json.gz"
 PAYLOAD_STORE_RELATIVE_PATH = Path("templates") / PAYLOAD_STORE_FILENAME
 PAYLOAD_STORE_REFERENCE_PREFIX = (

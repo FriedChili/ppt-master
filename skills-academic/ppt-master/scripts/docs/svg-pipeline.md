@@ -37,7 +37,7 @@ The projected copy:
 - translates each recognized native shape into one visible geometry carrier
   plus at most one structured text body;
 - translates each recognized native table into one inline
-  `ppt-master.semantic-table.v2` payload with table/cell/run defaults and named
+  `deck.semantic-table.v2` payload with table/cell/run defaults and named
   cell styles, plus an external authoring-preview cache;
 - removes duplicate render geometry, embedded `txbody`, and import-only
   identity/style/hash payloads;
@@ -113,7 +113,7 @@ omit source slides:
 
 ```json
 {
-  "schema": "ppt-master.roundtrip-page-plan.v1",
+  "schema": "deck.roundtrip-page-plan.v1",
   "pages": [
     {"source_slide": 3},
     {"source_slide": 1, "svg": "intro.svg"},
@@ -666,8 +666,8 @@ fields remain inline. Source `p:sldLayout@showMasterSp` and
 Checker, template-structure validation, and export hydrate both store layers in
 memory; legacy inline payload and v1 payload-only stores remain readable.
 
-The published `ppt-master.template-execution-manifest.v1` roster points to one
-compact `ppt-master.template-text-slots.v2-min` sidecar per prototype. Each text
+The published `deck.template-execution-manifest.v1` roster points to one
+compact `deck.template-text-slots.v2-min` sidecar per prototype. Each text
 slot contains only `selector`, `role`, `current_text`, `text_segments`, and
 `tspan_count`; a top-level tool hash covers its selectors and immutable
 text/tspan topology and attributes. These records are deterministic tool

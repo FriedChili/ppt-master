@@ -2,7 +2,7 @@
   <g id="power-market-calculation" data-pptx-replace-with="table" data-pptx-bounds="96 242 1112 340" data-pptx-fallback-sha256="1491f4f30ab59c73e10734b61064513e25fcdcba8e23ef18a1e35109aff4cf3e">
     <metadata type="application/json">
       {
-        "schema": "ppt-master.semantic-table.v2",
+        "schema": "deck.semantic-table.v2",
         "x": 96, "y": 242, "width": 1112, "height": 340,
         "name": "power-market-calculation",
         "header_rows": 1,

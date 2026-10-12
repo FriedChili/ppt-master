@@ -557,7 +557,7 @@ class PackageResourceInventory:
     def manifest(self, *, include_images: bool = True) -> dict[str, object]:
         """Return the versioned resource inventory payload."""
         return {
-            "schema": "ppt-master.workspace-resources.v1",
+            "schema": "deck.workspace-resources.v1",
             "items": [
                 resource.manifest_row(
                     materialized=include_images or resource.kind != "image",
@@ -597,7 +597,7 @@ def workspace_resource_specs(
     resources = manifest.get("resources")
     if not isinstance(resources, dict):
         raise RuntimeError("Round-trip manifest resources must be an object")
-    if resources.get("schema") != "ppt-master.workspace-resources.v1":
+    if resources.get("schema") != "deck.workspace-resources.v1":
         raise RuntimeError(
             "Unsupported round-trip resource schema: "
             f"{resources.get('schema')!r}"

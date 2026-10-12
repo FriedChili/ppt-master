@@ -350,10 +350,10 @@ def _roundtrip_passthrough_candidates(
 ) -> set[int]:
     """Return source slides whose visual and editable sidecars are unchanged."""
     manifest = load_roundtrip_manifest(project_path)
-    if manifest is None or manifest.get('schema') != 'ppt-master.roundtrip-workspace.v1':
+    if manifest is None or manifest.get('schema') != 'deck.roundtrip-workspace.v1':
         raise RuntimeError(
             "Round-trip export requires analysis/roundtrip_manifest.json "
-            "with schema ppt-master.roundtrip-workspace.v1"
+            "with schema deck.roundtrip-workspace.v1"
         )
     raw_slides = manifest.get('slides')
     if not isinstance(raw_slides, list):
@@ -1267,7 +1267,7 @@ def _quality_report_context(
             'error': str(exc),
         }
     schema = quality.get('schema')
-    if schema != 'ppt-master.svg-quality-report.v1':
+    if schema != 'deck.svg-quality-report.v1':
         return {
             'status': 'unsupported-schema',
             'path': str(quality_path),
@@ -1456,7 +1456,7 @@ def _write_postflight_report(
         project_path / 'validation' / f'{output_path.stem}.report.json'
     )
     report = {
-        'schema': 'ppt-master.pptx-postflight-report.v1',
+        'schema': 'deck.pptx-postflight-report.v1',
         'status': report_status,
         'output': {
             'path': str(output_path.resolve()),
@@ -1571,7 +1571,7 @@ def _load_deck_motion_handoff(
         ) from exc
     if not isinstance(report, dict):
         raise ValueError('deck-motion handoff report must be a JSON object')
-    if report.get('schema') != 'ppt-master.pptx-postflight-report.v1':
+    if report.get('schema') != 'deck.pptx-postflight-report.v1':
         raise ValueError(
             'deck-motion handoff requires a ppt-master postflight report'
         )

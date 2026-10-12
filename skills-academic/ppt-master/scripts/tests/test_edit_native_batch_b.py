@@ -173,7 +173,7 @@ class EditNativeBatchBTests(unittest.TestCase):
                 row['svg'] = name
             pages.append(row)
         (self.workspace / 'page_plan.json').write_text(json.dumps({
-            'schema': 'ppt-master.roundtrip-page-plan.v1', 'pages': pages,
+            'schema': 'deck.roundtrip-page-plan.v1', 'pages': pages,
         }), encoding='utf-8')
 
     def materialize(self):

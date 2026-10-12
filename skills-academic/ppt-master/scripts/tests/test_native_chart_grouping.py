@@ -230,7 +230,7 @@ class NativeChartGroupingTests(unittest.TestCase):
 
     def test_table_stays_one_native_frame(self) -> None:
         _, root, ctx = self._convert(_marker({
-            "schema": "ppt-master.semantic-table.v2",
+            "schema": "deck.semantic-table.v2",
             "x": 100, "y": 80, "width": 400, "height": 240,
             "rows": [["A", "B"], ["1", "2"]],
         }, kind="table"))

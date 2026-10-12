@@ -25,7 +25,7 @@ from typing import Any
 from pptx_workspace import NATIVE_STRUCTURE_PATH, SOURCE_PPTX_PATH
 
 
-SCHEMA = "ppt-master.native-structure.v1"
+SCHEMA = "deck.native-structure.v1"
 SOURCE_TEMPLATE_NAME = SOURCE_PPTX_PATH.as_posix()
 CONTRACT_NAME = NATIVE_STRUCTURE_PATH.as_posix()
 

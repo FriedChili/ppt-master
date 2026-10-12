@@ -1,5 +1,5 @@
 {
-  "schema": "ppt-master.font-metrics.v1",
+  "schema": "deck.font-metrics.v1",
   "source": "Raw OpenType head, hhea, OS/2 and name tables. Unprefixed source_file names identify fonts bundled with Microsoft PowerPoint for Mac 16.113.2 (26092012); paths identify supplemental macOS system fonts or the Office CloudFonts cache. Numeric metrics only; no font outlines. Family keys use English legacy name ID 1, keeping weight variants separate. hhea/typo descents are signed; win descents are unsigned. SHA-256 identifies the complete source file, and face_index identifies a collection face.",
   "families": {
     "aptos": {

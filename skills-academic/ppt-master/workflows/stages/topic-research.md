@@ -43,7 +43,7 @@ Default bundles only genuinely missing scope or research-boundary decisions into
 
 **Hard rule — isolate retrieval, not research**: raw page content stays in the worker context. The 250-word limit applies only to its chat receipt (`status`, artifact paths, covered/unresolved gap counts, external-fact count, material conflicts), never to the artifacts. After validation and import, the content owner reads the complete imported pair into the main context; never use the receipt as content.
 
-**Validation**: before import, verify both files exist, the Markdown contains `## Research Brief` and no source list or URL, the JSON parses with schema `ppt-master.fact-provenance.v1` and unique sequential IDs, and the two agree. Return an invalid pair to the worker for repair; use main-context research only when isolation is unavailable.
+**Validation**: before import, verify both files exist, the Markdown contains `## Research Brief` and no source list or URL, the JSON parses with schema `deck.fact-provenance.v1` and unique sequential IDs, and the two agree. Return an invalid pair to the worker for repair; use main-context research only when isolation is unavailable.
 
 ---
 
@@ -65,7 +65,7 @@ The Markdown begins with a compact `## Research Brief` (baseline, declared gaps,
 
 ```json
 {
-  "schema": "ppt-master.fact-provenance.v1",
+  "schema": "deck.fact-provenance.v1",
   "topic": "<topic>",
   "facts": [
     {
@@ -99,7 +99,7 @@ If planning later exposes a required gap, return here and repair the pair before
 - [x] Research execution: <isolated worker | main-context fallback>
 - [x] Research supplement: `projects/<research_slug>.md` (N declared gaps covered)
 - [x] Fact provenance: `projects/<research_slug>.facts.json` (N external facts)
-- [x] Artifact contract validated: `## Research Brief`, no Markdown source list, `ppt-master.fact-provenance.v1`, unique sequential IDs, Markdown/JSON agreement
+- [x] Artifact contract validated: `## Research Brief`, no Markdown source list, `deck.fact-provenance.v1`, unique sequential IDs, Markdown/JSON agreement
 - [x] Adopted webpage URLs: N unique `source_url` values; no webpage auto-imported, no image copied into the runtime pool
 - [ ] **Next**: Default returns to [`generate-pptx`](../generate-pptx.md) Step 2; Quick returns to [`quick-generate`](../profiles/quick-generate.md) §2. Import the sources plus research pair, then fully read the imported pair before planning or direct SVG authoring
 ```

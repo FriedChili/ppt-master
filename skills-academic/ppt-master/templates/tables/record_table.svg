@@ -14,7 +14,7 @@
        data-pptx-replace-with="table">
         <metadata type="application/json">
             {
-              "schema": "ppt-master.semantic-table.v2",
+              "schema": "deck.semantic-table.v2",
               "name": "record-table",
               "x": 80,
               "y": 150,

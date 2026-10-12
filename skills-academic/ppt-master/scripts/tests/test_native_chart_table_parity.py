@@ -91,7 +91,7 @@ class NativeTableMergeTests(unittest.TestCase):
     @staticmethod
     def _payload(covered_cell: dict) -> dict:
         return {
-            "schema": "ppt-master.semantic-table.v2",
+            "schema": "deck.semantic-table.v2",
             "defaults": {
                 "cell": {
                     "color": "#1F2937",
@@ -374,7 +374,7 @@ class NativeProjectionCheckerTests(unittest.TestCase):
             <g data-pptx-replace-with="table" data-pptx-bounds="0 0 200 80">
               <metadata type="application/json">
                 {
-                  "schema": "ppt-master.semantic-table.v2",
+                  "schema": "deck.semantic-table.v2",
                   "x": 0, "y": 0, "width": 200, "height": 80,
                   "header_rows": 1,
                   "column_widths": [100, 100],
@@ -423,7 +423,7 @@ class NativeProjectionCheckerTests(unittest.TestCase):
             <g data-pptx-replace-with="table" data-pptx-bounds="0 0 200 80">
               <metadata type="application/json">
                 {
-                  "schema": "ppt-master.semantic-table.v2",
+                  "schema": "deck.semantic-table.v2",
                   "x": 0, "y": 0, "width": 200, "height": 80,
                   "header_rows": 0,
                   "rows": [[{"paragraphs": ["First line", "Second line"]}]]
@@ -455,14 +455,14 @@ class NativeTablePayloadRoundTripTest(unittest.TestCase):
         )
         kind, payload, rows = _validate_native_object_marker_payload(marker)
         self.assertEqual(kind, "table")
-        self.assertEqual(payload.get("schema"), "ppt-master.semantic-table.v2")
+        self.assertEqual(payload.get("schema"), "deck.semantic-table.v2")
         expand_semantic_table_payload(payload)  # must still expand cleanly
 
 
 class NativeTableFillAndTextDefaultsTests(unittest.TestCase):
     def test_plain_text_cell_inherits_run_defaults(self) -> None:
         expanded = expand_semantic_table_payload({
-            "schema": "ppt-master.semantic-table.v2",
+            "schema": "deck.semantic-table.v2",
             "x": 0, "y": 0, "width": 200, "height": 80,
             "column_widths": [100, 100],
             "row_heights": [40, 40],
@@ -485,7 +485,7 @@ class NativeTableFillAndTextDefaultsTests(unittest.TestCase):
 
     def test_paragraph_cells_inherit_run_defaults_like_plain_text(self) -> None:
         expanded = expand_semantic_table_payload({
-            "schema": "ppt-master.semantic-table.v2",
+            "schema": "deck.semantic-table.v2",
             "x": 0, "y": 0, "width": 200, "height": 80,
             "column_widths": [100, 100],
             "row_heights": [40, 40],
@@ -508,7 +508,7 @@ class NativeTableFillAndTextDefaultsTests(unittest.TestCase):
                 <g data-pptx-replace-with="table" data-pptx-bounds="0 0 200 80">
                   <metadata type="application/json">
                     {{
-                      "schema": "ppt-master.semantic-table.v2",
+                      "schema": "deck.semantic-table.v2",
                       "x": 0, "y": 0, "width": 200, "height": 80,
                       "header_rows": 1,
                       "column_widths": [100, 100],
@@ -564,7 +564,7 @@ class NativeTableFillAndTextDefaultsTests(unittest.TestCase):
                 <g data-pptx-replace-with="table" data-pptx-bounds="0 0 300 80">
                   <metadata type="application/json">
                     {{
-                      "schema": "ppt-master.semantic-table.v2",
+                      "schema": "deck.semantic-table.v2",
                       "x": 0, "y": 0, "width": 300, "height": 80,
                       "header_rows": 1,
                       "column_widths": [100, 100, 100],
@@ -612,7 +612,7 @@ class NativeTableFillAndTextDefaultsTests(unittest.TestCase):
                 <g data-pptx-replace-with="table" data-pptx-bounds="0 0 200 80">
                   <metadata type="application/json">
                     {{
-                      "schema": "ppt-master.semantic-table.v2",
+                      "schema": "deck.semantic-table.v2",
                       "x": 0, "y": 0, "width": 200, "height": 80,
                       "header_rows": 1,
                       "column_widths": [100, 100],

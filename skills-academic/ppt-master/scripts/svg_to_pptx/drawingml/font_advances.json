@@ -1,5 +1,5 @@
 {
-"schema": "ppt-master.font-advances.v1",
+"schema": "deck.font-advances.v1",
 "unit": "em (advance ÷ font size), measured with FreeType at 1000 px, no kerning",
 "families": {
 "arial": {

@@ -48,9 +48,9 @@ from visualization_catalog import (
 )
 
 
-PAGE_CONTEXT_SCHEMA = "ppt-master.page-context.v2"
-PAGE_CONTEXT_USAGE_SCHEMA = "ppt-master.page-context-usage.v2"
-PAGE_CONTEXT_REPORT_SCHEMA = "ppt-master.page-context-usage-report.v2"
+PAGE_CONTEXT_SCHEMA = "deck.page-context.v2"
+PAGE_CONTEXT_USAGE_SCHEMA = "deck.page-context-usage.v2"
+PAGE_CONTEXT_REPORT_SCHEMA = "deck.page-context-usage-report.v2"
 TOKEN_ENCODING = "o200k_base"
 PAGE_CONTEXT_TOKEN_TARGET = 2000
 LOCK_PROJECTION_TOKEN_TARGET = 1000

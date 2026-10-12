@@ -359,7 +359,7 @@ class NativeTableMixedRunAuditTests(unittest.TestCase):
         if column == 1:
             row.reverse()
         payload = {
-            "schema": "ppt-master.semantic-table.v2",
+            "schema": "deck.semantic-table.v2",
             "x": 100, "y": 100, "width": 600, "height": 100,
             "header_rows": 1 if header else 0,
             "column_widths": [1, 1],

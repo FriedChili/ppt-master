@@ -39,7 +39,7 @@ def _workspace(tmp: str, plan: list[dict] | None) -> Path:
         (authoring / f'slide_{n:02d}.svg').write_text(SVG, encoding='utf-8')
     if plan is not None:
         (root / 'page_plan.json').write_text(
-            json.dumps({'schema': 'ppt-master.roundtrip-page-plan.v1', 'pages': plan}),
+            json.dumps({'schema': 'deck.roundtrip-page-plan.v1', 'pages': plan}),
             encoding='utf-8',
         )
     return root
@@ -75,7 +75,7 @@ class RoundtripRosterTests(unittest.TestCase):
             files, _ = resolve_slide_svg_files(root)
             self.assertEqual(len(files), 4)
             (root / 'page_plan.json').write_text(json.dumps({
-                'schema': 'ppt-master.roundtrip-page-plan.v1',
+                'schema': 'deck.roundtrip-page-plan.v1',
                 'pages': [{'source_slide': 2}, {'source_slide': 2, 'svg': 'kpi_copy.svg'}],
             }), encoding='utf-8')
             files, _ = resolve_slide_svg_files(root)

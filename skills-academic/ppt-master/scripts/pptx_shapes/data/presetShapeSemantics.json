@@ -1,5 +1,5 @@
 {
-  "schema": "ppt-master.preset-shape-semantics.v1",
+  "schema": "deck.preset-shape-semantics.v1",
   "sources": [
     {
       "kind": "office-gallery-categories",

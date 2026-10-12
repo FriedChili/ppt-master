@@ -147,7 +147,7 @@ image remains in a compatibility subset; `confirmed-none` is emitted only when
 all locked images have a deterministic assignment elsewhere.
 
 Mirror materialization may publish deterministic
-`ppt-master.template-text-slots.v2-min` diagnostics. They are not page-context
+`deck.template-text-slots.v2-min` diagnostics. They are not page-context
 or model inputs. The complete SVG remains the sole template authority; checker
 and structured export validate output attributes, text/tspan topology, and
 referenced-resource hashes against it internally.

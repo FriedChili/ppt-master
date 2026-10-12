@@ -165,7 +165,7 @@ leaving edited/deleted/new authoring content in place.
 
 An imported round-trip workspace may optionally add root `page_plan.json` to
 select, reorder, repeat, or omit source slides during export. The v1 shape is
-minimal: top-level `schema: "ppt-master.roundtrip-page-plan.v1"` plus a
+minimal: top-level `schema: "deck.roundtrip-page-plan.v1"` plus a
 non-empty ordered `pages` array; every entry requires one-based
 `source_slide` and may name a unique `authoring-svg-flat/` filename in `svg`.
 A copied SVG is diffed against the baseline for its declared source slide.
@@ -218,7 +218,7 @@ are stored there as short `data-pptx-native-ref` records. Structural metadata
 stays inline, while checker, template-structure validation, and export hydrate
 both layers in memory. Legacy inline payload and v1 payload-only stores remain
 readable. The v1 execution manifest points to per-prototype
-`ppt-master.template-text-slots.v2-min` diagnostic sidecars. They are derived
+`deck.template-text-slots.v2-min` diagnostic sidecars. They are derived
 tool metadata and are not injected into model context. Checker and export
 validate output attributes, topology, and resource hashes against the complete
 prototype internally. Bitmap assets

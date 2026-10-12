@@ -1494,7 +1494,7 @@ class SVGQualityChecker:
         except (OSError, ValueError):
             return
         if (not isinstance(manifest, dict)
-                or manifest.get('schema') != 'ppt-master.template-execution-manifest.v1'
+                or manifest.get('schema') != 'deck.template-execution-manifest.v1'
                 or manifest.get('replication_mode') != 'mirror'
                 or manifest.get('source_geometry_unchanged') is not True
                 or not re.fullmatch(r'[0-9a-f]{64}', str(manifest.get('source_package_sha256', '')))):
@@ -7221,7 +7221,7 @@ class SVGQualityChecker:
             manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
         except (FileNotFoundError, OSError, json.JSONDecodeError):
             return
-        if manifest.get('schema') != 'ppt-master.template-execution-manifest.v1':
+        if manifest.get('schema') != 'deck.template-execution-manifest.v1':
             return
         source_import = manifest.get('source_import')
         if isinstance(source_import, dict):
@@ -10192,7 +10192,7 @@ class SVGQualityChecker:
         }
         source_import = categories['source_import']
         payload = {
-            'schema': 'ppt-master.svg-quality-report.v1',
+            'schema': 'deck.svg-quality-report.v1',
             'stage': stage,
             'target': str(Path(target).resolve()),
             'source_fingerprint': (

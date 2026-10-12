@@ -101,7 +101,7 @@ class EditNativeBatchCTests(unittest.TestCase):
             )
             plan = workspace / "page_plan.json"
             plan.write_text(json.dumps({
-                "schema": "ppt-master.roundtrip-page-plan.v1",
+                "schema": "deck.roundtrip-page-plan.v1",
                 "pages": [{"source_slide": 2}, {"source_slide": 1}],
             }), encoding="utf-8")
             code, log = _invoke(export_cli.main, workspace, "--roundtrip", "-o", output)
@@ -113,7 +113,7 @@ class EditNativeBatchCTests(unittest.TestCase):
             self.assertEqual(code, 0, log)
             self.assertIn("quality_gate=passed", log)
             plan.write_text(json.dumps({
-                "schema": "ppt-master.roundtrip-page-plan.v1",
+                "schema": "deck.roundtrip-page-plan.v1",
                 "pages": [{"source_slide": 1}, {"source_slide": 2}],
             }), encoding="utf-8")
             code, log = _invoke(export_cli.main, workspace, "--roundtrip", "-o", output)

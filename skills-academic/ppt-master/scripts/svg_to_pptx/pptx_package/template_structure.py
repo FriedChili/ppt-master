@@ -132,7 +132,7 @@ TEMPLATE_ADHERENCE_MODES = frozenset({"strict", "adaptive"})
 TEMPLATE_REUSE_SCOPES = frozenset({"mirror", "layout", "style"})
 PLACEHOLDER_BINDING_MODES = frozenset({"carrier", "proxy"})
 SOURCE_THEMES_FILENAME = "source_themes.json"
-SOURCE_THEMES_SCHEMA = "ppt-master.source-themes.v1"
+SOURCE_THEMES_SCHEMA = "deck.source-themes.v1"
 _DML_NS = "http://schemas.openxmlformats.org/drawingml/2006/main"
 _REL_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 _TEMPLATE_SKIN_ATTRS = frozenset({
@@ -172,7 +172,7 @@ _CSS_ATTR_RE = re.compile(
 )
 _CSS_URL_RE = re.compile(r"url\(\s*(['\"]?)(.*?)\1\s*\)", re.IGNORECASE)
 _CSS_TAG_RE = re.compile(r"(?:^|[\s>+~])([A-Za-z_][A-Za-z0-9_-]*|\*)")
-NATIVE_STRUCTURE_SCHEMA = "ppt-master.native-structure.v1"
+NATIVE_STRUCTURE_SCHEMA = "deck.native-structure.v1"
 OOXML_UINT32_MAX = (1 << 32) - 1
 
 

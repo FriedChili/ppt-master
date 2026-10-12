@@ -63,7 +63,7 @@ Write `page_plan.json` at the workspace root only when the output differs from t
 
 ```json
 {
-  "schema": "ppt-master.roundtrip-page-plan.v1",
+  "schema": "deck.roundtrip-page-plan.v1",
   "pages": [
     {"source_slide": 1},
     {"source_slide": 4, "svg": "chapter_market.svg"},

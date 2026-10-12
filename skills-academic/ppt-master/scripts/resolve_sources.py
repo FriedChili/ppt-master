@@ -36,7 +36,7 @@ import sys
 from pathlib import Path
 
 MANIFEST_PATH = Path(__file__).resolve().parent / "source_manifest.json"
-RESOLUTION_SCHEMA = "ppt-master.source-resolution.v1"
+RESOLUTION_SCHEMA = "deck.source-resolution.v1"
 
 
 class ResolveError(RuntimeError):

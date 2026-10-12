@@ -1,5 +1,5 @@
 {
-  "schema": "ppt-master.source-manifest.v1",
+  "schema": "deck.source-manifest.v1",
   "version": 1,
   "_comment": "上游工作区 → 补充输入的声明式清单。只列对 PPT 有贡献的产物；不在清单内且不匹配 exclude 的文件一律不读。",
 

@@ -59,7 +59,7 @@ class UpdateSpecNativeFallbackTests(unittest.TestCase):
   <rect id="background" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
   <g id="accent-table" data-pptx-replace-with="table" data-pptx-bounds="100 100 300 80">
     <metadata type="application/json">{
-      "schema": "ppt-master.semantic-table.v2",
+      "schema": "deck.semantic-table.v2",
       "name": "accent-table",
       "x": 100, "y": 100, "width": 300, "height": 80,
       "header_rows": 0,

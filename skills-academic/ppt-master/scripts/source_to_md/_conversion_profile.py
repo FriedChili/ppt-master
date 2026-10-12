@@ -24,7 +24,7 @@ from typing import Any
 
 
 IMAGE_MANIFEST_NAME = "image_manifest.json"
-PROFILE_SCHEMA = "ppt-master.source_to_md.profile.v1"
+PROFILE_SCHEMA = "deck.source_to_md.profile.v1"
 PROFILE_SUFFIX = ".conversion_profile.json"
 
 

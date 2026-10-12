@@ -1723,7 +1723,7 @@ def _write_roundtrip_manifest(
             }
         slides.append(row)
     payload = {
-        "schema": "ppt-master.roundtrip-workspace.v1",
+        "schema": "deck.roundtrip-workspace.v1",
         "source": {
             "file": SOURCE_PPTX_PATH.as_posix(),
             "sha256": _sha256_file(source_path),

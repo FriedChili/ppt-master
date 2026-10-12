@@ -2,7 +2,7 @@
   <g id="business-model-toolbox" data-pptx-replace-with="table" data-pptx-bounds="96 272 1112 316" data-pptx-fallback-sha256="27a219bd543ea061bd085c13f2c4129ebf577580838dc89af561a52809e14702">
     <metadata type="application/json">
       {
-        "schema": "ppt-master.semantic-table.v2",
+        "schema": "deck.semantic-table.v2",
         "x": 96, "y": 272, "width": 1112, "height": 316,
         "name": "business-model-toolbox",
         "header_rows": 1,

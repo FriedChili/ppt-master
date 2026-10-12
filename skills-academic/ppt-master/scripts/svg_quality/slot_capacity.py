@@ -219,7 +219,7 @@ def slot_capacity_report(svg_files: list[Path]) -> dict:
                 row['estimate_scope'] = 'first visible run; measure mixed content separately'
             slots.append(row)
     report = {
-        'schema': 'ppt-master.slot-capacity.v1', 'advisory': True,
+        'schema': 'deck.slot-capacity.v1', 'advisory': True,
         'assumptions': 'Uniform carrier typography; Latin sample distribution and CJK full-width glyphs. '
                        'Line count uses declared/baseline pitch or an explicit 1.2em estimate. '
                        'Measure actual content before locking typography; these are not limits.',

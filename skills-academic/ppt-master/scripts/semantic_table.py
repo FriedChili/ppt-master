@@ -10,7 +10,7 @@ from collections.abc import Iterable
 from typing import Any
 
 
-SEMANTIC_TABLE_SCHEMA = "ppt-master.semantic-table.v2"
+SEMANTIC_TABLE_SCHEMA = "deck.semantic-table.v2"
 
 _TOP_LEVEL_FIELDS = {
     "schema",

@@ -316,7 +316,7 @@ class EditNativeBatchATests(unittest.TestCase):
         authoring = project / 'authoring-svg-flat'
         (authoring / 'copy.svg').write_bytes((authoring / 'slide_03.svg').read_bytes())
         (project / 'page_plan.json').write_text(json.dumps({
-            'schema': 'ppt-master.roundtrip-page-plan.v1',
+            'schema': 'deck.roundtrip-page-plan.v1',
             'pages': [{'source_slide': 3}, {'source_slide': 3, 'svg': 'copy.svg'}],
         }), encoding='utf-8')
         (project / 'notes/copy.md').write_text('Copy only', encoding='utf-8')
@@ -362,7 +362,7 @@ class EditNativeBatchATests(unittest.TestCase):
         authoring = project / 'authoring-svg-flat'
         (authoring / 'copy.svg').write_bytes((authoring / 'slide_04.svg').read_bytes())
         (project / 'page_plan.json').write_text(json.dumps({
-            'schema': 'ppt-master.roundtrip-page-plan.v1',
+            'schema': 'deck.roundtrip-page-plan.v1',
             'pages': [{'source_slide': 4}, {'source_slide': 4, 'svg': 'copy.svg'}],
         }), encoding='utf-8')
         output, *_ = self._export(project)

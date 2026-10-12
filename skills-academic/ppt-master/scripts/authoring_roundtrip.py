@@ -63,7 +63,7 @@ from svg_to_pptx.drawingml.utils import INHERITABLE_ATTRS
 SVG_NS = "http://www.w3.org/2000/svg"
 XLINK_NS = "http://www.w3.org/1999/xlink"
 IMPORTED_ICON_NAMESPACE = "imported"
-ROUNDTRIP_PAGE_PLAN_SCHEMA = "ppt-master.roundtrip-page-plan.v1"
+ROUNDTRIP_PAGE_PLAN_SCHEMA = "deck.roundtrip-page-plan.v1"
 _URL_ID_RE = re.compile(r"url\(\s*(['\"]?)#([^)'\"\s]+)\1\s*\)")
 _PRESERVED_EFFECT_ATTRIBUTES = frozenset({
     "data-pptx-effect-ooxml",
@@ -364,7 +364,7 @@ def _load_documents(
         project_path / ROUNDTRIP_MANIFEST_PATH,
         context="round-trip workspace manifest",
     )
-    if roundtrip_manifest.get("schema") != "ppt-master.roundtrip-workspace.v1":
+    if roundtrip_manifest.get("schema") != "deck.roundtrip-workspace.v1":
         raise AuthoringRoundtripError(
             "Unsupported round-trip workspace manifest schema: "
             f"{roundtrip_manifest.get('schema')!r}"
@@ -2125,7 +2125,7 @@ def materialize_flat_authoring_roundtrip(
         )
     }
     report: dict[str, Any] = {
-        "schema": "ppt-master.authoring-roundtrip-materialization.v1",
+        "schema": "deck.authoring-roundtrip-materialization.v1",
         "authoring_root": str(authoring_dir),
         "manifest_schema": manifest.get("schema"),
         "projection_kind": manifest.get("projection_kind"),

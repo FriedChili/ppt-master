@@ -94,11 +94,11 @@ SVG_NS = "http://www.w3.org/2000/svg"
 XLINK_NS = "http://www.w3.org/1999/xlink"
 XML_NS = "http://www.w3.org/XML/1998/namespace"
 DML_NS = "http://schemas.openxmlformats.org/drawingml/2006/main"
-NATIVE_STRUCTURE_SCHEMA = "ppt-master.native-structure.v1"
+NATIVE_STRUCTURE_SCHEMA = "deck.native-structure.v1"
 TEMPLATE_EXECUTION_MANIFEST_NAME = "template_execution_manifest.json"
-TEMPLATE_EXECUTION_MANIFEST_SCHEMA = "ppt-master.template-execution-manifest.v1"
+TEMPLATE_EXECUTION_MANIFEST_SCHEMA = "deck.template-execution-manifest.v1"
 TEMPLATE_TEXT_SLOTS_DIR = "template_execution"
-TEMPLATE_TEXT_SLOTS_SCHEMA = "ppt-master.template-text-slots.v2-min"
+TEMPLATE_TEXT_SLOTS_SCHEMA = "deck.template-text-slots.v2-min"
 IMPORTED_ICON_NAMESPACE = "imported"
 _FRESH_NATIVE_FALLBACK_ATTR = "data-pptx-mirror-fresh-fallback"
 TRANSPARENT_PIXEL_DATA_URI = (
@@ -3341,7 +3341,7 @@ def materialize_mirror_template(
         )
 
     return {
-        "schema": "ppt-master.mirror-materialization-report.v2",
+        "schema": "deck.mirror-materialization-report.v2",
         "import_workspace": str(import_workspace),
         "template_workspace": str(template_workspace),
         "source_slide_indexes": [int(item["index"]) for item in slides],

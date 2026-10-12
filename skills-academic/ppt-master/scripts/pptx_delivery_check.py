@@ -61,7 +61,7 @@ from pptx_transitions import (  # noqa: E402
 from svg_to_pptx.drawingml.utils import PPT_SAFE_FONTS  # noqa: E402
 
 
-REPORT_SCHEMA = "ppt-master.pptx-delivery-check.v1"
+REPORT_SCHEMA = "deck.pptx-delivery-check.v1"
 PACKAGE_REL_NS = "http://schemas.openxmlformats.org/package/2006/relationships"
 CONTENT_TYPES_NS = "http://schemas.openxmlformats.org/package/2006/content-types"
 DRAWINGML_NS = "http://schemas.openxmlformats.org/drawingml/2006/main"

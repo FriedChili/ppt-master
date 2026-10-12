@@ -249,7 +249,7 @@ class TemplateFlowBatch3Tests(unittest.TestCase):
         asset = self.root / 'photo.png'
         asset.write_bytes(b'original image asset')
         _write_json(self.root / 'template_execution_manifest.json', {
-            'schema': 'ppt-master.template-execution-manifest.v1',
+            'schema': 'deck.template-execution-manifest.v1',
             'replication_mode': 'mirror', 'source_package_sha256': 'a' * 64,
             'source_geometry_unchanged': True,
             'templates': [{'prototype': 'slide.svg', 'source_svg_sha256': digest}],

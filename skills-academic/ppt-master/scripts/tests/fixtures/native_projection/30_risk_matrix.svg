@@ -2,7 +2,7 @@
   <g id="risk-matrix" data-pptx-replace-with="table" data-pptx-bounds="96 242 1112 388" data-pptx-fallback-sha256="0ca66360858c77eda15ddea9f1bb21223ea73442ef2d73c260dbdba6c9f73f2a">
     <metadata type="application/json">
       {
-        "schema": "ppt-master.semantic-table.v2",
+        "schema": "deck.semantic-table.v2",
         "x": 96, "y": 242, "width": 1112, "height": 388,
         "name": "risk-matrix",
         "header_rows": 1,
