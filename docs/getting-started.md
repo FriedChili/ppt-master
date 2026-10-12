@@ -152,7 +152,6 @@ compatibility inputs; new animation choices use canonical prefixed names.
 
 Animation settings are strict: unknown effects or Start modes, invalid timing values, and missing sidecar targets fail instead of silently becoming another effect. Before the result replaces an existing output, ppt-master reads the candidate package back and checks timing placement, IDs, shape targets, effects, durations, and Start modes. Microsoft PowerPoint is the primary motion-validation target; other presentation apps can open the PPTX but may map individual animation effects differently.
 
-Full guide → [Animations & Transitions](./animations.md)
 
 ---
 
@@ -167,15 +166,12 @@ You: Generate narration audio for this deck
 
 Narration defaults to `edge-tts` (about 90 locales); optional cloud providers cover higher-quality voices. The AI recommends a voice for the deck's language and asks once before generating.
 
-Full guide → [Audio Narration & Video Export](./audio-narration.md)
 
 ---
 
 ## Use a cloned voice
 
-Bring your own cloned voice from ElevenLabs / MiniMax / Qwen / CosyVoice and have the whole deck narrated in *your* voice (or a presenter's, with permission). Clone once in the provider's console, then pass the `voice_id` — ppt-master reads every slide's notes in that voice and embeds the result back into the PPTX.
 
-Full guide → [Use a cloned voice](./audio-narration.md#use-a-cloned-voice)
 
 ---
 

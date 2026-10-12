@@ -262,7 +262,6 @@ motion-path presets, and exit. This mapping does not infer paragraph/text-range
 builds, custom freeform motion paths, native Chart/SmartArt build sequences, or
 media playback commands.
 
-See [Animations & Transitions](./animations.md) (technical source: [`references/animations.md`](../skills-academic/ppt-master/references/animations.md)) and [`audio-narration.md`](./audio-narration.md) for the sidecar workflows.
 
 ## 11. Other PowerPoint-native features
 

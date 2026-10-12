@@ -150,7 +150,6 @@ Layout / slot 元数据会保留，并编译成可复用原生结构。P01 前�
 动画目标、效果和 timing 结构。Microsoft PowerPoint 是动效行为的主要验证
 目标；Keynote、WPS、LibreOffice 可能重新映射个别效果。
 
-完整说明 → [转场与动画](./animations.md)
 
 ---
 
@@ -165,15 +164,12 @@ Layout / slot 元数据会保留，并编译成可复用原生结构。P01 前�
 
 旁白默认用 `edge-tts`(约 90 种语区);需要更高质量音色可配置云端 provider。AI 会按 deck 语言推荐音色,生成前只问你一次。
 
-完整说明 → [音频旁白与视频导出](./audio-narration.md)
 
 ---
 
 ## 使用复刻音色
 
-用 ElevenLabs / MiniMax / Qwen / CosyVoice 复刻你自己的声音(或在授权前提下复刻演讲者的声音),让整份 deck 用 *你的声音* 念出来。在 provider 控制台复刻一次,把得到的 `voice_id` 传进来,ppt-master 就会用这个音色逐页朗读备注并嵌回 PPTX。
 
-完整说明 → [使用复刻音色](./audio-narration.md#使用复刻音色)
 
 ---
 

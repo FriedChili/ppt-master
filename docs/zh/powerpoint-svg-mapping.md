@@ -250,7 +250,6 @@ SVG 预览内容只负责让导出前的作者页面保持可见。
 强调、PowerPoint 原生动作路径预设和退出。该映射不会推导段落/文字范围 build、
 自定义自由动作路径、原生 Chart/SmartArt build 序列或媒体播放命令。
 
-sidecar 工作流见[转场与动画](./animations.md)（技术规范源为 [`references/animations.md`](../../skills-academic/ppt-master/references/animations.md)）与 [`audio-narration.md`](./audio-narration.md)。
 
 ## 11. 其他 PowerPoint 原生功能
 

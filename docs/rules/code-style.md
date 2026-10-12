@@ -160,7 +160,7 @@ Required for all new public functions; optional for internal `_helpers`.
 | Kind | Convention | Examples |
 |---|---|---|
 | Module file | `snake_case.py` | `image_search.py`, `svg_to_pptx.py` |
-| Script entrypoint | verb or noun phrase | `finalize_svg.py`, `notes_to_audio.py` |
+| Script entrypoint | verb or noun phrase | `finalize_svg.py`, `svg_authoring_view.py` |
 | Public function | `snake_case` | `download_image`, `parse_results` |
 | Private helper | `_snake_case` | `_load_dotenv_if_available`, `_measure_actual_image` |
 | Constant | `UPPER_SNAKE_CASE` | `API_URL`, `DEFAULT_PAGE_SIZE`, `LICENSE_TIER_NO_ATTRIBUTION` |
