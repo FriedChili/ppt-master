@@ -28,7 +28,6 @@ SCRIPTS_DIR = Path(__file__).resolve().parents[1]
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
-import notes_to_audio  # noqa: E402
 from authoring_roundtrip import SourceRefRecord  # noqa: E402
 from pptx_delivery_check import audit_pptx_delivery  # noqa: E402
 from pptx_to_svg.converter import ConvertOptions, convert_pptx_to_svg  # noqa: E402
@@ -80,45 +79,6 @@ def _workspace(root: Path, *, notes: bool = False) -> Path:
 
 
 class EditNativeBatchCTests(unittest.TestCase):
-    def test_c1_negative_voice_options_accept_space_and_equals(self) -> None:
-        for option, value in (("--rate", "-5%"), ("--pitch", "-2Hz"), ("--volume", "-10%")):
-            for arguments in ([option, value], [f"{option}={value}"]):
-                with self.subTest(arguments=arguments):
-                    code, output = _invoke(
-                        notes_to_audio.main, *arguments, "--list-common-voices",
-                    )
-                    self.assertEqual(code, 0, output)
-        for arguments in (["--rate"], ["--rate", "--unknown"], ["--unknown"]):
-            with self.subTest(invalid=arguments):
-                code, _ = _invoke(notes_to_audio.main, *arguments, "--list-common-voices")
-                self.assertEqual(code, 2)
-        job = notes_to_audio.AudioJob(Path("note.md"), "Example", Path("page.mp3"))
-        with patch.object(notes_to_audio.backend_edge, "generate", new_callable=AsyncMock) as generate:
-            results = asyncio.run(notes_to_audio._generate_edge_jobs(
-                [job], Path("subtitles"), voice="en-US-AriaNeural",
-                rate="-5%", pitch="-2Hz", volume="-10%",
-                subtitle_max_chars=20, concurrency=1,
-            ))
-        self.assertEqual(results, [None])
-        self.assertEqual(generate.await_args.kwargs["rate"], "-5%")
-        self.assertEqual(generate.await_args.kwargs["pitch"], "-2Hz")
-        self.assertEqual(generate.await_args.kwargs["volume"], "-10%")
-        communicate = Mock(return_value=SimpleNamespace(save=AsyncMock()))
-        with patch.dict(sys.modules, {"edge_tts": SimpleNamespace(Communicate=communicate)}):
-            asyncio.run(notes_to_audio.backend_edge.generate(
-                "Example", Path("page.mp3"), voice="en-US-AriaNeural",
-                rate="-5%", pitch="-2Hz", volume="-10%",
-            ))
-        self.assertEqual(communicate.call_args.kwargs["pitch"], "-2Hz")
-        self.assertEqual(communicate.call_args.kwargs["volume"], "-10%")
-        with patch.object(notes_to_audio.backend_edge, "_generate_with_subtitles", new_callable=AsyncMock) as generate:
-            asyncio.run(notes_to_audio.backend_edge.generate(
-                "Example", Path("page.mp3"), voice="en-US-AriaNeural",
-                rate="-5%", pitch="-2Hz", volume="-10%", subtitle_path=Path("page.srt"),
-            ))
-        self.assertEqual(generate.await_args.kwargs["pitch"], "-2Hz")
-        self.assertEqual(generate.await_args.kwargs["volume"], "-10%")
-
     def test_c2_roundtrip_quality_receipt_tracks_authoring_and_page_plan(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

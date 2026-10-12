@@ -59,7 +59,6 @@ PowerPoint's manual Convert-to-Shape behavior is unsupported. `svg_final/` is su
 2. Export with the project-relative audio directory:
 
 ```bash
-python3 scripts/notes_to_audio.py <project_path> --voice zh-CN-XiaoxiaoNeural
 python3 scripts/svg_to_pptx.py <project_path> --recorded-narration audio
 ```
 
@@ -80,7 +79,6 @@ pip install -r requirements.txt
 
 Important optional packages:
 - `python-pptx` for PPTX export
-- `edge-tts` for `notes_to_audio.py` recorded narration audio
 - `Pillow` for image utilities
 - `numpy` for watermark removal
 - `PyMuPDF` for PDF conversion (AGPL-3.0; only needed for PDF sources, see conversion.md)

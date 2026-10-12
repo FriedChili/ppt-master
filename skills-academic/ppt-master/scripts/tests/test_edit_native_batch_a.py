@@ -30,7 +30,6 @@ from pptx.enum.shapes import MSO_SHAPE  # noqa: E402
 from pptx.util import Inches  # noqa: E402
 
 from pptx_animations import create_sequence_timing_xml  # noqa: E402
-import notes_to_audio  # noqa: E402
 from pptx_delivery_check import audit_pptx_delivery  # noqa: E402
 from pptx_to_svg.converter import ConvertOptions, convert_pptx_to_svg  # noqa: E402
 from svg_to_pptx.pptx_package import cli, narration  # noqa: E402
@@ -387,8 +386,3 @@ class EditNativeBatchATests(unittest.TestCase):
                 archive.writestr(name, data)
         parts = audit_pptx_delivery(renamed)['package']['parts']
         self.assertEqual((parts['slides'], parts['notes'], parts['masters'], parts['layouts']), (1, 1, 1, 11))
-
-    def test_p1_star6_negative_rate_is_accepted_without_equals(self) -> None:
-        with patch.object(sys, 'argv', ['notes_to_audio.py', '--list-common-voices', '--rate', '-5%']):
-            with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
-                self.assertEqual(notes_to_audio.main(), 0)

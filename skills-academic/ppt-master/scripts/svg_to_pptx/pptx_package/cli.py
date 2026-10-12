@@ -3393,7 +3393,7 @@ Recorded narration:
                 and config_path.name == 'narration_animations.json'
             ):
                 print(
-                    "Generate it with narration_sync.py animations, select the "
+                    "Generate it with the animation tooling, select the "
                     "canonical config with --animation-config animations.json, "
                     "or disable animations with --no-animations.",
                     file=sys.stderr,
