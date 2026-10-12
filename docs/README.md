@@ -4,7 +4,7 @@
 
 ---
 
-User-facing documentation lives in this directory: English files are the canonical source, with synchronized Chinese translations in [`zh/`](./zh/README.md). Workflow and technical references consumed by the AI itself live under [`skills/ppt-master/`](../skills/ppt-master/SKILL.md).
+User-facing documentation lives in this directory: English files are the canonical source, with synchronized Chinese translations in [`zh/`](./zh/README.md). Workflow and technical references consumed by the AI itself live under [`skills-academic/ppt-master/`](../skills-academic/ppt-master/SKILL.md).
 
 ## Getting Started
 

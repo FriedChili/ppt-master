@@ -92,7 +92,7 @@ class RootRecord:
         if self.source == "library":
             kind = self.specs[0].kind
             kind_dir = KIND_CONFIG[kind]["dir"].name
-            return f"skills/ppt-master/templates/{kind_dir}/{self.specs[0].template_id}/"
+            return f"skills-academic/ppt-master/templates/{kind_dir}/{self.specs[0].template_id}/"
         return f"{self.root}/"
 
 

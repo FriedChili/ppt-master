@@ -22,7 +22,7 @@ The user opens a new chat naming a project path with continuation intent — "�
 
 ## Step 2: Load the Generate authority, proceed from Step 6
 
-Read `skills/ppt-master/workflows/generate-pptx.md` and jump to `### Step 6: Executor Phase`, which loads `executor-base.md` and applies its context policy: read the complete Design Spec, then the complete lock, once; resolve the effective Speaker Notes / Custom Animations / Narration Audio outcomes from `design_spec.md §I` (missing outcomes default `enabled` / `disabled` / `disabled`; never from the lock).
+Read `skills-academic/ppt-master/workflows/generate-pptx.md` and jump to `### Step 6: Executor Phase`, which loads `executor-base.md` and applies its context policy: read the complete Design Spec, then the complete lock, once; resolve the effective Speaker Notes / Custom Animations / Narration Audio outcomes from `design_spec.md §I` (missing outcomes default `enabled` / `disabled` / `disabled`; never from the lock).
 
 Before the first SVG, verify every conditional dependency discoverable from that pair:
 
@@ -36,8 +36,8 @@ Before the first SVG, verify every conditional dependency discoverable from that
 Resolve every live Chart/Table value through the shared resolver — canonical `family/key` directly, `--legacy-bare` only for a value read from legacy `page_charts` — and require every returned SVG to exist; never construct a path from the key. A retired Structure bare key is semantic intent only: recover it from §IX or return to Step 4 when §IX is insufficient.
 
 ```bash
-python3 skills/ppt-master/scripts/visualization_recall.py validate <family/key> [<family/key> ...]
-python3 skills/ppt-master/scripts/visualization_recall.py validate --legacy-bare <legacy-key> [...]
+python3 skills-academic/ppt-master/scripts/visualization_recall.py validate <family/key> [<family/key> ...]
+python3 skills-academic/ppt-master/scripts/visualization_recall.py validate --legacy-bare <legacy-key> [...]
 ```
 
 Then continue the documented Step 6–7 pipeline exactly as `generate-pptx.md` lists it: read the frozen `notes/total.md` once when §X declares a final/literal script; when mid-deck, read the latest completed SVG and current image metadata after their paths are verified; read the Step 6 construction core and one locked preset file or only the exact `*_references` of a custom, never reopening the mode or visual-style catalogs; load only the branches the condition table selects; make the per-page topology decision from retained §IX before any geometry; when structured, read the template Design Spec and each selected prototype once. Use `page-context` only for explicit diagnostics or an unresolved path-SHA question ([`artifact-ownership.md`](../../references/artifact-ownership.md) §1), never as a routine pre-page load. Then the quality gate, conditional notes, conditional custom animation, Step 7 (`total_md_split` → `finalize_svg` → `svg_to_pptx`; disabled notes use `--no-notes`), and `generate-audio` when Narration Audio is enabled.

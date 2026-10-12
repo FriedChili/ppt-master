@@ -42,7 +42,7 @@ docs/                           ← 面向使用者的文档
 projects/                       ← 用户项目工作区
 ```
 
-> **仓库根另有 `skills/ppt-master/`，那是上游原始副本，不是本分支。**
+> **仓库根另有 `skills-academic/ppt-master/`，那是上游原始副本，不是本分支。**
 > 不要在那边改东西。
 
 ---

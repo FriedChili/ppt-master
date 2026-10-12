@@ -36,7 +36,7 @@ Raw PPTX called a template + new material or topic; existing deck + selective re
 ## 3. Import the Round-trip Workspace
 
 ```bash
-python3 skills/ppt-master/scripts/pptx_to_svg.py "<source.pptx>" -o "projects/<slug>_<YYYYMMDD>" --inheritance-mode both --roundtrip
+python3 skills-academic/ppt-master/scripts/pptx_to_svg.py "<source.pptx>" -o "projects/<slug>_<YYYYMMDD>" --inheritance-mode both --roundtrip
 ```
 
 | Path | Content | Reading rule |
@@ -78,7 +78,7 @@ Write `page_plan.json` at the workspace root only when the output differs from t
 **Combining pages**: one output page has exactly one skeleton (`source_slide`). To merge, pick the page whose layout carries the result, then bring objects from other pages only through the adopt command — never pasted raw SVG, because source refs are page-local. The adopted object materializes its effective inherited presentation attributes and ancestor transforms, loses native identity, and makes the page `rebuilt`; a source proxy cannot leave its page, so a merge that needs one keeps that page as the skeleton. The object lands at the end of the target page for normal editing.
 
 ```bash
-python3 skills/ppt-master/scripts/svg_authoring_view.py "projects/<slug>_<YYYYMMDD>/authoring-svg-flat" --adopt-object slide_05.svg:<element-id> --into chapter_market.svg
+python3 skills-academic/ppt-master/scripts/svg_authoring_view.py "projects/<slug>_<YYYYMMDD>/authoring-svg-flat" --adopt-object slide_05.svg:<element-id> --into chapter_market.svg
 ```
 
 **New pages** need a skeleton too: copy the closest source page under a new name, list it with that page's `source_slide`, delete its Slide-local content, and author on the empty canvas (inherited proxies stay); the page is `rebuilt`.
@@ -120,8 +120,8 @@ Load [`shared-standards-core.md`](../references/shared-standards-core.md) before
 **Mandatory after editing** — refresh the summary, then run the capacity gate:
 
 ```bash
-python3 skills/ppt-master/scripts/svg_authoring_view.py "projects/<slug>_<YYYYMMDD>/authoring-svg-flat" --refresh-summary
-python3 skills/ppt-master/scripts/svg_quality_checker.py "projects/<slug>_<YYYYMMDD>" --roundtrip --json
+python3 skills-academic/ppt-master/scripts/svg_authoring_view.py "projects/<slug>_<YYYYMMDD>/authoring-svg-flat" --refresh-summary
+python3 skills-academic/ppt-master/scripts/svg_quality_checker.py "projects/<slug>_<YYYYMMDD>" --roundtrip --json
 ```
 
 🚧 **GATE**: `--roundtrip` estimates edited text against its frame and canvas; errors set `quality_gate=failed` on the export receipt — clear them by rewriting, splitting, or moving the text to a larger layout; warnings are fixed or accepted with a stated reason. With a plan, the checker and `animation_config.py list-groups` cover the planned pages only. Width calibration samples unchanged text on the same page, so a fully rewritten page reports `0%` calibration and uses the default estimator — not an error; an edit reaching no further than the source text of its own slot always passes. The exporter remains the final gate and fails closed on a page it cannot restore or convert.
@@ -143,7 +143,7 @@ Skip when no §4.2 module beyond preserving source notes is enabled.
 ## 7. Export and Validate
 
 ```bash
-python3 skills/ppt-master/scripts/svg_to_pptx.py "projects/<slug>_<YYYYMMDD>" --roundtrip
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py "projects/<slug>_<YYYYMMDD>" --roundtrip
 ```
 
 Add `-t <effect> [--transition-duration <s>]` to replace transition effects deck-wide (source auto-advance stays); `--recorded-narration audio --use-narration-timings` for narration with auto-advance (round-trip export reads the workspace `animations.json` by default); `--animation-config animations.json` for per-slide motion; `-a <preset>` (default `none`) for object animation policy; `--no-notes` to strip notes; `--native-charts-and-tables` when chart/table data was edited; `--primary-language <tag>` to declare the deck language the imported SVG roots lack (otherwise per-run detection, harmless for a monolingual deck). Export writes into `exports/`, prints the exact output path (a `_narrated` or `_native_charts_tables` suffix may apply — use the printed path afterwards), and one receipt:

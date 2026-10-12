@@ -5,8 +5,8 @@
 ## Run
 
 ```bash
-python3 skills/ppt-master/scripts/prompt_audit.py            # text summary
-python3 skills/ppt-master/scripts/prompt_audit.py --json     # stable JSON report
+python3 skills-academic/ppt-master/scripts/prompt_audit.py            # text summary
+python3 skills-academic/ppt-master/scripts/prompt_audit.py --json     # stable JSON report
 ```
 
 Requires `tiktoken` (not part of `requirements.txt` — end users never need it):
@@ -44,16 +44,16 @@ The manifest is audit-only (`audit_only: true`, `runtime_consumed: false`); it i
 
   ```json
   {
-    "source": "skills/ppt-master/templates/schemas/spec_lock.schema.json",
+    "source": "skills-academic/ppt-master/templates/schemas/spec_lock.schema.json",
     "fields": ["page_rhythm"],
-    "scan": ["skills/ppt-master/**/*.md"],
+    "scan": ["skills-academic/ppt-master/**/*.md"],
     "accepted": [
       {
         "field": "page_rhythm",
         "owner_fingerprint": "0123456789ab",
         "projections": [
           {
-            "path": "skills/ppt-master/references/executor-base.md",
+            "path": "skills-academic/ppt-master/references/executor-base.md",
             "role": "consumer",
             "fingerprint": "abcdef012345",
             "reason": "Executor needs the selected page-rhythm key and closed values."

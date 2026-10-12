@@ -4,7 +4,7 @@
 Exercise HTTP boundaries, archived source imports, and DOCX conversion offline.
 
 Usage:
-    python3 -m unittest discover -s skills/ppt-master/scripts/tests -p test_audit_r3_sources.py
+    python3 -m unittest discover -s skills-academic/ppt-master/scripts/tests -p test_audit_r3_sources.py
 
 Dependencies:
     requests, beautifulsoup4, mammoth, PyMuPDF

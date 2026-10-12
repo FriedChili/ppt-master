@@ -1,6 +1,6 @@
 # FORK.md — 科研/学术专用分支
 
-本目录 `skills-academic/ppt-master/` 是从 `skills/ppt-master/`（ppt-master 6.7.0）派生的
+本目录 `skills-academic/ppt-master/` 是从 `skills-academic/ppt-master/`（ppt-master 6.7.0）派生的
 
 **原始 skill 未被修改。** 基线已提交在 git 里（见下），本分支作为对照树独立存在。
 
@@ -14,25 +14,12 @@
 
 ```powershell
 cd E:\ppt-master-6.7.0
-Rename-Item skills\ppt-master ppt-master.upstream      # 保留原版
-Rename-Item skills-academic\ppt-master ppt-master
-# 还原：Rename-Item skills\ppt-master ppt-master.academic; Rename-Item skills\ppt-master.upstream ppt-master
-```
-
-**B. 只作为独立 skill 目录**，让 DSH 指向 `skills-academic/ppt-master/`。
-
----
-
-## 2. 回滚
-
-```powershell
-cd E:\ppt-master-6.7.0
-git checkout 90e4370 -- skills/ppt-master     # 恢复原版 skill 的全部 13016 个文件
-git clean -fd skills/ppt-master               # 清掉多余文件（谨慎：先加 -n 预览）
+git checkout pristine-6.7.0 -- skills-academic/ppt-master   # 取回原版 13016 个文件
+git clean -fd skills-academic/ppt-master                    # 清掉多余文件（先加 -n 预览）
 ```
 
 - 基线提交：`90e4370 baseline: ppt-master 6.7.0 as extracted (pristine, before academic slimming)`
-- `skills/ppt-master` 在本分支的所有提交里始终未被触碰。
+- `skills-academic/ppt-master` 在本分支的所有提交里始终未被触碰。
 - 另有 `_pristine/skills/` 一份纯拷贝作为第二重保险（可删）。
 
 ---
@@ -150,11 +137,11 @@ git clean -fd skills/ppt-master               # 清掉多余文件（谨慎：�
 
 ### 7.1 `prompt_audit` — **exit 0**
 
-`prompt_audit.py` 的路径约定是 `<root>/skills/ppt-master/...`，所以需要造一个安装后布局的根。
+`prompt_audit.py` 的路径约定是 `<root>/skills-academic/ppt-master/...`，所以需要造一个安装后布局的根。
 用 `_audit-staging/`（**真实拷贝，不能用 junction** —— junction 会被 `resolve()` 穿透，破坏相对路径计算）。
 
 ```powershell
-python skills/ppt-master/scripts/prompt_audit.py --root <staging> --skip-near-duplicates
+python skills-academic/ppt-master/scripts/prompt_audit.py --root <staging> --skip-near-duplicates
 # exit 0，仅剩 1 条 advisory 警告 DUPLICATE_EXACT_CANDIDATES（3 组跨文件重复段落）
 ```
 
@@ -234,7 +221,7 @@ N8 已装资产漂移使交接失效。修复后 batch1 22 tests OK、batch3 15 
 
 ### 7.3 导出链端到端（安装后布局）
 
-在 `_audit-staging`（`skills/ppt-master` + `projects/` 的真实安装布局）下，用已有的 18 页
+在 `_audit-staging`（`skills-academic/ppt-master` + `projects/` 的真实安装布局）下，用已有的 18 页
 Default 项目跑完整 checker + exporter 链：
 
 ```
@@ -1092,7 +1079,7 @@ if (desc) label += (isCjkUi() ? "：" : " — ") + desc;
 
 ### 26.1 恢复内容
 
-原始内容取自 pristine 的 `skills/ppt-master/`，按 fork 的缩进与字段风格改写
+原始内容取自 pristine 的 `skills-academic/ppt-master/`，按 fork 的缩进与字段风格改写
 （fork 此前把画布集收窄为 ppt169 / ppt43 / a4，因此**不是**照抄 pristine 的完整列表）。
 
 | 文件 | 恢复内容 |

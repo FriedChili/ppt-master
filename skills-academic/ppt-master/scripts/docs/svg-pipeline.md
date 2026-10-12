@@ -197,9 +197,9 @@ slide's canonical notes.
 Import and export from the repository root:
 
 ```bash
-python3 skills/ppt-master/scripts/pptx_to_svg.py source.pptx \
+python3 skills-academic/ppt-master/scripts/pptx_to_svg.py source.pptx \
   -o /path/to/workspace --inheritance-mode both --roundtrip
-python3 skills/ppt-master/scripts/svg_to_pptx.py /path/to/workspace \
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py /path/to/workspace \
   --roundtrip -o /path/to/output.pptx
 ```
 
@@ -280,7 +280,7 @@ from xml.etree import ElementTree as ET
 import pathops
 
 project = Path(tempfile.mkdtemp(prefix="_smoke_shape_boolean_", dir="projects"))
-scripts = Path("skills/ppt-master/scripts")
+scripts = Path("skills-academic/ppt-master/scripts")
 svg_output = project / "svg_output"
 svg_output.mkdir()
 (project / "spec_lock.md").write_text(
@@ -693,7 +693,7 @@ skeleton by default (kind `deck`; choose `--kind layout` for a neutral Layout
 publication). The skeleton records canvas, source slide count, Master/Layout keys,
 picker names, slots, and a Source Preservation Map. Identity and design prose
 remain TODOs; finish them before registration. Resolved workspaces under
-`skills/ppt-master/templates/<kind_dir>/` use `templates/design_spec.md`;
+`skills-academic/ppt-master/templates/<kind_dir>/` use `templates/design_spec.md`;
 all other workspaces use `templates/design_spec.<kind>.TODO.md`, even when their
 `templates/` is empty. The `spec_skeleton` receipt records that path.
 See [template-tools.md](template-tools.md#mirror-publication). This validator/publisher is for Type A mirror,
@@ -814,7 +814,7 @@ language and Cambria Math. LaTeX can be compile-checked before any SVG is
 written, so an unsupported command is caught at planning time:
 
 ```bash
-python3 -c "import sys; sys.path.insert(0, 'skills/ppt-master/scripts'); from svg_to_pptx.native_objects.formula_compiler import compile_latex_to_omml as c; c(sys.argv[1])" '\frac{a}{b} \int_0^T e^{-i\omega t}\, dt'
+python3 -c "import sys; sys.path.insert(0, 'skills-academic/ppt-master/scripts'); from svg_to_pptx.native_objects.formula_compiler import compile_latex_to_omml as c; c(sys.argv[1])" '\frac{a}{b} \int_0^T e^{-i\omega t}\, dt'
 ```
 
 Matrices, multiline derivations, and other high-structure expressions remain

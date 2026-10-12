@@ -9,13 +9,13 @@ alignment. All four apply the same compact, text-faithful cue regrouping.
 Qwen remains audio-only because its current TTS API exposes no timestamps.
 
 Usage:
-    python3 skills/ppt-master/scripts/notes_to_audio.py <project_path> --voice zh-CN-XiaoxiaoNeural
-    python3 skills/ppt-master/scripts/notes_to_audio.py <project_path> --provider elevenlabs --voice-id <voice_id>
-    python3 skills/ppt-master/scripts/notes_to_audio.py <project_path> --provider minimax --voice-id <voice_id>
-    python3 skills/ppt-master/scripts/notes_to_audio.py <project_path> --provider qwen --voice-id <voice>
-    python3 skills/ppt-master/scripts/notes_to_audio.py <project_path> --provider cosyvoice --voice-id <voice>
-    python3 skills/ppt-master/scripts/notes_to_audio.py --list-common-voices
-    python3 skills/ppt-master/scripts/notes_to_audio.py --list-voices --locale zh-CN
+    python3 skills-academic/ppt-master/scripts/notes_to_audio.py <project_path> --voice zh-CN-XiaoxiaoNeural
+    python3 skills-academic/ppt-master/scripts/notes_to_audio.py <project_path> --provider elevenlabs --voice-id <voice_id>
+    python3 skills-academic/ppt-master/scripts/notes_to_audio.py <project_path> --provider minimax --voice-id <voice_id>
+    python3 skills-academic/ppt-master/scripts/notes_to_audio.py <project_path> --provider qwen --voice-id <voice>
+    python3 skills-academic/ppt-master/scripts/notes_to_audio.py <project_path> --provider cosyvoice --voice-id <voice>
+    python3 skills-academic/ppt-master/scripts/notes_to_audio.py --list-common-voices
+    python3 skills-academic/ppt-master/scripts/notes_to_audio.py --list-voices --locale zh-CN
 
 Dependencies:
     python3 -m pip install edge-tts
@@ -628,7 +628,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.provider == "edge" and not args.voice:
         parser.error(
             "--voice is required for --provider edge. Run --list-voices --locale <locale> to discover voices "
-            "(e.g. --locale zh-CN), or follow skills/ppt-master/workflows/stages/generate-audio.md "
+            "(e.g. --locale zh-CN), or follow skills-academic/ppt-master/workflows/stages/generate-audio.md "
             "for an AI-curated recommendation."
         )
         raise AssertionError("unreachable")

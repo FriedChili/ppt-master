@@ -22,7 +22,7 @@ ppt-master is a routed presentation workflow. This entry owns global execution d
 
 **Hard rule — paths before commands**: Retain the host-provided absolute
 directory containing this file as `SKILL_DIR`. Per tool call, expand
-`${SKILL_DIR}` and replace any `skills/ppt-master/` prefix with it. Never `cd`,
+`${SKILL_DIR}` and replace any `skills-academic/ppt-master/` prefix with it. Never `cd`,
 use CWD, or assume a repo checkout. If unavailable, ask; never search or guess.
 
 1. Read this file.

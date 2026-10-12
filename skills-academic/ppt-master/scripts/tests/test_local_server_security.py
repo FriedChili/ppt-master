@@ -4,7 +4,7 @@
 Exercise both Flask request guards without creating project files or servers.
 
 Usage:
-    python3 -m unittest discover -s skills/ppt-master/scripts/tests -p test_local_server_security.py
+    python3 -m unittest discover -s skills-academic/ppt-master/scripts/tests -p test_local_server_security.py
 
 Dependencies:
     flask

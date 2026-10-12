@@ -4,7 +4,7 @@
 Check URL validation, TLS defaults, and failure paths with in-memory responses.
 
 Usage:
-    python3 -m unittest discover -s skills/ppt-master/scripts/tests -p test_web_to_md_security.py
+    python3 -m unittest discover -s skills-academic/ppt-master/scripts/tests -p test_web_to_md_security.py
 
 Dependencies:
     requests, beautifulsoup4

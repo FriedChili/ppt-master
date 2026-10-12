@@ -12,17 +12,17 @@
 
 DOCX 转换会把内嵌图片素材抽取到配套素材目录，并写入图片清单；来源能提供相应信息时，清单会记录显示尺寸、像素尺寸与宽高比。项目导入会让活动项目可以使用这些配套素材。规划会根据图片在来源中的位置、上下文、caption、alt text、文件名与几何信息，决定某个抽取素材是否使用；不要求查看或使用每一张抽取图片。选中的图片可以完整显示，也可以做保护焦点内容的安全裁剪。抽取和登记**不等于**重新生成图片。
 
-配套素材的输出见[来源转换输出合同](../../skills/ppt-master/scripts/docs/conversion.md)，选用与几何依据见[图片规划合同](../../skills/ppt-master/references/strategist-image.md)。
+配套素材的输出见[来源转换输出合同](../../skills-academic/ppt-master/scripts/docs/conversion.md)，选用与几何依据见[图片规划合同](../../skills-academic/ppt-master/references/strategist-image.md)。
 
 ## Q: 能把 DOCX 里的所有图片批量重画成统一比例和风格吗？
 
 当前没有。现行 Generate 路线没有面向用户的入口，可以批量按参考图重画全部 DOCX 内嵌图片并自动替换原图。Manifest 模式可以根据提示词批量生成**新图**；内置 CLI 的 `--reference-image` 编辑则是独立的单图窄路径，不属于 manifest 模式，而且只适用于受支持的生图后端。图片还原为 PPTX 也不能补上这项能力：它只在栅格输入代表待还原的整页幻灯片画面时触发，普通 Word 照片或插图仍属于来源素材。
 
-这些边界见[图片生成合同](../../skills/ppt-master/references/image-generator.md)、[Generate Step 5](../../skills/ppt-master/workflows/generate-pptx.md)与[图片还原为 PPTX profile](../../skills/ppt-master/workflows/profiles/image-to-pptx.md)。
+这些边界见[图片生成合同](../../skills-academic/ppt-master/references/image-generator.md)、[Generate Step 5](../../skills-academic/ppt-master/workflows/generate-pptx.md)与[图片还原为 PPTX profile](../../skills-academic/ppt-master/workflows/profiles/image-to-pptx.md)。
 
 ## Q: 把原图裁成指定比例，与按指定比例生成新图有什么区别？
 
-两者改变的对象不同。`crop=adaptive` 允许但不强制裁剪。Executor 可用 `meet` 完整显示原图，或用保护焦点内容的 `slice` 填满所选容器；两者都复用来源像素。AI 任务的 `aspect_ratio` 是新生成画布的要求。参考图编辑则通过独立的单图路径变换一张给定图片，不是 manifest 批处理。详见[图片资源清单规则](../../skills/ppt-master/references/strategist-image.md)、[Executor 裁剪政策](../../skills/ppt-master/references/executor-image.md)、[SVG 图片放置合同](../../skills/ppt-master/references/svg-image-embedding.md)与[图片 manifest schema](../../skills/ppt-master/references/image-generator.md)。
+两者改变的对象不同。`crop=adaptive` 允许但不强制裁剪。Executor 可用 `meet` 完整显示原图，或用保护焦点内容的 `slice` 填满所选容器；两者都复用来源像素。AI 任务的 `aspect_ratio` 是新生成画布的要求。参考图编辑则通过独立的单图路径变换一张给定图片，不是 manifest 批处理。详见[图片资源清单规则](../../skills-academic/ppt-master/references/strategist-image.md)、[Executor 裁剪政策](../../skills-academic/ppt-master/references/executor-image.md)、[SVG 图片放置合同](../../skills-academic/ppt-master/references/svg-image-embedding.md)与[图片 manifest schema](../../skills-academic/ppt-master/references/image-generator.md)。
 
 ## Q: 只有一个主题或想法、没有任何资料，也能生成吗？
 
@@ -57,7 +57,7 @@ ppt-master 可以在任何能读取文件和执行命令、支持 Agent 的 AI �
 
 | 安装方式 | 更新方式 |
 |---|---|
-| Git clone | 在 `ppt-master` 目录运行 `python3 skills/ppt-master/scripts/update_repo.py` |
+| Git clone | 在 `ppt-master` 目录运行 `python3 skills-academic/ppt-master/scripts/update_repo.py` |
 | Download ZIP | 重新下载最新版 ZIP，解压到新目录；把旧目录里的 `.env` 和 `projects/` 复制过去；再运行 `pip install -r requirements.txt` |
 | Skill marketplace | 用对应的 marketplace / skills 工具重新安装或更新 |
 
@@ -66,7 +66,7 @@ ppt-master 可以在任何能读取文件和执行命令、支持 Agent 的 AI �
 如果不确定自己是哪种安装方式，可以让 AI 在项目目录里运行：
 
 ```bash
-python3 skills/ppt-master/scripts/update_repo.py
+python3 skills-academic/ppt-master/scripts/update_repo.py
 ```
 
 如果当前目录不是 Git clone 版本，脚本会提示你按 ZIP 方式迁移。
@@ -84,7 +84,7 @@ python3 skills/ppt-master/scripts/update_repo.py
 ## Q: 通过 Skill marketplace 安装后，还需要什么环境，应该在哪个目录运行？
 
 
-Skill 安装目录与工作目录承担不同角色。Python 依赖从包含已安装 skill 的 `SKILL.md` 和 `requirements.txt` 的目录安装；Agent 则应从你自行选择的、可持久保存且可写的工作目录启动。Agent 会按需在这个工作目录下创建 `projects/`，不需要从 host 管理的 skill 缓存目录运行。详见[快速入门：配置安装目录与工作目录](./getting-started.md#配置安装目录与工作目录)和 skill 的[执行入口](../../skills/ppt-master/SKILL.md)。
+Skill 安装目录与工作目录承担不同角色。Python 依赖从包含已安装 skill 的 `SKILL.md` 和 `requirements.txt` 的目录安装；Agent 则应从你自行选择的、可持久保存且可写的工作目录启动。Agent 会按需在这个工作目录下创建 `projects/`，不需要从 host 管理的 skill 缓存目录运行。详见[快速入门：配置安装目录与工作目录](./getting-started.md#配置安装目录与工作目录)和 skill 的[执行入口](../../skills-academic/ppt-master/SKILL.md)。
 
 ## Q: macOS 或 Linux 怎样做与 Windows 相同的最小安装验证？
 
@@ -94,7 +94,7 @@ Skill 安装目录与工作目录承担不同角色。Python 依赖从包含已�
 python3 -c "import pptx; import fitz; print('All core dependencies OK')"
 ```
 
-然后让 Agent 用 Quick 模式生成一份无来源文件的 3 页 “Hello World” deck。导入命令只检查核心 Python 包；Quick 运行会连同项目初始化、SVG 创作、校验和导出一起检查。成功标志是活动项目的 `exports/` 目录出现 PPTX，并且该文件能在演示文稿应用中打开。依据见 [Windows 安装 smoke](./windows-installation.md)和[快速模式 profile](../../skills/ppt-master/workflows/profiles/quick-generate.md)。
+然后让 Agent 用 Quick 模式生成一份无来源文件的 3 页 “Hello World” deck。导入命令只检查核心 Python 包；Quick 运行会连同项目初始化、SVG 创作、校验和导出一起检查。成功标志是活动项目的 `exports/` 目录出现 PPTX，并且该文件能在演示文稿应用中打开。依据见 [Windows 安装 smoke](./windows-installation.md)和[快速模式 profile](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)。
 
 ## Q: 需要手工创建 `projects/<name>` 吗？最终文件在哪个 `exports/`？
 
@@ -104,7 +104,7 @@ python3 -c "import pptx; import fitz; print('All core dependencies OK')"
 <活动项目>/exports/<项目名>_<时间戳>.pptx
 ```
 
-它不是仓库根目录下一个没有项目上下文的 `exports/`；只有显式指定输出路径时例外。依据见 [Generate 的项目初始化与导出](../../skills/ppt-master/workflows/generate-pptx.md)、[快速模式 profile](../../skills/ppt-master/workflows/profiles/quick-generate.md)和[工作目录说明](./getting-started.md#配置安装目录与工作目录)。
+它不是仓库根目录下一个没有项目上下文的 `exports/`；只有显式指定输出路径时例外。依据见 [Generate 的项目初始化与导出](../../skills-academic/ppt-master/workflows/generate-pptx.md)、[快速模式 profile](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)和[工作目录说明](./getting-started.md#配置安装目录与工作目录)。
 
 ## Q: 能用 AI 生成配图吗？
 
@@ -114,7 +114,7 @@ python3 -c "import pptx; import fitz; print('All core dependencies OK')"
 
 不要求逐页使用图标。Default 中的 `No base icons` 与 Emoji、内置 SVG 图标、自定义项目图标一样，都是合法的确认选项。Default 的 `icons.inventory` 只索引其精选的已备素材池，不会把图标分配到页面。两种 profile 都可以使用项目内已备图标；Quick 不创建通用资源 roster，也不创建逐页图标分配表。只有页面沟通任务需要时才会使用图标，因此整份 deck 或某一页可以不用。AI 生成的插画图标切片属于另一条图片素材路径，同样不是必选项。
 
-依据见[策略师的图标选择](../../skills/ppt-master/references/strategist.md)、[执行器的图标用法](../../skills/ppt-master/references/executor-base.md)与[Quick 资源准备](../../skills/ppt-master/workflows/profiles/quick-generate.md)。
+依据见[策略师的图标选择](../../skills-academic/ppt-master/references/strategist.md)、[执行器的图标用法](../../skills-academic/ppt-master/references/executor-base.md)与[Quick 资源准备](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)。
 
 ## Q: 没有生图 API Key，还能配图吗？
 
@@ -126,7 +126,7 @@ python3 -c "import pptx; import fitz; print('All core dependencies OK')"
 
 ## Q: 能把 AI 生成的 PPT 效果图或截图还原成可编辑 PowerPoint 吗？
 
-可以。提供一张或多张图片，并要求把其中的页面还原为可编辑 PPTX，ppt-master 就会把请求路由到**图片还原为 PPTX**（[`image-to-pptx`](../../skills/ppt-master/workflows/profiles/image-to-pptx.md)）profile。该 profile 当前要求在 Codex 中使用；其他 Agent host 尚未适配，不对其行为作支持或承诺。图片还原为 PPTX 始终直接启用 Quick，不需要另行说明“快速模式”。它会先把所有输入规范化为一份有序页面画面清单，所以最终页数由实际页面画面决定，而不是由文件数决定。
+可以。提供一张或多张图片，并要求把其中的页面还原为可编辑 PPTX，ppt-master 就会把请求路由到**图片还原为 PPTX**（[`image-to-pptx`](../../skills-academic/ppt-master/workflows/profiles/image-to-pptx.md)）profile。该 profile 当前要求在 Codex 中使用；其他 Agent host 尚未适配，不对其行为作支持或承诺。图片还原为 PPTX 始终直接启用 Quick，不需要另行说明“快速模式”。它会先把所有输入规范化为一份有序页面画面清单，所以最终页数由实际页面画面决定，而不是由文件数决定。
 
 普通可见文字会还原为原生可编辑文本。Logo、图标、徽标和装饰图形在原图足够清晰时直接使用；像素过低时可由 Codex 根据参考图重建，但必须锁定身份、轮廓、比例、颜色和字标，禁止换成仅仅相似的替代物。Chart、table 和 data graphic 禁止生成式重建：必须使用可核对数值的原生对象、精确源资产，或标记 `manual_required`。照片和插画场景至少拆成干净背景层与人物 / 前景层。多个带 padding 包围盒且互不重叠的对象可共用一次生成 plate，再通过 grid slice 或 SVG bbox crop 拆成 PowerPoint 中的独立图片对象。AI 可以补全拆层后露出的隐藏场景像素，但不能改掉可见构图。把整页截图铺底、只叠少量可编辑元素，不算还原成功。
 
@@ -143,7 +143,7 @@ python3 -c "import pptx; import fitz; print('All core dependencies OK')"
 如果需要让 PowerPoint 自动重排适合流动的正文，请使用 `--reflow-text`：
 
 ```bash
-python3 skills/ppt-master/scripts/svg_to_pptx.py <project_path> --reflow-text
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project_path> --reflow-text
 ```
 
 该模式会恢复段落自动重排，最终行数可能改变。旧参数 `--merge-paragraphs` 是 `--reflow-text` 的兼容别名。
@@ -151,7 +151,7 @@ python3 skills/ppt-master/scripts/svg_to_pptx.py <project_path> --reflow-text
 只有每一视觉行都必须成为独立的 PowerPoint 文本框时，才使用 `--no-merge`：
 
 ```bash
-python3 skills/ppt-master/scripts/svg_to_pptx.py <project_path> --no-merge
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project_path> --no-merge
 ```
 
 该模式保留逐行独立的对象位置，但 12 行正文会变成 12 个文本框。与 AI 对话时，可以直接说“允许文字自动重排”或“每一视觉行使用独立文本框”，由它选择对应的导出模式。
@@ -185,7 +185,7 @@ PowerPoint 最终显示的是 pt，所以**导出时**自动把 px 换成 pt（`
 
 ppt-master 没有文档化的 `wireframe` 运行模式，也没有跨版本视觉等价保证，因此不能只凭观感判定版本回归。先记录本次使用 Default 还是 Quick，以及实际的 mode、visual style、图片方案、基础图标选择、Custom Animations 设置和资源备妥状态。Quick 不写 `design_spec.md` 或 `spec_lock.md`，这些决定只保留在 Agent 的当前上下文。
 
-再比较活动项目 `svg_output/` 中的同一页与导出的 PPTX。SVG 本身已经稀疏时，应检查规划、资源与 SVG 创作层；SVG 中存在预期对象、PPTX 却丢失或改变时，才检查转换或渲染层。这个分界依据 [Materials → Plan → Realization](./technical-design.md)、[Default Generate 工作流](../../skills/ppt-master/workflows/generate-pptx.md)与[快速模式 profile](../../skills/ppt-master/workflows/profiles/quick-generate.md)。
+再比较活动项目 `svg_output/` 中的同一页与导出的 PPTX。SVG 本身已经稀疏时，应检查规划、资源与 SVG 创作层；SVG 中存在预期对象、PPTX 却丢失或改变时，才检查转换或渲染层。这个分界依据 [Materials → Plan → Realization](./technical-design.md)、[Default Generate 工作流](../../skills-academic/ppt-master/workflows/generate-pptx.md)与[快速模式 profile](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)。
 
 ## Q: ppt-master 如何计费？复用模板会降低 token 用量吗？
 
@@ -243,16 +243,16 @@ carrier 与保留边界见 [PowerPoint ↔ SVG 映射指南](./powerpoint-svg-ma
 `pptx_to_svg.py` 也会把当前注册表内可精确读回的页面切换和具有精确时长的
 有限对象动画记录重建到 `animations.json`；不支持的来源 timing 会保留明确诊断。
 
-整份 deck 的自动入场可用 `-a auto`，统一效果可传规范效果名，逐页 / 逐对象时序则使用项目级 `animations.json`。Default 在已有 sidecar、显式逐页 / 逐对象请求，或有效的 Custom Animations 结果已启用时运行自定义阶段。Quick 在 sidecar 或当前上下文的动效决定需要对象级工作时运行；录制、自运行或视频导向的 Quick 交付必须进入该阶段，除非用户显式要求静态或只用页间转场。只涉及整份 deck 的要求可以保留为导出参数。所有触发都不成立时，保留 `fade` / `none` 默认值。触发边界见 [Generate 工作流](../../skills/ppt-master/workflows/generate-pptx.md)与[快速模式 profile](../../skills/ppt-master/workflows/profiles/quick-generate.md)。
+整份 deck 的自动入场可用 `-a auto`，统一效果可传规范效果名，逐页 / 逐对象时序则使用项目级 `animations.json`。Default 在已有 sidecar、显式逐页 / 逐对象请求，或有效的 Custom Animations 结果已启用时运行自定义阶段。Quick 在 sidecar 或当前上下文的动效决定需要对象级工作时运行；录制、自运行或视频导向的 Quick 交付必须进入该阶段，除非用户显式要求静态或只用页间转场。只涉及整份 deck 的要求可以保留为导出参数。所有触发都不成立时，保留 `fade` / `none` 默认值。触发边界见 [Generate 工作流](../../skills-academic/ppt-master/workflows/generate-pptx.md)与[快速模式 profile](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)。
 
 ```bash
-python3 skills/ppt-master/scripts/svg_to_pptx.py <project> -t push       # 换转场效果
-python3 skills/ppt-master/scripts/svg_to_pptx.py <project> -t none       # 关闭转场
-python3 skills/ppt-master/scripts/svg_to_pptx.py <project> -a auto       # 开启页内元素入场（按 group id 自动映射效果）
-python3 skills/ppt-master/scripts/svg_to_pptx.py <project> --animation entrance_fade # 开启并改用单一规范效果
-python3 skills/ppt-master/scripts/svg_to_pptx.py <project> --animation emphasis_spin # 原生强调效果
-python3 skills/ppt-master/scripts/pptx_animations.py --list             # 完整分类效果清单
-python3 skills/ppt-master/scripts/svg_to_pptx.py <project> -a auto --animation-trigger on-click   # 单击触发，演讲者控制节奏
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -t push       # 换转场效果
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -t none       # 关闭转场
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -a auto       # 开启页内元素入场（按 group id 自动映射效果）
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> --animation entrance_fade # 开启并改用单一规范效果
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> --animation emphasis_spin # 原生强调效果
+python3 skills-academic/ppt-master/scripts/pptx_animations.py --list             # 完整分类效果清单
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -a auto --animation-trigger on-click   # 单击触发，演讲者控制节奏
 ```
 
 `on-click` 适合现场演示。通过 `--recorded-narration` 做旁白/视频导出时会拒绝它，因为 ppt-master 只写页面级计时，不生成对象级点击计时；带旁白的 deck 请使用 `after-previous` 或 `with-previous`。
@@ -301,7 +301,7 @@ python3 skills/ppt-master/scripts/svg_to_pptx.py <project> -a auto --animation-t
 
 ## Q: 不想先确认设计规格，能直接生成吗？
 
-可以。请显式要求**快速生成**，Generate 路线会启用 [`quick-generate` profile](../../skills/ppt-master/workflows/profiles/quick-generate.md)。
+可以。请显式要求**快速生成**，Generate 路线会启用 [`quick-generate` profile](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)。
 
 **它跳过的是策略师分析、`design_spec.md` / `spec_lock.md` 落盘和分步确认停顿：你明确提出的要求照做；你没提的，当前 Agent 直接决定并继续，不再回来征求同意。** 什么都不提，才是全部由 Agent 决定。它同时跳过 `finalize_svg.py`，因此不生成 `svg_final/` 预览。
 
@@ -338,7 +338,7 @@ Quick 省略独立规划阶段，但仓库没有文档化的测量或保证表�
 | 只留内容，设计与分页都重来 | **Generate PPTX** | 源事实；故事结构和页数都可重构 |
 | 留内容 + 留设计 | 不必生成 | 直接用原文件 |
 
-使用 **beautify profile** 的前提是：原 PPT 的分页本身就是输出要求的一部分。文字逐字不动、页数页序 1:1 保留，并重排版式、层级和留白。源配色与字体是推荐且预选的默认值；用户显式要求或最终确认可以覆盖视觉字段，但 Beautify 不会在未经确认时静默偏离源身份。典型说法是「把这份 PPT 美化一下 / 重新排版，内容别动」。见 [beautify profile](../../skills/ppt-master/workflows/profiles/beautify-pptx.md)。
+使用 **beautify profile** 的前提是：原 PPT 的分页本身就是输出要求的一部分。文字逐字不动、页数页序 1:1 保留，并重排版式、层级和留白。源配色与字体是推荐且预选的默认值；用户显式要求或最终确认可以覆盖视觉字段，但 Beautify 不会在未经确认时静默偏离源身份。典型说法是「把这份 PPT 美化一下 / 重新排版，内容别动」。见 [beautify profile](../../skills-academic/ppt-master/workflows/profiles/beautify-pptx.md)。
 
 用 **主管线** 的前提是：原 PPT 只是内容材料。流程会用 `ppt_to_md` 抽成 Markdown，并读取 `analysis/` 里的 PPTX intake 事实，再由 Strategist 自由重构大纲（合页 / 拆页 / 换序）。典型说法是「用这份 PPT 的内容重做一份更好的」或「提炼成 10 页高管汇报」。
 
@@ -354,7 +354,7 @@ Quick 省略独立规划阶段，但仓库没有文档化的测量或保证表�
 
 可以——这就是 **Edit Native PPTX** 路线，独立于 Generate。把现成的 `.pptx` 连同素材（或一个主题）给 AI，说「套模板 / 把这些填回去」。它会把 deck 导入 `projects/` 下保留来源的 round-trip 工作区，把来源页面当作原生页面库，并在编辑选中内容前选择、重排、重复或省略页面。
 
-未改的输出页面会被引用并逐字节恢复；在编辑过的页面上，未改对象恢复为原生形态，只有改过的对象会重建。`page_plan.json` 中有序的 `pages` 清单使用 `source_slide` 和可选的 SVG 副本文件名选择、重排、重复或省略来源页面。讲稿、旁白、计时和转场都作为保留页面上的叠加内容。一份 deck 的页面结构本身承载着逻辑（总分、对比、递进），所以应挑选结构本就契合内容的页面，而不是硬塞进去。若源页面库缺少所需的新结构，请走普通 Generate，或先 Create Template、再从产出的工作区 Generate。完整步骤：[Edit Native PPTX 工作流](../../skills/ppt-master/workflows/edit-native-pptx.md)。
+未改的输出页面会被引用并逐字节恢复；在编辑过的页面上，未改对象恢复为原生形态，只有改过的对象会重建。`page_plan.json` 中有序的 `pages` 清单使用 `source_slide` 和可选的 SVG 副本文件名选择、重排、重复或省略来源页面。讲稿、旁白、计时和转场都作为保留页面上的叠加内容。一份 deck 的页面结构本身承载着逻辑（总分、对比、递进），所以应挑选结构本就契合内容的页面，而不是硬塞进去。若源页面库缺少所需的新结构，请走普通 Generate，或先 Create Template、再从产出的工作区 Generate。完整步骤：[Edit Native PPTX 工作流](../../skills-academic/ppt-master/workflows/edit-native-pptx.md)。
 
 ---
 
@@ -365,7 +365,7 @@ Edit Native PPTX 与 Create Template 都会在开始创作前写出可读清单�
 **Edit Native PPTX**：
 
 ```bash
-python3 skills/ppt-master/scripts/pptx_to_svg.py <deck.pptx> \
+python3 skills-academic/ppt-master/scripts/pptx_to_svg.py <deck.pptx> \
   -o projects/<slug> --inheritance-mode both --roundtrip
 ```
 
@@ -374,7 +374,7 @@ python3 skills/ppt-master/scripts/pptx_to_svg.py <deck.pptx> \
 **Create Template**：
 
 ```bash
-python3 skills/ppt-master/scripts/pptx_template_import.py <deck.pptx> --manifest-only -o <workspace>
+python3 skills-academic/ppt-master/scripts/pptx_template_import.py <deck.pptx> --manifest-only -o <workspace>
 ```
 
 `manifest.json` 逐页报告 layout / master 路径、占位符（`type`、`idx`、`semanticRole`、`shapeName`）、图片资源、文字数量与页面类型；`native_structure.json` 另外给出源结构评估。`--manifest-only` 跳过 SVG 导出，只是查看时开销很小。
@@ -394,13 +394,13 @@ python3 skills/ppt-master/scripts/pptx_template_import.py <deck.pptx> --manifest
 | **Layout** | 复用品牌中立、应用中立的 Master / Layout / slot 结构 |
 | **Deck** | 复用反复出现的演示应用，或把企业身份与结构整合在一起；同时拥有身份、结构和 SVG roster |
 
-Create Template 会先确认简报，再写入已注册、可发现的 `library` 工作区，或一个不注册的已初始化 `project` 工作区。后续 Generate 应传产出的工作区根目录，而不是来源 `.pptx` 或其内层 `templates/` 目录。详见 [Create Template 路线](../../skills/ppt-master/workflows/create-template.md)与[模板指南](./templates-guide.md)。
+Create Template 会先确认简报，再写入已注册、可发现的 `library` 工作区，或一个不注册的已初始化 `project` 工作区。后续 Generate 应传产出的工作区根目录，而不是来源 `.pptx` 或其内层 `templates/` 目录。详见 [Create Template 路线](../../skills-academic/ppt-master/workflows/create-template.md)与[模板指南](./templates-guide.md)。
 
 ---
 
 ## Q: 模板注册后，以后每次生成都会自动使用吗？
 
-不会。注册只让工作区可被发现，不会自动选中。Default Generate 每次仍需在 Stage 1 确认；只提供一个精确工作区 root 时可在页面中预选，但不会跳过确认，提供多个 root 时则都只作为未选候选。Quick 没有模板选择页，因此精确 root 会被直接校验并使用；没有精确 root 就走自由设计。原始 `.pptx`、内层 `templates/` 目录、裸模板名或风格词都不算选中工作区。详见[模板选择机制](./templates-guide.md)与[Quick 模板边界](../../skills/ppt-master/workflows/profiles/quick-generate.md)。
+不会。注册只让工作区可被发现，不会自动选中。Default Generate 每次仍需在 Stage 1 确认；只提供一个精确工作区 root 时可在页面中预选，但不会跳过确认，提供多个 root 时则都只作为未选候选。Quick 没有模板选择页，因此精确 root 会被直接校验并使用；没有精确 root 就走自由设计。原始 `.pptx`、内层 `templates/` 目录、裸模板名或风格词都不算选中工作区。详见[模板选择机制](./templates-guide.md)与[Quick 模板边界](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)。
 
 ---
 
@@ -430,10 +430,10 @@ Create Template 会先确认简报，再写入已注册、可发现的 `library`
 
 **第三步 — 等待完成**
 
-AI 代理会自动完成后续工作——分析参考、写入 kind 专属规范，仅为 Layout/Deck 构建结构定义，并验证工作区。Brand/Style 不生成预览 PPTX；Layout/Deck 可按请求生成 `exports/<id>_template_preview.pptx`，多 Master 时必须生成。两种范围都要求 `templates/`；Brand/Layout/Deck 可使用包自有 `images/` 和 `icons/`，Style 只贡献自己的 Design Spec。`library` 在 `skills/ppt-master/templates/<kind>/<id>/` 写入裸 `templates/design_spec.md` 并完成全局注册；`project` 在 `projects/<name>/` 写入 `templates/design_spec.<kind>.<id>.md` 并跳过注册，四种 kind 均可各自共存一份；Layout 与 Deck 同时存在时，Layout 拥有有效 SVG roster。空的可选目录直接省略。把这个工作区 root 交给 Step 3 时，项目 root 会原子贡献其中全部 spec，安装不会复制 `exports/`。旧平铺或语义旧包只能作为参考输入，必须通过 `create-template` 重建为当前工作区后才能被 Generate 选择。
+AI 代理会自动完成后续工作——分析参考、写入 kind 专属规范，仅为 Layout/Deck 构建结构定义，并验证工作区。Brand/Style 不生成预览 PPTX；Layout/Deck 可按请求生成 `exports/<id>_template_preview.pptx`，多 Master 时必须生成。两种范围都要求 `templates/`；Brand/Layout/Deck 可使用包自有 `images/` 和 `icons/`，Style 只贡献自己的 Design Spec。`library` 在 `skills-academic/ppt-master/templates/<kind>/<id>/` 写入裸 `templates/design_spec.md` 并完成全局注册；`project` 在 `projects/<name>/` 写入 `templates/design_spec.<kind>.<id>.md` 并跳过注册，四种 kind 均可各自共存一份；Layout 与 Deck 同时存在时，Layout 拥有有效 SVG roster。空的可选目录直接省略。把这个工作区 root 交给 Step 3 时，项目 root 会原子贡献其中全部 spec，安装不会复制 `exports/`。旧平铺或语义旧包只能作为参考输入，必须通过 `create-template` 重建为当前工作区后才能被 Generate 选择。
 
 > **提示**：对风格和使用场景描述得越具体，生成的模板就越符合你的预期。
 
 ---
 
-> 更多问题可先查看 [skills/ppt-master/SKILL.md](../../skills/ppt-master/SKILL.md) 与 [AGENTS.md](../../AGENTS.md)
+> 更多问题可先查看 [skills-academic/ppt-master/SKILL.md](../../skills-academic/ppt-master/SKILL.md) 与 [AGENTS.md](../../AGENTS.md)

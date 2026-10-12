@@ -135,7 +135,7 @@ Every communication job maps to a prepared resource or an information model; thi
 **Reference — Chart/Table vocabularies**: the loaded vocabularies list what can be selected; they rank nothing, and custom objects and qualitative composition stay outside them. Choose at most one flexible `family/key` per page (children and qualitative relationships stay in §IX), keep `no-template-match` in §IX when none fits (never serialized), and validate every selected reference before the lock, correcting a failed selection by re-reading the complete vocabulary/registry:
 
 ```bash
-python3 skills/ppt-master/scripts/visualization_recall.py validate \
+python3 skills-academic/ppt-master/scripts/visualization_recall.py validate \
   <family>/<key> [<family>/<key> ...]
 ```
 

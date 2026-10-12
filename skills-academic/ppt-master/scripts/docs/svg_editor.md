@@ -5,10 +5,10 @@ Browser SVG editor behind the [`live-preview`](../../workflows/stages/live-previ
 ## Commands
 
 ```bash
-python3 skills/ppt-master/scripts/svg_editor/server.py <project_path> --daemon              # plain mode (stage Step 1)
-python3 skills/ppt-master/scripts/svg_editor/server.py <project_path> --live --daemon       # Generate Step 6 auto-startup
-python3 skills/ppt-master/scripts/svg_editor/server.py <project_path> --daemon --no-browser # remote host
-python3 skills/ppt-master/scripts/svg_editor/server.py <project_path> --shutdown
+python3 skills-academic/ppt-master/scripts/svg_editor/server.py <project_path> --daemon              # plain mode (stage Step 1)
+python3 skills-academic/ppt-master/scripts/svg_editor/server.py <project_path> --live --daemon       # Generate Step 6 auto-startup
+python3 skills-academic/ppt-master/scripts/svg_editor/server.py <project_path> --daemon --no-browser # remote host
+python3 skills-academic/ppt-master/scripts/svg_editor/server.py <project_path> --shutdown
 ```
 
 The launcher starts the server in the background, waits for `GET /api/health`, records pid + port in `<project_path>/live_preview/lock.json`, opens the browser when possible, and edits `<project_path>/svg_output/` in place.

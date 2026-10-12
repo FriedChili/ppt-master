@@ -10,7 +10,7 @@ Create one reusable template workspace under the global library (default) or `pr
 
 | Scope | `<template_workspace>` | `<design_spec_path>` | Registration |
 |---|---|---|---|
-| `library` (default) | `skills/ppt-master/templates/<kind_dir>/<template_id>/` | `templates/design_spec.md` | `register_template.py` against the kind index |
+| `library` (default) | `skills-academic/ppt-master/templates/<kind_dir>/<template_id>/` | `templates/design_spec.md` | `register_template.py` against the kind index |
 | `project` | `<target_project>/` (initialized by `project_manager.py init`) | `templates/design_spec.<kind>.<id>.md` (kind/id equal frontmatter `kind` / `<kind>_id`) | None; the root stays an ordinary explicit workspace whose `templates/` may accumulate one Brand, Style, Layout, and Deck over separate runs — Layout owns the active roster when both coexist, Deck keeps identity and application context |
 
 **Hard rule — one workspace routing contract**: scope changes the parent path, spec filename, and registration — never the spec schema or asset routes. Do not maintain a library-only flat package or project-only thin-bundle branch.
@@ -209,7 +209,7 @@ Before emitting the marker, all of these hold:
 
 > Precondition: `[TEMPLATE_BRIEF_CONFIRMED]` emitted in Step 3.
 
-**Workspace resolution**: resolve `<template_workspace>` from scope (`skills/ppt-master/templates/<kind_dir>/<template_id>` or `<target_project>`), `mkdir -p "$template_workspace/templates"`, and create optional roots only when writing a real asset. Normally `<authoring_workspace>` equals `<template_workspace>`. When the project already has the other structural kind, author in an isolated project-shaped root through validation and preview, then install its spec at `<installed_design_spec_path>` and assets atomically (Layout replaces the Deck roster; Deck beside Layout installs no structural payload), deleting staging only after the final root passes.
+**Workspace resolution**: resolve `<template_workspace>` from scope (`skills-academic/ppt-master/templates/<kind_dir>/<template_id>` or `<target_project>`), `mkdir -p "$template_workspace/templates"`, and create optional roots only when writing a real asset. Normally `<authoring_workspace>` equals `<template_workspace>`. When the project already has the other structural kind, author in an isolated project-shaped root through validation and preview, then install its spec at `<installed_design_spec_path>` and assets atomically (Layout replaces the Deck roster; Deck beside Layout installs no structural payload), deleting staging only after the final root passes.
 
 **Preflight (atomic, parent-level, before any final write)**: any failure aborts before writing anything; never overwrite an unrelated name conflict.
 
@@ -278,7 +278,7 @@ Never encode package repair in SVGs. Do not package `native_structure.json` or `
 **Create Layout / Create Deck**: `<template_source>` is the active authoring root's `templates/`. `ls` it and the `images/` / `icons/` roots, then run read-only validation (Template_Designer writes canonical compact SVG directly; mirror normalizes in memory; authored-preset and native record frames stay unchanged):
 
 ```bash
-python3 skills/ppt-master/scripts/svg_quality_checker.py "<template_source>" --template-mode --canonical-authoring --format <canvas_format>
+python3 skills-academic/ppt-master/scripts/svg_quality_checker.py "<template_source>" --template-mode --canonical-authoring --format <canvas_format>
 ```
 
 Checker behavior in template mode: [`template-tools.md`](../scripts/docs/template-tools.md#svg_quality_checkerpy---template-mode). It validates the authoring contract; Theme ownership, package IDs, and registrations are verified by Step 6.
@@ -309,9 +309,9 @@ Layout/Deck only; Brand and Style skip it. Step 3 confirmed scope from a brief, 
 **Trigger — Layout/Deck only**: a requested PowerPoint review file, or a validated roster declaring more than one unique Master key (required even without a request). Brand and Style always skip it.
 
 ```bash
-python3 skills/ppt-master/scripts/template_preview_pptx.py "<authoring_workspace>"            # exports/<template_id>_template_preview.pptx
-python3 skills/ppt-master/scripts/template_preview_pptx.py "<authoring_workspace>" --native-charts-and-tables -o "<authoring_workspace>/exports/<template_id>_template_preview_native.pptx"   # explicit native review; typed chart/table slots already compile natively in the default run
-python3 skills/ppt-master/scripts/template_preview_pptx.py "<authoring_workspace>" --force    # intentional replacement after a fix
+python3 skills-academic/ppt-master/scripts/template_preview_pptx.py "<authoring_workspace>"            # exports/<template_id>_template_preview.pptx
+python3 skills-academic/ppt-master/scripts/template_preview_pptx.py "<authoring_workspace>" --native-charts-and-tables -o "<authoring_workspace>/exports/<template_id>_template_preview_native.pptx"   # explicit native review; typed chart/table slots already compile natively in the default run
+python3 skills-academic/ppt-master/scripts/template_preview_pptx.py "<authoring_workspace>" --force    # intentional replacement after a fix
 ```
 
 Copy a requested/required review artifact into the target project's `exports/` during a staged install.
@@ -334,7 +334,7 @@ A multi-Master failure blocks registration and completion; an unrequested one-Ma
 
 | Scope | Action |
 |---|---|
-| `library` | After Step 5.1 (and Step 6 when requested or required), run `python3 skills/ppt-master/scripts/register_template.py <template_id> --kind style|deck|layout`; it derives the entry from the spec frontmatter (preferred) or prose plus the actual `templates/*.svg` roster and updates that kind's `*_index.json` — the complete discovery source for Default Stage-1 controls and chat listing (neither scans directories) |
+| `library` | After Step 5.1 (and Step 6 when requested or required), run `python3 skills-academic/ppt-master/scripts/register_template.py <template_id> --kind style|deck|layout`; it derives the entry from the spec frontmatter (preferred) or prose plus the actual `templates/*.svg` roster and updates that kind's `*_index.json` — the complete discovery source for Default Stage-1 controls and chat listing (neither scans directories) |
 | `project` | Skip the registrar, edit no index or README, and report `Not registered (project workspace)` |
 
 An exact unregistered root supplied by the user or handed off by this route appears as an `explicit` candidate preselected only when it is the sole root; a root matching a registered canonical root may display as `library`; bare names are never resolved. Frontmatter examples per kind live in the child workflows; `--rebuild-all` rebuilds a kind's index after editing many specs.

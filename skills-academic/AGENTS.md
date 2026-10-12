@@ -7,10 +7,10 @@ This file is the project entry point for general AI agents.
 **You MUST read [`ppt-master/SKILL.md`](ppt-master/SKILL.md) before any PPT generation task or repo modification.** It owns global execution discipline and points to the route selector; after routing, the selected runtime authority owns its steps, gates, and commands.
 
 **Repository execution anchor**: resolve the absolute repository root from this
-file's supplied path and retain the absolute `skills/ppt-master` root before the
+file's supplied path and retain the absolute `skills-academic/ppt-master` root before the
 first command. Paths in this file are repository-relative notation only; invoke
 them through those absolute roots, retain the absolute project path returned by
-initialization, and never issue `cd skills/ppt-master` or `cd projects/...`.
+initialization, and never issue `cd skills-academic/ppt-master` or `cd projects/...`.
 When parsing machine-readable stdout, keep stderr separate and never place
 `2>&1` upstream of a JSON or XML parser. Invoke each such command once per
 concrete argument set; never encode its executable or flag list in scalar shell

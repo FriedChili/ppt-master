@@ -6,7 +6,7 @@
 
 ## Design Philosophy — AI-Directed Workflow, Human-Controlled Draft
 
-ppt-master produces a **high-quality editable PowerPoint draft**, not a sealed final deck. The workflow reasons about the message, designs the pages, and authors or preserves native PowerPoint objects under an explicit route contract. The user reviews the direction and owns the final-mile judgment in PowerPoint. Ordinary Generate should leave refinement of a real deck rather than reconstruction from slide images or a thin editable skin. The **Image to PPTX** [`image-to-pptx`](../skills/ppt-master/workflows/profiles/image-to-pptx.md) profile is the narrow exception: it currently requires Codex, always activates Quick, normalizes one or more input images into an ordered page-frame roster, restores ordinary text natively, reconstructs low-resolution identity or decorative graphics under strict visual locks when needed, and rebuilds scene imagery as registered layers. It still rejects a whole-slide screenshot skin as editable reconstruction.
+ppt-master produces a **high-quality editable PowerPoint draft**, not a sealed final deck. The workflow reasons about the message, designs the pages, and authors or preserves native PowerPoint objects under an explicit route contract. The user reviews the direction and owns the final-mile judgment in PowerPoint. Ordinary Generate should leave refinement of a real deck rather than reconstruction from slide images or a thin editable skin. The **Image to PPTX** [`image-to-pptx`](../skills-academic/ppt-master/workflows/profiles/image-to-pptx.md) profile is the narrow exception: it currently requires Codex, always activates Quick, normalizes one or more input images into an ordered page-frame roster, restores ordinary text natively, reconstructs low-resolution identity or decorative graphics under strict visual locks when needed, and rebuilds scene imagery as registered layers. It still rejects a whole-slide screenshot skin as editable reconstruction.
 
 The workflow supplies presentation-specific reasoning, state, contracts, and quality gates; deterministic tools handle conversion, validation, packaging, and repeatable file operations. **The selected model still sets the quality ceiling**, while the user's taste and judgment guide review and finishing.
 
@@ -160,7 +160,7 @@ Minimal semantic markers do not weaken that closure. Free-design, brand/style-on
 | Domain | Authority |
 |---|---|
 | Visible page content and layout on SVG-authoring routes | Final page SVG in `svg_output/` |
-| Project-canonical SVG syntax, compatible forms, and mapping boundary | The split authority set selected through [`references/shared-standards.md`](../skills/ppt-master/references/shared-standards.md) |
+| Project-canonical SVG syntax, compatible forms, and mapping boundary | The split authority set selected through [`references/shared-standards.md`](../skills-academic/ppt-master/references/shared-standards.md) |
 | Master/Layout/Slide packaging and native-object mapping | SVG-to-PPTX translation; it may reorganize represented content but does not invent visible content |
 | Animations, transitions, speaker notes, and narration | Dedicated sidecars/assets and PPTX package post-processing |
 | Native-PPTX preservation editing | The Edit Native PPTX round-trip workspace and source-preserving exporter |
@@ -180,7 +180,7 @@ Existing-PPTX requests split by mutation model: Edit Native PPTX uses source-pre
 
 ## Route Decision Quick Reference
 
-Executable route selection is authoritative in [`workflows/routing.md`](../skills/ppt-master/workflows/routing.md); this section is a rationale-oriented quick reference, not a second route matrix to maintain.
+Executable route selection is authoritative in [`workflows/routing.md`](../skills-academic/ppt-master/workflows/routing.md); this section is a rationale-oriented quick reference, not a second route matrix to maintain.
 
 Use this table before reasoning about implementation details. Most failed runs start with the wrong route, not the wrong command.
 
@@ -235,7 +235,7 @@ or resumable design history; context loss restarts the Quick run.
 
 ## Artifact Flow
 
-Artifact source/derived ownership is authoritative in [`artifact-ownership.md`](../skills/ppt-master/references/artifact-ownership.md); this section visualizes the same dataflow for architecture rationale.
+Artifact source/derived ownership is authoritative in [`artifact-ownership.md`](../skills-academic/ppt-master/references/artifact-ownership.md); this section visualizes the same dataflow for architecture rationale.
 
 The workflow is easier to maintain if the artifacts are read as a dataflow rather than as folders that happen to exist:
 
@@ -300,7 +300,7 @@ SVG wins because it shares the same world view as DrawingML: both are absolute-c
 | `linearGradient` / `radialGradient` | `<a:gradFill>` |
 | `fill-opacity` / `stroke-opacity` | `<a:alpha>` |
 
-This table shows conceptual counterparts, not a commitment to the entire SVG standard or a promise of lossless semantics. Every supported capability must have an explicit mapping in the applicable module selected by the [`shared-standards.md`](../skills/ppt-master/references/shared-standards.md) router, identifying its project-canonical spelling, accepted compatible inputs, target DrawingML expression, fidelity, and rejection boundary; capabilities that support PPTX import must also identify the source PPTX/OOXML semantics. A mapping may be exact, deterministically normalized, an explicit fallback, a sidecar, or unsupported. Package semantics such as notes, animations, and relationships do not need to be forced into SVG, but their owning route must be explicit.
+This table shows conceptual counterparts, not a commitment to the entire SVG standard or a promise of lossless semantics. Every supported capability must have an explicit mapping in the applicable module selected by the [`shared-standards.md`](../skills-academic/ppt-master/references/shared-standards.md) router, identifying its project-canonical spelling, accepted compatible inputs, target DrawingML expression, fidelity, and rejection boundary; capabilities that support PPTX import must also identify the source PPTX/OOXML semantics. A mapping may be exact, deterministically normalized, an explicit fallback, a sidecar, or unsupported. Package semantics such as notes, animations, and relationships do not need to be forced into SVG, but their owning route must be explicit.
 
 For a PowerPoint-first, feature-by-feature view of those relationships, see the [PowerPoint Feature ↔ Project SVG Mapping Guide](./powerpoint-svg-mapping.md). It owns the public capability and PPTX-import recovery map; the authority set routed by `shared-standards.md` owns generated authoring.
 
@@ -343,7 +343,7 @@ matches a registered format. Without it, the directory is named
 `--quick-generate` creates `svg_output/` plus the cold
 `validation/workflow.log` audit log, omits the project README, and leaves
 other directories on demand. The explicit
-[`quick-generate`](../skills/ppt-master/workflows/profiles/quick-generate.md)
+[`quick-generate`](../skills-academic/ppt-master/workflows/profiles/quick-generate.md)
 profile omits planning artifacts and `svg_final/`, but its project may still
 contain converted sources, analysis, images, icons, and required resource
 manifests. It hand-authors `svg_output/`, including any native formula markers,
@@ -374,7 +374,7 @@ The CLI supports `--move`, `--copy`, and an automatic default, with one fixed ow
 
 ## Architecture Invariants
 
-Executable artifact ownership invariants are authoritative in [`artifact-ownership.md`](../skills/ppt-master/references/artifact-ownership.md); this section explains why those boundaries matter architecturally.
+Executable artifact ownership invariants are authoritative in [`artifact-ownership.md`](../skills-academic/ppt-master/references/artifact-ownership.md); this section explains why those boundaries matter architecturally.
 
 These invariants are stronger than ordinary implementation preferences. If a change violates one, it is probably changing the architecture rather than refactoring it.
 
@@ -397,7 +397,7 @@ These invariants are stronger than ordinary implementation preferences. If a cha
 
 ## Canvas Format System
 
-ppt-master is not PPT-only — the same SVG → DrawingML pipeline produces square posters, 9:16 stories, A4 prints. Format-specific conventions (ratios, safe zones, brand areas) live in [`references/canvas-formats.md`](../skills/ppt-master/references/canvas-formats.md).
+ppt-master is not PPT-only — the same SVG → DrawingML pipeline produces square posters, 9:16 stories, A4 prints. Format-specific conventions (ratios, safe zones, brand areas) live in [`references/canvas-formats.md`](../skills-academic/ppt-master/references/canvas-formats.md).
 
 The architectural choice worth flagging: **viewBox is in pixels, not absolute units.** Pixel space makes layout reasoning unambiguous for the AI Executor (`x="100"` is unambiguously left + 100px) and inspectable in any browser. Conversion to PowerPoint's EMU happens once at export — picking pixels means the rest of the pipeline (Strategist, Executor, quality checker, post-processing) never thinks in EMU, which would be hostile both to AI generation and to human debugging.
 
@@ -446,7 +446,7 @@ Style contributes only its Design Spec; it does not carry asset or review
 payloads. Existing project scaffolding and sibling kind files are not Style
 input.
 
-`<template_workspace>` is either `skills/ppt-master/templates/<kind>/<id>/` or
+`<template_workspace>` is either `skills-academic/ppt-master/templates/<kind>/<id>/` or
 another exact workspace root such as `projects/<name>/`. Step 3 records it as
 candidate input without reading template content. Once Stage 1 selects it, the
 apply stage validates and installs it into the current project's
@@ -557,9 +557,9 @@ Generated authoring never writes that attribute.
 
 ## Execution Discipline
 
-Generate routing selects one runtime authority before loading its procedure: [`workflows/generate-pptx.md`](../skills/ppt-master/workflows/generate-pptx.md) owns Default Step 1–7, while [`quick-generate.md`](../skills/ppt-master/workflows/profiles/quick-generate.md) owns the self-contained Quick lifecycle. [`image-to-pptx.md`](../skills/ppt-master/workflows/profiles/image-to-pptx.md) and [`beautify-pptx.md`](../skills/ppt-master/workflows/profiles/beautify-pptx.md) are mutually exclusive fidelity profiles. Image to PPTX currently requires Codex and activates Quick directly without a separate Quick signal; other agent hosts are not adapted or supported. Beautify continues to select between Default and Quick from explicit Quick intent. [`SKILL.md`](../skills/ppt-master/SKILL.md) owns only global execution discipline and the mandatory handoff to `routing.md`. Together, these rules may look bureaucratic but exist because LLMs default to "let me solve the whole problem in this turn", which is exactly the wrong shape for a serial pipeline where each step's output is bounded, checkpointed, and consumed by the next. They close failure modes that surfaced repeatedly in practice: out-of-order execution, AI proxying user design decisions, cross-phase bundling, missing prerequisites, speculative pre-work, sub-agent context loss, page-batching drift, long-deck color/font drift, batch/script-generated SVG drift, and routing ambiguity.
+Generate routing selects one runtime authority before loading its procedure: [`workflows/generate-pptx.md`](../skills-academic/ppt-master/workflows/generate-pptx.md) owns Default Step 1–7, while [`quick-generate.md`](../skills-academic/ppt-master/workflows/profiles/quick-generate.md) owns the self-contained Quick lifecycle. [`image-to-pptx.md`](../skills-academic/ppt-master/workflows/profiles/image-to-pptx.md) and [`beautify-pptx.md`](../skills-academic/ppt-master/workflows/profiles/beautify-pptx.md) are mutually exclusive fidelity profiles. Image to PPTX currently requires Codex and activates Quick directly without a separate Quick signal; other agent hosts are not adapted or supported. Beautify continues to select between Default and Quick from explicit Quick intent. [`SKILL.md`](../skills-academic/ppt-master/SKILL.md) owns only global execution discipline and the mandatory handoff to `routing.md`. Together, these rules may look bureaucratic but exist because LLMs default to "let me solve the whole problem in this turn", which is exactly the wrong shape for a serial pipeline where each step's output is bounded, checkpointed, and consumed by the next. They close failure modes that surfaced repeatedly in practice: out-of-order execution, AI proxying user design decisions, cross-phase bundling, missing prerequisites, speculative pre-work, sub-agent context loss, page-batching drift, long-deck color/font drift, batch/script-generated SVG drift, and routing ambiguity.
 
-Global stop/continue policy is authoritative in [`failure-recovery.md`](../skills/ppt-master/workflows/governance/failure-recovery.md); its concrete recovery matrix and resume pointers currently cover Generate PPTX. This section does not duplicate those rules.
+Global stop/continue policy is authoritative in [`failure-recovery.md`](../skills-academic/ppt-master/workflows/governance/failure-recovery.md); its concrete recovery matrix and resume pointers currently cover Generate PPTX. This section does not duplicate those rules.
 
 Three boundaries are especially important to the architecture. First, page SVGs must be hand-authored by the current main agent, one page at a time; writing a Python/Node/shell generator to emit pages is prohibited because the resulting deck loses cross-page judgment and visual continuity. Second, pipeline cadence is `P01–P05 → early gate (skipped on rosters of six or fewer pages) → remaining pages → final gate`. The first five pages are a method sample: execution emits a `gate-signal`, then carries resolved method rules into later pages; no page batch or mid-run checker call interrupts the remaining pages, and every checker invocation follows a gate point or one consolidated repair pass. `quick-generate` retains serial hand-authoring, uses P01 as its visual-system calibration baseline, shares the same early gate on rosters of seven or more pages, and runs one lockless final gate after the complete roster exists. Third, routing is deterministic: raw PPTX template requests, beautify-profile requests, Edit Native PPTX requests, custom-animation stages, live-preview stages, and other registered triggers are not turned into open-ended user route questions when the repository already defines the boundary.
 
@@ -574,7 +574,7 @@ In the default pipeline, the Strategist phase produces two artifacts that look r
 - `design_spec.md` — human-readable narrative; the "why" of the deck (communication intent, audience outcome, narrative / template / visual rationale, page outline)
 - `spec_lock.md` — machine-readable execution contract; the compact `audience` / `objective` / `core_message` communication anchors plus stable identity/reuse roles and routing values (core HEX/font roles, icon library, image resources, and structure mappings)
 
-Why both? `design_spec.md` preserves the complete confirmed solution and rationale; `spec_lock.md` names the subset that must remain stable or routable across pages. It is authored from that Design Spec plus the page/resource/template context, not copied field by field from raw UI JSON or chat-summary payloads. [Generate PPTX Step 6](../skills/ppt-master/workflows/generate-pptx.md#step-6-executor-phase) retains both artifacts once per valid execution context. Fresh/resumed/restarted execution, compaction, or summary-only recovery reloads both once; an unchanged continuous context does not reread either file. Contextual tints, gradient/effect paints, and sparse non-structural display-font accents remain page decisions; recurrence or a stable semantic role requires an upstream lock role.
+Why both? `design_spec.md` preserves the complete confirmed solution and rationale; `spec_lock.md` names the subset that must remain stable or routable across pages. It is authored from that Design Spec plus the page/resource/template context, not copied field by field from raw UI JSON or chat-summary payloads. [Generate PPTX Step 6](../skills-academic/ppt-master/workflows/generate-pptx.md#step-6-executor-phase) retains both artifacts once per valid execution context. Fresh/resumed/restarted execution, compaction, or summary-only recovery reloads both once; an unchanged continuous context does not reread either file. Contextual tints, gradient/effect paints, and sparse non-structural display-font accents remain page decisions; recurrence or a stable semantic role requires an upstream lock role.
 
 The view omits universal SVG/icon prohibitions already owned by the always-loaded Executor core and retains only project-specific forbidden rows. It selects images from the current page brief, explicit image-resource page assignments, and mirror prototype references. Images assigned elsewhere are excluded; any unresolved legacy image remains in a compatibility subset, and `confirmed-none` appears only when every locked image has a deterministic assignment elsewhere.
 
@@ -629,7 +629,7 @@ remain separate deterministic tools.
 
 **Garnish remains local.** Sparse page-local font or color accents may add hierarchy, differentiation, or atmosphere without becoming a second visual system. In the default pipeline, structural/recurring fonts, palette roles, resources, or recurring cross-page identity patterns remain Strategist decisions and require an upstream Design Spec/lock update before reuse; in quick generation, the current agent establishes those anchors in active context and preserves them across pages. A default-pipeline page-local §VIII image pattern remains a preferred composition reference.
 
-**Prompt-refactor invariant.** In the default pipeline, compression must preserve initial materials, user confirmation, Strategist-owned preparation, planning ownership, and execution freedom as separate layers. Moving acquisition into Executor, turning permission into quota, flexible realization into silent resource/identity reselection, or an exact binding plan into an approximate target is a semantic regression. The explicit quick profile consolidates the first layers under the current agent; it does not erase source, resources, aesthetics, data visualization, qualitative Structure, or native-shape capability. Default runtime authority lives in [`strategist.md`](../skills/ppt-master/references/strategist.md) and [`executor-base.md`](../skills/ppt-master/references/executor-base.md); Quick runtime authority starts at [`quick-generate.md`](../skills/ppt-master/workflows/profiles/quick-generate.md) and directly loads the applicable shared and conditional execution references without inheriting Default's persisted-plan prerequisites. Prompt-writing governance lives in [`prompt-style.md`](./rules/prompt-style.md).
+**Prompt-refactor invariant.** In the default pipeline, compression must preserve initial materials, user confirmation, Strategist-owned preparation, planning ownership, and execution freedom as separate layers. Moving acquisition into Executor, turning permission into quota, flexible realization into silent resource/identity reselection, or an exact binding plan into an approximate target is a semantic regression. The explicit quick profile consolidates the first layers under the current agent; it does not erase source, resources, aesthetics, data visualization, qualitative Structure, or native-shape capability. Default runtime authority lives in [`strategist.md`](../skills-academic/ppt-master/references/strategist.md) and [`executor-base.md`](../skills-academic/ppt-master/references/executor-base.md); Quick runtime authority starts at [`quick-generate.md`](../skills-academic/ppt-master/workflows/profiles/quick-generate.md) and directly loads the applicable shared and conditional execution references without inheriting Default's persisted-plan prerequisites. Prompt-writing governance lives in [`prompt-style.md`](./rules/prompt-style.md).
 
 ---
 
@@ -657,7 +657,7 @@ Several architectural decisions shape this phase:
 
 ## Image-Text Composition: P / M / A / C
 
-Whenever the image branch is active, its compact placement vocabulary in [`references/image-layout-patterns.md`](../skills/ppt-master/references/image-layout-patterns.md) is read alongside the layout math. Native formulas use ordinary page composition plus their marker bounds, not image-resource patterns. The current image patterns are organized by composition responsibility:
+Whenever the image branch is active, its compact placement vocabulary in [`references/image-layout-patterns.md`](../skills-academic/ppt-master/references/image-layout-patterns.md) is read alongside the layout math. Native formulas use ordinary page composition plus their marker bounds, not image-resource patterns. The current image patterns are organized by composition responsibility:
 
 - **P · Primary Structures** — single-visual, image-as-canvas, and multi-visual page skeletons.
 - **M · Modifier Layers** — crop/reveal, tone/focus, and framing/placement/depth treatments applied to an existing skeleton.
@@ -672,13 +672,13 @@ Whenever the image branch is active, its compact placement vocabulary in [`refer
 
 **Why composition intent flows through Strategist's resource list.** The `Image pattern` column in `§VIII Image Resource List` carries one non-empty free-form suggestion and may optionally cite hierarchical ids from the library; an image-led `adaptive` row also names the page job the image resolves, so the composition reaching Executor arrives with the reason it was chosen. `Crop Policy` separately records `adaptive` or `no-crop`. This preserves a useful starting point across session re-entry without making any catalog entry or id mandatory. Executor may resize, reflow, reposition, rebalance, replace the suggestion, or use another composition when that communicates better. Resource identity, must-use/content obligations, `no-crop`, and explicit user/template constraints remain binding; only changing those requires an upstream Design Spec update.
 
-**Why true hard constraints stay upstream.** Cross-cutting SVG authoring and PPTX-compatibility exceptions live in the authority set routed by [`shared-standards.md`](../skills/ppt-master/references/shared-standards.md). The layout patterns file points to that router rather than restating the contract, so each rule still has one owning module and no stale duplicate in the pattern catalog.
+**Why true hard constraints stay upstream.** Cross-cutting SVG authoring and PPTX-compatibility exceptions live in the authority set routed by [`shared-standards.md`](../skills-academic/ppt-master/references/shared-standards.md). The layout patterns file points to that router rather than restating the contract, so each rule still has one owning module and no stale duplicate in the pattern catalog.
 
 ---
 
 ## Project-Canonical SVG and the Compatibility Boundary
 
-SVG and DrawingML are not equivalent expression models, so the main compiler route does not treat “the browser can render it” as “the project can export it.” Input is accepted only when the applicable module selected by [`references/shared-standards.md`](../skills/ppt-master/references/shared-standards.md) registers a project-canonical expression or an explicit compatible form with a deterministic DrawingML mapping. The split authority set owns syntax, structure, units, metadata, compatible aliases, fidelity, and rejection conditions; this architecture document defines the layering principle without duplicating individual rules.
+SVG and DrawingML are not equivalent expression models, so the main compiler route does not treat “the browser can render it” as “the project can export it.” Input is accepted only when the applicable module selected by [`references/shared-standards.md`](../skills-academic/ppt-master/references/shared-standards.md) registers a project-canonical expression or an explicit compatible form with a deterministic DrawingML mapping. The split authority set owns syntax, structure, units, metadata, compatible aliases, fidelity, and rejection conditions; this architecture document defines the layering principle without duplicating individual rules.
 
 **Why local reuse is compile-time reuse, not a retained PowerPoint object.** The canonical contract defines accepted authoring forms, and the shared validator enforces them. After validation, the pipeline recursively materializes each referenced subtree and rewrites clone-local IDs before export. PPTX-to-SVG import therefore returns expanded primitives rather than reconstructing the authoring-time reuse graph.
 
@@ -948,7 +948,7 @@ The tempting simplifications below have explicit costs. Treat them as negative c
 
 ## Routes and Supporting Runbooks
 
-[`workflows/index.md`](../skills/ppt-master/workflows/index.md) is a maintainer-only inventory and does not enter the task-loading chain. Runtime route selection is authoritative in [`workflows/routing.md`](../skills/ppt-master/workflows/routing.md). ppt-master has exactly three top-level artifact routes: Generate PPTX, Create Template, and Edit Native PPTX. A user request enters one of those routes; no supporting runbook competes with them.
+[`workflows/index.md`](../skills-academic/ppt-master/workflows/index.md) is a maintainer-only inventory and does not enter the task-loading chain. Runtime route selection is authoritative in [`workflows/routing.md`](../skills-academic/ppt-master/workflows/routing.md). ppt-master has exactly three top-level artifact routes: Generate PPTX, Create Template, and Edit Native PPTX. A user request enters one of those routes; no supporting runbook competes with them.
 
 Supporting files stay separate only to keep route contracts focused and load optional context on demand:
 

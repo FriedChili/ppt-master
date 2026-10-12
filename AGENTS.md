@@ -17,8 +17,8 @@
 
 ## 两个必须知道的事
 
-**一、改哪里。** 只改 `skills-academic/ppt-master/`。
-仓库根的 `skills/ppt-master/` 是**上游原始副本**，不是本分支，不要在那里改东西。
+**一、改哪里。** 只改 `skills-academic/ppt-master/` —— 它是本分支的唯一副本。
+上游原版已从工作区移除，需要时用标签取回：`git checkout pristine-6.7.0 -- skills/ppt-master`。
 
 **二、路径锚点。** 从本文件所在位置解析出仓库根的绝对路径，并保留
 `skills-academic/ppt-master` 的绝对根之后再执行第一条命令。本文件里的路径是

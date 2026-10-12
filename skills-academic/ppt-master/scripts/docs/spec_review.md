@@ -7,15 +7,15 @@ not read or write `spec_lock.md`, invoke a model, or start generation.
 ## Commands
 
 ```bash
-python3 skills/ppt-master/scripts/spec_review/server.py <project_path> --daemon
-python3 skills/ppt-master/scripts/spec_review/server.py <project_path> --daemon --no-browser
-python3 skills/ppt-master/scripts/spec_review/server.py <project_path> --port 6070 --timeout 7200
-python3 skills/ppt-master/scripts/spec_review/server.py <project_path> --hold on
-python3 skills/ppt-master/scripts/spec_review/server.py <project_path> --hold off
-python3 skills/ppt-master/scripts/check_spec_annotations.py <project_path>
-python3 skills/ppt-master/scripts/check_spec_annotations.py <project_path> --ack-edits
-python3 skills/ppt-master/scripts/check_spec_annotations.py <project_path> --applied <id>
-python3 skills/ppt-master/scripts/spec_review/server.py <project_path> --shutdown
+python3 skills-academic/ppt-master/scripts/spec_review/server.py <project_path> --daemon
+python3 skills-academic/ppt-master/scripts/spec_review/server.py <project_path> --daemon --no-browser
+python3 skills-academic/ppt-master/scripts/spec_review/server.py <project_path> --port 6070 --timeout 7200
+python3 skills-academic/ppt-master/scripts/spec_review/server.py <project_path> --hold on
+python3 skills-academic/ppt-master/scripts/spec_review/server.py <project_path> --hold off
+python3 skills-academic/ppt-master/scripts/check_spec_annotations.py <project_path>
+python3 skills-academic/ppt-master/scripts/check_spec_annotations.py <project_path> --ack-edits
+python3 skills-academic/ppt-master/scripts/check_spec_annotations.py <project_path> --applied <id>
+python3 skills-academic/ppt-master/scripts/spec_review/server.py <project_path> --shutdown
 ```
 
 The daemon launcher waits for `GET /api/health` and prints a compact JSON object

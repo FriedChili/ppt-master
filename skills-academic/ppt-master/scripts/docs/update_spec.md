@@ -10,7 +10,7 @@ Propagate a `spec_lock.md` value change to both the lock file and every `svg_out
 ## Usage
 
 ```bash
-python3 skills/ppt-master/scripts/update_spec.py <project_path> <section>.<key>=<value>
+python3 skills-academic/ppt-master/scripts/update_spec.py <project_path> <section>.<key>=<value>
 ```
 
 Bare `<key>=<value>` (no dot) is treated as `colors.<key>=<value>` for backward compat.
@@ -27,13 +27,13 @@ One invocation = one change. The tool:
 
 ```bash
 # swap the primary color deck-wide (bare key → colors.primary)
-python3 skills/ppt-master/scripts/update_spec.py projects/acme_ppt169_20260301 primary=#0066AA
+python3 skills-academic/ppt-master/scripts/update_spec.py projects/acme_ppt169_20260301 primary=#0066AA
 
 # explicit section.key form
-python3 skills/ppt-master/scripts/update_spec.py projects/acme_ppt169_20260301 colors.accent=#FF6B35
+python3 skills-academic/ppt-master/scripts/update_spec.py projects/acme_ppt169_20260301 colors.accent=#FF6B35
 
 # change the deck-wide font family
-python3 skills/ppt-master/scripts/update_spec.py projects/acme_ppt169_20260301 \
+python3 skills-academic/ppt-master/scripts/update_spec.py projects/acme_ppt169_20260301 \
   'typography.font_family=Arial, "Microsoft YaHei", sans-serif'
 ```
 
@@ -53,7 +53,7 @@ python3 skills/ppt-master/scripts/update_spec.py projects/acme_ppt169_20260301 \
 - "Switch an individual page's accent" → just edit that page's SVG directly
 - "Re-design the palette / type system" → update `spec_lock.md` manually, then the Executor can regenerate affected pages
 
-A colour change rarely ends with the lock key: derived tints (a chart's second series, a highlight on a dark page), pages designed around the old colour (an inverted chapter page), and prose in `design_spec.md` that names the old palette are outside the tool's reach and are edited by hand. The tool re-stamps the native Chart/Table fallback baselines only for the files it rewrote; after any hand edit that touches a fallback, run `python3 skills/ppt-master/scripts/stamp_native_fallbacks.py <project_path>/svg_output --write` before the final quality gate, or the gate stops on an edited baseline.
+A colour change rarely ends with the lock key: derived tints (a chart's second series, a highlight on a dark page), pages designed around the old colour (an inverted chapter page), and prose in `design_spec.md` that names the old palette are outside the tool's reach and are edited by hand. The tool re-stamps the native Chart/Table fallback baselines only for the files it rewrote; after any hand edit that touches a fallback, run `python3 skills-academic/ppt-master/scripts/stamp_native_fallbacks.py <project_path>/svg_output --write` before the final quality gate, or the gate stops on an edited baseline.
 
 ## Safety
 

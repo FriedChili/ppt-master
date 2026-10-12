@@ -14,7 +14,7 @@ import tempfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-scripts = Path("skills/ppt-master/scripts").resolve()
+scripts = Path("skills-academic/ppt-master/scripts").resolve()
 sys.path.insert(0, str(scripts))
 
 from pptx_to_svg.color_resolver import ColorPalette

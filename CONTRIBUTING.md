@@ -80,7 +80,7 @@ If you're unsure, open an issue to ask — that's always welcome.
 1. **Fork** the repository and create a branch from `main`
 2. **One PR, one thing** — keep each PR focused on a single concern. If you notice unrelated improvements, open a separate PR
 3. **Write a useful PR description** — explain *what* changed and *why*, not just a diff summary. If your change fixes a bug, include reproduction steps
-4. **Test locally** before submitting — run the affected scripts on a real project and show the output. Unit tests are optional and live only under `skills/ppt-master/scripts/tests/` on the standard library `unittest` (see [`docs/rules/code-style.md`](docs/rules/code-style.md) §11); a green suite does not replace the real-project run
+4. **Test locally** before submitting — run the affected scripts on a real project and show the output. Unit tests are optional and live only under `skills-academic/ppt-master/scripts/tests/` on the standard library `unittest` (see [`docs/rules/code-style.md`](docs/rules/code-style.md) §11); a green suite does not replace the real-project run
 5. **Don't overstate** — if your PR description claims tests or behavior changes, make sure the diff actually contains them
 
 ## Review Process
@@ -93,13 +93,13 @@ If you're unsure, open an issue to ask — that's always welcome.
 
 If your contribution involves SVG files, follow the canonical authoring and
 PPTX-compatibility contract in
-[`shared-standards.md`](./skills/ppt-master/references/shared-standards.md).
+[`shared-standards.md`](./skills-academic/ppt-master/references/shared-standards.md).
 This guide does not duplicate its required, forbidden, or conditional entries.
 
 Validate the affected SVG file or directory before submitting:
 
 ```bash
-python3 skills/ppt-master/scripts/svg_quality_checker.py <file_or_directory>
+python3 skills-academic/ppt-master/scripts/svg_quality_checker.py <file_or_directory>
 ```
 
 ## Reporting Bugs

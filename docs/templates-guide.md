@@ -19,7 +19,7 @@ Choose the route by the artifact you already have and the result you want:
 | Starting point and goal | Route | Copy-ready request |
 |---|---|---|
 | A raw `.pptx`; keep its existing slide shells and replace content | **Edit Native PPTX** | `Fill projects/source/template.pptx with projects/source/content.md; keep its design and use only the pages that fit.` |
-| A reusable Brand/Style/Layout/Deck workspace; generate a fresh deck | **Generate PPTX → Stage-1 template controls** | `Make a deck from sources/report.pdf with template skills/ppt-master/templates/layouts/presentation_core/.` |
+| A reusable Brand/Style/Layout/Deck workspace; generate a fresh deck | **Generate PPTX → Stage-1 template controls** | `Make a deck from sources/report.pdf with template skills-academic/ppt-master/templates/layouts/presentation_core/.` |
 | A PPTX, SVG set, brand guide, website, images, or mixed references; first build a reusable system | **Create Template → Generate PPTX** | `Use /create-template to create a reusable Deck workspace from projects/brand/our_deck.pptx.` |
 
 Do not pass a raw `.pptx` as a Generate PPTX template path. Fill it directly when you want its existing pages, or run Create Template first when you want a reusable system.
@@ -43,7 +43,7 @@ stay separate.
 
 The two rules that prevent most mistakes:
 
-1. Default Generate [Step 3](../skills/ppt-master/workflows/generate-pptx.md#step-3-template-candidate-preparation) only prepares candidates. Stage 1 confirms the communication contract and free-design/template choice together.
+1. Default Generate [Step 3](../skills-academic/ppt-master/workflows/generate-pptx.md#step-3-template-candidate-preparation) only prepares candidates. Stage 1 confirms the communication contract and free-design/template choice together.
 2. Ordinary requests start in free design. Explicit template intent or any exact workspace root opens template mode; exactly one supplied root is preselected, while multiple roots remain unselected candidates. A non-free selection is installed after Stage 1 and before template-aware final Stage 2.
 
 ---
@@ -85,11 +85,11 @@ directories. Send an exact Brand/Style/Layout/Deck workspace root in chat when
 you want template mode opened and that sole path preselected. Anywhere in the
 sentence is fine; the path just has to be unambiguous:
 
-> "use this template: `skills/ppt-master/templates/layouts/presentation_core/`" ✅
+> "use this template: `skills-academic/ppt-master/templates/layouts/presentation_core/`" ✅
 > "use last deck's template: `projects/last_deck/`" ✅
 > "make a product introduction with `/Users/me/Desktop/our_brand_v3/`" ✅
 
-For every current template kind, an explicit path is the **template workspace root**. An exact root matching a registered index entry may be displayed as `library`; an unregistered root remains separately labelled `explicit`. The server parses the latter's actual qualified specs; `explicit` is provenance, not a fifth kind or a priority tier. Stage 1 validates each selected root atomically. After confirmation, installation maps every selected spec and asset root exactly once, installs only the effective structural roster (Layout when present, otherwise Deck), and never copies `exports/`. Deck/Layout roots additionally validate their structured SVG contracts before precedence is applied; Brand/Style validate their roster-free specs. The path may point to a built-in library workspace under `skills/ppt-master/templates/<kind>/<id>/`, a project workspace under `projects/<name>/`, or another workspace with the same routing. A Create Template run may hand its exact validated workspace root directly to the next Stage-1 selector in the same conversation.
+For every current template kind, an explicit path is the **template workspace root**. An exact root matching a registered index entry may be displayed as `library`; an unregistered root remains separately labelled `explicit`. The server parses the latter's actual qualified specs; `explicit` is provenance, not a fifth kind or a priority tier. Stage 1 validates each selected root atomically. After confirmation, installation maps every selected spec and asset root exactly once, installs only the effective structural roster (Layout when present, otherwise Deck), and never copies `exports/`. Deck/Layout roots additionally validate their structured SVG contracts before precedence is applied; Brand/Style validate their roster-free specs. The path may point to a built-in library workspace under `skills-academic/ppt-master/templates/<kind>/<id>/`, a project workspace under `projects/<name>/`, or another workspace with the same routing. A Create Template run may hand its exact validated workspace root directly to the next Stage-1 selector in the same conversation.
 
 Template selection shares the Stage-1 screen and submit action but remains a
 separate sidecar decision. The communication recommendation is authored only
@@ -129,15 +129,15 @@ Use one workspace:
 
 ```text
 Make a deck from projects/q3-report/sources/report.pdf.
-Template workspace: skills/ppt-master/templates/layouts/presentation_core/
+Template workspace: skills-academic/ppt-master/templates/layouts/presentation_core/
 ```
 
 Combine identity and structure:
 
 ```text
 Make a product-launch deck from projects/launch/sources/brief.md.
-Brand workspace: skills/ppt-master/templates/brands/anthropic/
-Layout workspace: skills/ppt-master/templates/layouts/presentation_core/
+Brand workspace: skills-academic/ppt-master/templates/brands/anthropic/
+Layout workspace: skills-academic/ppt-master/templates/layouts/presentation_core/
 ```
 
 Use a project-scoped template created earlier:
@@ -155,10 +155,10 @@ You do not need to choose a template-use mode. Strategist reads the effective st
 
 Templates are organized into four kinds, each with a discovery index:
 
-- [`brands_index.json`](../skills/ppt-master/templates/brands/brands_index.json) — identity-only workspaces: color / typography / logo / voice / icon style, with no SVG page roster
-- [`styles_index.json`](../skills/ppt-master/templates/styles/styles_index.json) — direction/method workspaces: communication method, evidence/data expression, visual defaults, and advisory review focus, with no SVG page roster
-- [`layouts_index.json`](../skills/ppt-master/templates/layouts/layouts_index.json) — structure-only workspaces: canvas / page grammar / page types / SVG roster, with identity selected downstream
-- [`decks_index.json`](../skills/ppt-master/templates/decks/decks_index.json) — recurring presentation applications with integrated identity, structure, and factual prototype descriptions
+- [`brands_index.json`](../skills-academic/ppt-master/templates/brands/brands_index.json) — identity-only workspaces: color / typography / logo / voice / icon style, with no SVG page roster
+- [`styles_index.json`](../skills-academic/ppt-master/templates/styles/styles_index.json) — direction/method workspaces: communication method, evidence/data expression, visual defaults, and advisory review focus, with no SVG page roster
+- [`layouts_index.json`](../skills-academic/ppt-master/templates/layouts/layouts_index.json) — structure-only workspaces: canvas / page grammar / page types / SVG roster, with identity selected downstream
+- [`decks_index.json`](../skills-academic/ppt-master/templates/decks/decks_index.json) — recurring presentation applications with integrated identity, structure, and factual prototype descriptions
 
 These four indexes are the complete registered-library source for the Default
 Stage-1 template controls and chat discovery; directories are never scanned.
@@ -192,7 +192,7 @@ The Strategist separates two independent choices:
 - **Mode** controls how the deck communicates: `pyramid`, `narrative`, `instructional`, `showcase`, `briefing`, or a confirmed `custom` direction.
 - **Visual style** controls how the pages look: built-ins such as `swiss-minimal`, `editorial`, `dark-tech`, `data-journalism`, `ink-wash`, and others, plus `custom`.
 
-Any mode can pair with any visual style. Terms such as "Keynote-style product launch" may influence both axes — for example, a `showcase` narrative with a restrained high-whitespace visual system — but they are never a template lookup token. The user confirms the resulting choices before generation. The canonical catalogs live under [`references/modes/`](../skills/ppt-master/references/modes/) and [`references/visual-styles/`](../skills/ppt-master/references/visual-styles/).
+Any mode can pair with any visual style. Terms such as "Keynote-style product launch" may influence both axes — for example, a `showcase` narrative with a restrained high-whitespace visual system — but they are never a template lookup token. The user confirms the resulting choices before generation. The canonical catalogs live under [`references/modes/`](../skills-academic/ppt-master/references/modes/) and [`references/visual-styles/`](../skills-academic/ppt-master/references/visual-styles/).
 
 ---
 
@@ -202,7 +202,7 @@ Turn one or more PPTX/SVG files, images/PDFs, documents/websites, brand assets, 
 
 ### Entry point: the `/create-template` workflow
 
-Full spec in [`workflows/create-template.md`](../skills/ppt-master/workflows/create-template.md). This section is the user-facing short version — in your IDE, just say:
+Full spec in [`workflows/create-template.md`](../skills-academic/ppt-master/workflows/create-template.md). This section is the user-facing short version — in your IDE, just say:
 
 ```
 Please use the /create-template workflow to generate a new template based on the reference materials below.
@@ -266,7 +266,7 @@ Layout/Deck frontmatter still records `replication_mode: standard|fidelity|mirro
 For a PPTX-backed Type A mirror, final validation/publication uses one deterministic command after the authoring review:
 
 ```bash
-python3 skills/ppt-master/scripts/mirror_template_materialize.py \
+python3 skills-academic/ppt-master/scripts/mirror_template_materialize.py \
   "<import_workspace>" "<template_workspace>"
 ```
 
@@ -289,11 +289,11 @@ Template use is Slide-first: each generated-page SVG already resolves its Master
 
 ### Step 4 — Validation, review export, registration, and discovery
 
-After generation, both scopes run [`svg_quality_checker.py`](../skills/ppt-master/scripts/svg_quality_checker.py) as a hard gate: Brand validates its identity-only spec, Style validates its method/direction-only spec, and Layout/Deck validate the SVG roster and structured contract. Brand/Style never create a preview PPTX. Layout/Deck may create `exports/<id>_template_preview.pptx` on request, and must do so for multiple Masters. Authored templates use concise preview-only placeholder samples so long canonical markers stay readable without changing the source SVGs. The only scope-specific action is library registration:
+After generation, both scopes run [`svg_quality_checker.py`](../skills-academic/ppt-master/scripts/svg_quality_checker.py) as a hard gate: Brand validates its identity-only spec, Style validates its method/direction-only spec, and Layout/Deck validate the SVG roster and structured contract. Brand/Style never create a preview PPTX. Layout/Deck may create `exports/<id>_template_preview.pptx` on request, and must do so for multiple Masters. Authored templates use concise preview-only placeholder samples so long canonical markers stay readable without changing the source SVGs. The only scope-specific action is library registration:
 
 | Scope | Workspace root | Preview | Discovery behavior |
 |---|---|---|---|
-| `library` (default) | `skills/ppt-master/templates/<kind>/<id>/` | Create Brand/Create Style: N/A; Create Layout/Create Deck: optional for one Master, mandatory for multiple Masters | Register in the matching `brands_index.json`, `styles_index.json`, `layouts_index.json`, or `decks_index.json` after validation |
+| `library` (default) | `skills-academic/ppt-master/templates/<kind>/<id>/` | Create Brand/Create Style: N/A; Create Layout/Create Deck: optional for one Master, mandatory for multiple Masters | Register in the matching `brands_index.json`, `styles_index.json`, `layouts_index.json`, or `decks_index.json` after validation |
 | `project` | `projects/<name>/` | Same kind-specific review behavior | Skip global index registration |
 
 Library registration makes the template **selectable** in the Default Stage-1 template controls and discoverable in chat because both read the same index. For project scope or an exact handoff, supply the workspace root, for example `use this template: projects/<name>/`; this initializes template mode, exactly one supplied root is preselected, multiple supplied roots remain unselected candidates, and an unregistered root remains labelled `explicit`. A project root remains directly reusable by another project and contributes every qualified spec it exposes. Moving one contribution into the single-kind library requires placing its unchanged spec body at that library workspace's bare `templates/design_spec.md` path and registering it.
@@ -320,7 +320,7 @@ Microsoft PowerPoint is the acceptance target for Master/Layout behavior. Keynot
 
 ### What a derived template workspace looks like
 
-Library and project scopes use the same spec schema and asset routing; a library workspace uses a bare spec while a shared project root uses qualified specs. Substitute either `skills/ppt-master/templates/<kind>/<id>/` or `projects/<name>/` for `<template_workspace>`:
+Library and project scopes use the same spec schema and asset routing; a library workspace uses a bare spec while a shared project root uses qualified specs. Substitute either `skills-academic/ppt-master/templates/<kind>/<id>/` or `projects/<name>/` for `<template_workspace>`:
 
 Brand and Style stop at `templates/design_spec.md` (plus real Brand assets when
 present); they do not create the SVG or `exports/` rows shown above.
@@ -354,7 +354,7 @@ nor allowed.
 
 ### Library registration vs project placement
 
-- **Library scope (`library`, default)** writes the workspace under `skills/ppt-master/templates/<kind>/<id>/` and registers it globally.
+- **Library scope (`library`, default)** writes the workspace under `skills-academic/ppt-master/templates/<kind>/<id>/` and registers it globally.
 - **Project scope (`project`)** writes a qualified spec at `projects/<name>/templates/design_spec.<kind>.<id>.md` and skips registration, so one project root can accumulate one contribution of every kind over separate runs and hand the complete bundle to any project that points at that root. Layout owns the active roster when Layout and Deck coexist.
 
 The result is not a private or reduced project-only format. Supplying an exact
@@ -383,7 +383,7 @@ Common misconceptions to avoid:
 
 ## Related docs
 
-- [`workflows/create-template.md`](../skills/ppt-master/workflows/create-template.md) — full workflow spec (AI-facing)
-- [`templates/README.md`](../skills/ppt-master/templates/README.md) — four template kinds and their discovery indexes
-- [`references/template-designer.md`](../skills/ppt-master/references/template-designer.md) — Template_Designer role definition and SVG technical constraints
+- [`workflows/create-template.md`](../skills-academic/ppt-master/workflows/create-template.md) — full workflow spec (AI-facing)
+- [`templates/README.md`](../skills-academic/ppt-master/templates/README.md) — four template kinds and their discovery indexes
+- [`references/template-designer.md`](../skills-academic/ppt-master/references/template-designer.md) — Template_Designer role definition and SVG technical constraints
 - [FAQ: how do I create a custom template?](./faq.md) — short FAQ version

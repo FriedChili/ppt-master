@@ -18,7 +18,7 @@ Only when the user explicitly requests visual review — never auto-invoked from
 
 ```bash
 pip install playwright && python3 -m playwright install chromium          # PNG renderer
-python3 skills/ppt-master/scripts/svg_editor/server.py <project_path> --no-browser   # live-preview server (skip if already running)
+python3 skills-academic/ppt-master/scripts/svg_editor/server.py <project_path> --no-browser   # live-preview server (skip if already running)
 ```
 
 The renderer does not auto-start the server; it discovers the port from `live_preview/lock.json` (or an explicit `--server-url`) and validates `/api/health` against the target project. Playwright, not cairosvg, because cairo has no font-fallback chain and renders CJK as tofu; chromium output matches the live-preview browser.
@@ -28,7 +28,7 @@ The renderer does not auto-start the server; it discovers the port from `live_pr
 ## Step 1 — Pre-render all PNGs
 
 ```bash
-python3 skills/ppt-master/scripts/visual_review.py <project_path>
+python3 skills-academic/ppt-master/scripts/visual_review.py <project_path>
 ```
 
 Writes one PNG per page to `<project_path>/.preview/<page>.png`, sized from the root `viewBox` with icons inlined and images resolved; each successful record carries the exact canvas and raster dimensions (contract and exit codes in [`svg-pipeline.md`](../../scripts/docs/svg-pipeline.md#visual_reviewpy)).

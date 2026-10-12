@@ -336,7 +336,7 @@ def main() -> int:
             'playwright not installed. Install with:\n'
             '    pip install playwright\n'
             '    python3 -m playwright install chromium\n'
-            '(see skills/ppt-master/requirements.txt)'
+            '(see skills-academic/ppt-master/requirements.txt)'
         )
         return 3
 
@@ -347,7 +347,7 @@ def main() -> int:
         _safe_print(str(e))
         _safe_print(
             'start it with:\n'
-            f'    python3 skills/ppt-master/scripts/svg_editor/server.py {project_path}'
+            f'    python3 skills-academic/ppt-master/scripts/svg_editor/server.py {project_path}'
         )
         return 2
 

@@ -5,7 +5,7 @@ Tool behavior behind [`create-template.md`](../../workflows/create-template.md) 
 ## `pptx_template_import.py`
 
 ```bash
-python3 skills/ppt-master/scripts/pptx_template_import.py "<reference_template.pptx>" [--inheritance-mode layered|both|flat]
+python3 skills-academic/ppt-master/scripts/pptx_template_import.py "<reference_template.pptx>" [--inheritance-mode layered|both|flat]
 ```
 
 Produces one import workspace (default `<pptx_stem>_template_import/` beside the source file; pass `-o` to place it elsewhere; an analysis intermediate, never a final template):
@@ -36,10 +36,10 @@ Type A mirror is a tool publication path. Run these commands serially on the
 importer's unchanged output:
 
 ```bash
-python3 skills/ppt-master/scripts/pptx_template_import.py "<source.pptx>" -o "<import_workspace>" --inheritance-mode both
-python3 skills/ppt-master/scripts/mirror_template_materialize.py "<import_workspace>" "<template_workspace>" [--kind deck|layout]
-python3 skills/ppt-master/scripts/svg_quality_checker.py "<template_workspace>/templates" --template-mode --canonical-authoring
-python3 skills/ppt-master/scripts/template_preview_pptx.py "<template_workspace>" -o "<preview.pptx>"
+python3 skills-academic/ppt-master/scripts/pptx_template_import.py "<source.pptx>" -o "<import_workspace>" --inheritance-mode both
+python3 skills-academic/ppt-master/scripts/mirror_template_materialize.py "<import_workspace>" "<template_workspace>" [--kind deck|layout]
+python3 skills-academic/ppt-master/scripts/svg_quality_checker.py "<template_workspace>/templates" --template-mode --canonical-authoring
+python3 skills-academic/ppt-master/scripts/template_preview_pptx.py "<template_workspace>" -o "<preview.pptx>"
 ```
 
 Only `pptx_template_import.py` workspaces with layered IR,
@@ -52,7 +52,7 @@ transaction. It defaults to Deck because its factual roster is one prototype
 per source slide; `--kind layout` records a previously chosen neutral Layout
 target. The default skeleton is necessary for the next checker/preview commands,
 so it needs no separate enable flag. A workspace whose resolved path lies under
-`skills/ppt-master/templates/<kind_dir>/` uses `templates/design_spec.md`;
+`skills-academic/ppt-master/templates/<kind_dir>/` uses `templates/design_spec.md`;
 every other workspace uses `templates/design_spec.<kind>.TODO.md`, including an
 empty project workspace. The `spec_skeleton` receipt records that path. It
 records exact canvas dimensions/viewBox (`custom` if no registered size matches),
@@ -72,8 +72,8 @@ validation, asset packaging and rollback: [svg-pipeline.md](svg-pipeline.md#mirr
 ## Type B source bundles
 
 ```bash
-python3 skills/ppt-master/scripts/svg_authoring_view.py "<normalized_svg_source>" -o "<svg_analysis_workspace>/authoring-svg" --projection-kind generic
-python3 skills/ppt-master/scripts/extract_svg_assets.py "<svg_analysis_workspace>/authoring-svg" --icons-dir "<svg_analysis_workspace>/icons" --icon-namespace imported --inplace --id-prefix source --min-decoration-bytes 3000 --clean-stale
+python3 skills-academic/ppt-master/scripts/svg_authoring_view.py "<normalized_svg_source>" -o "<svg_analysis_workspace>/authoring-svg" --projection-kind generic
+python3 skills-academic/ppt-master/scripts/extract_svg_assets.py "<svg_analysis_workspace>/authoring-svg" --icons-dir "<svg_analysis_workspace>/icons" --icon-namespace imported --inplace --id-prefix source --min-decoration-bytes 3000 --clean-stale
 ```
 
 Creates a non-destructive authoring IR bundle in a throwaway analysis workspace and runs the vector readability pass only on that IR; the user's source directory is never rewritten. For an explicitly selected complex subtree that should stay one SVG picture, apply `extract_svg_pictures.py` to the analysis IR with `--resource-root` set to the narrowest directory containing the IR and every local dependency.
@@ -81,7 +81,7 @@ Creates a non-destructive authoring IR bundle in a throwaway analysis workspace 
 ## `svg_quality_checker.py --template-mode`
 
 ```bash
-python3 skills/ppt-master/scripts/svg_quality_checker.py "<template_source>" --template-mode --canonical-authoring [--format <canvas_format>]
+python3 skills-academic/ppt-master/scripts/svg_quality_checker.py "<template_source>" --template-mode --canonical-authoring [--format <canvas_format>]
 ```
 
 Globs `*.svg` in the template directory; skips `spec_lock.md` drift checks; enforces roster ↔ resolved Design Spec consistency as errors (orphan or missing files break the contract and, in library scope, the index); emits advisory warnings when a page lacks a conventional placeholder (silence them with a `placeholders:` frontmatter map); requires every SVG root to declare one output Master and Layout (zero-slot Layouts are valid); rejects ordinary Master/Layout `<g>` elements, nested structure markers, missing slot bounds, and carrier-bound slots without exactly one compatible carrier (a validated compact authored-preset `<g>` is the sole fixed-layer group exception and may be one `object` carrier); validates cross-page Master equality and same-key Layout atom/slot equality; warns when distinct Layout keys have identical static framing/slot contracts. For `kind: brand` it validates the identity-only frontmatter/sections/colors/provenance/asset references; for `kind: style` the frontmatter, section/field shape, conditional custom and fallback values, portable ID, and one-file roster-free boundary. It validates the authoring contract, not the compiled OOXML package.
@@ -115,7 +115,7 @@ frame or measured geometry and effective typography. Empty results include a
 ## `template_preview_pptx.py`
 
 ```bash
-python3 skills/ppt-master/scripts/template_preview_pptx.py "<authoring_workspace>" [--force] [--native-charts-and-tables -o <distinct_path>]
+python3 skills-academic/ppt-master/scripts/template_preview_pptx.py "<authoring_workspace>" [--force] [--native-charts-and-tables -o <distinct_path>]
 ```
 
 Consumes `templates/*.svg` directly, compiles the declared structured Master/Layout contract into `<authoring_workspace>/exports/<template_id>_template_preview.pptx` (creating `exports/` on demand), and reopens the result to verify one slide per prototype, the expected Master/Layout counts, exact Presentation → Master → Layout → Slide registration, distinct Theme parts per Master, valid unique `p14:creationId` and registration IDs, and — for `standard` / `fidelity` — that every carrier-bound placeholder on each review Slide has the same type, effective index, and full frame as its registered Layout placeholder. Authored modes use ephemeral SVG copies with concise preview-only sample text so long `{{...}}` markers stay readable; source SVGs, carrier typography, slot metadata, and Layout frames are unchanged. Typed chart/table placeholders automatically enable native Chart/Table compilation, with the triggering slot kinds printed in the receipt. Without typed slots, the default keeps visible fallbacks; `--native-charts-and-tables -o <distinct_path>` explicitly requests a separately named native review. The first export refuses an existing output; `--force` replaces it intentionally. It needs no project `spec_lock.md`, creates no persistent project, and never infers structure.
@@ -123,7 +123,7 @@ Consumes `templates/*.svg` directly, compiles the declared structured Master/Lay
 ## `apply_template.py`
 
 ```bash
-python3 skills/ppt-master/scripts/apply_template.py <project_path> --root <workspace_root> [--root <workspace_root> ...] [--dry-run] [--skip-validation]
+python3 skills-academic/ppt-master/scripts/apply_template.py <project_path> --root <workspace_root> [--root <workspace_root> ...] [--dry-run] [--skip-validation]
 ```
 
 Runs the install half of [`apply-template-workspace.md`](../../workflows/stages/apply-template-workspace.md) §4 for the roots Stage 1 (Default) or the user (Quick) already selected; it selects nothing. Each `--root` is a workspace root exposing `templates/design_spec.md` (library shape) or one `templates/design_spec.<kind>.<id>.md` per kind (project shape); an inner `templates/` directory is refused so sibling `images/` and `icons/` travel with the spec. Per root it runs `svg_quality_checker.py <root>/templates --template-mode --canonical-authoring` (`--skip-validation` when that already ran in the same turn), labels the root `library` when it resolves to the index-derived `templates/<kind_dir>/<id>/` and `explicit` otherwise, and rejects a Style-only library package that carries `images/`, `icons/`, or `exports/`. It then resolves the structural owner (Layout when selected, otherwise Deck), maps every spec to `<project>/templates/design_spec.<kind>.<id>.md` with exactly one `> **Installed from**: \`<root>\` (library|explicit)` line under the H1, maps the owner's `templates/` roster and other non-bitmap structural files and every root's `images/` / `icons/` once, and refuses duplicate kinds, a root passed twice, and any destination that already exists with different bytes — all before writing; a byte-identical destination is reported as `[same]`, preserving content on reruns. A root equal to the target project is consumed in place; when a selected Layout supersedes that project's in-place Deck roster, the Deck's structural files are replaced by the Layout roster. `--dry-run` prints the mapping and receipt without writing. The last stdout line is the §5.3 completion receipt (`roots=…; sources=…; kinds=…; segments=…; active_roster=…; install=…; installed_specs=…`).
@@ -135,8 +135,8 @@ Successful installation also writes `<project>/template_install.json` in that tr
 ## `register_template.py`
 
 ```bash
-python3 skills/ppt-master/scripts/register_template.py <template_id> --kind style|layout|deck [--dry-run]
-python3 skills/ppt-master/scripts/register_template.py --kind style|deck|layout --rebuild-all
+python3 skills-academic/ppt-master/scripts/register_template.py <template_id> --kind style|layout|deck [--dry-run]
+python3 skills-academic/ppt-master/scripts/register_template.py --kind style|deck|layout --rebuild-all
 ```
 
 Derives the index entry from `templates/design_spec.md` (frontmatter preferred; prose fallback) plus the actual `templates/*.svg` roster and updates `styles/styles_index.json`, `layouts/layouts_index.json`, or `decks/decks_index.json`. The JSON index is the single discovery source for Default Stage-1 template controls and chat listing; READMEs describe kinds in prose and are never edited. `--dry-run` checks the directory/index identity without writing.

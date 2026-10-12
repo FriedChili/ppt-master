@@ -14,7 +14,7 @@
 This directory is the global library; the resource owner copies chosen icons into `<project>/icons/<lib>/` before SVG authoring:
 
 ```bash
-python3 skills/ppt-master/scripts/icon_sync.py <project_path> tabler-outline/home tabler-outline/bulb
+python3 skills-academic/ppt-master/scripts/icon_sync.py <project_path> tabler-outline/home tabler-outline/bulb
 ```
 
 Missing names, or one batch mixing the libraries, exit non-zero. Files under `<project>/icons/` form the prepared pool and combine freely with user-provided, custom, or imported icons; `finalize_svg.py --only embed-icons`, preview, validation, and native export resolve only this pool. **Custom icons**: drop `.svg` files into `<project>/icons/<lib>/` (any `<lib>`, e.g. `custom/`) and reference `data-icon="<lib>/<name>"`. **Imported vectors**: `create-template` reserves `imported/` — one copy at `<workspace>/icons/imported/<name>.svg`, referenced as `data-icon="imported/<name>"`, never duplicated under `templates/` or used as a hand-curated library.
@@ -33,7 +33,7 @@ Missing names, or one batch mixing the libraries, exit non-zero. Files under `<p
 For a known basename run `icon_sync.py` directly; for an uncertain one search only the chosen library:
 
 ```bash
-rg --files "skills/ppt-master/templates/icons/tabler-outline" -g '*chart*.svg'
+rg --files "skills-academic/ppt-master/templates/icons/tabler-outline" -g '*chart*.svg'
 ```
 
 **Hard rule**: search by the drawable object, not the abstract concept — these libraries store things that can be drawn (`bulb`, `target`, `trending-up`, `alert-triangle`), so `idea`, `goal`, `growth`, `warning`, `innovation` return nothing in most of them; translate the semantic into an object first. **Reference — not a constraint**: one concept usually has several valid objects, chosen per deck from page register and visual style. **Hard rule**: basenames are not portable across the four stylistic libraries — `alert-*` exists in the tabler libraries but `phosphor-duotone` uses `warning-*`; `arrow-trend-*` in `chunk-filled` is `trending-*` in `tabler-outline`. Do not load a full index or enumerate broad keyword families; re-pick from the narrow result and rerun the batch until clean; never switch stylistic libraries for a missing generic icon. An empty result → try another drawable translation in the same library; when several stay empty, let another carrier (chart, typography, shape) take that semantic rather than forcing a loose icon.

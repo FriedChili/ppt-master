@@ -47,7 +47,7 @@ class ApplyTemplateTests(unittest.TestCase):
         text = installed.read_text(encoding="utf-8")
         h1 = text.index("# Incident Postmortem")
         self.assertIn(
-            "\n\n> **Installed from**: `skills/ppt-master/templates/styles/"
+            "\n\n> **Installed from**: `skills-academic/ppt-master/templates/styles/"
             "incident-postmortem/` (library)\n",
             text[h1:],
         )
