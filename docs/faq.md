@@ -244,32 +244,21 @@ settings are not authored. See the [PowerPoint ↔ SVG Mapping
 Guide](./powerpoint-svg-mapping.md#10-powerpoint-playback-and-package-features)
 for the carrier and preservation boundaries.
 
-## Q: Why are there no element animations? Were animations removed?
+## Q: Why are there no element animations anymore?
 
-Animations were not removed. Page transitions are on by default (`fade` 0.4s); per-element object
-animation is **off by default**—a page appears as a whole instead of having
-elements auto-cascade in one by one. Both are controlled by `svg_to_pptx.py`
-flags: `-t/--transition` for page-level and `-a/--animation` for element-level.
-The object registry includes entrance, emphasis, motion-path, and exit effects.
-`pptx_to_svg.py` also reconstructs exact current-registry page transitions and
-finite exact-duration object-animation rows into `animations.json`;
-unsupported source timing remains an explicit diagnostic.
-
-Use `-a auto` for deck-wide automatic entrances, a canonical effect for one deck-wide effect, or a project-level `animations.json` for explicit page/object timing. Default runs the custom stage for an existing sidecar, an explicit per-slide/per-object request, or an enabled effective Custom Animations outcome. Quick runs it when a sidecar or its active-context motion decision requires object-level work; recorded, self-running, or video-directed Quick delivery requires that stage unless the user explicitly requests static or page-transition-only playback. A deck-wide-only request can remain exporter flags. If none of these triggers applies, the `fade`/`none` defaults remain. The [Generate workflow](../skills-academic/ppt-master/workflows/generate-pptx.md) and [Quick profile](../skills-academic/ppt-master/workflows/profiles/quick-generate.md) define those triggers.
+Object animation is not part of what this fork delivers, so a page appears exactly
+as authored instead of having its elements auto-cascade in one by one. Page
+transitions remain, and they are the one playback feature written into the
+package. `svg_to_pptx.py` accepts `-t/--transition <effect>` with an optional
+`--transition-duration`; `fade` is the default, and `-t none` disables
+transitions. `pptx_to_svg.py` also reconstructs exact current-registry page
+transitions from a source deck and reports a transition it cannot reconstruct as
+`transition-not-reconstructed` instead of guessing.
 
 ```bash
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -t push       # different transition
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -t push --transition-duration 1.0   # replace the deck-wide transition
 python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -t none       # disable transitions
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -a auto       # enable per-element entrance (effect mapped from group id)
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> --animation entrance_fade # enable with one canonical effect
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> --animation emphasis_spin # native emphasis
-python3 skills-academic/ppt-master/scripts/pptx_animations.py --list             # complete categorized effect list
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -a auto --animation-trigger on-click   # presenter-paced reveals
 ```
-
-`on-click` is for live presentations. Narrated/video export via `--recorded-narration` rejects it because ppt-master writes page timings, not object-level click timings; use `after-previous` or `with-previous` for narrated decks.
-
-For common commands, Start-mode guidance, and object-level customization, see [Animations & Transitions](./animations.md). Exact effect and validation behavior remains in the linked execution reference.
 
 ## Q: Which AI model works best?
 
@@ -344,9 +333,9 @@ with unrelated material. After preparation, the current agent hand-authors
 checker, fixes every blocking error, and only then exports the final PPTX.
 
 Ordinary exporter capabilities remain available as needed, including native
-chart/table replacement, notes, motion, narration, and diagnostics. Notes,
-custom object animation, and narration start off; the agent may enable them when
-the request or deck needs them, without opening a confirmation flow. A
+chart/table replacement, notes, page transitions, and diagnostics. Notes start
+off; the agent may enable them when the request or deck needs them, without
+opening a confirmation flow. A
 default-path export writes the normal postflight report and snapshots
 `svg_output/` under `backup/`; an explicit output path keeps the ordinary
 no-backup behavior. Page count alone neither activates nor blocks quick

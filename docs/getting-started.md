@@ -4,15 +4,12 @@
 
 ---
 
-The short path to your first deck, how to use everything around it — templates, live preview, animations, narration, voice cloning — and where to look when something goes wrong. Sections follow roughly the order you meet them in a real run. Each is the quick version; follow the **Full guide →** link for depth.
+The short path to your first deck, how to use everything around it — templates, live preview, transitions — and where to look when something goes wrong. Sections follow roughly the order you meet them in a real run. Each is the quick version; follow the **Full guide →** link for depth.
 
 - [Set up the installation and working folders](#set-up-the-installation-and-working-folders)
 - [Start from a template](#start-from-a-template)
 - [Generate your first deck](#generate-your-first-deck)
 - [Live preview & visual edits](#live-preview--visual-edits)
-- [Animations & transitions](#animations--transitions)
-- [Narration & video](#narration--video)
-- [Use a cloned voice](#use-a-cloned-voice)
 - [When something goes wrong](#when-something-goes-wrong)
 
 ---
@@ -141,40 +138,6 @@ Full guide → [Live Preview Stage](../skills-academic/ppt-master/workflows/stag
 
 ---
 
-## Animations & transitions
-
-Exported decks carry page transitions and optional per-element object animations
-as real OOXML—not embedded video. The default is a `fade` page transition with
-**no element animation**; opt in with `-a auto`, one of the 203 native
-`entrance_*` / `emphasis_*` / `path_*` / `exit_*` presets, or an
-`animations.json` sidecar. The 29 former short names remain accepted only as
-compatibility inputs; new animation choices use canonical prefixed names.
-
-Animation settings are strict: unknown effects or Start modes, invalid timing values, and missing sidecar targets fail instead of silently becoming another effect. Before the result replaces an existing output, ppt-master reads the candidate package back and checks timing placement, IDs, shape targets, effects, durations, and Start modes. Microsoft PowerPoint is the primary motion-validation target; other presentation apps can open the PPTX but may map individual animation effects differently.
-
-
----
-
-## Narration & video
-
-Turn the speaker notes into per-slide voice narration, embed the audio back into the PPTX, and let PowerPoint export the deck as a synced-narration MP4 — no third-party tools.
-
-```
-You: Generate narration for this deck and re-export with audio embedded.
-You: Generate narration audio for this deck
-```
-
-Narration defaults to `edge-tts` (about 90 locales); optional cloud providers cover higher-quality voices. The AI recommends a voice for the deck's language and asks once before generating.
-
-
----
-
-## Use a cloned voice
-
-
-
----
-
 ## When something goes wrong
 
 The [FAQ](./faq.md) is the living troubleshooting reference — continuously updated from real user reports. Quick pointers for the most common situations:
@@ -185,7 +148,6 @@ The [FAQ](./faq.md) is the living troubleshooting reference — continuously upd
 | Visual quality disappoints | Switch to a large-context Claude model + `gpt-image-2` — the harness sets the floor, the model sets the ceiling. |
 | Text overflows or elements overlap | Re-run that page, or fix it in live preview; see the [FAQ](./faq.md). |
 | No image-generation API key | Use the host's native image tool when available; otherwise zero-config web search still works. See the [FAQ](./faq.md). |
-| Animations or some effects look off in another app | Microsoft PowerPoint is the primary motion-validation target. Keynote / WPS / LibreOffice can open the `.pptx`, but may remap or omit individual effects or Start semantics; validate motion-critical delivery in PowerPoint. |
 | A long deck might blow the context window | Generation can run in split mode; details in the [FAQ](./faq.md). |
 
 For model choice, cost, chart editability, custom templates, and more, the [FAQ](./faq.md) is the place to look.

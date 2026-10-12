@@ -234,30 +234,14 @@ relationship，受支持的 PPTX 回导也会重建同一种 SVG 表达。
 导航命令、程序 / macro / OLE / file 以及任意 action setting 不会被创作。
 carrier 与保留边界见 [PowerPoint ↔ SVG 映射指南](./powerpoint-svg-mapping.md)。
 
-## Q: 为什么没有页内元素动画？动画被移除了吗？
+## Q: 为什么没有了页内元素动画？
 
-动画没有被移除。页间转场默认开（`fade` 0.4s），页内元素对象动画**默认关**——翻到
-一页时整页一次性呈现，不会自动逐个级联。两者都通过 `svg_to_pptx.py` 的
-参数控制：`-t/--transition` 控制页级，`-a/--animation` 控制元素级。对象
-注册表已经包含进入、强调、动作路径和退出效果。
-`pptx_to_svg.py` 也会把当前注册表内可精确读回的页面切换和具有精确时长的
-有限对象动画记录重建到 `animations.json`；不支持的来源 timing 会保留明确诊断。
-
-整份 deck 的自动入场可用 `-a auto`，统一效果可传规范效果名，逐页 / 逐对象时序则使用项目级 `animations.json`。Default 在已有 sidecar、显式逐页 / 逐对象请求，或有效的 Custom Animations 结果已启用时运行自定义阶段。Quick 在 sidecar 或当前上下文的动效决定需要对象级工作时运行；录制、自运行或视频导向的 Quick 交付必须进入该阶段，除非用户显式要求静态或只用页间转场。只涉及整份 deck 的要求可以保留为导出参数。所有触发都不成立时，保留 `fade` / `none` 默认值。触发边界见 [Generate 工作流](../../skills-academic/ppt-master/workflows/generate-pptx.md)与[快速模式 profile](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)。
+对象动画不属于本分支的交付物，所以页面就按创作的样子整页呈现，不会让元素自动逐个级联。页间转场仍然保留，并且是唯一写入 package 的播放特性。`svg_to_pptx.py` 用 `-t/--transition <effect>` 控制它，可另加 `--transition-duration`；默认是 `fade`，`-t none` 关闭转场。`pptx_to_svg.py` 也会从来源 deck 精确重建当前注册表内的页面转场，无法重建时报 `transition-not-reconstructed`，而不是猜测。
 
 ```bash
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -t push       # 换转场效果
+python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -t push --transition-duration 1.0   # 替换整份 deck 的转场
 python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -t none       # 关闭转场
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -a auto       # 开启页内元素入场（按 group id 自动映射效果）
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> --animation entrance_fade # 开启并改用单一规范效果
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> --animation emphasis_spin # 原生强调效果
-python3 skills-academic/ppt-master/scripts/pptx_animations.py --list             # 完整分类效果清单
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -a auto --animation-trigger on-click   # 单击触发，演讲者控制节奏
 ```
-
-`on-click` 适合现场演示。通过 `--recorded-narration` 做旁白/视频导出时会拒绝它，因为 ppt-master 只写页面级计时，不生成对象级点击计时；带旁白的 deck 请使用 `after-previous` 或 `with-previous`。
-
-常用命令、Start 模式选择与对象级自定义见[转场与动画](./animations.md)；精确效果与校验行为由其中链接的执行规范维护。
 
 ## Q: 推荐用什么 AI 模型？
 
@@ -307,7 +291,7 @@ python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -a auto --an
 
 它不跳过备料或设计能力：来源转换、已识别事实缺口的研究、共享美学参考，以及生成 deck 所需的资源仍按需准备——用户提供或源文件抽取的图片、AI / 网络 / 切片图片、项目图标、原生形状、图表 / 表格，以及对应的必要运行 manifest 或来源记录。公式由当前 Agent 直接写成受影响 SVG 中的 PowerPoint 原生 marker，不再作为图片资源准备。显式选择的 manual 路径或其他不可替代的文件依赖未就绪时，Quick 会阻塞并索取文件。自动 AI 生成或其必需切片路径耗尽时，Quick 则会移除失败任务与过期 manifest 条目，改用原生可编辑文字 / SVG 或已经备好的非 AI 素材承载原沟通任务，继续本次运行，并在最终交接中披露替代结果；它不会拿无关材料顶替。备料完成后，当前 Agent 按共享规范手写 `svg_output/`，运行无锁的 Quick 最终质量检查并修复所有阻塞错误，之后才导出最终 PPTX。
 
-原生图表 / 表格替换、讲稿、动效、旁白和诊断等普通导出能力仍可按需使用；讲稿、自定义对象动画和旁白默认关闭，Agent 可在用户要求或 deck 确有需要时自动启用，不会打开确认流程。使用默认输出路径时会生成普通 postflight 报告，并把 `svg_output/` 备份到 `backup/`；显式指定输出路径时沿用普通流程不创建备份的行为。页数本身既不会自动触发，也不会阻止快速生成。
+原生图表 / 表格替换、讲稿、页间转场和诊断等普通导出能力仍可按需使用；讲稿默认关闭，Agent 可在用户要求或 deck 确有需要时自动启用，不会打开确认流程。使用默认输出路径时会生成普通 postflight 报告，并把 `svg_output/` 备份到 `backup/`；显式指定输出路径时沿用普通流程不创建备份的行为。页数本身既不会自动触发，也不会阻止快速生成。
 
 Quick 省略独立规划阶段，但仓库没有文档化的测量或保证表明它会降低多少 token；逐页 SVG 创作仍然存在。Quick 保留同一套页面级视觉与资源创作能力，以及共享的 SVG / 资源阻塞标准；它不运行 Spec Lock 对齐检查，也不从 lock 派生当前项目 Theme。Flat Quick 保留转换器默认 Theme 脚手架；structured Quick 在工作区提供时保留逐 Master 源 Theme，并从语义 slot carrier 推导 Master 标题／正文字号默认值。由于没有已确认的设计契约或可恢复的决策历史，它不承诺与 Default 作出相同设计，也不承诺具体耗时。
 
