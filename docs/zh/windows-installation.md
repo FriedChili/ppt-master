@@ -37,13 +37,9 @@ Python 是唯一的硬性要求。
 
 **方式 B — Git Clone**（需要 [Git](https://git-scm.com/downloads)）。下面两条 clone 命令任选其一：
 
-```powershell
-# GitHub
-```
 
-```powershell
-# AtomGit 镜像
-```
+
+
 
 然后进入克隆出的目录：
 

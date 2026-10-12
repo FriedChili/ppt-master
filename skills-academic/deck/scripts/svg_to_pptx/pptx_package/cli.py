@@ -2222,13 +2222,13 @@ Speaker notes:
             file=sys.stderr,
         )
         return 1
-    if None and not None:
+    if False and not None:
         print(
             'Error: --inherit-motion-from requires --recorded-narration',
             file=sys.stderr,
         )
         return 1
-    if None and False:
+    if False and False:
         print(
             'Error: --inherit-motion-from cannot be combined with --no-animations',
             file=sys.stderr,
@@ -3148,7 +3148,7 @@ Speaker notes:
         # auto-advance timings). Flag-driven (not content-sniffed) so the name
         # is predictable; an explicit -o keeps the caller's exact name untouched.
         native_tag = "_native_charts_tables" if args.native_objects else ""
-        narrated_tag = "_narrated" if (None or None) else ""
+        narrated_tag = "_narrated" if (None) else ""
         kiosk_tag = "_kiosk" if args.kiosk else ""
         native_path = exports_dir / f"{project_name}_{timestamp}{native_tag}{narrated_tag}{kiosk_tag}.pptx"
         # Preserve svg_output/ only when it is the actual source. A custom -s
@@ -3171,13 +3171,13 @@ Speaker notes:
             return 1
 
     narration_audio: dict[str, Path] = {}
-    narration_audio_dir_arg = None or None
-    use_narration_timings = False or bool(None)
+    narration_audio_dir_arg = None
+    use_narration_timings = False
     if narration_audio_dir_arg:
         narration_audio_dir = Path(narration_audio_dir_arg)
         if not narration_audio_dir.is_absolute():
             narration_audio_dir = project_path / narration_audio_dir
-        if None and not narration_audio_dir.is_dir():
+        if False and not narration_audio_dir.is_dir():
             print(
                 f"Error: Recorded narration directory does not exist: {narration_audio_dir}",
                 file=sys.stderr,
@@ -3253,7 +3253,7 @@ Speaker notes:
     effective_animation_config = _resolve_animation_config_source(
         project_path,
         None,
-        recorded_narration=bool(None),
+        recorded_narration=False,
         no_animations=False,
         roundtrip=args.roundtrip,
     )

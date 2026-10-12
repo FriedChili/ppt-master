@@ -37,13 +37,9 @@ Python is the only hard requirement.
 
 **Option B — Git Clone** (requires [Git](https://git-scm.com/downloads)). Run one of these clone commands:
 
-```powershell
-# GitHub
-```
 
-```powershell
-# AtomGit mirror
-```
+
+
 
 Then enter the cloned folder:
 

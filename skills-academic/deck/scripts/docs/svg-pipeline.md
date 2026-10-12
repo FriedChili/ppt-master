@@ -184,7 +184,6 @@ a copied SVG, a present `notes/<svg-stem>.md` overrides its inherited source
 notes and an absent file keeps them. Deleting inherited source notes only on a
 copy is not supported in v1.
 
-When a round-trip recorded-narration export omits `--animation-config`, it reads the workspace `animations.json` the importer wrote; that sidecar is part of the workspace contract, so deleting it fails export rather than restoring source motion.
 
 A copied output page uses its own stem-keyed notes when present and otherwise
 inherits the declared source slide's canonical notes.
@@ -844,9 +843,6 @@ python3 scripts/svg_to_pptx.py <project_path> -t none
 python3 scripts/svg_to_pptx.py <project_path> --auto-advance 3
 python3 scripts/svg_to_pptx.py <project_path> --reflow-text  # opt-in PowerPoint reflow
 python3 scripts/svg_to_pptx.py <project_path> --no-merge    # one text frame per visual line
-python3 scripts/svg_to_pptx.py <project_path> --recorded-narration audio
-python3 scripts/svg_to_pptx.py <project_path> --recorded-narration audio --animation-config animations.json
-python3 scripts/svg_to_pptx.py <project_path> --recorded-narration audio --no-animations
 ```
 
 Native image export defaults to `--image-sizing cap`: it preserves source bytes
@@ -949,12 +945,7 @@ Behavior:
   Both map to native picture crop/geometry when possible.
 - The default Generate flow embeds speaker notes automatically unless `--no-notes` is used; Quick Generate defaults them off and enables them with `--with-notes`
 - Recorded narration is opt-in:
-  - `--recorded-narration audio` prepares PowerPoint's "recorded timings and narrations": every slide must have matching `m4a` / `mp3` / `wav` audio, `ffprobe` must read every duration, and `--animation-trigger on-click` is rejected
-  - `--recorded-narration audio` keeps speaker notes, embeds each matching audio file, and writes slide auto-advance timings from page-start lead-in + audio duration + page-tail padding. `--narration-start-floor` and `--narration-padding` are independent optional seconds; their defaults are `0.8` and `0.5`, and the post-transition lead-in is `max(0, start floor - transition duration)`
-  - While motion remains enabled, narrated export without an explicit `--animation-config` selects `<project>/narration_animations.json` when either animation sidecar exists; canonical-only cue synchronization therefore blocks until the derived file exists. Narration-independent custom motion explicitly passes `--animation-config animations.json`, even when a derived sidecar also exists
   - Non-narrated export keeps the existing optional `<project>/animations.json` default
-  - Narration timing merges into the existing slide timing DOM. While motion remains enabled, object-animation rows and the resolved page transition are preserved rather than regenerated; inherited `-a none` suppresses object rows, and `--no-animations` removes both motion layers
-  - `--narration-audio-dir audio` is the lower-level embedding path: it embeds whatever files match and allows partial audio coverage
 - Page transitions are controlled by `-t/--transition`; per-element object animations are controlled by `-a/--animation`
 - Each ordinary top-level SVG `<g id="...">` group is a PowerPoint shape-target anchor. Use one group per logical Slide-local content unit rather than targeting a group count
 - Start mode is set globally by `--animation-trigger`, mirroring PowerPoint's Start dropdown: `after-previous` (default, cascade with `--animation-stagger` spacing on slide entry), `on-click` (presenter-paced), or `with-previous` (all together on slide entry). A sidecar row may override it with `trigger`; the slide value is only the inherited Start mode
@@ -971,7 +962,6 @@ Behavior:
   instantaneous presets keep their authored duration. `--animation-stagger`
   supplies the default gap between successive non-trigger-shape rows in
   `after-previous` mode (default `0.5`)
-- Optional object-level overrides live in `<project>/animations.json` or a path passed via `--animation-config`; build and validate them with `animation_config.py scaffold|validate`. The scaffold is neutral (`defaults.animation.effect: none`, untouched groups `{}`). A populated group uses either the fully compatible legacy single-effect fields or a non-empty `effects[]`, never both; every `effects[]` row names an explicit effect
 - One `effects[]` row becomes one record on the group's shape target. Each row may independently set sequence `order`, `delay`, `duration`, `trigger`, and `trigger_shape`; ordinary rows use page-wide order, while `trigger_shape` rows keep relative order in separate interactive sequences and imply `on-click`
 - Animation configuration is strict: unknown effects/modes/triggers, invalid finite/range/order values, missing slides/groups, and structural-layer targets fail export without fallback or silent omission
 - Generated export reads every slide back and verifies animation row order, including repeated rows on one shape target, trigger, shape target, resolved effect tuple and native behavior signature, duration, and offset. Package validation then checks timing placement, `p:cTn` ids, and `p:spTgt` references before publication
