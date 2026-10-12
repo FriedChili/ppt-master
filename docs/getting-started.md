@@ -20,7 +20,7 @@ Before starting the agent, keep these three directories separate:
 
 | Directory | What it is | Where it comes from |
 |---|---|---|
-| **Installed skill directory** | The ppt-master package containing `SKILL.md`, `requirements.txt`, workflows, and scripts | In a full-repository clone or repository ZIP, this is `skills-academic/ppt-master/`; a marketplace/plugin installation or skill-only release ZIP has its own installed or extracted location |
+| **Installed skill directory** | The deck package containing `SKILL.md`, `requirements.txt`, workflows, and scripts | In a full-repository clone or repository ZIP, this is `skills-academic/ppt-master/`; a marketplace/plugin installation or skill-only release ZIP has its own installed or extracted location |
 | **Working folder** | A persistent, writable folder that you open in the agent | For a full-repository clone or repository ZIP, normally the repository root; for skill-only installation, choose your own folder—it does not have to be the installed skill directory |
 | **Active project** | One generation run's sources, authored SVG, reports, backups, and exports | The agent initializes it under `<working-folder>/projects/<generated-project-name>/` and reports the exact path |
 
@@ -41,7 +41,7 @@ python3 -m pip install -r "<installed-skill-dir>/requirements.txt"
 
 ## Start from a template
 
-**Optional.** By default ppt-master uses **free design** — you don't need a template, and you can skip to the next section. Reach for one when a deck must reuse a brand identity, a communication/design method, a fixed layout set, or a recurring deck application.
+**Optional.** By default deck uses **free design** — you don't need a template, and you can skip to the next section. Reach for one when a deck must reuse a brand identity, a communication/design method, a fixed layout set, or a recurring deck application.
 
 **Two ways to reuse an existing `.pptx`, depending on what you want back:**
 

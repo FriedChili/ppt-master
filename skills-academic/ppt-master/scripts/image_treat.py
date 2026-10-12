@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Image Treatment
+deck - Image Treatment
 
 Create a non-destructive PNG derivative from one project-local bitmap while
 preserving its display dimensions, alpha mask, and any matching web provenance.

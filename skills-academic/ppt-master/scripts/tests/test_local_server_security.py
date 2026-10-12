@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ppt-master - Local Server Security Tests
+"""deck - Local Server Security Tests
 
 Exercise both Flask request guards without creating project files or servers.
 

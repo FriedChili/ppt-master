@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - PPTX Hyperlink Resolver
+deck - PPTX Hyperlink Resolver
 
 Resolve native DrawingML click actions into the canonical SVG ``href`` form
 used by the authoring and round-trip pipelines.
@@ -12,7 +12,7 @@ Examples:
     result = resolve_click_hyperlink(rels, "rId3", "", slide_index_by_part=roster)
 
 Dependencies:
-    ppt-master hyperlink contract.
+    deck hyperlink contract.
 """
 
 from __future__ import annotations

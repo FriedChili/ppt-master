@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - DrawingML Preset Shapes
+deck - DrawingML Preset Shapes
 
 Shared full-catalog loader, registry, and formula evaluator for PPTX shapes.
 

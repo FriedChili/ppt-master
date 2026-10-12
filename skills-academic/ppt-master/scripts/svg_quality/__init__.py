@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ppt-master SVG quality-check internals.
+"""deck SVG quality-check internals.
 
 Use the stable ``scripts/svg_quality_checker.py`` entry point for CLI execution
 and compatibility imports.
@@ -11,5 +11,5 @@ Examples:
     from svg_quality_checker import SVGQualityChecker
 
 Dependencies:
-    Local ppt-master validation modules.
+    Local deck validation modules.
 """

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ppt-master SVG quality XML helpers.
+"""deck SVG quality XML helpers.
 
 Provides namespace constants and compact element labels shared by quality-check
 domains.

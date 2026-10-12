@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 r"""
-ppt-master - Native Formula Compiler
+deck - Native Formula Compiler
 
 Compile the documented Microsoft 365 LaTeX input profile into editable block
 or inline Office Math XML.
@@ -15,7 +15,7 @@ Examples:
     compile_latex_to_omml(r"\frac{-b \pm \sqrt{b^2-4ac}}{2a}")
 
 Dependencies:
-    None (only uses standard library and local ppt-master modules)
+    None (only uses standard library and local deck modules)
 """
 
 from __future__ import annotations

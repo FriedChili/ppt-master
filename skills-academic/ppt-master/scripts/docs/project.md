@@ -4,7 +4,7 @@
 > `projects/` tree. Copy every other local path, even when `--move` is supplied.
 > Use `--copy` to preserve a projects-local source.
 
-Project tools create, validate, and inspect the standard ppt-master workspace.
+Project tools create, validate, and inspect the standard deck workspace.
 
 ## `project_manager.py`
 

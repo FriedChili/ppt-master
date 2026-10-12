@@ -19,7 +19,7 @@ command provides a compact view.
 
 ## Project Overview
 
-ppt-master turns source material into natively editable DrawingML PPTX. Generate has two mutually exclusive runtimes: Default Strategist → Image_Generator → Executor, and self-contained Quick without separate strategy/confirmation. Beautify selects from explicit Quick intent; Image to PPTX always uses Quick.
+deck turns source material into natively editable DrawingML PPTX. Generate has two mutually exclusive runtimes: Default Strategist → Image_Generator → Executor, and self-contained Quick without separate strategy/confirmation. Beautify selects from explicit Quick intent; Image to PPTX always uses Quick.
 
 **Route selection authority**: [`ppt-master/workflows/routing.md`](ppt-master/workflows/routing.md) owns the three top-level artifact routes: Generate PPTX, Create Template, and Edit Native PPTX. Child workflows, profiles, stages, and governance documents refine one selected route; they are not competing top-level routes.
 

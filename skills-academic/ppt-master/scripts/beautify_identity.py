@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Beautify Identity Extractor
+deck - Beautify Identity Extractor
 
 Extract a source deck's visual identity as JSON for the beautify-pptx profile:
 the declared `theme` (palette + major/minor fonts + master placeholder sizes,

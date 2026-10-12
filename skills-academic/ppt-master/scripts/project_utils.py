@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Project Utilities Module
+deck - Project Utilities Module
 
 Provides common functions for project information parsing and validation,
 reusable by other tools.
@@ -798,7 +798,7 @@ def get_project_stats(project_path: str) -> Dict:
 
 def build_parser() -> argparse.ArgumentParser:
     """Build the command-line parser for the diagnostic entry point."""
-    parser = argparse.ArgumentParser(description="Inspect and validate a ppt-master project.")
+    parser = argparse.ArgumentParser(description="Inspect and validate a deck project.")
     parser.add_argument("project_path", help="Project directory")
     return parser
 

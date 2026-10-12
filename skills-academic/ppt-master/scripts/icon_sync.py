@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Icon Sync
+deck - Icon Sync
 
 Copy chosen library icons into `<project>/icons/<lib>/` when selected. Missing
 names exit non-zero before export. Known basenames need no separate existence

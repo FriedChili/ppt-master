@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Native SVG Metadata Store
+deck - Native SVG Metadata Store
 
 Deduplicate opaque PowerPoint-native payloads and repeated restoration
 attributes into one deterministic gzip-compressed workspace store, then

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Page Context Compatibility Module
+deck - Page Context Compatibility Module
 
 Re-export the project-management page-context API from its domain package.
 New internal imports should use ``project_management.page_context``.

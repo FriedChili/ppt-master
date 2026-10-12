@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Spec Annotation Checker
+deck - Spec Annotation Checker
 
 Print compact JSON to-dos and unread direct-edit summaries; acknowledge listed
 edits or unchanged comments. See scripts/docs/spec_review.md.

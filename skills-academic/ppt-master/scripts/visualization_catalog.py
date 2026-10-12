@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Visualization Catalog Resolver
+deck - Visualization Catalog Resolver
 
 Resolve chart and table references from their live family indexes.
 

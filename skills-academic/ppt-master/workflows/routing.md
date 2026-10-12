@@ -1,10 +1,10 @@
 ---
-description: Deterministic selection among ppt-master's three top-level artifact routes.
+description: Deterministic selection among deck's three top-level artifact routes.
 ---
 
 # Routing Rules
 
-Route selection authority for ppt-master. Select exactly one top-level route, then activate only the child workflows, profiles, and stages owned by that route.
+Route selection authority for deck. Select exactly one top-level route, then activate only the child workflows, profiles, and stages owned by that route.
 
 **Hard rule**: when this file conflicts with a route summary elsewhere in the Skill package or a repository-level document, this file wins for route selection. After selection, the active runtime authority owns execution.
 

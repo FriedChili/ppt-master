@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Markdown Conversion Profile Helpers
+deck - Markdown Conversion Profile Helpers
 
 Write lightweight sidecar metadata for source_to_md conversion outputs.
 

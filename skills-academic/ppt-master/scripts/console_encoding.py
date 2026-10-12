@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Console encoding helpers for ppt-master CLI scripts."""
+"""Console encoding helpers for deck CLI scripts."""
 
 from __future__ import annotations
 

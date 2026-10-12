@@ -1,6 +1,6 @@
 # AGENTS.md
 
-**本仓库是 ppt-master 的科研/学术专用分支（academic fork）。**
+**本仓库是 deck 的科研/学术专用分支（academic fork）。**
 企业品牌、商务沟通方法、音效、动画/配音/视频交付等非科研场景面已移除；
 当前交付物是**静态**幻灯片。改动清单与回滚方式见
 [`skills-academic/ppt-master/FORK.md`](skills-academic/ppt-master/FORK.md)。

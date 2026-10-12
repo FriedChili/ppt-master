@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Text Overflow Import Regression Tests
+deck - Text Overflow Import Regression Tests
 
 Verify that native text overflow remains visible beyond short shape and table
 cell frames, while explicit clipping retains the existing line truncation.
@@ -12,7 +12,7 @@ Examples:
     Run the module from the scripts directory.
 
 Dependencies:
-    Standard library and the local ppt-master importer.
+    Standard library and the local deck importer.
 """
 
 from __future__ import annotations

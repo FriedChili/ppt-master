@@ -264,7 +264,7 @@ def _warn_weak_required_terms(required_terms: tuple[str, ...]) -> None:
 
 
 def _load_search_env_file() -> None:
-    """Load image-search keys from the shared ppt-master .env locations."""
+    """Load image-search keys from the shared deck .env locations."""
     load_prefixed_env_file(("PEXELS_", "PIXABAY_"))
 
 

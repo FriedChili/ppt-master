@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Source Converter Batch Helpers
+deck - Source Converter Batch Helpers
 
 Share explicit multi-file and directory expansion logic across source_to_md
 backend converters.

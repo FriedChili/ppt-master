@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Preset Shape SVG Markup
+deck - Preset Shape SVG Markup
 
 Serialize evaluated DrawingML preset layers for lossless transport or compact
 project authoring.
@@ -12,7 +12,7 @@ Examples:
     markup = serialize_preset_layers(layers, semantic_attrs, style_attrs)
 
 Dependencies:
-    None (only uses standard library and local ppt-master modules)
+    None (only uses standard library and local deck modules)
 """
 
 from __future__ import annotations

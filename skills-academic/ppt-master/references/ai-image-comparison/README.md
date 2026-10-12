@@ -31,7 +31,7 @@ Each subdirectory contains:
 
 ## How the images were generated
 
-> Reference images were generated with the **OpenAI gpt-image-2** backend. Other backends (gemini / doubao / qwen / etc.) will produce visually different results — this reflects model-level differences, not differences in ppt-master's dimension system.
+> Reference images were generated with the **OpenAI gpt-image-2** backend. Other backends (gemini / doubao / qwen / etc.) will produce visually different results — this reflects model-level differences, not differences in deck's dimension system.
 
 To reproduce or regenerate:
 

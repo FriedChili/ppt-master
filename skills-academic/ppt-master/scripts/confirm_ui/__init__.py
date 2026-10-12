@@ -1,1 +1,1 @@
-"""ppt-master - interactive Strategist confirmation stage UI (Step 4)."""
+"""deck - interactive Strategist confirmation stage UI (Step 4)."""

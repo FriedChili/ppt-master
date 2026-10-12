@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Unified Markdown Converter
+deck - Unified Markdown Converter
 
 Auto-detect source type and dispatch to the existing source_to_md converters.
 

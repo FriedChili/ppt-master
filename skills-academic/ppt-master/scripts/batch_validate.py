@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Batch Project Validation Tool
+deck - Batch Project Validation Tool
 
 Checks the structural integrity and compliance of multiple projects at once.
 
@@ -221,7 +221,7 @@ class BatchValidator:
             output_file: Output file path
         """
         with open(output_file, 'w', encoding='utf-8') as f:
-            f.write("ppt-master Project Validation Report\n")
+            f.write("deck Project Validation Report\n")
             f.write("=" * 80 + "\n\n")
 
             for result in self.results:
@@ -260,7 +260,7 @@ class BatchValidator:
 def build_parser() -> argparse.ArgumentParser:
     """Build the command-line parser."""
     parser = argparse.ArgumentParser(
-        description="Validate one or more ppt-master project directories.",
+        description="Validate one or more deck project directories.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""Examples:
   python3 scripts/batch_validate.py projects

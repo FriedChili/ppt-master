@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Template Package Validation
+deck - Template Package Validation
 
 Read a generated structured PPTX back and verify its reusable Master/Layout graph.
 

@@ -4,7 +4,7 @@
 
 ---
 
-This guide walks you through installing ppt-master on Windows step by step. Follow along and you'll have a working setup in under 10 minutes.
+This guide walks you through installing deck on Windows step by step. Follow along and you'll have a working setup in under 10 minutes.
 
 ---
 
@@ -33,7 +33,7 @@ Python is the only hard requirement.
 **Option A — Download ZIP** (easiest):
 
 2. Click the green **Code** button → **Download ZIP**
-3. Unzip to `C:\Users\YourName\ppt-master`
+3. Unzip to `C:\Users\YourName\deck`
 
 **Option B — Git Clone** (requires [Git](https://git-scm.com/downloads)). Run one of these clone commands:
 
@@ -48,7 +48,7 @@ Python is the only hard requirement.
 Then enter the cloned folder:
 
 ```powershell
-cd ppt-master
+cd deck
 ```
 
 ---
@@ -56,7 +56,7 @@ cd ppt-master
 ## Step 3 — Install Dependencies
 
 ```powershell
-cd C:\Users\YourName\ppt-master   # ← adjust to your actual path
+cd C:\Users\YourName\deck   # ← adjust to your actual path
 pip install -r requirements.txt
 ```
 
@@ -80,7 +80,7 @@ python -c "import pptx; import fitz; print('All core dependencies OK')"
 
 ## Step 5 — Run a Minimal Example
 
-Open the `ppt-master` folder in an agent-capable AI tool (Claude Code, Codex, Cursor, a VS Code agent, etc.) and type in the chat:
+Open the `deck` folder in an agent-capable AI tool (Claude Code, Codex, Cursor, a VS Code agent, etc.) and type in the chat:
 
 ```
 Quickly generate a simple 3-page test PPT with a cover, one content page, and a closing page. Topic: "Hello World". No need to confirm with me.

@@ -6,13 +6,13 @@
 
 ## 设计哲学 —— AI 驱动工作流，人掌握最终判断
 
-ppt-master 交付的是一份**高质量、可继续编辑的 PowerPoint 草稿**，而不是封闭的最终成品。工作流先推理信息与论证，再设计页面，并按照明确的路线合同创作或保留 PowerPoint 原生对象。用户负责确认方向，并在 PowerPoint 中掌握最后一公里的判断。普通 Generate 的后续工作应当是对真实 deck 的精修，而不是从整页图片或浅层可编辑外壳重新搭建。**图片还原为 PPTX** [`image-to-pptx`](../../skills-academic/ppt-master/workflows/profiles/image-to-pptx.md) profile 是一条窄例外：它当前要求 Codex，始终直接启用 Quick，先把一张或多张输入图片规范化为有序页面画面清单，原生还原普通文字，必要时在严格视觉锁下重建低清身份图形，再把场景图片重建成注册图层。它仍不允许把整页截图皮肤冒充为可编辑还原。
+deck 交付的是一份**高质量、可继续编辑的 PowerPoint 草稿**，而不是封闭的最终成品。工作流先推理信息与论证，再设计页面，并按照明确的路线合同创作或保留 PowerPoint 原生对象。用户负责确认方向，并在 PowerPoint 中掌握最后一公里的判断。普通 Generate 的后续工作应当是对真实 deck 的精修，而不是从整页图片或浅层可编辑外壳重新搭建。**图片还原为 PPTX** [`image-to-pptx`](../../skills-academic/ppt-master/workflows/profiles/image-to-pptx.md) profile 是一条窄例外：它当前要求 Codex，始终直接启用 Quick，先把一张或多张输入图片规范化为有序页面画面清单，原生还原普通文字，必要时在严格视觉锁下重建低清身份图形，再把场景图片重建成注册图层。它仍不允许把整页截图皮肤冒充为可编辑还原。
 
 工作流提供演示文稿专用的推理、状态、合同与质量门；确定性工具负责转换、校验、打包和可重复文件操作。**最终质量上限仍由所选模型决定**，用户的审美与判断则负责评审和收尾。
 
 ### SVG 是项目的规范中间语言
 
-ppt-master 不以“任意 SVG 都能转成 PPTX”为目标。`svg_output/` 使用的是**项目规范化 SVG 中间语言**：它借用 SVG 的 XML 语法和二维图形模型，但允许的元素、属性、单位、metadata、结构合同与 DrawingML 映射都由项目规范封闭定义。这里的方向是 **SVG 适应 ppt-master，而不是 ppt-master 追随整个 SVG 标准扩张**。
+deck 不以“任意 SVG 都能转成 PPTX”为目标。`svg_output/` 使用的是**项目规范化 SVG 中间语言**：它借用 SVG 的 XML 语法和二维图形模型，但允许的元素、属性、单位、metadata、结构合同与 DrawingML 映射都由项目规范封闭定义。这里的方向是 **SVG 适应 deck，而不是 deck 追随整个 SVG 标准扩张**。
 
 这套中间语言区分三种输入状态：
 
@@ -348,7 +348,7 @@ CLI 支持 `--move`、`--copy` 和自动默认，但共享同一条固定的所�
 
 ## Canvas 格式系统
 
-ppt-master 不只服务 PPT——同一套 SVG → DrawingML 流水线还能产出方形海报、9:16 故事、A4 印刷品。各格式特定的约定（比例、安全区、品牌区等）住在 [`references/canvas-formats.md`](../../skills-academic/ppt-master/references/canvas-formats.md)。
+deck 不只服务 PPT——同一套 SVG → DrawingML 流水线还能产出方形海报、9:16 故事、A4 印刷品。各格式特定的约定（比例、安全区、品牌区等）住在 [`references/canvas-formats.md`](../../skills-academic/ppt-master/references/canvas-formats.md)。
 
 值得标注的架构选择：**viewBox 是像素，不是绝对单位。** 像素空间让 AI Executor 思考布局没有歧义（`x="100"` 就是左缘 +100px），人类在浏览器里检查也直接。到 EMU 的换算只在导出时发生一次——选像素意味着流水线的其余环节（Strategist、Executor、质量检查、后处理）永远不需要在 EMU 思维下工作，那对 AI 生成和人类调试都是敌对的。
 
@@ -410,7 +410,7 @@ Theme、Slide Master、Slide Layout 与 Placeholder 是编译生成的 PowerPoin
 
 ## 角色系统：单一流水线中的专业模式
 
-ppt-master 把拥有 deck 状态的 Strategist、Image_Generator 和 Executor 保持在同一主代理内，而不是分发给并行子代理。它们是按需加载的指令作用域，不是各自持有过期 deck 状态的独立 agent。只有当支撑阶段的权威文件定义了不依赖共享 deck 状态的持久产物交接时，才可使用有界子代理。核心选择有三条互相支撑的理由：
+deck 把拥有 deck 状态的 Strategist、Image_Generator 和 Executor 保持在同一主代理内，而不是分发给并行子代理。它们是按需加载的指令作用域，不是各自持有过期 deck 状态的独立 agent。只有当支撑阶段的权威文件定义了不依赖共享 deck 状态的持久产物交接时，才可使用有界子代理。核心选择有三条互相支撑的理由：
 
 **为什么是单代理而非并行子代理。** 页面设计依赖完整的上游上下文——Strategist 的色彩选择、图片资源是否成功获取（还是失败被替代）、之前几页的视觉节奏。子代理拿到的只能是这个上下文的过期局部快照，产出的 deck 视觉会逐页漂。同一逻辑也禁止分批生成（比如一次 5 页）：分批加速上下文压缩，deck 的视觉一致性下降速度比节省的速度更快——不划算。
 
@@ -500,7 +500,7 @@ Generate 路由会在加载流程前选定一份运行时权威：[`workflows/ge
 
 “做饭”不是临时解释，而是默认 Generate 流程的正式所有权模型。`quick-generate` 只去掉独立的 Strategist 与确认层，不去掉备料：
 
-| 餐厅角色 | ppt-master 对应项 | 决策权 |
+| 餐厅角色 | deck 对应项 | 决策权 |
 |---|---|---|
 | 顾客与初始食材 | 用户确认与用户提供的原材料/素材 | 决定事实、意图、排除项、材料补充许可，以及要求具体到什么程度 |
 | 流程协调者 | Generate 流程 | 排列已声明的阶段、门禁、角色切换和交接，不接管任何角色的决策或确定性工具的检查 |
@@ -531,7 +531,7 @@ Generate 路由会在加载流程前选定一份运行时权威：[`workflows/ge
 
 **provider 专属 config key，不用通用 `IMAGE_API_KEY`。** 每个 backend 用自己的 `OPENAI_API_KEY` / `MINIMAX_API_KEY` 等等，当前 backend 由显式的 `IMAGE_BACKEND=<name>` 选定。统一的 `IMAGE_API_KEY` 字段第一眼看着干净，但当用户同时配了多个 provider 又不确定哪个在生效时会造成静默混乱——这种 fault 通常只表现为「图像生成结果怪怪的」，找不到清晰失败点。强制 per-provider key 让「我现在用的是哪个 backend」从推理变成可读配置。
 
-**默认宽松 license 过滤，配以严格模式应对没法放致谢的版面。** 网络图片搜索默认允许 CC BY / CC BY-SA 加内联致谢——大部分幻灯片都有视觉空间放一个致谢元素。`--strict-no-attribution` 是给全屏 hero image 和紧凑构图的逃生口，那些场景没法放致谢又不打破设计。NC（CC BY-NC*）和 ND（CC BY-ND*）自动拒绝，因为 ppt-master 的典型产物会用于商用或修改场景；宽松默认 + 这个底线正好对应用户实际想要的 fail-mode。
+**默认宽松 license 过滤，配以严格模式应对没法放致谢的版面。** 网络图片搜索默认允许 CC BY / CC BY-SA 加内联致谢——大部分幻灯片都有视觉空间放一个致谢元素。`--strict-no-attribution` 是给全屏 hero image 和紧凑构图的逃生口，那些场景没法放致谢又不打破设计。NC（CC BY-NC*）和 ND（CC BY-ND*）自动拒绝，因为 deck 的典型产物会用于商用或修改场景；宽松默认 + 这个底线正好对应用户实际想要的 fail-mode。
 
 **Manifest-first 获取。** 流水线内的 AI 图片生成永远先写 `images/image_prompts.json`，并渲染旁路 `image_prompts.md`，哪怕只有一张图。`image_gen.py "prompt"` 这种位置参数形式只保留给一次性调试，因为它没有 manifest / sidecar 审计轨迹。网络图片获取也类似：多行 web 资源写入 `images/image_queries.json` 批量执行，并用 `image_sources.json` 追踪来源和致谢信息。
 
@@ -684,7 +684,7 @@ SVG 与 DrawingML 的表达模型并不等价，因此主编译路径不把“�
 
 **为什么紧凑 SVG 可以展开为丰富 PPTX。** 无论直接生成还是从 PPTX 导入，第一次发布的作者源就必须是规范化紧凑 SVG：使用标准 SVG 元素、可读分组和语义 metadata，根节点只保存字体类默认值，颜色与线型放在语义组中。源码不使用 CSS class、私有缩写、编码载荷或有损精度裁剪，质量检查只读验证而不回写。导出时，编译器在内存中解析继承，并把语义表格、原生形状及其他受支持对象展开为 PowerPoint 需要的重复 DrawingML；冗余只存在于最终经 ZIP 压缩的编译产物中。
 
-受支持的导入原生表格保持为一个语义 marker，而不是在模型可见 SVG 中展开成数千个节点。其 `ppt-master.semantic-table.v2` payload 会把重复格式归纳成默认值及命名样式，原生导出时再展开。导入对象带 `data-pptx-native-authority="json"`：内嵌 JSON 是权威，紧凑浏览器 preview 可以近似。封闭 schema 以外但承载含义的组合继续以内联可读 SVG 表达并报告转换缺口。只有不含文字、没有语义 marker、schema 也无法识别的来源装饰，才允许在 `authoring-svg-flat/` 中成为紧凑 `native-restore` 代理；该往返代理仍遵守自己的不可编辑保留合同。
+受支持的导入原生表格保持为一个语义 marker，而不是在模型可见 SVG 中展开成数千个节点。其 `deck.semantic-table.v2` payload 会把重复格式归纳成默认值及命名样式，原生导出时再展开。导入对象带 `data-pptx-native-authority="json"`：内嵌 JSON 是权威，紧凑浏览器 preview 可以近似。封闭 schema 以外但承载含义的组合继续以内联可读 SVG 表达并报告转换缺口。只有不含文字、没有语义 marker、schema 也无法识别的来源装饰，才允许在 `authoring-svg-flat/` 中成为紧凑 `native-restore` 代理；该往返代理仍遵守自己的不可编辑保留合同。
 
 **为什么只有一条 PPTX 编译路线。** Native 导出把作者 SVG 中受支持的元素逐个翻译成 DrawingML 形状。常规 deck 路线读取 `svg_output/`；用户需要时，create-template 对通过校验的模板原型调用同一 structured 编译器，生成 `exports/<id>_template_preview.pptx` 作为审阅证据。项目不会把整页 SVG 媒体或另一套位图渲染打包成第二类 PPTX。`svg_final/` 仍由常规 deck 的强制后处理生成，但只承担派生视觉预览和 SVG 图片插入，不为 PowerPoint 手工“转换为形状”提供兼容兜底。
 
@@ -708,7 +708,7 @@ SVG 与 DrawingML 的表达模型并不等价，因此主编译路径不把“�
 
 **为什么模板 SVG 保持完整却仍能编译成原生结构。** 模板 SVG 会重复携带继承的 Master/Layout 视觉和示例 Slide 内容，因此可独立打开。生成时由 `page_layouts` 选择该原型，输出 SVG 仍保持视觉闭包。导出器移除重复继承原子、生成真实 Master/Layout part，并把槽位 carrier 与 Slide-local 内容留在 Slide。
 
-**为什么 PowerPoint 原生 Chart/Table 重建使用显式替换 marker，而不是自动替换对象。** `pptx_to_svg.py` 只为已验证子集输出 SVG preview、`data-pptx-replace-with`、`data-pptx-native-authority="json"` 与内嵌 `<metadata type="application/json">`。导入/模板对象是 JSON-first，preview 可近似；自由设计省略 authority marker，保持 SVG-first，并在 SVG 与 JSON 同步后显式写入 fallback baseline。生成型 deck 只为 §IX `Native-ready` 中以 `<object-key>=yes` 点名的对象准备 marker。父组决定 payload schema；普通 shape/connector 不使用该合同。表格使用 `ppt-master.semantic-table.v2`，把重复格式归纳为默认值和命名样式，导出时在内存展开。表格导入仍要求精确物理行列 topology、规范矩形 merge、安全逐边 border 和封闭富文本字段；合同外语义保持 fallback-only。
+**为什么 PowerPoint 原生 Chart/Table 重建使用显式替换 marker，而不是自动替换对象。** `pptx_to_svg.py` 只为已验证子集输出 SVG preview、`data-pptx-replace-with`、`data-pptx-native-authority="json"` 与内嵌 `<metadata type="application/json">`。导入/模板对象是 JSON-first，preview 可近似；自由设计省略 authority marker，保持 SVG-first，并在 SVG 与 JSON 同步后显式写入 fallback baseline。生成型 deck 只为 §IX `Native-ready` 中以 `<object-key>=yes` 点名的对象准备 marker。父组决定 payload schema；普通 shape/connector 不使用该合同。表格使用 `deck.semantic-table.v2`，把重复格式归纳为默认值和命名样式，导出时在内存展开。表格导入仍要求精确物理行列 topology、规范矩形 merge、安全逐边 border 和封闭富文本字段；合同外语义保持 fallback-only。
 
 受支持的柱 / 条 / 折线 / 面积、饼 / 圆环、散点 / 气泡图在没有 baked preview 时会生成确定性、可读的 SVG fallback，并标记 `data-pptx-fallback-kind="normalized"`。导入器还覆盖已验证的柱 / 折线 / 面积组合图、规范四系列 OHLC stock、数值日期轴面积图、采用封闭 `axes.x` / `axes.y` 合同的散点 / 气泡图、radar、安全的 `of_pie` `serLines`、坐标轴 / 标题 / 图例归一化，以及有界的柱 / 条图 gap/overlap 场景。`gapWidth` 只接受 `0..500` 内的单个整数，`overlap` 只接受 `-100..100` 内的单个整数；这两个表现字段在 native 输出中有意归一化，非法、重复或越界输入 fail closed。组合图可保留主 / 次 plot 各自的 category cache 与 workbook range。XY 导入根据各系列一致的有效 line/marker/smooth 状态推导 `scatter_style`。封闭的 category/value 与 XY 轴合同为 native read-back 保留 kind、position、visibility、label position、number format、min/max/major unit、reverse 和 major gridlines；规范化 XY fallback 只消费两个 `major_gridlines` 开关。
 
@@ -737,7 +737,7 @@ ChartEx 导入被有意限制为 7 个已验证数据模型：`treemap`、`sunbu
 
 ## 顶层路线与支撑文档
 
-[`workflows/index.md`](../../skills-academic/ppt-master/workflows/index.md) 是仅供维护者使用的目录，不进入任务加载链。运行时路线选择以 [`workflows/routing.md`](../../skills-academic/ppt-master/workflows/routing.md) 为权威。ppt-master 只有三条顶层产物路线：Generate PPTX、Create Template、Edit Native PPTX。用户请求只能进入其中一条；任何支撑文档都不与它们竞争。
+[`workflows/index.md`](../../skills-academic/ppt-master/workflows/index.md) 是仅供维护者使用的目录，不进入任务加载链。运行时路线选择以 [`workflows/routing.md`](../../skills-academic/ppt-master/workflows/routing.md) 为权威。deck 只有三条顶层产物路线：Generate PPTX、Create Template、Edit Native PPTX。用户请求只能进入其中一条；任何支撑文档都不与它们竞争。
 
 支撑文件保持拆分，只是为了收紧路线合同，并在需要时加载可选上下文：
 

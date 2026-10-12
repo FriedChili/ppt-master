@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Workflow Log
+deck - Workflow Log
 
 Append one manually selected important event to a project's cold audit log.
 

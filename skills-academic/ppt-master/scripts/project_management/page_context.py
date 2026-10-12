@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Page Context Projection
+deck - Page Context Projection
 
 Build deterministic per-page execution views and optional token telemetry.
 

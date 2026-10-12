@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Local Preview Server Helpers
+deck - Local Preview Server Helpers
 
 Shared per-project mutual-exclusion (lock) and liveness helpers for the local
 Flask preview servers (`svg_editor/server.py`, `confirm_ui/server.py`, `spec_review/server.py`). Each

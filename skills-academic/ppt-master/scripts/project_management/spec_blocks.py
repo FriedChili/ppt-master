@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Lossless Design Spec Blocks
+deck - Lossless Design Spec Blocks
 
 Locate Markdown blocks without normalizing whitespace or line endings.
 

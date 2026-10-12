@@ -179,7 +179,7 @@ PowerPoint 意图
 | PowerPoint 功能 | 项目表达 | PPTX 结果 | 回导与保真度 | 校验边界 |
 |---|---|---|---|---|
 | 视觉绘制表格 | 普通 SVG shape、line 与 text | 相互独立的可编辑 PowerPoint shape | 保真度遵循各组件对应行 | 它不是原生表格，也没有 PowerPoint 表格编辑模型 |
-| PowerPoint 原生表格 | 一个带 `ppt-master.semantic-table.v2` JSON metadata 和可见 fallback 的 `<g data-pptx-replace-with="table">` | 启用原生 Chart/Table 替换时产生含 `a:tbl` 的 `p:graphicFrame` | 导入时把重复的单元格、段落和 run 格式归纳为默认值及命名单元格样式；导出时在内存中展开 | metadata 必须形成已登记矩形 schema；拒绝无版本 payload；需要 `--native-charts-and-tables` |
+| PowerPoint 原生表格 | 一个带 `deck.semantic-table.v2` JSON metadata 和可见 fallback 的 `<g data-pptx-replace-with="table">` | 启用原生 Chart/Table 替换时产生含 `a:tbl` 的 `p:graphicFrame` | 导入时把重复的单元格、段落和 run 格式归纳为默认值及命名单元格样式；导出时在内存中展开 | metadata 必须形成已登记矩形 schema；拒绝无版本 payload；需要 `--native-charts-and-tables` |
 | 合并表格单元格 | 规范原生表格 merge metadata | 原生水平/垂直合并语义 | 封闭 schema 内为 `Native-stable` | 拒绝重叠、歧义或非矩形合并 |
 | 表格单元格格式 | 已登记原生表格单元格格式字段 | 原生单元格 fill、border、text 与 alignment | `Native-normalized` | 不猜测封闭 schema 以外的字段；导入的非空 run 效果会阻断，而不是归一化成无效果单元格 |
 | 不受支持的原生表格功能 | SVG fallback 或直接源保留 | 保留可见 fallback，或在直接路线保留源 OOXML | 显式 fallback / `Direct preservation` | 不得临时扩展 JSON |
@@ -209,7 +209,7 @@ PowerPoint 原生 Chart/Table 对象是可选功能。默认导出保留 SVG fal
 | LaTeX 输入档位 | 规范 marker 源不写外层定界符；也接受一对完整的 `$...$`、`$$...$$`、`\(...\)` 或 `\[...\]` | 锁定的 Microsoft 365 2606 / Mac 16.110 档位中所有明确点名的输入，以及 2605 / 16.109 mhchem 档位，均编译为可编辑 OMML | 档位锁定到这些 Microsoft 文档版本；产出的 OMML 仍保持 PowerPoint 2010+ 包目标。仓库验证覆盖编译器、OMML 与包结构，不等同于完整的 Microsoft 365 UI 认证 | 保留文档明确规定的原生归一化；未知或明确不支持的输入直接失败，不把 LaTeX 字面量漏进页面 |
 | 可编辑块级公式 | 一个带显式边界、在 `<metadata type="application/json">` 中保存源 LaTeX、并含可见 SVG 预览子元素的 `<g data-pptx-replace-with="formula">` | 含 `a14:m > m:oMathPara > m:oMath` 的 PowerPoint 文本 shape | 见输入档位行 | 矩阵、多行推导等独立高结构公式使用块级合同 |
 | 可编辑行内公式 | 普通文本 run 中的叶子 `<tspan data-pptx-inline-formula="规范 LaTeX body">preview text</tspan>` | 同一 DrawingML `a:p` 保留前后 run，并插入 `a14:m > m:oMath` | 见输入档位行 | 只允许非空直接预览文本；禁止子元素、`x/y/dx/dy`、结构化 placeholder / Master / Layout 归属、保留的导入 `txBody` 或原生替换祖先 |
-| PPTX 公式反向导入 | 通过校验的 `m:oMathPara` 变为块级 marker；通过校验的 `m:oMath` 与前后 run 一起保留为行内 marker | 再导出时把规范化 LaTeX 编译回可编辑 OMML | 对 ppt-master 自有封闭 OMML 词汇为 `Native-normalized` | 无法恢复原 LaTeX 写法；未知第三方 OMML 在 tolerant 模式下产生 `formula-not-reconstructed`、可读文本，并在无 relationship 时以不透明 `txBody` 保留 |
+| PPTX 公式反向导入 | 通过校验的 `m:oMathPara` 变为块级 marker；通过校验的 `m:oMath` 与前后 run 一起保留为行内 marker | 再导出时把规范化 LaTeX 编译回可编辑 OMML | 对 deck 自有封闭 OMML 词汇为 `Native-normalized` | 无法恢复原 LaTeX 写法；未知第三方 OMML 在 tolerant 模式下产生 `formula-not-reconstructed`、可读文本，并在无 relationship 时以不透明 `txBody` 保留 |
 | 浏览器 / 实时预览 | 块级 marker 内的普通 SVG 子元素，或行内 marker 的直接文本 | 写入原生公式时只丢弃已登记预览 | 原始 LaTeX 不能直接在 SVG 中渲染 | 预览必须表达同一公式；它不是 PPTX 兜底 |
 | 公式字体 | 块级 payload 样式，或行内文本 run 的计算样式 | 公式继承字号与可见纯色填充，并使用项目文本语言和 Cambria Math；局部 `\color` / `\textcolor` 作用域会覆盖可选中文字 run 与结构控制符的继承填充，`\boldsymbol` / `\bm` 也会设置结构控制字形的样式 | PowerPoint 2010+ OMML | 高结构或多行数学内容仍使用块级形式 |
 | 非 PowerPoint 客户端播放 | 同一类原生 marker；没有图片分支 | 不附加兼容兜底 | Keynote、WPS、LibreOffice 等客户端不在公式合同内 | 不宣称跨客户端显示或编辑能力 |

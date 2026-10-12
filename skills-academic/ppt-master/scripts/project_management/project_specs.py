@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Project Specification Helpers
+deck - Project Specification Helpers
 
 Scaffold and validate the Markdown planning artifacts used by project_manager.py.
 The module keeps schema parsing and deterministic scaffold rendering independent
@@ -1409,7 +1409,7 @@ def validate_markdown_text(
         errors.extend(
             _validate_strict_data_surface(markdown_name, text, sections, matched)
         )
-    if schema.get("$id") == "ppt-master://schemas/spec-lock/v1":
+    if schema.get("$id") == "deck://schemas/spec-lock/v1":
         errors.extend(_validate_spec_lock_relations(markdown_path, matched))
     return errors
 

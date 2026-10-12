@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Spec Review
+deck - Spec Review
 
 Browser review, annotations, and staged Markdown edits for design_spec.md.
 

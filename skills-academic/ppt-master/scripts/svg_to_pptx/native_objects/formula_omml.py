@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Native Formula OMML Emitter
+deck - Native Formula OMML Emitter
 
 Emit the Microsoft 365 LaTeX profile AST as editable Office Math XML and
 validate the narrow XML vocabulary produced by this module.
@@ -14,7 +14,7 @@ Examples:
     emit_omml(expression, display=True)
 
 Dependencies:
-    None (only uses standard library and local ppt-master modules)
+    None (only uses standard library and local deck modules)
 """
 
 from __future__ import annotations

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Unified Configuration Management Module
+deck - Unified Configuration Management Module
 
 Centrally manages all project configuration items to ensure consistency and maintainability.
 
@@ -567,7 +567,7 @@ class Config:
 def build_parser() -> argparse.ArgumentParser:
     """Build the command-line parser."""
     parser = argparse.ArgumentParser(
-        description="ppt-master configuration management tool.",
+        description="deck configuration management tool.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
     subparsers.add_parser("list-formats", help="List all canvas formats")

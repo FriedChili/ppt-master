@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ppt-master - Spreadsheet content preservation regressions.
+"""deck - Spreadsheet content preservation regressions.
 
 Usage: python3 -m unittest tests.test_source_to_md_content_loss_excel
 Dependencies: openpyxl

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Preset Shape Data Loader
+deck - Preset Shape Data Loader
 
 Load and validate the bundled DrawingML preset geometry catalog.
 

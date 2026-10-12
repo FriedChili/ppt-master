@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Text Outline Materialization
+deck - Text Outline Materialization
 
 Resolve one supported SVG ``<text>`` operand into closed glyph-outline path
 commands for the Shape Boolean geometry pipeline.
@@ -9,7 +9,7 @@ Usage:
     Import text_element_to_path_commands from svg_to_pptx.text_outline.
 
 Dependencies:
-    uharfbuzz and local ppt-master modules
+    uharfbuzz and local deck modules
 """
 
 from __future__ import annotations

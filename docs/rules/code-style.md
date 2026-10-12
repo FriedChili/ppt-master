@@ -13,7 +13,7 @@ Every script under `scripts/` starts with:
 ```python
 #!/usr/bin/env python3
 """
-ppt-master - Short Tool Name
+deck - Short Tool Name
 
 One-paragraph description of what this script does.
 

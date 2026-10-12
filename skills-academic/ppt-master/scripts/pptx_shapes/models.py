@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - PPTX Shape Models
+deck - PPTX Shape Models
 
 Immutable value objects shared by the preset catalog loader and evaluator.
 

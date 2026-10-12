@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Gemini Watermark Remover
+deck - Gemini Watermark Remover
 
 Removes the watermark logo from the bottom-right corner of Gemini-generated images.
 Uses a reverse blending algorithm to restore original pixels.
@@ -194,7 +194,7 @@ def process_image(input_path: Path, output_path: Path | None = None, verbose: bo
 def main() -> None:
     """Run the CLI entry point."""
     parser = argparse.ArgumentParser(
-        description='ppt-master - Gemini Watermark Remover',
+        description='deck - Gemini Watermark Remover',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Examples:
@@ -220,7 +220,7 @@ Notes:
 
     verbose = not args.quiet
     if verbose:
-        print("ppt-master - Gemini Watermark Remover")
+        print("deck - Gemini Watermark Remover")
         print("=" * 40)
         print(f"  Input file: {args.input}")
 

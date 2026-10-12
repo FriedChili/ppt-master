@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Legacy Chart Recall Compatibility
+deck - Legacy Chart Recall Compatibility
 
 Preserve the historical broad chart-recall CLI while delegating to the unified
 visualization recall implementation. Published Structure bare keys validate as

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Spec Review Server
+deck - Spec Review Server
 
 Serve a local Markdown review surface with staged edits and sidecar comments.
 See scripts/docs/spec_review.md for commands, APIs, and runtime files.

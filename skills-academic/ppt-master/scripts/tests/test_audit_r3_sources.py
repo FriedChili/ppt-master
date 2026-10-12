@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ppt-master - Third-Round Source Regression Tests
+"""deck - Third-Round Source Regression Tests
 
 Exercise HTTP boundaries, archived source imports, and DOCX conversion offline.
 

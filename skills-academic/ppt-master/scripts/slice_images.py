@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Illustration Sheet Slicer
+deck - Illustration Sheet Slicer
 
 Slice one AI-generated "illustration sheet" (a single image whose prompt laid
 out several illustration elements in a grid) into N individual element files in

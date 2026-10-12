@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - DrawingML Preset Shape Semantics
+deck - DrawingML Preset Shape Semantics
 
 Load and validate the bundled Office-category and authoring-use catalog for
 DrawingML preset shapes.
@@ -13,7 +13,7 @@ Examples:
     arrow = catalog.describe("rightArrow")
 
 Dependencies:
-    None (only uses standard library and local ppt-master modules)
+    None (only uses standard library and local deck modules)
 """
 
 from __future__ import annotations
@@ -183,7 +183,7 @@ class PresetShapeSemantics:
 
     @classmethod
     def bundled(cls) -> PresetShapeSemantics:
-        """Load the semantic catalog shipped with ppt-master."""
+        """Load the semantic catalog shipped with deck."""
 
         try:
             payload = json.loads(BUNDLED_SEMANTICS_PATH.read_text(encoding="utf-8"))

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - SVG Position Calculation and Validation Tool
+deck - SVG Position Calculation and Validation Tool
 
 Provides pre-calculation and post-validation of chart coordinates,
 outputting clear coordinate tables.

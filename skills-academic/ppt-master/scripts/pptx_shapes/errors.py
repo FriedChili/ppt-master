@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - PPTX Shape Errors
+deck - PPTX Shape Errors
 
 Shared exception types for the DrawingML preset-geometry package.
 

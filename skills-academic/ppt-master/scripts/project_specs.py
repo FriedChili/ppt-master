@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Project Specification Compatibility Module
+deck - Project Specification Compatibility Module
 
 Re-export the project planning-artifact API from its domain package. New
 internal imports should use ``project_management.project_specs``.

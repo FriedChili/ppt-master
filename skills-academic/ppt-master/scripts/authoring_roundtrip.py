@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Flat Authoring Round-trip Materializer
+deck - Flat Authoring Round-trip Materializer
 
 Materialize editable ``authoring-svg-flat/`` pages back into layered slide SVG
 inputs for the existing source-preserving SVG-to-PPTX exporter. Unchanged
@@ -11,7 +11,7 @@ Usage:
     Imported by svg_to_pptx.py for ``--roundtrip``.
 
 Dependencies:
-    None (standard library and sibling ppt-master modules only).
+    None (standard library and sibling deck modules only).
 """
 
 from __future__ import annotations

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Preset Geometry SVG Adapter
+deck - Preset Geometry SVG Adapter
 
 Render evaluated DrawingML preset geometry as absolute SVG path layers.
 
@@ -11,7 +11,7 @@ Examples:
     geometry = render_preset_geometry("rightArrow", xfrm)
 
 Dependencies:
-    None (only uses standard library and local ppt-master modules)
+    None (only uses standard library and local deck modules)
 """
 
 from __future__ import annotations

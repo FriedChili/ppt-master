@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Spec Review Storage
+deck - Spec Review Storage
 
 Serialize annotation transactions and stage lossless edits of one Design Spec.
 See scripts/docs/spec_review.md for the sidecars and HTTP contract.

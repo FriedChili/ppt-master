@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - SVG Editor Server
+deck - SVG Editor Server
 
 Flask backend for the SVG annotation editor.
 Serves the web UI and provides API endpoints for reading/writing SVG annotations.
@@ -1182,7 +1182,7 @@ def _open_browser_async(url: str, delay: float = 0.4) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description='ppt-master SVG Editor',
+        description='deck SVG Editor',
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument('project_dir', help='Path to project directory (contains svg_output/)')

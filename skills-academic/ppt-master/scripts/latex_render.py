@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - LaTeX Formula Renderer
+deck - LaTeX Formula Renderer
 
 Render project-declared LaTeX formulas to transparent PNG assets.
 The script reads an explicit manifest; it never scans spec_lock.md or source

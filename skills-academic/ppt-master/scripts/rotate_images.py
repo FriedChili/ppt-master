@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Image Orientation Management Tool
+deck - Image Orientation Management Tool
 
 Provides visual image orientation filtering, fix code generation,
 and batch image rotation functionality.

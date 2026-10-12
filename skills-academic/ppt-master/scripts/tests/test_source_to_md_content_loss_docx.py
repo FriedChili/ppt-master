@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ppt-master - DOCX content preservation regressions.
+"""deck - DOCX content preservation regressions.
 
 Usage: python3 -m unittest tests.test_source_to_md_content_loss_docx
 Dependencies: python-docx, mammoth

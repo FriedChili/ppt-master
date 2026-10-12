@@ -1573,7 +1573,7 @@ def _load_deck_motion_handoff(
         raise ValueError('deck-motion handoff report must be a JSON object')
     if report.get('schema') != 'deck.pptx-postflight-report.v1':
         raise ValueError(
-            'deck-motion handoff requires a ppt-master postflight report'
+            'deck-motion handoff requires a deck postflight report'
         )
     if report.get('status') not in {'passed', 'passed-with-warnings'}:
         raise ValueError('deck-motion handoff report is not a successful export')
@@ -1972,7 +1972,7 @@ def main(argv: list[str] | None = None) -> int:
     animation_choices = ['none', *ANIMATIONS, 'auto', 'mixed', 'random']
 
     parser = argparse.ArgumentParser(
-        description='ppt-master - SVG to native DrawingML PPTX Tool',
+        description='deck - SVG to native DrawingML PPTX Tool',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=f'''
 Examples:
@@ -3680,7 +3680,7 @@ Speaker notes:
     )
 
     if verbose:
-        print("ppt-master - SVG to native DrawingML PPTX Tool")
+        print("deck - SVG to native DrawingML PPTX Tool")
         print("=" * 50)
         print(f"  Project path: {project_path}")
         print(f"  SVG directory: {native_source_dir}")

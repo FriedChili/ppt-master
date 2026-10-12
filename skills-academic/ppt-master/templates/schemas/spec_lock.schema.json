@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "ppt-master://schemas/spec-lock/v1",
-  "title": "ppt-master spec_lock.md",
+  "$id": "deck://schemas/spec-lock/v1",
+  "title": "deck spec_lock.md",
   "description": "Schema for the Markdown section-and-data-line model emitted by the spec-lock parser.",
   "type": "object",
   "required": [

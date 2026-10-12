@@ -385,7 +385,7 @@ text positions, path data, and polygon/polyline points remain XML attributes.
 
 `<style>`, `class`, selector rules, external stylesheets, and imported styles
 remain forbidden. This contract is only for literal declarations in an
-element's own `style` attribute; ppt-master does not compute CSS cascade or
+element's own `style` attribute; deck does not compute CSS cascade or
 custom properties. Root canvas authority remains the `viewBox`, regardless of
 root `<svg>` compatibility width/height values. The shared coordinate and
 geometry implementation is

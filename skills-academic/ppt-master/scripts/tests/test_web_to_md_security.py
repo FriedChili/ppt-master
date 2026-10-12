@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ppt-master - Web Conversion Security Tests
+"""deck - Web Conversion Security Tests
 
 Check URL validation, TLS defaults, and failure paths with in-memory responses.
 

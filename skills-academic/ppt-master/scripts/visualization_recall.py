@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Visualization Candidate Recall
+deck - Visualization Candidate Recall
 
 Recall a deterministic chart or table shortlist from semantic tags, or validate
 selected references against the live family catalogs.

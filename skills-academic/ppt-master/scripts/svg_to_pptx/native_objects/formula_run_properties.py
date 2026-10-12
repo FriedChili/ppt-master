@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Native Formula Run Property Merge
+deck - Native Formula Run Property Merge
 
 Merge marker-level DrawingML defaults with compiler-owned local formula style
 without discarding either source.

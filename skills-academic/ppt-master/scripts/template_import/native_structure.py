@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Native Template Structure Contract
+deck - Native Template Structure Contract
 
 Build a portable master/layout contract from the PPTX template import manifest.
 

@@ -4,27 +4,27 @@
 
 ---
 
-This document defines ppt-master's long-term product position and the test for adding, retaining, or removing capabilities. It is a product policy, not a feature list or execution manual.
+This document defines deck's long-term product position and the test for adding, retaining, or removing capabilities. It is a product policy, not a feature list or execution manual.
 
 This English file is the canonical policy source. The [Chinese version](./zh/project-positioning.md) is a synchronized translation, not an independent policy; update both in the same change.
 
-[`workflows/routing.md`](../skills-academic/ppt-master/workflows/routing.md) remains authoritative for current route selection. This document answers the more fundamental question: whether a proposed direction belongs in ppt-master at all.
+[`workflows/routing.md`](../skills-academic/ppt-master/workflows/routing.md) remains authoritative for current route selection. This document answers the more fundamental question: whether a proposed direction belongs in deck at all.
 
 ## 1. Positioning
 
-> **ppt-master is an open-source, chat-driven workflow that lets AI reason the argument into shape first, then design and produce a real, editable PowerPoint — not slide images or a thin editable skin. Its defining axis is native depth: author or preserve more of PowerPoint's own object model, behavior, and reusable structure, release after release.**
+> **deck is an open-source, chat-driven workflow that lets AI reason the argument into shape first, then design and produce a real, editable PowerPoint — not slide images or a thin editable skin. Its defining axis is native depth: author or preserve more of PowerPoint's own object model, behavior, and reusable structure, release after release.**
 
 The input may be a topic, source material, data, design references, brand assets, or an existing `.pptx`. The main pipeline creates a new deck; other explicit routes and profiles can distill reusable Brand / Style / Layout / Deck workspaces, fill an existing PowerPoint with new content, redesign it, or add native presentation behavior while preserving what their contracts promise to keep.
 
-That native depth is a direction of travel, not a fixed checklist. ppt-master's north star is to keep converging with PowerPoint itself, narrowing the gap between what an AI can generate and what a skilled user can build by hand. The [PowerPoint ↔ SVG Mapping Guide](./powerpoint-svg-mapping.md) records the current boundary honestly, feature by feature.
+That native depth is a direction of travel, not a fixed checklist. deck's north star is to keep converging with PowerPoint itself, narrowing the gap between what an AI can generate and what a skilled user can build by hand. The [PowerPoint ↔ SVG Mapping Guide](./powerpoint-svg-mapping.md) records the current boundary honestly, feature by feature.
 
-In form, ppt-master is a workflow — a "skill" — that runs inside any agent-capable AI tool. It is not a model, a hosted presentation SaaS, or a replacement for PowerPoint. The workflow supplies presentation-specific reasoning, contracts, and quality gates; deterministic tools handle conversion, validation, packaging, and repeatable file operations; the chosen model still sets the quality ceiling.
+In form, deck is a workflow — a "skill" — that runs inside any agent-capable AI tool. It is not a model, a hosted presentation SaaS, or a replacement for PowerPoint. The workflow supplies presentation-specific reasoning, contracts, and quality gates; deterministic tools handle conversion, validation, packaging, and repeatable file operations; the chosen model still sets the quality ceiling.
 
 The primary deliverable is a high-quality PowerPoint draft that the user can present and continue refining, not a sealed final deck. Reusable template workspaces, project sources, design specifications, previews, and validation artifacts are first-class supporting products because they make that deck controllable, reproducible, and reusable.
 
 ## 2. Product Thesis
 
-A useful deck has two layers: the reasoning that makes the argument work, and the PowerPoint construction that makes the result usable. ppt-master owns both.
+A useful deck has two layers: the reasoning that makes the argument work, and the PowerPoint construction that makes the result usable. deck owns both.
 
 | Axis | Position | Product consequence |
 |---|---|---|
@@ -33,13 +33,13 @@ A useful deck has two layers: the reasoning that makes the argument work, and th
 | Honest editability | The output is a draft the user keeps editing, not a flattened image and not a promise of one-shot perfection | Trade-offs between visual fidelity, data-backed objects, cross-app rendering, and preservation stay explicit |
 | User control | The workflow, project state, and output belong to the user | Costs remain transparent, data stays local apart from chosen provider calls, and no editor, model, or platform becomes mandatory |
 
-Direct OOXML is too verbose and fragile to serve as the AI's general visual authoring language, while flat images throw away the native object model. ppt-master therefore combines model-friendly visual authoring with deterministic compilation and direct package operations, choosing the mutation contract that matches the user's intent.
+Direct OOXML is too verbose and fragile to serve as the AI's general visual authoring language, while flat images throw away the native object model. deck therefore combines model-friendly visual authoring with deterministic compilation and direct package operations, choosing the mutation contract that matches the user's intent.
 
 The project's job is not merely to write a `.pptx`. It is to make a general-purpose AI agent competent and reliable at presentation work while preserving the user's ability to inspect, edit, and own the result.
 
 ## 3. Target Users and Usage Model
 
-ppt-master is primarily for people who:
+deck is primarily for people who:
 
 - Have a topic, documents, data, visual references, brand assets, or an existing deck that must become a presentation.
 - Care about the logic of the deck and the depth of its PowerPoint editability, not merely whether the file opens as `.pptx`.
@@ -48,7 +48,7 @@ ppt-master is primarily for people who:
 - Accept that the model sets the ceiling and are willing to review the direction and finish the last mile in PowerPoint when needed.
 - Can use a chat-driven AI tool and a local Python environment, even if they do not write code themselves.
 
-ppt-master is not optimized for users who primarily need zero-setup browser generation, instant slides, real-time team co-editing, or a guaranteed final deck with no human judgment or revision.
+deck is not optimized for users who primarily need zero-setup browser generation, instant slides, real-time team co-editing, or a guaranteed final deck with no human judgment or revision.
 
 ## 4. Product Promises
 
@@ -58,7 +58,7 @@ ppt-master is not optimized for users who primarily need zero-setup browser gene
 | Logic before layout | Reason about the message, narrative, page order, and information hierarchy before visual authoring | A route whose contract is to preserve wording or structure must keep that promise instead of silently reframing the deck |
 | A high-quality editable draft | Remove most of the work between raw material and a coherent, designed deck that remains open to refinement | Do not promise a perfect one-shot final; the model and user judgment still determine the ceiling |
 | Source and intent fidelity | Keep sourced facts, user decisions, design recommendations, and derived artifacts distinguishable | Do not invent evidence or silently reinterpret a preservation request as redesign |
-| Transparent, predictable cost | Keep ppt-master free and open source; the user pays only for the AI and optional providers they choose | Do not add proprietary credits, per-seat fees, or a presentation-platform subscription layer |
+| Transparent, predictable cost | Keep deck free and open source; the user pays only for the AI and optional providers they choose | Do not add proprietary credits, per-seat fees, or a presentation-platform subscription layer |
 | Data stays local | Convert, author, validate, and export on the user's machine | AI model, search, image, and speech providers may still receive the inputs required for calls the user chooses |
 | No platform lock-in | Let any agent-capable AI tool and compatible model drive the workflow, and keep outputs portable | Do not promise identical quality across models or identical rendering across presentation applications |
 | Engineering reliability | Use explicit routes, preservation contracts, validation gates, read-back checks, and recoverable project state | Do not hide failures behind silent fallbacks or publish an artifact that violates a required gate |
@@ -81,9 +81,9 @@ These are product responsibilities, not a mandate to expose every responsibility
 
 ## 6. What the Project Owns Versus What It Integrates
 
-ppt-master may integrate general-purpose capabilities without becoming a general-purpose platform for them.
+deck may integrate general-purpose capabilities without becoming a general-purpose platform for them.
 
-| Area | ppt-master owns | ppt-master does not own |
+| Area | deck owns | deck does not own |
 |---|---|---|
 | Research | Decide what evidence the deck needs, preserve provenance, and turn findings into presentation content | A general web-research engine for tasks unrelated to presentations |
 | Images | Decide whether an image is needed and own its role, style, source, placement, provenance, and readiness | A universal image-generation or photo-management platform |
@@ -114,7 +114,7 @@ The implementation may evolve, but these invariants remain stable:
 
 ## 8. Non-goals
 
-ppt-master is not intended to become:
+deck is not intended to become:
 
 - A zero-setup, instant-slide browser SaaS.
 - A fully autonomous replacement for human presentation judgment or a system that promises a perfect final deck in one shot.
@@ -143,7 +143,7 @@ Evaluate every proposed capability in this order:
 |---|---|
 | Add or retain as core | The capability directly advances the presentation job or strengthens native depth, reasoning, user control, or reliability, and requires presentation-specific contracts or validation |
 | Retain as an integrated extension | The capability is optional, but its planning and output semantics are specific to presentations |
-| Place behind a stable integration boundary | The underlying service is general-purpose or provider-specific, while ppt-master owns the presentation-specific selection and output contract |
+| Place behind a stable integration boundary | The underlying service is general-purpose or provider-specific, while deck owns the presentation-specific selection and output contract |
 | Move to repository tooling | The capability maintains the repository, examples, installation, or contributor workflow rather than creating presentations |
 | Retire | It duplicates another authority, has no active consumer, makes an unverifiable promise, or adds more maintenance than presentation value |
 
@@ -151,7 +151,7 @@ The number of files or workflows is not itself a reason to add or remove a capab
 
 ## 10. North-Star Outcome
 
-A successful ppt-master session should look like this:
+A successful deck session should look like this:
 
 > The user gives an AI agent a topic, source material, design references, a reusable template, or an existing PowerPoint. The AI reasons the argument into shape before it designs, the user confirms the choices that matter, and the workflow returns a coherent, validated PowerPoint with deep native editability, plus enough local project state to present, refine, reuse, or re-export it.
 
@@ -169,7 +169,7 @@ Future work should improve this outcome in the following priority order:
 |---|---|
 | [`what-is-ppt.md`](./what-is-ppt.md) | Definition of the presentation medium, user jobs, lifecycle, native object model, templates, and quality layers; the upstream premise for this document |
 | This document | Long-term product position, promises, capability boundary, and admission test |
-| [`why-ppt-master.md`](./why-ppt-master.md) | User-facing differentiation and reasons to choose the project |
+| [`why-deck.md`](./why-deck.md) | User-facing differentiation and reasons to choose the project |
 | [`technical-design.md`](./technical-design.md) | Current architecture and implementation invariants |
 | [`workflows/routing.md`](../skills-academic/ppt-master/workflows/routing.md) | Current executable route selection |
 | [`roadmap.md`](./roadmap.md) | Shipped work, active priorities, and explicitly deferred directions |

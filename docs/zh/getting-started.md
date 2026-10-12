@@ -20,7 +20,7 @@
 
 | 目录 | 它是什么 | 怎样产生 |
 |---|---|---|
-| **Skill 安装目录** | 包含 `SKILL.md`、`requirements.txt`、工作流与脚本的 ppt-master 包 | 完整仓库 clone 或仓库 ZIP 中是 `skills-academic/ppt-master/`；marketplace/plugin 安装或 skill-only release ZIP 则使用自己的安装或解压位置 |
+| **Skill 安装目录** | 包含 `SKILL.md`、`requirements.txt`、工作流与脚本的 deck 包 | 完整仓库 clone 或仓库 ZIP 中是 `skills-academic/ppt-master/`；marketplace/plugin 安装或 skill-only release ZIP 则使用自己的安装或解压位置 |
 | **工作目录** | 你在 Agent 中打开的、可持久保存且可写的目录 | 完整仓库 clone 或仓库 ZIP 通常使用仓库根目录；skill-only 安装则自行选择，不必是 skill 安装目录 |
 | **活动项目** | 一次生成任务的来源、SVG、报告、备份与导出物所在目录 | Agent 会在 `<工作目录>/projects/<生成的项目名>/` 下初始化，并报告精确路径 |
 

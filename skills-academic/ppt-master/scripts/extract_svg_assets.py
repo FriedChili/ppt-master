@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Large Vector Asset Extractor
+deck - Large Vector Asset Extractor
 
 Factor large non-semantic vector decorations out of working SVGs into project
 icon assets, leaving a compact decoration-marked `<use data-icon>` placeholder

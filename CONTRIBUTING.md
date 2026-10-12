@@ -1,4 +1,4 @@
-# Contributing to ppt-master
+# Contributing to deck
 
 Thank you for your interest in contributing! This guide will help you get started.
 
@@ -22,13 +22,13 @@ Thank you for your interest in contributing! This guide will help you get starte
 ### Setup
 
 ```bash
-cd ppt-master
+cd deck
 pip install -r requirements.txt
 ```
 
 ## Before You Open a PR
 
-ppt-master is solo-maintained with limited review bandwidth. To keep things healthy for everyone:
+deck is solo-maintained with limited review bandwidth. To keep things healthy for everyone:
 
 - **Tiny fixes** (typos, one-line usage/doc corrections, obvious small inconsistencies) — please open an issue instead of a PR. A clear report is usually faster for the maintainer to apply directly
 - **Translations & wording-only edits** — please open an issue rather than a PR. Like other tiny fixes, these are faster for the maintainer to apply directly, and unrequested translation files add ongoing sync burden without a clear owner. Translated governance docs (CONTRIBUTING, Code of Conduct) are intentionally not maintained as separate `_CN` files
@@ -62,12 +62,12 @@ AI assistance is welcome — this project is itself AI-driven. But an AI-drafted
 
 - Introducing `uv`, `poetry`, or other tools as required dependencies — `pip + requirements.txt` is the only official install path
 - Adding CI, test frameworks, pre-commit hooks, or linting infrastructure — deliberately out of scope for a solo-maintained project
-- Repackaging the skill as a CLI, SaaS, desktop app, or installer — ppt-master is a chat-driven skill for AI IDEs by design
+- Repackaging the skill as a CLI, SaaS, desktop app, or installer — deck is a chat-driven skill for AI IDEs by design
 - Architectural refactors or large-scale renames — incremental cleanup only
 - "Drive-by" cosmetic reformatting unrelated to a real fix
 - Pure translations or wording-only edits that were not requested or discussed first
 - Changing a foundational setting — the MIT license, or DrawingML component reuse / template-fill in place of AI-generated shapes. These are deliberate founding choices and won't change midway
-- Fixes whose only effect is in a renderer other than Microsoft PowerPoint — ppt-master targets PowerPoint and nothing else; Keynote, WPS, LibreOffice and Google Slides can open the output, but their rendering differences (ignored `wrap="none"`, their own script-spacing rules, remapped effects) are outside the contract. If the deck is correct in PowerPoint, it is correct. Such reports are closed as not planned, and PRs for them are closed unmerged even when the change looks harmless, because the affected code paths (width estimation, the quality checker, export) also drive PowerPoint output
+- Fixes whose only effect is in a renderer other than Microsoft PowerPoint — deck targets PowerPoint and nothing else; Keynote, WPS, LibreOffice and Google Slides can open the output, but their rendering differences (ignored `wrap="none"`, their own script-spacing rules, remapped effects) are outside the contract. If the deck is correct in PowerPoint, it is correct. Such reports are closed as not planned, and PRs for them are closed unmerged even when the change looks harmless, because the affected code paths (width estimation, the quality checker, export) also drive PowerPoint output
 - Fixed numeric quotas to constrain generation (`max_cards` / `max_bullets` / `max_table_rows` and similar) — density is governed by narrative rhythm and one primary focus per page, not hard caps
 - Post-processing that is quality smoothing rather than compatibility — we fix things that are broken/unusable if not done (e.g. AI-image size/format/alpha); "nicer if done" polish (loudness normalization, kerning) stays out. If a model or service falls short, the fix is to switch it, not to make the project adapt to it
 - A new backend, path, or option that duplicates a capability the repo already provides — check current behavior first (e.g. OpenAI-compatible providers already run under `IMAGE_BACKEND=openai`)

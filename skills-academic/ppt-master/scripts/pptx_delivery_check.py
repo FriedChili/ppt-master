@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - PPTX Delivery Check
+deck - PPTX Delivery Check
 
 Inspect a finished PPTX without modifying it and report package integrity,
 delivery portability, media footprint, hidden slides, and motion presence.

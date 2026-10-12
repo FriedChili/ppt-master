@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Native Formula Abstract Syntax Tree
+deck - Native Formula Abstract Syntax Tree
 
 Define the internal math nodes shared by the Microsoft 365 LaTeX parser,
 chemistry parser, and OMML emitter.

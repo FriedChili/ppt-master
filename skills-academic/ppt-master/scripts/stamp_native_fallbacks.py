@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Stamp Native Fallback Baselines
+deck - Stamp Native Fallback Baselines
 
 Validate Chart/Table replacement payloads and bind SVG-authoritative markers
 to their current visible fallback without reformatting the SVG document.
@@ -13,7 +13,7 @@ Examples:
     python3 scripts/stamp_native_fallbacks.py "projects/example/svg_output" --write
 
 Dependencies:
-    None (only uses standard library and ppt-master sibling modules)
+    None (only uses standard library and deck sibling modules)
 """
 
 from __future__ import annotations

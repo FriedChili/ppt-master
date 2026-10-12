@@ -1,4 +1,4 @@
-"""Web image source providers for ppt-master.
+"""Web image source providers for deck.
 
 Each ``provider_<name>.py`` module exposes a ``search(request, *,
 license_tier_filter)`` function returning a list of ``AssetCandidate``

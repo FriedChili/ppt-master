@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Microsoft 365 LaTeX Formula Profile
+deck - Microsoft 365 LaTeX Formula Profile
 
 Keep the documented Microsoft 365 LaTeX command vocabulary and normalization
 tables separate from the native formula parser.

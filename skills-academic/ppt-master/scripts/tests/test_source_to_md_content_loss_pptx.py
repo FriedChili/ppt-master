@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ppt-master - PowerPoint content preservation regressions.
+"""deck - PowerPoint content preservation regressions.
 
 Usage: python3 -m unittest tests.test_source_to_md_content_loss_pptx
 Dependencies: python-pptx

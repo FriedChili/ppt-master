@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - DrawingML Text Baseline
+deck - DrawingML Text Baseline
 
 Estimate the first baseline of ordinary top-anchored DrawingML text from
 bundled font metrics. See scripts/docs/svg-pipeline.md for the rendering scope.

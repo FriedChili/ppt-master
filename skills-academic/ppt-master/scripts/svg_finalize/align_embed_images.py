@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ppt-master — single-pass image alignment + Base64 embedding.
+"""deck — single-pass image alignment + Base64 embedding.
 
 Replaces the previous three independent finalize_svg steps:
 

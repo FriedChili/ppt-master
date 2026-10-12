@@ -1,5 +1,5 @@
 ---
-name: ppt-master
+name: deck
 description: >
   AI-driven presentation workflow for generating editable PPTX decks and slides,
   reconstructing page visuals, creating reusable Style/Layout/Deck
@@ -12,9 +12,9 @@ metadata:
   license: "MIT"
 ---
 
-# ppt-master Skill
+# deck Skill
 
-ppt-master is a routed presentation workflow. This entry owns global execution discipline and route selection only; each selected route owns its procedure.
+deck is a routed presentation workflow. This entry owns global execution discipline and route selection only; each selected route owns its procedure.
 
 ## Mandatory Load Order
 

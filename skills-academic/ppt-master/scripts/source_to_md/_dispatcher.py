@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Source to Markdown Dispatcher
+deck - Source to Markdown Dispatcher
 
 Shared routing and backend command construction for source-to-Markdown tools.
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Semantic SVG Markers
+deck - Semantic SVG Markers
 
 Owns the minimal page and structural-role marker vocabulary used by SVG
 authoring, validation, conversion traces, and native PPTX structure

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ppt-master - Text Measurement
+"""deck - Text Measurement
 
 Measure, wrap, calibrate, or calculate bounds with the SVG checker's width estimator.
 
@@ -9,7 +9,7 @@ Examples:
     python3 scripts/text_measure.py measure "Editable text" --size 22
     python3 scripts/text_measure.py calibrate projects/example --outline
 Dependencies:
-    Standard library and ppt-master sibling modules
+    Standard library and deck sibling modules
 """
 
 from __future__ import annotations

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Project Management Tool
+deck - Project Management Tool
 
 Stable CLI entry point for project creation, source import, validation, and
 page-context diagnostics. Implementation lives in ``project_management/``.

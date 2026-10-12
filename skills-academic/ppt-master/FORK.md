@@ -1,6 +1,6 @@
 # FORK.md — 科研/学术专用分支
 
-本目录 `skills-academic/ppt-master/` 是从 `skills-academic/ppt-master/`（ppt-master 6.7.0）派生的
+本目录 `skills-academic/ppt-master/` 是从 `skills-academic/ppt-master/`（deck 6.7.0）派生的
 
 **原始 skill 未被修改。** 基线已提交在 git 里（见下），本分支作为对照树独立存在。
 
@@ -18,7 +18,7 @@ git checkout pristine-6.7.0 -- skills-academic/ppt-master   # 取回原版 13016
 git clean -fd skills-academic/ppt-master                    # 清掉多余文件（先加 -n 预览）
 ```
 
-- 基线提交：`90e4370 baseline: ppt-master 6.7.0 as extracted (pristine, before academic slimming)`
+- 基线提交：`90e4370 baseline: deck 6.7.0 as extracted (pristine, before academic slimming)`
 - `skills-academic/ppt-master` 在本分支的所有提交里始终未被触碰。
 - 另有 `_pristine/skills/` 一份纯拷贝作为第二重保险（可删）。
 
@@ -522,7 +522,7 @@ template_use_desc: "选择一个或多个 Brand、Style、Layout、Deck 或指�
 
 **起因**：用户看 Stage 1 模板下拉的悬停提示，得到的是
 「16:9 纯结构版式，10 个版面：图片出血到画布边缘，文字压在图上并加蒙版。 ·
-`E:\...\skills\ppt-master\templates\layouts\editorial_bleed`」——
+`E:\...\skills\deck\templates\layouts\editorial_bleed`」——
 一半是印刷术语（「出血」），一半是本地绝对路径。
 
 ### 14.1 浮窗不再带路径

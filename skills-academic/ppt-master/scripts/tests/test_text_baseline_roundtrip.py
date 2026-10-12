@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Text Baseline Round-trip Regression Tests
+deck - Text Baseline Round-trip Regression Tests
 
 Exercise the public DrawingML importer and SVG exporter with self-contained
 text fixtures, including edited native shapes with preserved frames.
@@ -12,7 +12,7 @@ Examples:
     Run the module from the scripts directory.
 
 Dependencies:
-    Standard library and the local ppt-master conversion modules.
+    Standard library and the local deck conversion modules.
 """
 
 from __future__ import annotations

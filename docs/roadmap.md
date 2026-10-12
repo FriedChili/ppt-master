@@ -4,7 +4,7 @@
 
 ---
 
-> ppt-master is a solo-maintained open source project, driven by **priority rather than fixed timelines**. This roadmap aligns expectations: the direction of travel, what's in motion now, what may come when real demand shows, and what's intentionally out of scope. Priorities shift with user feedback and real usage signals — no committed delivery windows.
+> deck is a solo-maintained open source project, driven by **priority rather than fixed timelines**. This roadmap aligns expectations: the direction of travel, what's in motion now, what may come when real demand shows, and what's intentionally out of scope. Priorities shift with user feedback and real usage signals — no committed delivery windows.
 
 ---
 
@@ -18,7 +18,7 @@ Today that axis is expressed through three explicit artifact routes: **Generate 
 
 ## Coverage map
 
-A presentation is four layers: what is on the slide, how it is arranged, how it behaves, and how the document itself is structured. The tables below map each layer against what ppt-master does today.
+A presentation is four layers: what is on the slide, how it is arranged, how it behaves, and how the document itself is structured. The tables below map each layer against what deck does today.
 
 **Read this as a map, not a backlog.** *Bounded by design* and *Asymmetric by design* are settled shapes, not unfinished cells — a blank there is a decision, not a debt. *Not planned* rows say in the row why they are not being worked on. Only *Signal-driven* rows lean open, and their reasoning lives in [Future directions](#future-directions--signal-driven) rather than being repeated here. Positions that have actually been argued out live in [Non-goals](#non-goals); this map describes, it does not adjudicate.
 

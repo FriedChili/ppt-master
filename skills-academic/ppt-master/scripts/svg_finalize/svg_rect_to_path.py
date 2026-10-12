@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ppt-master - Legacy SVG Rounded Rectangle Diagnostic
+deck - Legacy SVG Rounded Rectangle Diagnostic
 
 Historical diagnostic that converts <rect> elements with rx/ry to equivalent
 <path> elements. It is not part of finalize_svg.py or the supported export
@@ -236,7 +236,7 @@ def find_svg_files(project_path: Path, source: str = 'output') -> tuple[list[Pat
 def main() -> None:
     """Run the CLI entry point."""
     parser = argparse.ArgumentParser(
-        description='ppt-master - Legacy SVG Rounded Rectangle Diagnostic',
+        description='deck - Legacy SVG Rounded Rectangle Diagnostic',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Examples:
@@ -270,7 +270,7 @@ What it does:
     quiet = args.quiet
     
     if not quiet:
-        print("ppt-master - Legacy SVG Rounded Rectangle Diagnostic")
+        print("deck - Legacy SVG Rounded Rectangle Diagnostic")
         print("=" * 50)
     
     total_converted = 0

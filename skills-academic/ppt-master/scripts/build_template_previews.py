@@ -7,7 +7,7 @@ import pathlib
 from PIL import Image
 
 RUN = pathlib.Path(r'E:\ppt-master-6.7.0\run')
-DST = pathlib.Path(r'E:\ppt-master-6.7.0\skills-academic\ppt-master\scripts\confirm_ui\static\template_previews')
+DST = pathlib.Path(r'E:\ppt-master-6.7.0\skills-academic\deck\scripts\confirm_ui\static\template_previews')
 DST.mkdir(parents=True, exist_ok=True)
 
 #: 模板 → (渲染目录, 要用的页序号(1-based), 列数)

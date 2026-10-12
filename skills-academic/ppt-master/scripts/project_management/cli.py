@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ppt-master project-management CLI implementation.
+"""deck project-management CLI implementation.
 
 Usage:
     python3 scripts/project_manager.py init <project_name> [--format <registered_format>]
@@ -18,7 +18,7 @@ Examples:
     python3 scripts/project_manager.py validate projects/demo
 
 Dependencies:
-    Standard library plus local ppt-master project and source-conversion modules.
+    Standard library plus local deck project and source-conversion modules.
 """
 
 from __future__ import annotations
@@ -1230,7 +1230,7 @@ class ProjectManager:
 def build_parser() -> argparse.ArgumentParser:
     """Build the command-line parser."""
     parser = argparse.ArgumentParser(
-        description="ppt-master project management helpers.",
+        description="deck project management helpers.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""Examples:
   python3 scripts/project_manager.py init demo
