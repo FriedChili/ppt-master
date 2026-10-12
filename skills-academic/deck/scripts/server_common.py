@@ -147,6 +147,22 @@ def plain_request_log() -> None:
         logging.getLogger('werkzeug').addFilter(_PlainRequestLog())
 
 
+def _windowless_python(executable: str) -> str:
+    """Return the GUI-subsystem sibling of a Windows Python interpreter.
+
+    A detached child started from ``python.exe`` is a console application, and
+    Windows gives it a console window even when the launcher asked for
+    ``DETACHED_PROCESS``; the user sees a stray cmd window next to the browser.
+    ``pythonw.exe`` is the same interpreter built for the GUI subsystem, so it
+    never allocates a console. Detached services already write to their own log
+    file, so nothing is lost by the swap.
+    """
+    if os.name != 'nt' or not executable.lower().endswith('python.exe'):
+        return executable
+    sibling = Path(executable).with_name('pythonw.exe')
+    return str(sibling) if sibling.is_file() else executable
+
+
 def popen_detached(
     args: list[str],
     *,
@@ -163,6 +179,8 @@ def popen_detached(
     Detached service output remains in its component log, so the child receives
     the shared workflow-transcript opt-out environment flag.
     """
+    if args and isinstance(args[0], str):
+        args = [_windowless_python(args[0]), *args[1:]]
     supplied_env = kwargs.get('env')
     child_env = dict(os.environ if supplied_env is None else supplied_env)
     child_env[DISABLE_TRANSCRIPT_ENV] = '1'
