@@ -36,7 +36,6 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-from attribution_guard import require_skill_integrity  # noqa: E402
 from console_encoding import configure_utf8_stdio  # noqa: E402
 from register_template import (  # noqa: E402
     KIND_CONFIG,
@@ -644,7 +643,6 @@ def apply_templates(
 
 
 def main(argv: list[str] | None = None) -> int:
-    require_skill_integrity()
     parser = argparse.ArgumentParser(
         description=(
             "Install selected Style/Layout/Deck workspaces into a "

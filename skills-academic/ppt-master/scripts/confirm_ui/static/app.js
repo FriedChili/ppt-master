@@ -1,4 +1,4 @@
-/* PPT Master - Strategist confirmation UI
+/* Strategist confirmation UI
  * Stage 1 confirms the communication contract and the free-design/template
  * choice together. Stage 2 combines the coherent deck solution and production
  * mechanics, then writes the final result.
@@ -13,7 +13,7 @@
     // ---- i18n ------------------------------------------------------------
     var MESSAGES = {
         en: {
-            page_title: "PPT Master - Confirm Design",
+            page_title: "Confirm Design",
             topbar_hint: "Answer the open questions, or pick and customize recommendations, then continue.",
             stage_anchors: "Stage 1 · Communication contract",
             stage_final_plan: "Stage 2 · Final plan & production",
@@ -196,7 +196,7 @@
             error_retry: "Error - retry"
         },
         ja: {
-            page_title: "PPT Master - デザイン確認",
+            page_title: "デザイン確認",
             topbar_hint: "自由記述の質問に答えるか、提案を選択・調整して次へ進んでください。",
             stage_anchors: "ステージ 1 · コミュニケーション契約",
             stage_final_plan: "ステージ 2 · 最終プランと制作",

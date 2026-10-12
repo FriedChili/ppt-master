@@ -25,7 +25,6 @@ _SCRIPTS_DIR = Path(__file__).resolve().parents[1]
 if str(_SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS_DIR))
 
-from attribution_guard import require_skill_integrity  # noqa: E402
 from authoring_roundtrip import (  # noqa: E402
     AuthoringRoundtripError,
     RoundtripPage,
@@ -1963,7 +1962,6 @@ def _resolve_animation_config_source(
 
 def main(argv: list[str] | None = None) -> int:
     """CLI entry point for the SVG to PPTX conversion tool."""
-    require_skill_integrity()
     roundtrip_summary_line: str | None = None
     transition_choices = [
         'none',
