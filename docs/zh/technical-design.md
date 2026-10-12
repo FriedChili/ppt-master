@@ -6,13 +6,13 @@
 
 ## 设计哲学 —— AI 驱动工作流，人掌握最终判断
 
-PPT Master 交付的是一份**高质量、可继续编辑的 PowerPoint 草稿**，而不是封闭的最终成品。工作流先推理信息与论证，再设计页面，并按照明确的路线合同创作或保留 PowerPoint 原生对象。用户负责确认方向，并在 PowerPoint 中掌握最后一公里的判断。普通 Generate 的后续工作应当是对真实 deck 的精修，而不是从整页图片或浅层可编辑外壳重新搭建。**图片还原为 PPTX** [`image-to-pptx`](../../skills/ppt-master/workflows/profiles/image-to-pptx.md) profile 是一条窄例外：它当前要求 Codex，始终直接启用 Quick，先把一张或多张输入图片规范化为有序页面画面清单，原生还原普通文字，必要时在严格视觉锁下重建低清身份图形，再把场景图片重建成注册图层。它仍不允许把整页截图皮肤冒充为可编辑还原。
+ppt-master 交付的是一份**高质量、可继续编辑的 PowerPoint 草稿**，而不是封闭的最终成品。工作流先推理信息与论证，再设计页面，并按照明确的路线合同创作或保留 PowerPoint 原生对象。用户负责确认方向，并在 PowerPoint 中掌握最后一公里的判断。普通 Generate 的后续工作应当是对真实 deck 的精修，而不是从整页图片或浅层可编辑外壳重新搭建。**图片还原为 PPTX** [`image-to-pptx`](../../skills/ppt-master/workflows/profiles/image-to-pptx.md) profile 是一条窄例外：它当前要求 Codex，始终直接启用 Quick，先把一张或多张输入图片规范化为有序页面画面清单，原生还原普通文字，必要时在严格视觉锁下重建低清身份图形，再把场景图片重建成注册图层。它仍不允许把整页截图皮肤冒充为可编辑还原。
 
 工作流提供演示文稿专用的推理、状态、合同与质量门；确定性工具负责转换、校验、打包和可重复文件操作。**最终质量上限仍由所选模型决定**，用户的审美与判断则负责评审和收尾。
 
 ### SVG 是项目的规范中间语言
 
-PPT Master 不以“任意 SVG 都能转成 PPTX”为目标。`svg_output/` 使用的是**项目规范化 SVG 中间语言**：它借用 SVG 的 XML 语法和二维图形模型，但允许的元素、属性、单位、metadata、结构合同与 DrawingML 映射都由项目规范封闭定义。这里的方向是 **SVG 适应 PPT Master，而不是 PPT Master 追随整个 SVG 标准扩张**。
+ppt-master 不以“任意 SVG 都能转成 PPTX”为目标。`svg_output/` 使用的是**项目规范化 SVG 中间语言**：它借用 SVG 的 XML 语法和二维图形模型，但允许的元素、属性、单位、metadata、结构合同与 DrawingML 映射都由项目规范封闭定义。这里的方向是 **SVG 适应 ppt-master，而不是 ppt-master 追随整个 SVG 标准扩张**。
 
 这套中间语言区分三种输入状态：
 
@@ -351,7 +351,7 @@ CLI 支持 `--move`、`--copy` 和自动默认，但共享同一条固定的所�
 
 ## Canvas 格式系统
 
-PPT Master 不只服务 PPT——同一套 SVG → DrawingML 流水线还能产出方形海报、9:16 故事、A4 印刷品。各格式特定的约定（比例、安全区、品牌区等）住在 [`references/canvas-formats.md`](../../skills/ppt-master/references/canvas-formats.md)。
+ppt-master 不只服务 PPT——同一套 SVG → DrawingML 流水线还能产出方形海报、9:16 故事、A4 印刷品。各格式特定的约定（比例、安全区、品牌区等）住在 [`references/canvas-formats.md`](../../skills/ppt-master/references/canvas-formats.md)。
 
 值得标注的架构选择：**viewBox 是像素，不是绝对单位。** 像素空间让 AI Executor 思考布局没有歧义（`x="100"` 就是左缘 +100px），人类在浏览器里检查也直接。到 EMU 的换算只在导出时发生一次——选像素意味着流水线的其余环节（Strategist、Executor、质量检查、后处理）永远不需要在 EMU 思维下工作，那对 AI 生成和人类调试都是敌对的。
 
@@ -413,7 +413,7 @@ Theme、Slide Master、Slide Layout 与 Placeholder 是编译生成的 PowerPoin
 
 ## 角色系统：单一流水线中的专业模式
 
-PPT Master 把拥有 deck 状态的 Strategist、Image_Generator 和 Executor 保持在同一主代理内，而不是分发给并行子代理。它们是按需加载的指令作用域，不是各自持有过期 deck 状态的独立 agent。只有当支撑阶段的权威文件定义了不依赖共享 deck 状态的持久产物交接时，才可使用有界子代理。核心选择有三条互相支撑的理由：
+ppt-master 把拥有 deck 状态的 Strategist、Image_Generator 和 Executor 保持在同一主代理内，而不是分发给并行子代理。它们是按需加载的指令作用域，不是各自持有过期 deck 状态的独立 agent。只有当支撑阶段的权威文件定义了不依赖共享 deck 状态的持久产物交接时，才可使用有界子代理。核心选择有三条互相支撑的理由：
 
 **为什么是单代理而非并行子代理。** 页面设计依赖完整的上游上下文——Strategist 的色彩选择、图片资源是否成功获取（还是失败被替代）、之前几页的视觉节奏。子代理拿到的只能是这个上下文的过期局部快照，产出的 deck 视觉会逐页漂。同一逻辑也禁止分批生成（比如一次 5 页）：分批加速上下文压缩，deck 的视觉一致性下降速度比节省的速度更快——不划算。
 
@@ -505,7 +505,7 @@ Generate 路由会在加载流程前选定一份运行时权威：[`workflows/ge
 
 “做饭”不是临时解释，而是默认 Generate 流程的正式所有权模型。`quick-generate` 只去掉独立的 Strategist 与确认层，不去掉备料：
 
-| 餐厅角色 | PPT Master 对应项 | 决策权 |
+| 餐厅角色 | ppt-master 对应项 | 决策权 |
 |---|---|---|
 | 顾客与初始食材 | 用户确认与用户提供的原材料/素材 | 决定事实、意图、排除项、材料补充许可，以及要求具体到什么程度 |
 | 流程协调者 | Generate 流程 | 排列已声明的阶段、门禁、角色切换和交接，不接管任何角色的决策或确定性工具的检查 |
@@ -536,7 +536,7 @@ Generate 路由会在加载流程前选定一份运行时权威：[`workflows/ge
 
 **provider 专属 config key，不用通用 `IMAGE_API_KEY`。** 每个 backend 用自己的 `OPENAI_API_KEY` / `MINIMAX_API_KEY` 等等，当前 backend 由显式的 `IMAGE_BACKEND=<name>` 选定。统一的 `IMAGE_API_KEY` 字段第一眼看着干净，但当用户同时配了多个 provider 又不确定哪个在生效时会造成静默混乱——这种 fault 通常只表现为「图像生成结果怪怪的」，找不到清晰失败点。强制 per-provider key 让「我现在用的是哪个 backend」从推理变成可读配置。
 
-**默认宽松 license 过滤，配以严格模式应对没法放致谢的版面。** 网络图片搜索默认允许 CC BY / CC BY-SA 加内联致谢——大部分幻灯片都有视觉空间放一个致谢元素。`--strict-no-attribution` 是给全屏 hero image 和紧凑构图的逃生口，那些场景没法放致谢又不打破设计。NC（CC BY-NC*）和 ND（CC BY-ND*）自动拒绝，因为 PPT Master 的典型产物会用于商用或修改场景；宽松默认 + 这个底线正好对应用户实际想要的 fail-mode。
+**默认宽松 license 过滤，配以严格模式应对没法放致谢的版面。** 网络图片搜索默认允许 CC BY / CC BY-SA 加内联致谢——大部分幻灯片都有视觉空间放一个致谢元素。`--strict-no-attribution` 是给全屏 hero image 和紧凑构图的逃生口，那些场景没法放致谢又不打破设计。NC（CC BY-NC*）和 ND（CC BY-ND*）自动拒绝，因为 ppt-master 的典型产物会用于商用或修改场景；宽松默认 + 这个底线正好对应用户实际想要的 fail-mode。
 
 **Manifest-first 获取。** 流水线内的 AI 图片生成永远先写 `images/image_prompts.json`，并渲染旁路 `image_prompts.md`，哪怕只有一张图。`image_gen.py "prompt"` 这种位置参数形式只保留给一次性调试，因为它没有 manifest / sidecar 审计轨迹。网络图片获取也类似：多行 web 资源写入 `images/image_queries.json` 批量执行，并用 `image_sources.json` 追踪来源和致谢信息。
 
@@ -753,7 +753,7 @@ ChartEx 导入被有意限制为 7 个已验证数据模型：`treemap`、`sunbu
 **为什么录制旁白让自动推进时长跟着片段时长走。** 录制旁白模式面向视频导出，视频里没有演讲者去点击。该模式会逐页探测音频实际时长，并把自动推进设置为“音频时长 + `--narration-padding`”；padding 默认是 0.5 秒，用于避免音频尾部被切断。它不使用估算朗读速度或固定每页时长。
 
 **为什么录制旁白拒绝 on-click 对象动画。** PowerPoint 可以在真实排练时记录
-点击计时，但 PPT Master 不合成对象级点击事件。录制旁白路径只写页面级音频和
+点击计时，但 ppt-master 不合成对象级点击事件。录制旁白路径只写页面级音频和
 页面自动推进计时，所以单击触发的对象效果会让导出依赖额外的 PowerPoint 人工
 排练。使用 `--recorded-narration` 导出的 deck 必须采用无点击对象动画
 （`after-previous` 或 `with-previous`）；该要求按每条解析后的动画行检查，也排除
@@ -785,14 +785,14 @@ ChartEx 导入被有意限制为 7 个已验证数据模型：`treemap`、`sunbu
 
 ## 顶层路线与支撑文档
 
-[`workflows/index.md`](../../skills/ppt-master/workflows/index.md) 是仅供维护者使用的目录，不进入任务加载链。运行时路线选择以 [`workflows/routing.md`](../../skills/ppt-master/workflows/routing.md) 为权威。PPT Master 只有三条顶层产物路线：Generate PPTX、Create Template、Edit Native PPTX。用户请求只能进入其中一条；任何支撑文档都不与它们竞争。
+[`workflows/index.md`](../../skills/ppt-master/workflows/index.md) 是仅供维护者使用的目录，不进入任务加载链。运行时路线选择以 [`workflows/routing.md`](../../skills/ppt-master/workflows/routing.md) 为权威。ppt-master 只有三条顶层产物路线：Generate PPTX、Create Template、Edit Native PPTX。用户请求只能进入其中一条；任何支撑文档都不与它们竞争。
 
 支撑文件保持拆分，只是为了收紧路线合同，并在需要时加载可选上下文：
 
 | 分类 | 文档 | 归属路线 |
 |---|---|---|
 | 生成 profile | `image-to-pptx`、`beautify-pptx`、`quick-generate` | 图片还原为 PPTX 当前要求 Codex、始终直接启用 Quick，规范化页面画面、原生还原普通文字，必要时在严格视觉锁下重建低清身份 / 装饰图形，但 chart / table / data graphic 只能使用可核对数值的原生对象、精确源资产或 `manual_required`，并把场景至少拆成干净背景层与人物 / 前景层；Beautify 保留逐字措辞 / 页数 / 页序并重做布局，只在明确快速时选择 Quick；Quick 负责直接 SVG→PPTX 生命周期 |
-| 模板子工作流 | `create-brand`、`create-style`、`create-layout`、`create-deck` | Create Template 在“仅身份 / 无 roster 的方向与方法 / 品牌中立且应用中立的结构 / 应用语境与身份结构一体化”中只分派一个 |
+| 模板子工作流 | `create-style`、`create-style`、`create-layout`、`create-deck` | Create Template 在“仅身份 / 无 roster 的方向与方法 / 品牌中立且应用中立的结构 / 应用语境与身份结构一体化”中只分派一个 |
 | 模板输入阶段 | `apply-template-workspace` | Default Stage 1 确认至少一个工作区后、Stage 2 前运行；自由设计跳过安装，Quick 可直接提供精确 root |
 | 生成阶段 | `topic-research`、`resume-execute`、`refine-spec`、`verify-charts`、`visual-review`、`live-preview`、`customize-animations` | Generate PPTX 中各自定义的 intake、planning、editing、quality 或 post-processing 节点 |
 | 共享阶段 | `generate-audio` | Generate PPTX 后处理，或 Edit Native PPTX 的旁白集成 |

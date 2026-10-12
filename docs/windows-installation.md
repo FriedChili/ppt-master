@@ -4,7 +4,7 @@
 
 ---
 
-This guide walks you through installing PPT Master on Windows step by step. Follow along and you'll have a working setup in under 10 minutes.
+This guide walks you through installing ppt-master on Windows step by step. Follow along and you'll have a working setup in under 10 minutes.
 
 ---
 
@@ -32,7 +32,6 @@ Python is the only hard requirement.
 
 **Option A — Download ZIP** (easiest):
 
-1. Go to [github.com/hugohe3/ppt-master](https://github.com/hugohe3/ppt-master), or use the [AtomGit mirror](https://atomgit.com/hugohe3/ppt-master) in mainland China
 2. Click the green **Code** button → **Download ZIP**
 3. Unzip to `C:\Users\YourName\ppt-master`
 
@@ -40,12 +39,10 @@ Python is the only hard requirement.
 
 ```powershell
 # GitHub
-git clone https://github.com/hugohe3/ppt-master.git
 ```
 
 ```powershell
 # AtomGit mirror
-git clone https://atomgit.com/hugohe3/ppt-master.git
 ```
 
 Then enter the cloned folder:
@@ -172,5 +169,3 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ## Still stuck?
 
 - 📖 [FAQ](./faq.md)
-- 🐛 [GitHub Issues](https://github.com/hugohe3/ppt-master/issues) — include your Python version, Windows version, and full error message
-- 💬 [GitHub Discussions](https://github.com/hugohe3/ppt-master/discussions)

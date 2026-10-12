@@ -1,4 +1,4 @@
-# PPT Master Toolset
+# ppt-master Toolset
 
 This directory contains user-facing scripts for conversion, project setup, SVG processing, source-preserving PPTX editing, export, recorded narration, and image generation.
 
@@ -410,7 +410,7 @@ Generated-deck formulas do not use an image command. Author a native formula
 marker in the page SVG; `svg_to_pptx.py` compiles its LaTeX metadata to editable
 PowerPoint OMML. Forward compilation covers the explicitly documented Microsoft
 365 LaTeX and mhchem input profiles and fails closed outside them.
-`pptx_to_svg.py` also reconstructs PPT Master-owned, validator-clean OMML into
+`pptx_to_svg.py` also reconstructs ppt-master-owned, validator-clean OMML into
 canonical block/inline formula markers with visible linear SVG previews. This
 is a closed-vocabulary reverse import, not arbitrary third-party
 OMML-to-LaTeX conversion; unknown OMML is reported and kept opaque in tolerant

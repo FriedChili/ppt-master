@@ -114,7 +114,7 @@ Dependency:
 pip install PyMuPDF
 ```
 
-PyMuPDF is licensed under AGPL-3.0, with a commercial license available from Artifex. It is the only AGPL dependency in this repository and is imported only by this converter, so it can be left uninstalled when no PDF sources are involved. Anyone redistributing PPT Master together with its installed dependencies should review the AGPL terms first.
+PyMuPDF is licensed under AGPL-3.0, with a commercial license available from Artifex. It is the only AGPL dependency in this repository and is imported only by this converter, so it can be left uninstalled when no PDF sources are involved. Anyone redistributing ppt-master together with its installed dependencies should review the AGPL terms first.
 
 ## `source_to_md/doc_to_md.py`
 
@@ -333,7 +333,7 @@ options, exact `p14:dur`, optional `advTm`, and an internal WAV transition
 sound. Sound bytes are extracted under the selected media directory with a
 content-addressed filename and referenced from the sidecar.
 
-This is a PPT Master-owned semantic loop, not a general transition normalizer.
+This is a ppt-master-owned semantic loop, not a general transition normalizer.
 Unknown effects, legacy `p:transition@spd`, visual effects without exact
 `p14:dur`, `advClick="0"`, malformed carriers, and unsupported or broken sound
 relationships produce `transition-not-reconstructed` in tolerant mode;

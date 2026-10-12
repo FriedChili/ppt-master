@@ -23,7 +23,7 @@
 
 | 目录 | 它是什么 | 怎样产生 |
 |---|---|---|
-| **Skill 安装目录** | 包含 `SKILL.md`、`requirements.txt`、工作流与脚本的 PPT Master 包 | 完整仓库 clone 或仓库 ZIP 中是 `skills/ppt-master/`；marketplace/plugin 安装或 skill-only release ZIP 则使用自己的安装或解压位置 |
+| **Skill 安装目录** | 包含 `SKILL.md`、`requirements.txt`、工作流与脚本的 ppt-master 包 | 完整仓库 clone 或仓库 ZIP 中是 `skills/ppt-master/`；marketplace/plugin 安装或 skill-only release ZIP 则使用自己的安装或解压位置 |
 | **工作目录** | 你在 Agent 中打开的、可持久保存且可写的目录 | 完整仓库 clone 或仓库 ZIP 通常使用仓库根目录；skill-only 安装则自行选择，不必是 skill 安装目录 |
 | **活动项目** | 一次生成任务的来源、SVG、报告、备份与导出物所在目录 | Agent 会在 `<工作目录>/projects/<生成的项目名>/` 下初始化，并报告精确路径 |
 
@@ -39,7 +39,6 @@ Skill-only 安装应先找到同时包含 skill 的 `SKILL.md` 与 `requirements
 python3 -m pip install -r "<installed-skill-dir>/requirements.txt"
 ```
 
-使用 `npx skills add hugohe3/ppt-master` 还要求本机有可用的 `npx` 命令，通常由 Node.js/npm 提供；仓库没有规定 Node/npm 的最低版本。Host 自带的 `/plugin install` 不走这条 `npx` 路径。安装完成后，从**工作目录**启动 Agent，不要从 host 管理的 skill 缓存目录启动；执行入口会单独解析已安装 skill。安装方式见[快速开始](../../README_CN.md#快速开始)，运行规范见 [`SKILL.md`](../../skills/ppt-master/SKILL.md)。
 
 ---
 
@@ -135,7 +134,6 @@ Layout / slot 元数据会保留，并编译成可复用原生结构。P01 前�
 - **直接改,无需 AI** —— 选中元素后在右栏改文字、颜色、字体、字号;拖拽即可移动,或用方向键微调(`Shift` = 10px),`Ctrl+Z` 撤销。改动即时预览,点 **Apply changes** 写回 `svg_output/`。
 - **或写注解交给 AI** —— 点选元素写一句要改成什么，点 **Add annotation** 暂存，再点 **Apply changes** 把注解标记写入 `svg_output/`；回到对话说“应用注解”（或 “apply my annotations”），AI 会改写那块区域并重新导出 PPTX。
 
-PPT Master 最初是纯对话设计;可视化编辑是在很多用户提出后融入的(建立在 [@WodenJay](https://github.com/WodenJay) 的 [PR #85](https://github.com/hugohe3/ppt-master/pull/85) 之上)。
 
 完整说明 → [实时预览阶段](../../skills/ppt-master/workflows/stages/live-preview.md)
 
@@ -173,7 +171,7 @@ PPT Master 最初是纯对话设计;可视化编辑是在很多用户提出后�
 
 ## 使用复刻音色
 
-用 ElevenLabs / MiniMax / Qwen / CosyVoice 复刻你自己的声音(或在授权前提下复刻演讲者的声音),让整份 deck 用 *你的声音* 念出来。在 provider 控制台复刻一次,把得到的 `voice_id` 传进来,PPT Master 就会用这个音色逐页朗读备注并嵌回 PPTX。
+用 ElevenLabs / MiniMax / Qwen / CosyVoice 复刻你自己的声音(或在授权前提下复刻演讲者的声音),让整份 deck 用 *你的声音* 念出来。在 provider 控制台复刻一次,把得到的 `voice_id` 传进来,ppt-master 就会用这个音色逐页朗读备注并嵌回 PPTX。
 
 完整说明 → [使用复刻音色](./audio-narration.md#使用复刻音色)
 

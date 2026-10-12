@@ -14,7 +14,7 @@
 
 | Kind | Library workspace root | What it writes | What it does NOT write | Originating workflow |
 |---|---|---|---|---|
-| **Brand** | `templates/brands/<id>/` | Identity segment only: color / typography / logo / voice / icon style | No canvas, page structure, SVG roster | `workflows/create-template/create-brand.md` |
+| **Brand** | `templates/brands/<id>/` | Identity segment only: color / typography / logo / voice / icon style | No canvas, page structure, SVG roster | `workflows/create-template/create-style.md` |
 | **Style** | `templates/styles/<id>/` | Portable direction/method: communication method, page-role vocabulary, evidence/data expression, visual defaults, image/icon direction, advisory review focus | No identity truth, application contract, canvas, page structure, or SVG roster | `workflows/create-template/create-style.md` |
 | **Layout** | `templates/layouts/<id>/` | Brand-neutral structure segment only: canvas / page structure / semantic text roles / page types / SVG roster | No brand identity and no recurring communication application | `workflows/create-template/create-layout.md` |
 | **Deck** | `templates/decks/<id>/` | A recurring presentation family: descriptive application context + integrated identity + structure | — | `workflows/create-template/create-deck.md` |
@@ -530,7 +530,7 @@ SVG structure contract directly.
 | Route or child workflow | Produces |
 |---|---|
 | `workflows/create-template.md` | Fixed Create Template entry and shared scope, confirmation, preflight, structured-authoring, registration, completion, and handoff contract; dispatches exactly one child workflow |
-| `workflows/create-template/create-brand.md` | Identity-only Brand workspace; no SVG roster and empty optional directories are omitted |
+| `workflows/create-template/create-style.md` | Identity-only Brand workspace; no SVG roster and empty optional directories are omitted |
 | `workflows/create-template/create-style.md` | Direction/method-only Style workspace; no SVG roster, identity truth, application contract, native structure, or preview PPTX |
 | `workflows/create-template/create-layout.md` | Brand-neutral structural Layout workspace with a structured SVG roster |
 | `workflows/create-template/create-deck.md` | Recurring application contract with integrated identity/structure and a structured SVG roster; selected when the reusable artifact is branded or scenario-bearing, not merely because the source is a complete PPTX |

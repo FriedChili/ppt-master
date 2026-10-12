@@ -6,7 +6,6 @@
 
 Each Markdown file is single-language. New files mirror the language of their siblings in the same directory. Never mix English scaffolding with Chinese paragraphs (or the reverse) inside one file.
 
-`docs/zh/`, `README_CN.md`, `SPONSORS_CN.md`, and other wholly Chinese files are complete translations, not exceptions to this rule — they are single-language too.
 
 ## 2. A Non-English Language May Be Content, Never a Rule
 

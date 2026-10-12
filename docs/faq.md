@@ -4,7 +4,7 @@
 
 ---
 
-## Q: What source formats does PPT Master accept?
+## Q: What source formats does ppt-master accept?
 
 Almost anything: **PDF**, **DOCX**, **PPTX**, **EPUB**, **HTML**, **LaTeX**, **RST**, **URLs** (including WeChat articles), **Markdown**, or just plain text pasted into the conversation. The AI agent converts your source material to Markdown automatically before generating slides.
 
@@ -14,7 +14,7 @@ DOCX conversion extracts embedded image assets into a companion asset directory 
 
 See the [source-conversion output contract](../skills/ppt-master/scripts/docs/conversion.md) for companion assets and the [image-planning contract](../skills/ppt-master/references/strategist-image.md) for selection and geometry evidence.
 
-## Q: Can PPT Master batch-redraw every image in a DOCX to one ratio and style?
+## Q: Can ppt-master batch-redraw every image in a DOCX to one ratio and style?
 
 No. There is currently no user-facing Generate route that reference-redraws every embedded DOCX image as a batch and automatically replaces the originals. Manifest mode can batch **new** image jobs from prompts, but the built-in CLI's `--reference-image` editing is a narrow single-image path, is not manifest mode, and is available only through supported image backends. The Image to PPTX profile does not fill this gap: it applies when raster inputs represent whole slide pages to reconstruct, not when ordinary photos or illustrations are source assets inside a Word document.
 
@@ -30,9 +30,9 @@ Yes. Tell the AI your topic or scenario (e.g. "make a PPT about Hayao Miyazaki",
 
 Quality depends on what's on the open web. If you already have specialized material (papers, internal docs), giving those files to the AI directly produces better results than web research alone.
 
-## Q: Can PPT Master produce formats other than PowerPoint?
+## Q: Can ppt-master produce formats other than PowerPoint?
 
-Yes. Besides the standard **16:9** and **4:3** presentation formats, PPT Master supports social media and marketing formats out of the box:
+Yes. Besides the standard **16:9** and **4:3** presentation formats, ppt-master supports social media and marketing formats out of the box:
 
 | Format | Use Case |
 |--------|----------|
@@ -48,13 +48,13 @@ initialization (for example, `--format xhs`). For any other canvas, omit
 and Quick Generate uses the first SVG as the canvas authority. The output is
 still a `.pptx` file containing native shapes.
 
-## Q: What AI tools work with PPT Master?
+## Q: What AI tools work with ppt-master?
 
-PPT Master works inside any agent-capable AI tool that can read files and run shell commands — **Claude Code** (CLI / VS Code / JetBrains / Web), **VS Code Copilot**, **Codex**, and others. Installation and authentication are handled by the selected host; the [Getting Started guide](./getting-started.md) defines the working-folder model used after installation.
+ppt-master works inside any agent-capable AI tool that can read files and run shell commands — **Claude Code** (CLI / VS Code / JetBrains / Web), **VS Code Copilot**, **Codex**, and others. Installation and authentication are handled by the selected host; the [Getting Started guide](./getting-started.md) defines the working-folder model used after installation.
 
 ## Q: I downloaded an old version. How do I update to the latest?
 
-It depends on how you installed PPT Master:
+It depends on how you installed ppt-master:
 
 | Install method | Update method |
 |---|---|
@@ -76,18 +76,14 @@ If the folder is not a Git clone, the script will tell you how to migrate a ZIP 
 
 Yes. The full repository is large (Git history plus bundled example decks and their assets), and that size is baked into the history — it can't be trimmed without breaking the many existing forks. If you only want the skill and not the full repo, use a lightweight path instead:
 
-- **Marketplace CLI**: `npx skills add hugohe3/ppt-master` or Claude Code's `/plugin install` fetch the skill files only (see the Set Up section of the README).
-- **Manual download**: grab `ppt-master-skill-*.zip` from the [Releases](https://github.com/hugohe3/ppt-master/releases) page — the skill files only (~56 MB), no full-repo clone.
 
 For either skill-only path, locate the installed skill directory that contains `SKILL.md` and `requirements.txt`, then run `python3 -m pip install -r "<installed-skill-dir>/requirements.txt"` so the post-processing scripts work.
 
 Neither path carries a `.git` directory, so `git describe` cannot report the version. The installed release is recorded in the `metadata.version` field of the skill's own `SKILL.md` frontmatter.
 
-For users in mainland China who cannot reach GitHub reliably, the complete repository is also mirrored on [AtomGit](https://atomgit.com/hugohe3/ppt-master); clone it or download its ZIP there.
 
 ## Q: I installed from a skill marketplace. What prerequisites and working directory do I need?
 
-All installation paths require Python 3.10+ and an installed, authenticated agent host that can read and write files and run shell commands. The `npx skills add hugohe3/ppt-master` path additionally requires a working `npx` command, normally supplied with Node.js/npm; the repository does not declare a Node/npm minimum version. A host's own `/plugin install` command does not use that `npx` path.
 
 The installed skill directory and your working folder are different roles. Install Python dependencies from the directory that contains the installed skill's `SKILL.md` and `requirements.txt`, but start the agent in a separate persistent, writable working folder of your choice. The agent creates that folder's `projects/` directory as needed; you do not need to run it from the host-managed skill cache. See [Getting Started: Set up the installation and working folders](./getting-started.md#set-up-the-installation-and-working-folders) and the skill's [execution entry point](../skills/ppt-master/SKILL.md).
 
@@ -113,7 +109,7 @@ That is not an unqualified `exports/` at the repository root. An explicitly supp
 
 ## Q: Can I use AI-generated images in my presentation?
 
-Yes. When the agent host exposes a native image tool, PPT Master can use it without a separate provider image-generation API key. It can also use the built-in `image_gen.py` through a configured provider. Choose "AI generation" for the image approach; you can explicitly ask the agent to use its own image tool. You can also place your own images in the project's `images/` folder.
+Yes. When the agent host exposes a native image tool, ppt-master can use it without a separate provider image-generation API key. It can also use the built-in `image_gen.py` through a configured provider. Choose "AI generation" for the image approach; you can explicitly ask the agent to use its own image tool. You can also place your own images in the project's `images/` folder.
 
 ## Q: Why are there no icons? Are icons supposed to appear on every slide?
 
@@ -123,7 +119,7 @@ See the [Strategist icon choice](../skills/ppt-master/references/strategist.md),
 
 ## Q: I don't have an image-generation API key — can I still get images?
 
-Yes. If the agent host exposes native image generation, choose "AI generation" and ask it to use its own image tool; this needs no provider image API key. Otherwise, pick "Web-sourced" in the Strategist's Image Usage step. PPT Master ships a zero-config `image_search.py` that searches openly-licensed images across Openverse and Wikimedia Commons. Zero-config search is a fallback: it works immediately, but quality can be uneven because many results are ordinary user uploads.
+Yes. If the agent host exposes native image generation, choose "AI generation" and ask it to use its own image tool; this needs no provider image API key. Otherwise, pick "Web-sourced" in the Strategist's Image Usage step. ppt-master ships a zero-config `image_search.py` that searches openly-licensed images across Openverse and Wikimedia Commons. Zero-config search is a fallback: it works immediately, but quality can be uneven because many results are ordinary user uploads.
 
 For better contemporary stock photography, set `PEXELS_API_KEY` and/or `PIXABAY_API_KEY` in `.env` (both are free). The search will include Pexels / Pixabay automatically, which usually improves people, workplace, lifestyle, product, and illustration images. You can mix paths in one deck (e.g. AI for hero illustrations, web for team photos). If a selected image requires attribution, Executor adds a small inline credit on the affected slide.
 
@@ -131,13 +127,13 @@ Be clear on what this buys you: **web search only finds *a* relevant, downloadab
 
 ## Q: Can I turn AI-generated slide mockups or screenshots into editable PowerPoint slides?
 
-Yes. Provide one or more images and ask to reconstruct the represented pages as an editable PPTX; PPT Master routes that request to the **Image to PPTX** ([`image-to-pptx`](../skills/ppt-master/workflows/profiles/image-to-pptx.md)) profile. It currently requires Codex. Other agent hosts have not been adapted for this profile, so their behavior is not supported or promised. Image to PPTX always activates Quick; you do not need to ask for Quick separately. It first normalizes every input into one ordered page-frame roster, so slide count follows represented pages rather than file count.
+Yes. Provide one or more images and ask to reconstruct the represented pages as an editable PPTX; ppt-master routes that request to the **Image to PPTX** ([`image-to-pptx`](../skills/ppt-master/workflows/profiles/image-to-pptx.md)) profile. It currently requires Codex. Other agent hosts have not been adapted for this profile, so their behavior is not supported or promised. Image to PPTX always activates Quick; you do not need to ask for Quick separately. It first normalizes every input into one ordered page-frame roster, so slide count follows represented pages rather than file count.
 
 Ordinary visible text is rebuilt as native editable text. Logos, icons, badges, and decorative graphics use the source directly when it is adequate; when it is too low-resolution, Codex may reconstruct them from the reference, but identity, silhouette, proportions, colors, and wordmarks must remain fixed, and a merely similar substitute is forbidden. Charts, tables, and data graphics are never reconstructed generatively: they must be native objects with verifiable values, exact source assets, or marked `manual_required`. Photo and illustration scenes are rebuilt into at least a clean base plus subject or foreground layers. Multiple non-overlapping objects with padded bounding boxes may share one generated plate and then become independent PowerPoint picture objects through grid slicing or SVG bounding-box crops. AI may reconstruct pixels hidden by the separated layers, but it must not redesign the visible composition. A whole-slide screenshot skin with token editable overlays does not count as reconstruction.
 
 ## Q: Can I edit the generated presentations?
 
-Yes. The only PPTX converter in the SVG pipeline is PPT Master's own `svg_output/` → DrawingML conversion. It saves a timestamped native PowerPoint deck to the active project's `exports/`, with text, graphics, and colors directly editable as PowerPoint objects. With the default output path, both Default Generate and Quick Generate copy the authored `svg_output/` to `backup/<timestamp>/svg_output/`, so the same authored deck can be re-exported without re-running the LLM. For Quick this is package reconstruction, not a recoverable record of the AI's design decisions.
+Yes. The only PPTX converter in the SVG pipeline is ppt-master's own `svg_output/` → DrawingML conversion. It saves a timestamped native PowerPoint deck to the active project's `exports/`, with text, graphics, and colors directly editable as PowerPoint objects. With the default output path, both Default Generate and Quick Generate copy the authored `svg_output/` to `backup/<timestamp>/svg_output/`, so the same authored deck can be re-exported without re-running the LLM. For Quick this is package reconstruction, not a recoverable record of the AI's design decisions.
 
 `finalize_svg.py` remains a mandatory Step 7 operation in the default Generate flow even though native PPTX export reads `svg_output/`. It produces self-contained files in `svg_final/` for visual inspection and for manual insertion into another deck as SVG pictures. The explicit quick-generate profile skips this preview artifact, but still retains the normal postflight report and default-path backup after its lockless final quality check. PowerPoint's manual **Convert to Shape** command is not a supported round-trip path; use the generated native PPTX when you need editable shapes.
 
@@ -163,7 +159,7 @@ That mode preserves independent per-line object placement, but a 12-line paragra
 
 ## Q: Why are font sizes in px, not pt? Do they change on export?
 
-PPT Master works in **unitless px end-to-end** — the confirm page, `spec_lock.md`, and the SVG all carry px; there is no pt layer. The SVG canvas is literally 1280×720 px, so px is the real layout / execution unit, and keeping a single unit avoids the size drift you get when a value is "confirmed as 20pt" but written into the SVG as a different number.
+ppt-master works in **unitless px end-to-end** — the confirm page, `spec_lock.md`, and the SVG all carry px; there is no pt layer. The SVG canvas is literally 1280×720 px, so px is the real layout / execution unit, and keeping a single unit avoids the size drift you get when a value is "confirmed as 20pt" but written into the SVG as a different number.
 
 PowerPoint displays pt, so the **export** converts px → pt automatically (`pt = px × 0.75`, kept to one decimal). For example a `24px` body becomes `18pt`, a `42px` title becomes `31.5pt`. So a non-integer like `13.5pt` or `31.5pt` in PowerPoint is **expected and intentional**, not a bug — the size is whatever the px works out to, no longer forced onto whole or half-point values.
 
@@ -177,7 +173,7 @@ The body baseline is a fixed value per **reading mode** (not a range). This cont
 
 Title, subtitle, footnote and the other roles derive from the body by ratio and snap to clean even px. You can override any role's px value on the confirm page.
 
-## Q: How does PPT Master decide a deck's style?
+## Q: How does ppt-master decide a deck's style?
 
 Two independent choices, locked at confirmation `d`:
 
@@ -188,13 +184,13 @@ Any mode pairs with any visual style.
 
 ## Q: The result looks like only boxes and lines. What run facts should I check first?
 
-PPT Master has no documented `wireframe` runtime mode and no documented visual-equivalence guarantee between releases, so appearance alone does not identify a version regression. First record whether the run used Default or Quick, plus the actual mode, visual style, image-usage choice, base-icon choice, Custom Animations setting, and prepared-resource state. Quick keeps these decisions in the active agent context rather than writing `design_spec.md` or `spec_lock.md`.
+ppt-master has no documented `wireframe` runtime mode and no documented visual-equivalence guarantee between releases, so appearance alone does not identify a version regression. First record whether the run used Default or Quick, plus the actual mode, visual style, image-usage choice, base-icon choice, Custom Animations setting, and prepared-resource state. Quick keeps these decisions in the active agent context rather than writing `design_spec.md` or `spec_lock.md`.
 
 Next compare the same page in the active project's `svg_output/` with the exported PPTX. If the SVG is already sparse, inspect the planning, resource, and SVG-authoring layers. If the SVG contains the intended objects but the PPTX loses or changes them, inspect the conversion or rendering layer. This boundary follows [Materials → Plan → Realization](./technical-design.md), the [Default Generate workflow](../skills/ppt-master/workflows/generate-pptx.md), and the [Quick profile](../skills/ppt-master/workflows/profiles/quick-generate.md).
 
-## Q: How is PPT Master priced, and does template reuse reduce token usage?
+## Q: How is ppt-master priced, and does template reuse reduce token usage?
 
-You pay according to your AI usage; PPT Master adds no subscription fee.
+You pay according to your AI usage; ppt-master adds no subscription fee.
 
 The repository documents template reuse as reuse of identity, method, structure, or a recurring application contract. It contains no measured or guaranteed relationship between template reuse and token usage. See the [product positioning](../README.md#product-positioning) and [template boundaries](./templates-guide.md).
 
@@ -206,7 +202,7 @@ If your workflow specifically requires Excel-driven data editing or PowerPoint's
 
 ## Q: Are formulas editable?
 
-Yes, in PowerPoint. PPT Master exports both standalone block equations and
+Yes, in PowerPoint. ppt-master exports both standalone block equations and
 same-paragraph inline formulas as editable OMML, not screenshots or picture
 assets. A block uses a formula group; inline math uses a leaf
 `<tspan data-pptx-inline-formula="...">preview</tspan>` among ordinary text
@@ -221,7 +217,7 @@ mhchem profile: symbols, structures, environments, macros, chemistry, local
 formula colors, and the documented native normalizations. Unknown and
 explicitly unsupported input fails closed instead of appearing as raw LaTeX.
 For PPTX import, the same closed OMML validator supports a narrow reverse path:
-PPT Master-owned block and inline math becomes canonical formula markers with
+ppt-master-owned block and inline math becomes canonical formula markers with
 visible SVG previews. This recovers normalized semantics, not the author's
 original LaTeX spelling and not arbitrary third-party OMML. Unknown OMML is
 reported and retained as readable/opaque fallback in tolerant mode.
@@ -231,12 +227,12 @@ executable source profile is pinned to the Microsoft documentation versions
 above. Repository verification covers compiler behavior, OMML structure, and
 PPTX packaging rather than complete Microsoft 365 UI rendering/editability
 certification. Formula display and editability in Keynote, WPS, LibreOffice,
-and other non-PowerPoint clients are not supported; PPT Master does not add an
+and other non-PowerPoint clients are not supported; ppt-master does not add an
 image fallback for them.
 
 ## Q: Can generated slides contain clickable links?
 
-Yes. PPT Master supports PowerPoint-native links on a whole object or an inline
+Yes. ppt-master supports PowerPoint-native links on a whole object or an inline
 text run. External targets use an absolute URI such as `https:` or `mailto:`;
 same-deck jumps use the exact 1-based `#slide-N` form. Both compile from
 standard SVG `<a href>` anchors to native click relationships, and supported
@@ -271,7 +267,7 @@ python3 skills/ppt-master/scripts/pptx_animations.py --list             # comple
 python3 skills/ppt-master/scripts/svg_to_pptx.py <project> -a auto --animation-trigger on-click   # presenter-paced reveals
 ```
 
-`on-click` is for live presentations. Narrated/video export via `--recorded-narration` rejects it because PPT Master writes page timings, not object-level click timings; use `after-previous` or `with-previous` for narrated decks.
+`on-click` is for live presentations. Narrated/video export via `--recorded-narration` rejects it because ppt-master writes page timings, not object-level click timings; use `after-previous` or `with-previous` for narrated decks.
 
 For common commands, Start-mode guidance, and object-level customization, see [Animations & Transitions](./animations.md). Exact effect and validation behavior remains in the linked execution reference.
 
@@ -283,18 +279,17 @@ For common commands, Start-mode guidance, and object-level customization, see [A
 
 Other models (Gemini, GLM, MiniMax, etc.) vary in quality. In general, models with stronger frontend/visual capabilities produce better results.
 
-## Q: Someone said PPT Master is "just a toy" — is that fair?
+## Q: Someone said ppt-master is "just a toy" — is that fair?
 
-No. PPT Master is a presentation workflow, not a model or a complete agent. It supplies presentation-specific reasoning, contracts, project state, deterministic conversion, and quality gates; the selected model still sets the quality ceiling. Evaluating the workflow with a weak or small-context model is like test-driving a sports car in first gear and concluding it is slow.
+No. ppt-master is a presentation workflow, not a model or a complete agent. It supplies presentation-specific reasoning, contracts, project state, deterministic conversion, and quality gates; the selected model still sets the quality ceiling. Evaluating the workflow with a weak or small-context model is like test-driving a sports car in first gear and concluding it is slow.
 
 **The full-power combination:**
 
 - **Claude with a large context window** (ideally ~1M tokens): a large context window lets the Executor see every previously generated page in the same session, maintaining visual consistency across the entire deck without splitting runs. Smaller windows force split-mode execution, which introduces visible style drift between phases.
 - **AI image generation with `gpt-image-2`** (or similar): placeholder-grade stock images are the single biggest reason decks look generic. Replacing them with on-brand AI-generated illustrations changes the perceived quality immediately.
 
-If the results you've seen look mediocre, check your setup before concluding anything about the tool: What model? What context size? Was image generation enabled? PPT Master + Claude Opus at 1M context + `gpt-image-2` images is a genuinely different experience from PPT Master + a small open-source model with no image API configured.
+If the results you've seen look mediocre, check your setup before concluding anything about the tool: What model? What context size? Was image generation enabled? ppt-master + Claude Opus at 1M context + `gpt-image-2` images is a genuinely different experience from ppt-master + a small open-source model with no image API configured.
 
-> **No Claude access?** Project sponsor [PackyCode](https://www.packyapi.ai/register?aff=ppt-master) provides pay-as-you-go access to Claude and other models — no subscription, no overseas card required. Use promo code **`ppt-master`** for 10% off.
 
 One last thing: this is a free, solo-maintained open-source project. If it fits your needs, use it — I'm glad it helps; if it doesn't, pick another tool. Sincere feedback and suggestions are always welcome, because that's how the project gets a little better over time.
 
@@ -416,7 +411,7 @@ Unchanged output pages are referenced and restored byte-for-byte. On an edited p
 
 ---
 
-## Q: Content landed in unexpected places — how do I see what PPT Master detected in my `.pptx`?
+## Q: Content landed in unexpected places — how do I see what ppt-master detected in my `.pptx`?
 
 Edit Native PPTX and Create Template each write a readable inventory before authoring begins. Read it to see which pages and objects were recognized.
 
@@ -464,11 +459,11 @@ No. Registration makes a workspace discoverable; it does not select it. In Defau
 
 ## Q: How do I create a custom template?
 
-Want to turn a PPT you love into a reusable template for PPT Master? Here's how:
+Want to turn a PPT you love into a reusable template for ppt-master? Here's how:
 
 **Step 1 — Prepare Reference Material**
 
-The recommended input is the original `.pptx`. PPT Master extracts theme identity, declared Master/Layout topology, placeholder metadata, native-shape evidence, and reusable assets that are actually present and supported. `standard` and `fidelity` inspect the complete source inventory as evidence and author a new SVG roster plus a new Master/Layout/slot system; they neither preserve nor distill source topology. `mirror` instead materializes one prototype per source Slide together with only that Slide roster's reachable Layout/Master facts, without semantic synthesis or gap filling. Unreferenced source Layouts/Masters remain analysis evidence rather than mirror output. Fixed Master/Layout group wrappers are mechanically expanded into direct atoms because structural layers cannot be `<g>`.
+The recommended input is the original `.pptx`. ppt-master extracts theme identity, declared Master/Layout topology, placeholder metadata, native-shape evidence, and reusable assets that are actually present and supported. `standard` and `fidelity` inspect the complete source inventory as evidence and author a new SVG roster plus a new Master/Layout/slot system; they neither preserve nor distill source topology. `mirror` instead materializes one prototype per source Slide together with only that Slide roster's reachable Layout/Master facts, without semantic synthesis or gap filling. Unreferenced source Layouts/Masters remain analysis evidence rather than mirror output. Fixed Master/Layout group wrappers are mechanically expanded into direct atoms because structural layers cannot be `<g>`.
 
 Large imported SVGs may contain native-shape metadata, hidden carriers, and preview fingerprints. That lossless representation stays immutable as source/package evidence. Template creation uses a lightweight editable IR with document-local source refs and a compact path/hash manifest. `standard` / `fidelity` author project-canonical SVG and use compact authored-preset groups only for exact registered preset matches. Mirror publishes the reviewed current IR as the visible tree; it uses source refs only to validate identity and recover supported non-visible semantics, never to restore ordinary visible lossless subtrees. Unsupported or edited objects keep an SVG fallback.
 
@@ -476,7 +471,7 @@ If no source PPTX exists, screenshots of the key page types still work — cover
 
 **Step 2 — Let AI Create the Template**
 
-Use an agent-capable AI tool (Claude Code, Codex, etc.) and ask it to use the **PPT Master `/create-template` workflow** to convert your reference material into a template. The more context you give, the better the result — for example:
+Use an agent-capable AI tool (Claude Code, Codex, etc.) and ask it to use the **ppt-master `/create-template` workflow** to convert your reference material into a template. The more context you give, the better the result — for example:
 
 - Template name and intended use case (e.g., government reports, premium consulting)
 - Desired tone and color palette (e.g., "modern and restrained, dark blue primary")

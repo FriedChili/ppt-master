@@ -4,7 +4,7 @@
 
 ---
 
-> PPT Master 是一个由个人维护的开源项目，按**优先级而非固定时间表**推进。这份路线图用来对齐预期：项目往哪个方向走、当下在做什么、哪些事等真实需求出现再做、哪些明确不做。优先级会随用户反馈和真实使用信号调整——不承诺交付时间窗口。
+> ppt-master 是一个由个人维护的开源项目，按**优先级而非固定时间表**推进。这份路线图用来对齐预期：项目往哪个方向走、当下在做什么、哪些事等真实需求出现再做、哪些明确不做。优先级会随用户反馈和真实使用信号调整——不承诺交付时间窗口。
 
 ---
 
@@ -18,7 +18,7 @@
 
 ## 能力覆盖地图
 
-一份演示文稿由四层构成：页面上有什么、如何组织、如何行动、文档自身如何结构化。下面的表把每一层与 PPT Master 今天的实现对应起来。
+一份演示文稿由四层构成：页面上有什么、如何组织、如何行动、文档自身如何结构化。下面的表把每一层与 ppt-master 今天的实现对应起来。
 
 **这是地图，不是待办清单。**「有意边界」与「有意的不对称」是**已定形态**而非未完成的格子——那里的空白是决定，不是欠账。「暂不考虑」的行会在该行内写明为什么现在不做。只有「信号驱动」的行偏开放，其理由留在下面的[未来方向](#未来方向信号驱动)一节，不在此重复。真正被论证过的立场放在[明确不做](#明确不做)；这张地图只描述，不做裁决。
 
@@ -45,7 +45,7 @@
 | 图表 | 系统化 | 有专属创作 reference；默认 SVG，原生 Chart 替换为显式 opt-in |
 | 表格 | 系统化 | 有专属创作 reference；六种可复用的单元格网格参考，仍可自定义网格；原生 Table 替换走同一 opt-in |
 | 关系图 | 系统化 | 六个关系原子——`order`、`link`、`parent`、`membership`、`contrast`、`overlap` |
-| 公式 | 系统化 | 独立块级公式与同段行内公式可把 Microsoft 365 LaTeX / mhchem 文档中所有明确点名的输入编译为可编辑 OMML，并遵循文档规定的原生归一化，档位外输入直接失败。PPTX 导入可把通过校验的 PPT Master 自有 OMML 恢复为带可见 SVG 预览的规范公式 marker；任意第三方 OMML 与原始 LaTeX 写法恢复仍不在合同内。不生成图片兜底。包目标仍为 PowerPoint 2010+；可执行档位锁定到所述 Microsoft 文档版本，仓库验证覆盖编译器、OMML 与包结构，不等同于完整的 Microsoft 365 UI 认证。非 PowerPoint 客户端仍不在合同内 |
+| 公式 | 系统化 | 独立块级公式与同段行内公式可把 Microsoft 365 LaTeX / mhchem 文档中所有明确点名的输入编译为可编辑 OMML，并遵循文档规定的原生归一化，档位外输入直接失败。PPTX 导入可把通过校验的 ppt-master 自有 OMML 恢复为带可见 SVG 预览的规范公式 marker；任意第三方 OMML 与原始 LaTeX 写法恢复仍不在合同内。不生成图片兜底。包目标仍为 PowerPoint 2010+；可执行档位锁定到所述 Microsoft 文档版本，仓库验证覆盖编译器、OMML 与包结构，不等同于完整的 Microsoft 365 UI 认证。非 PowerPoint 客户端仍不在合同内 |
 | 旁白与动画音效 | 系统化 | 逐页旁白音频，以及取自内置 CC0 音效库的原生转场与对象音效 |
 | 任意视频与背景音乐 | 暂不考虑 | 属于一次性、内容特定的插入动作，在 PowerPoint 里手动放进去更快，AI 也无法替你挑文件。背景音乐还会牵出旁白混音决策，那在范围之外。来源 deck 中已有的媒体在 Fill 与 Enhance 路线中原样保留 |
 | SmartArt | 有意的不对称 | 读取来源 diagram part 的内容与结构；生成 deck 用普通形状管线把这些内容重画出来。从不编辑 DiagramML，也不承诺原生 SmartArt 再生 |
@@ -120,16 +120,11 @@
 
 ## 已交付里程碑
 
-一个月一行，细节见 [Release 发布说明](https://github.com/hugohe3/ppt-master/releases)与 commit log。
 
 | 时间 | 主题 |
 |---|---|
 | 2026-03 | **原生 PPTX 路线成形** — SVG → DrawingML 链路可用；图表 / 版式模板索引上线 |
 | 2026-04 | **管线规模化** — 仅凭主题生成、70 个图表模板 + 三套图标库、`spec_lock` 跨页一致性契约、逐元素动画与旁白 / 视频导出 |
-| 2026-05 | **可视化编辑 + AI 图片体系化** — Live Preview 确定性原位编辑（基于 [@WodenJay](https://github.com/WodenJay) 的 [PR #85](https://github.com/hugohe3/ppt-master/pull/85)）、从 PPTX 创建模板工作区、rendering × palette × type 图片体系、旧版栅格 LaTeX 渲染器 |
-| 2026-06 | **mode 与 visual-style 双 catalog + intake 扩展** — 5 种叙事 mode × 18 种视觉风格（+ `custom`）、内容忠实的美化 profile、多 deck 合并 intake、可组合插画切片管线、网络图片质量闸门、源转换保真提升（图注识别基于 [@suay1113](https://github.com/suay1113) 的 [PR #191](https://github.com/hugohe3/ppt-master/pull/191)，超链接保留提炼自 [@ZhaoZuohong](https://github.com/hugohe3/ppt-master/pull/155)） |
-| 2026-07 | **定位章程 + 原生母版 / 版式 + token 效率**（[v4.0.0](https://github.com/hugohe3/ppt-master/releases/tag/v4.0.0)）— 三段式分步确认 UI、真 `p:sldMaster` / `p:sldLayout` 导出、`--native-charts-and-tables` opt-in、动效导出加固、图表模板库压缩 |
-| 2026-08 | **模板库 + 页面图重建 + 原生公式与链接 + AI 图像成为构图系统**（[v4.5.0](https://github.com/hugohe3/ppt-master/releases/tag/v4.5.0)、[v4.6.0](https://github.com/hugohe3/ppt-master/releases/tag/v4.6.0)、[v4.7.0](https://github.com/hugohe3/ppt-master/releases/tag/v4.7.0)、[v4.8.0](https://github.com/hugohe3/ppt-master/releases/tag/v4.8.0)）— brand / style / layout 工作区库、可视化按信息模型拆分且结构改为组合语法、Codex 支持的 `image-to-pptx` profile、带原生动画音效的视频交付、三条可编辑整体设计方向、覆盖 Microsoft 365 文档化 profile 的可编辑 OMML 公式、原生超链接创作、可跨页复用的 AI 插画元素族与装饰艺术字、按任务决定来源并隔离审阅缩略图的配图路径、转场与对象动画的反向导入，以及四层能力覆盖地图 |
 
 ---
 
@@ -139,7 +134,6 @@
 
 ### 对任意 PPTX placeholder 系统做无契约盲填
 
-**对应 Issue**：[#53](https://github.com/hugohe3/ppt-master/issues/53)、[#118](https://github.com/hugohe3/ppt-master/issues/118)
 
 Generate PPTX 路线围绕完全可控的新形状、文字与版式创作。结构完整的 PPTX 可以通过两种显式方式为经过确认的可复用模板包提供依据：`standard` / `fidelity` 读取完整来源证据，创作新的完整 Slide SVG 原型和 Master/Layout 系统；`mirror` 只物化来源 Slide 及其可达的 Layout/Master 链。两者都不修改来源 PPTX，也不补造缺失的设计意图。但「打开任意 PPTX 后不经规范化就盲填所有占位框」仍是另一种产品形态。
 
@@ -149,21 +143,17 @@ Generate PPTX 路线围绕完全可控的新形状、文字与版式创作。结
 
 ### 把原生 PowerPoint 图表设为默认路线
 
-**对应 Issue**：[#99](https://github.com/hugohe3/ppt-master/issues/99)、[#100](https://github.com/hugohe3/ppt-master/issues/100) 类
 
 跨四渲染器（PowerPoint / Keynote / LibreOffice / WPS）的位置保真是项目主轴。把默认路线改成 PowerPoint 原生图表会让「像素级一致性」破功——同一个 PPTX 在不同渲染器里图表会显示不同布局。图表默认用 SVG 是 **by design**，不是能力缺失。
 
-窄例外是 `data-pptx-replace-with` marker：Design Spec §IX `Native-ready` 映射中以 `<object-key>=yes` 点名的受支持独立数据图表与纯文本网格表格可以携带 PowerPoint 原生 Chart/Table 替换 payload；`no` 与零星微型图形保持普通 shape。§VII 只记录真正选中的可复用参考。导出加 `--native-charts-and-tables` 才激活已准备的 marker——供主动用跨渲染器保真换取带数据源对象及图表/表格专属编辑模型的用户使用；激活后的对象会保留 deck 的 chart-area / plot / 轴线 / 网格线 / 标签颜色与原生表格格式，不再塌回 PowerPoint 默认主题（见 [v4.0.0 发布说明](https://github.com/hugohe3/ppt-master/releases/tag/v4.0.0)）。默认导出路径与可编辑的 SVG 派生形状系统不变。
 
 ### uv 作为默认 / 必需依赖
 
-**对应 Issue**：[#111](https://github.com/hugohe3/ppt-master/issues/111)
 
 `pip + requirements.txt` 是唯一官方安装路径，因为它在所有 Python 环境下都可用、不需要额外学习成本。uv 是好工具，但「让 uv 成为默认」会抬高新用户的入门门槛。如果你个人偏好 uv，完全可以在 fork 里用，不影响主线。
 
 ### 纯速度优化
 
-**对应 Issue**：[#97](https://github.com/hugohe3/ppt-master/issues/97)
 
 成本 / 速度 / 质量三角下，本项目选择**质量优先**。20 分钟生成一个高质量 PPTX 是当前的合理点。
 
@@ -183,8 +173,6 @@ Generate PPTX 路线围绕完全可控的新形状、文字与版式创作。结
 
 ## 反馈渠道
 
-- **Issues**：[github.com/hugohe3/ppt-master/issues](https://github.com/hugohe3/ppt-master/issues) — 报告 Bug / 提建议
-- **Discussions**：[github.com/hugohe3/ppt-master/discussions](https://github.com/hugohe3/ppt-master/discussions) — 用法讨论 / 经验分享
 - **邮箱**：heyug3@gmail.com
 
 提需求前先扫一眼上面的**明确不做**；如果你的需求落在那一节，多半不会被采纳，但欢迎讨论是否还有别的路径解决你的真实问题。

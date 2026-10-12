@@ -23,7 +23,7 @@ Before starting the agent, keep these three directories separate:
 
 | Directory | What it is | Where it comes from |
 |---|---|---|
-| **Installed skill directory** | The PPT Master package containing `SKILL.md`, `requirements.txt`, workflows, and scripts | In a full-repository clone or repository ZIP, this is `skills/ppt-master/`; a marketplace/plugin installation or skill-only release ZIP has its own installed or extracted location |
+| **Installed skill directory** | The ppt-master package containing `SKILL.md`, `requirements.txt`, workflows, and scripts | In a full-repository clone or repository ZIP, this is `skills/ppt-master/`; a marketplace/plugin installation or skill-only release ZIP has its own installed or extracted location |
 | **Working folder** | A persistent, writable folder that you open in the agent | For a full-repository clone or repository ZIP, normally the repository root; for skill-only installation, choose your own folder—it does not have to be the installed skill directory |
 | **Active project** | One generation run's sources, authored SVG, reports, backups, and exports | The agent initializes it under `<working-folder>/projects/<generated-project-name>/` and reports the exact path |
 
@@ -39,13 +39,12 @@ For a skill-only installation, first locate the installed or extracted directory
 python3 -m pip install -r "<installed-skill-dir>/requirements.txt"
 ```
 
-The `npx skills add hugohe3/ppt-master` installation path also requires a working `npx` command, normally supplied with Node.js/npm; the repository does not specify a Node/npm minimum version. A host's own `/plugin install` command does not use that `npx` path. After installation, start the agent in the **working folder**, not in the host-managed skill cache. The execution entry point resolves the installed skill separately. Installation choices are listed in [Quick Start](../README.md#quick-start); runtime discipline is defined in [`SKILL.md`](../skills/ppt-master/SKILL.md).
 
 ---
 
 ## Start from a template
 
-**Optional.** By default PPT Master uses **free design** — you don't need a template, and you can skip to the next section. Reach for one when a deck must reuse a brand identity, a communication/design method, a fixed layout set, or a recurring deck application.
+**Optional.** By default ppt-master uses **free design** — you don't need a template, and you can skip to the next section. Reach for one when a deck must reuse a brand identity, a communication/design method, a fixed layout set, or a recurring deck application.
 
 **Two ways to reuse an existing `.pptx`, depending on what you want back:**
 
@@ -137,7 +136,6 @@ A browser preview opens at the URL reported by the launcher while the deck is be
 - **Edit directly, no AI** — select an element to change its text, color, font, or size in the side panel; drag it to reposition, or nudge with the arrow keys (`Shift` = 10px). `Ctrl+Z` undoes. Edits preview instantly and write to `svg_output/` when you click **Apply changes**.
 - **Or annotate for the AI** — click an element, type what you want changed, click **Add annotation** to stage it, then click **Apply changes** to write the annotation markers to `svg_output/`. Return to chat and say "apply my annotations"; the AI rewrites that region and re-exports the PPTX.
 
-PPT Master was chat-only by design; visual editing was folded in after enough users asked for it (built on [@WodenJay](https://github.com/WodenJay)'s [PR #85](https://github.com/hugohe3/ppt-master/pull/85)).
 
 Full guide → [Live Preview Stage](../skills/ppt-master/workflows/stages/live-preview.md)
 
@@ -152,7 +150,7 @@ as real OOXML—not embedded video. The default is a `fade` page transition with
 `animations.json` sidecar. The 29 former short names remain accepted only as
 compatibility inputs; new animation choices use canonical prefixed names.
 
-Animation settings are strict: unknown effects or Start modes, invalid timing values, and missing sidecar targets fail instead of silently becoming another effect. Before the result replaces an existing output, PPT Master reads the candidate package back and checks timing placement, IDs, shape targets, effects, durations, and Start modes. Microsoft PowerPoint is the primary motion-validation target; other presentation apps can open the PPTX but may map individual animation effects differently.
+Animation settings are strict: unknown effects or Start modes, invalid timing values, and missing sidecar targets fail instead of silently becoming another effect. Before the result replaces an existing output, ppt-master reads the candidate package back and checks timing placement, IDs, shape targets, effects, durations, and Start modes. Microsoft PowerPoint is the primary motion-validation target; other presentation apps can open the PPTX but may map individual animation effects differently.
 
 Full guide → [Animations & Transitions](./animations.md)
 
@@ -175,7 +173,7 @@ Full guide → [Audio Narration & Video Export](./audio-narration.md)
 
 ## Use a cloned voice
 
-Bring your own cloned voice from ElevenLabs / MiniMax / Qwen / CosyVoice and have the whole deck narrated in *your* voice (or a presenter's, with permission). Clone once in the provider's console, then pass the `voice_id` — PPT Master reads every slide's notes in that voice and embeds the result back into the PPTX.
+Bring your own cloned voice from ElevenLabs / MiniMax / Qwen / CosyVoice and have the whole deck narrated in *your* voice (or a presenter's, with permission). Clone once in the provider's console, then pass the `voice_id` — ppt-master reads every slide's notes in that voice and embeds the result back into the PPTX.
 
 Full guide → [Use a cloned voice](./audio-narration.md#use-a-cloned-voice)
 

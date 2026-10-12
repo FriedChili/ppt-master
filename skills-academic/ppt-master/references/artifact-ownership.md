@@ -1,6 +1,6 @@
 # Artifact Ownership Specification
 
-Global artifact ownership rules for PPT Master projects. A selected route or profile may explicitly omit an artifact without erasing its facts.
+Global artifact ownership rules for ppt-master projects. A selected route or profile may explicitly omit an artifact without erasing its facts.
 
 **Hard rule**: read each fact from its owning artifact; never merge several channels into a second source of truth.
 

@@ -1,7 +1,6 @@
 # FORK.md — 科研/学术专用分支
 
 本目录 `skills-academic/ppt-master/` 是从 `skills/ppt-master/`（ppt-master 6.7.0）派生的
-**科研学术-only** 分支。上游：`git@github.com:hugohe3/ppt-master.git`
 
 **原始 skill 未被修改。** 基线已提交在 git 里（见下），本分支作为对照树独立存在。
 
@@ -51,7 +50,7 @@ git clean -fd skills/ppt-master               # 清掉多余文件（谨慎：�
 | `references/animations.md`、`workflows/stages/customize-animations.md` | 2 | 动画，只留静态 |
 | `workflows/stages/generate-audio.md` | 1 | 配音 |
 | `references/video-design.md` | 1 | 视频化交付 |
-| `workflows/create-template/create-brand.md` | 1 | 品牌工作区创建；无 brand 目录后无对象 |
+| `workflows/create-template/create-style.md` | 1 | 品牌工作区创建；无 brand 目录后无对象 |
 | `templates/charts/` 营销类 | 5：funnel / gauge / bullet / progress_bar / word_cloud | 销售漏斗、仪表盘、进度条、词云 |
 | `templates/styles/` 商务方法 | 7：consulting-decision / mbb-consulting / investor-pitch / creative-pitch / product-launch / solution-proposal / operating-review | 非科研沟通方法 |
 
@@ -72,9 +71,9 @@ git clean -fd skills/ppt-master               # 清掉多余文件（谨慎：�
 - `scripts/prompt_audit_manifest.json`：部分清理（见 §5 遗留）
 
 **路由 / 文档**
-- `workflows/routing.md`：删 5 行（create-brand、video-design、animations、customize-animations、generate-audio 的触发行）；4 处替换（输出契约去掉 "narrated PPTX/MP4"、Create Template 描述去掉 brand、Quick 工作区种类 Brand/Style/Layout/Deck → Style/Layout/Deck、发现列表去掉 `brands_index.json`）
-- `workflows/index.md`：删 3 行（create-brand、customize-animations、generate-audio）
-- `workflows/create-template.md`：子工作区分发去掉 create-brand
+- `workflows/routing.md`：删 5 行（create-style、video-design、animations、customize-animations、generate-audio 的触发行）；4 处替换（输出契约去掉 "narrated PPTX/MP4"、Create Template 描述去掉 brand、Quick 工作区种类 Brand/Style/Layout/Deck → Style/Layout/Deck、发现列表去掉 `brands_index.json`）
+- `workflows/index.md`：删 3 行（create-style、customize-animations、generate-audio）
+- `workflows/create-template.md`：子工作区分发去掉 create-style
 - `templates/README.md`：删 `brands/` 行；分发列表去掉 Create Brand
 - 恢复 `workflows/create-template/create-deck.md`（deck 能力保留，否则 routing §5 会悬空）
 

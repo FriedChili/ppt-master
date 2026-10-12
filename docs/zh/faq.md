@@ -4,7 +4,7 @@
 
 ---
 
-## Q: PPT Master 支持哪些源文件格式？
+## Q: ppt-master 支持哪些源文件格式？
 
 几乎所有常见格式都支持：**PDF**、**DOCX**、**PPTX**、**EPUB**、**HTML**、**LaTeX**、**RST**、**网页链接**（包括微信公众号文章）、**Markdown**，或者直接在对话中粘贴文字内容。AI 代理会自动将源材料转换为 Markdown 后再生成幻灯片。
 
@@ -32,7 +32,7 @@ DOCX 转换会把内嵌图片素材抽取到配套素材目录，并写入图片
 
 ## Q: 除了 PPT 还能生成其他格式吗？
 
-可以。除了标准的 **16:9** 和 **4:3** 演示文稿格式，PPT Master 还内置了社交媒体和营销类格式：
+可以。除了标准的 **16:9** 和 **4:3** 演示文稿格式，ppt-master 还内置了社交媒体和营销类格式：
 
 | 格式 | 适用场景 |
 |------|----------|
@@ -47,9 +47,9 @@ DOCX 转换会把内嵌图片素材抽取到配套素材目录，并写入图片
 `spec_lock.md`，Quick Generate 则以第一张 SVG 为画布真值。输出仍然是包含原生形状的
 `.pptx` 文件。
 
-## Q: PPT Master 支持哪些 AI 工具？
+## Q: ppt-master 支持哪些 AI 工具？
 
-PPT Master 可以在任何能读取文件和执行命令、支持 Agent 的 AI 工具中运行——**Claude Code**（CLI / VS Code / JetBrains / Web）、**VS Code Copilot**、**Codex** 等均可使用。所选 host 负责自身的安装与鉴权；安装后的工作目录模型见[快速入门](./getting-started.md)。
+ppt-master 可以在任何能读取文件和执行命令、支持 Agent 的 AI 工具中运行——**Claude Code**（CLI / VS Code / JetBrains / Web）、**VS Code Copilot**、**Codex** 等均可使用。所选 host 负责自身的安装与鉴权；安装后的工作目录模型见[快速入门](./getting-started.md)。
 
 ## Q: 我下载过旧版本，怎么更新到最新版？
 
@@ -75,18 +75,14 @@ python3 skills/ppt-master/scripts/update_repo.py
 
 可以。完整仓库确实很大（Git 历史，加上内置的示例 deck 及其素材），而且这个体积是写进历史里的——在不破坏已有大量 fork 的前提下没法瘦身。如果你只想要 skill、不需要完整仓库，用下面的轻量方式：
 
-- **Marketplace CLI**：`npx skills add hugohe3/ppt-master`，或 Claude Code 里的 `/plugin install`，都只拉取 skill 文件（见 README 的「开始设置」一节）。
-- **手动下载**：到 [Releases](https://github.com/hugohe3/ppt-master/releases) 页面下载 `ppt-master-skill-*.zip`——只含 skill 文件（约 56 MB），无需 clone 完整仓库。
 
 两种 skill-only 方式装好后，找到同时包含 `SKILL.md` 与 `requirements.txt` 的 skill 安装目录，再运行 `python3 -m pip install -r "<installed-skill-dir>/requirements.txt"`，后处理脚本才能工作。
 
 这两条路径都不带 `.git` 目录，`git describe` 查不到版本。已安装的版本记录在 skill 自身 `SKILL.md` frontmatter 的 `metadata.version` 字段里。
 
-中国大陆地区访问 GitHub 下载不便时，可以从 [AtomGit](https://atomgit.com/hugohe3/ppt-master) 的完整仓库镜像 clone 或下载 ZIP。
 
 ## Q: 通过 Skill marketplace 安装后，还需要什么环境，应该在哪个目录运行？
 
-所有安装方式都需要 Python 3.10+，以及一个已安装、已鉴权、能够读写文件并执行 shell 命令的 Agent host。使用 `npx skills add hugohe3/ppt-master` 还要求本机有可用的 `npx` 命令，通常由 Node.js/npm 提供；仓库没有声明 Node/npm 的最低版本。Host 自带的 `/plugin install` 不走这条 `npx` 路径。
 
 Skill 安装目录与工作目录承担不同角色。Python 依赖从包含已安装 skill 的 `SKILL.md` 和 `requirements.txt` 的目录安装；Agent 则应从你自行选择的、可持久保存且可写的工作目录启动。Agent 会按需在这个工作目录下创建 `projects/`，不需要从 host 管理的 skill 缓存目录运行。详见[快速入门：配置安装目录与工作目录](./getting-started.md#配置安装目录与工作目录)和 skill 的[执行入口](../../skills/ppt-master/SKILL.md)。
 
@@ -112,7 +108,7 @@ python3 -c "import pptx; import fitz; print('All core dependencies OK')"
 
 ## Q: 能用 AI 生成配图吗？
 
-可以。Agent host 提供原生生图工具时，PPT Master 可直接使用，不需要另配供应商生图 API Key；也可以通过内置 `image_gen.py` 使用已配置的供应商后端。图片方案选择"AI 生图"即可，也可明确要求 Agent 使用自身生图工具。你还可以把自己的图片放到项目的 `images/` 目录下。
+可以。Agent host 提供原生生图工具时，ppt-master 可直接使用，不需要另配供应商生图 API Key；也可以通过内置 `image_gen.py` 使用已配置的供应商后端。图片方案选择"AI 生图"即可，也可明确要求 Agent 使用自身生图工具。你还可以把自己的图片放到项目的 `images/` 目录下。
 
 ## Q: 为什么没有图标？图标应该默认出现在每一页吗？
 
@@ -122,7 +118,7 @@ python3 -c "import pptx; import fitz; print('All core dependencies OK')"
 
 ## Q: 没有生图 API Key，还能配图吗？
 
-可以。Agent host 提供原生生图能力时，选择"AI 生图"并要求它使用自身生图工具，不需要供应商生图 API Key。否则可在策略师的"图片方案"步骤选择"网络图片"；PPT Master 内置零配置的 `image_search.py`，在 Openverse 和 Wikimedia Commons 中搜索可商用的开放许可图片。零配置搜索适合作为兜底：能直接用，但图片质量不稳定，容易出现普通用户上传、构图随意、清晰度一般的素材。
+可以。Agent host 提供原生生图能力时，选择"AI 生图"并要求它使用自身生图工具，不需要供应商生图 API Key。否则可在策略师的"图片方案"步骤选择"网络图片"；ppt-master 内置零配置的 `image_search.py`，在 Openverse 和 Wikimedia Commons 中搜索可商用的开放许可图片。零配置搜索适合作为兜底：能直接用，但图片质量不稳定，容易出现普通用户上传、构图随意、清晰度一般的素材。
 
 如果想要更现代的商业风照片，建议在 `.env` 里设置 `PEXELS_API_KEY` 和/或 `PIXABAY_API_KEY`（都是免费申请）。搜索会自动纳入 Pexels / Pixabay，人物、办公、生活方式、产品和插画类图片质量通常会明显更稳定。两种路径可以在同一份 deck 里混用（比如 hero 图用 AI 生成、团队照片用网络搜索）；如果选中的图片需要署名，Executor 会在该幻灯片自动添加就地小字署名。
 
@@ -130,7 +126,7 @@ python3 -c "import pptx; import fitz; print('All core dependencies OK')"
 
 ## Q: 能把 AI 生成的 PPT 效果图或截图还原成可编辑 PowerPoint 吗？
 
-可以。提供一张或多张图片，并要求把其中的页面还原为可编辑 PPTX，PPT Master 就会把请求路由到**图片还原为 PPTX**（[`image-to-pptx`](../../skills/ppt-master/workflows/profiles/image-to-pptx.md)）profile。该 profile 当前要求在 Codex 中使用；其他 Agent host 尚未适配，不对其行为作支持或承诺。图片还原为 PPTX 始终直接启用 Quick，不需要另行说明“快速模式”。它会先把所有输入规范化为一份有序页面画面清单，所以最终页数由实际页面画面决定，而不是由文件数决定。
+可以。提供一张或多张图片，并要求把其中的页面还原为可编辑 PPTX，ppt-master 就会把请求路由到**图片还原为 PPTX**（[`image-to-pptx`](../../skills/ppt-master/workflows/profiles/image-to-pptx.md)）profile。该 profile 当前要求在 Codex 中使用；其他 Agent host 尚未适配，不对其行为作支持或承诺。图片还原为 PPTX 始终直接启用 Quick，不需要另行说明“快速模式”。它会先把所有输入规范化为一份有序页面画面清单，所以最终页数由实际页面画面决定，而不是由文件数决定。
 
 普通可见文字会还原为原生可编辑文本。Logo、图标、徽标和装饰图形在原图足够清晰时直接使用；像素过低时可由 Codex 根据参考图重建，但必须锁定身份、轮廓、比例、颜色和字标，禁止换成仅仅相似的替代物。Chart、table 和 data graphic 禁止生成式重建：必须使用可核对数值的原生对象、精确源资产，或标记 `manual_required`。照片和插画场景至少拆成干净背景层与人物 / 前景层。多个带 padding 包围盒且互不重叠的对象可共用一次生成 plate，再通过 grid slice 或 SVG bbox crop 拆成 PowerPoint 中的独立图片对象。AI 可以补全拆层后露出的隐藏场景像素，但不能改掉可见构图。把整页截图铺底、只叠少量可编辑元素，不算还原成功。
 
@@ -162,7 +158,7 @@ python3 skills/ppt-master/scripts/svg_to_pptx.py <project_path> --no-merge
 
 ## Q: 字号为什么用 px 不是 pt？导出后字号会变吗？
 
-PPT Master 内部**全程只用 px**（无单位像素）——确认页、`spec_lock.md`、SVG 都是 px，没有 pt 这一层。原因是 SVG 画布本身就是 1280×720 px，px 是真正的排版/执行单位；只用一个单位，能避免「确认时说 20pt、写进 SVG 又变成另一个数」这类单位混淆导致整套字号偏差。
+ppt-master 内部**全程只用 px**（无单位像素）——确认页、`spec_lock.md`、SVG 都是 px，没有 pt 这一层。原因是 SVG 画布本身就是 1280×720 px，px 是真正的排版/执行单位；只用一个单位，能避免「确认时说 20pt、写进 SVG 又变成另一个数」这类单位混淆导致整套字号偏差。
 
 PowerPoint 最终显示的是 pt，所以**导出时**自动把 px 换成 pt（`pt = px × 0.75`，保留 1 位小数）。例如正文 `24px` 导出后是 `18pt`、标题 `42px` 是 `31.5pt`。所以你在 PowerPoint 里看到 `13.5pt`、`31.5pt` 这种非整数是**正常的、有意的**，不是 bug——字号算出来是多少就是多少，不再强行凑成整数或半磅。
 
@@ -176,7 +172,7 @@ PowerPoint 最终显示的是 pt，所以**导出时**自动把 px 换成 pt（`
 
 标题、副标题、脚注等其它角色按比例从正文派生，并取整洁偶数 px。你在确认页可以手动覆盖任何角色的 px 值。
 
-## Q: PPT Master 怎么确定演示的风格？
+## Q: ppt-master 怎么确定演示的风格？
 
 在第 d 项确认时锁定两个独立维度：
 
@@ -187,11 +183,11 @@ PowerPoint 最终显示的是 pt，所以**导出时**自动把 px 换成 pt（`
 
 ## Q: 结果看起来只有框和线，应该先核对哪些运行事实？
 
-PPT Master 没有文档化的 `wireframe` 运行模式，也没有跨版本视觉等价保证，因此不能只凭观感判定版本回归。先记录本次使用 Default 还是 Quick，以及实际的 mode、visual style、图片方案、基础图标选择、Custom Animations 设置和资源备妥状态。Quick 不写 `design_spec.md` 或 `spec_lock.md`，这些决定只保留在 Agent 的当前上下文。
+ppt-master 没有文档化的 `wireframe` 运行模式，也没有跨版本视觉等价保证，因此不能只凭观感判定版本回归。先记录本次使用 Default 还是 Quick，以及实际的 mode、visual style、图片方案、基础图标选择、Custom Animations 设置和资源备妥状态。Quick 不写 `design_spec.md` 或 `spec_lock.md`，这些决定只保留在 Agent 的当前上下文。
 
 再比较活动项目 `svg_output/` 中的同一页与导出的 PPTX。SVG 本身已经稀疏时，应检查规划、资源与 SVG 创作层；SVG 中存在预期对象、PPTX 却丢失或改变时，才检查转换或渲染层。这个分界依据 [Materials → Plan → Realization](./technical-design.md)、[Default Generate 工作流](../../skills/ppt-master/workflows/generate-pptx.md)与[快速模式 profile](../../skills/ppt-master/workflows/profiles/quick-generate.md)。
 
-## Q: PPT Master 如何计费？复用模板会降低 token 用量吗？
+## Q: ppt-master 如何计费？复用模板会降低 token 用量吗？
 
 按你的 AI 用量计费，不额外收订阅费。
 
@@ -205,7 +201,7 @@ PPT Master 没有文档化的 `wireframe` 运行模式，也没有跨版本视�
 
 ## Q: 公式可以编辑吗？
 
-可以，但支持目标是 PowerPoint。PPT Master 会把独立块级公式和同段行内
+可以，但支持目标是 PowerPoint。ppt-master 会把独立块级公式和同段行内
 公式都导出为可编辑 OMML，而不是截图或图片资源。块级公式使用 formula
 group；行内公式使用夹在普通文本 run 中的叶子
 `<tspan data-pptx-inline-formula="...">preview</tspan>`。矩阵、多行推导等
@@ -216,7 +212,7 @@ marker 都携带普通可见预览；原生导出会替换该预览，不增加�
 档位与 2605 / 16.109 mhchem 档位明确点名的全部输入，包括符号、结构、环境、
 宏、化学式、公式局部颜色及文档规定的原生归一化。未知或明确不支持的输入直接
 失败，不会以原始 LaTeX 混进页面。PPTX 导入则复用同一封闭 OMML 校验器提供
-窄反向路径：PPT Master 自有的块级与行内数学内容会恢复为带可见 SVG 预览的
+窄反向路径：ppt-master 自有的块级与行内数学内容会恢复为带可见 SVG 预览的
 规范公式 marker。这里恢复的是归一化语义，不是作者原始 LaTeX 写法，也不是任意
 第三方 OMML 转换；未知 OMML 在 tolerant 模式下会被报告，并以可读 / 不透明
 fallback 保留。
@@ -224,12 +220,12 @@ fallback 保留。
 生成的 OMML 仍以 PowerPoint 2010+ 包为目标，可执行输入档位锁定到上述
 Microsoft 文档版本。仓库验证覆盖编译器行为、OMML 结构与 PPTX 打包，不等同于
 完整的 Microsoft 365 UI 显示 / 编辑认证。Keynote、WPS、LibreOffice 等非
-PowerPoint 客户端中的公式显示与编辑能力不在支持范围内；PPT Master 不为这些
+PowerPoint 客户端中的公式显示与编辑能力不在支持范围内；ppt-master 不为这些
 客户端附加公式图片兜底。
 
 ## Q: 生成的页面可以带可点击链接吗？
 
-可以。PPT Master 支持整体对象或行内文字 run 上的 PowerPoint 原生链接。
+可以。ppt-master 支持整体对象或行内文字 run 上的 PowerPoint 原生链接。
 外部目标使用 `https:`、`mailto:` 等绝对 URI；deck 内跳转使用精确的 1-based
 `#slide-N`。两类链接都从标准 SVG `<a href>` anchor 编译为原生 click
 relationship，受支持的 PPTX 回导也会重建同一种 SVG 表达。
@@ -259,7 +255,7 @@ python3 skills/ppt-master/scripts/pptx_animations.py --list             # 完整
 python3 skills/ppt-master/scripts/svg_to_pptx.py <project> -a auto --animation-trigger on-click   # 单击触发，演讲者控制节奏
 ```
 
-`on-click` 适合现场演示。通过 `--recorded-narration` 做旁白/视频导出时会拒绝它，因为 PPT Master 只写页面级计时，不生成对象级点击计时；带旁白的 deck 请使用 `after-previous` 或 `with-previous`。
+`on-click` 适合现场演示。通过 `--recorded-narration` 做旁白/视频导出时会拒绝它，因为 ppt-master 只写页面级计时，不生成对象级点击计时；带旁白的 deck 请使用 `after-previous` 或 `with-previous`。
 
 常用命令、Start 模式选择与对象级自定义见[转场与动画](./animations.md)；精确效果与校验行为由其中链接的执行规范维护。
 
@@ -271,9 +267,9 @@ python3 skills/ppt-master/scripts/svg_to_pptx.py <project> -a auto --animation-t
 
 其他模型（Gemini、GLM、MiniMax 等）效果参差不齐。总体来说，前端/视觉能力越强的模型，生成效果越好。
 
-## Q: 有人说 PPT Master "只是个玩具"——这个评价准确吗？
+## Q: 有人说 ppt-master "只是个玩具"——这个评价准确吗？
 
-不准确。PPT Master 是演示文稿工作流，不是模型，也不是完整 agent。它提供演示文稿专用的推理、合同、项目状态、确定性转换与质量门；最终质量上限仍由所选模型决定。用弱模型或小上下文窗口来评价这套工作流，就好比挂着一档开跑车然后说它跑不快。
+不准确。ppt-master 是演示文稿工作流，不是模型，也不是完整 agent。它提供演示文稿专用的推理、合同、项目状态、确定性转换与质量门；最终质量上限仍由所选模型决定。用弱模型或小上下文窗口来评价这套工作流，就好比挂着一档开跑车然后说它跑不快。
 
 **发挥完整实力的组合：**
 
@@ -282,7 +278,6 @@ python3 skills/ppt-master/scripts/svg_to_pptx.py <project> -a auto --animation-t
 
 如果你看到的效果差强人意，先对照以下几点检查你的配置，再下结论：用的什么模型？上下文开了多大？有没有接入图片生成 API？同样的工作流，Claude Opus 配 100 万 token 上下文配 `gpt-image-2` 的结果，和小参数开源模型配零配置的结果，是截然不同的体验。
 
-> **没有 Claude 渠道？** 本项目赞助商 [PackyCode](https://www.packyapi.ai/register?aff=ppt-master) 提供 Claude 及其他主流模型的按量付费接入——无需订阅，无需境外信用卡，支持国内支付，开箱即用。充值时填写优惠码 **`ppt-master`** 享 9 折。
 
 最后再说一句：这是一个免费、个人维护的开源项目。合用就用，能帮到你我很高兴；不合用，换个工具就好。真诚的反馈与建议始终欢迎——这也是项目一点点变好的方式。
 
@@ -363,7 +358,7 @@ Quick 省略独立规划阶段，但仓库没有文档化的测量或保证表�
 
 ---
 
-## Q: 内容填到了意料之外的位置——怎么查看 PPT Master 到底识别到了什么？
+## Q: 内容填到了意料之外的位置——怎么查看 ppt-master 到底识别到了什么？
 
 Edit Native PPTX 与 Create Template 都会在开始创作前写出可读清单，用它确认识别到的页面和对象。
 
@@ -411,11 +406,11 @@ Create Template 会先确认简报，再写入已注册、可发现的 `library`
 
 ## Q: 如何制作自定义模板？
 
-想把自己喜欢的 PPT 模板制作成 PPT Master 可调用的模板？按以下步骤操作：
+想把自己喜欢的 PPT 模板制作成 ppt-master 可调用的模板？按以下步骤操作：
 
 **第一步 — 准备参考材料**
 
-**最推荐的方式是直接给原始 `.pptx` 文件**。PPT Master 会提取包内实际存在且受支持的主题色、字体、Master/Layout、placeholder type/idx、原生形状信息和可复用图片资源。`standard` 与 `fidelity` 把完整来源清单作为证据，重新设计 SVG roster 和新的 Master/Layout/slot 系统，不保留、也不蒸馏来源拓扑。`mirror` 则为每张来源 Slide 输出一个原型，并只把这组 Slide 可达的 Layout/Master 事实物化到新工作区，不做语义归纳或缺口补造；未引用的来源 Layout/Master 只保留为分析证据，不进入 mirror 输出。由于结构层禁止 `<g>`，来源 Master/Layout 的 group wrapper 只允许机械展开成直接原子。
+**最推荐的方式是直接给原始 `.pptx` 文件**。ppt-master 会提取包内实际存在且受支持的主题色、字体、Master/Layout、placeholder type/idx、原生形状信息和可复用图片资源。`standard` 与 `fidelity` 把完整来源清单作为证据，重新设计 SVG roster 和新的 Master/Layout/slot 系统，不保留、也不蒸馏来源拓扑。`mirror` 则为每张来源 Slide 输出一个原型，并只把这组 Slide 可达的 Layout/Master 事实物化到新工作区，不做语义归纳或缺口补造；未引用的来源 Layout/Master 只保留为分析证据，不进入 mirror 输出。由于结构层禁止 `<g>`，来源 Master/Layout 的 group wrapper 只允许机械展开成直接原子。
 
 完整导入 SVG 可以保留高级 PowerPoint 形状所需的 metadata、隐藏 carrier 和预览指纹，并作为载荷后备留在临时分析工作区且保持不可变。模板创建使用带文档内 source ref 和紧凑路径/hash manifest 的轻量可编辑 IR。`standard` / `fidelity` 创作项目规范化 SVG，只有精确匹配已登记 preset 时才使用 compact authored-preset 组。Mirror 从 IR 物化最终模板，只为未改且 hash 匹配的 Slide-local/slot ref 重新接入转换器已经支持的载荷；不支持或已修改的对象保留当前 SVG fallback。
 
@@ -423,7 +418,7 @@ Create Template 会先确认简报，再写入已注册、可发现的 `library`
 
 **第二步 — 让 AI 创建模板**
 
-使用支持 Agent 的 AI 工具（Claude Code、Codex 等），要求它使用 **PPT Master 的 `/create-template` 工作流**，将这些参考材料转换成模板。提供的信息越详细，效果越好，例如：
+使用支持 Agent 的 AI 工具（Claude Code、Codex 等），要求它使用 **ppt-master 的 `/create-template` 工作流**，将这些参考材料转换成模板。提供的信息越详细，效果越好，例如：
 
 - 模板名称和适用场景（如政府汇报、高端咨询、产品宣讲等）
 - 期望的风格基调和配色（如"现代克制、深蓝主色调"）

@@ -4,7 +4,7 @@
 
 ---
 
-PPT Master 模板是一种可复用工作区，明确分为四类：**Brand** 只拥有身份系统，**Style** 只拥有可移植沟通方法和视觉默认值，**Layout** 只拥有品牌中立的可复用页面结构，**Deck** 拥有一类可重复演示的描述性应用语境及一体化身份与结构。Layout 与 Deck 工作区包含声明 Master / Layout / slot 合同的完整 SVG 原型；Brand 与 Style 则有意不包含 SVG roster。每个工作区的 `design_spec.md` 声明该 kind 实际提供什么。
+ppt-master 模板是一种可复用工作区，明确分为四类：**Brand** 只拥有身份系统，**Style** 只拥有可移植沟通方法和视觉默认值，**Layout** 只拥有品牌中立的可复用页面结构，**Deck** 拥有一类可重复演示的描述性应用语境及一体化身份与结构。Layout 与 Deck 工作区包含声明 Master / Layout / slot 合同的完整 SVG 原型；Brand 与 Style 则有意不包含 SVG roster。每个工作区的 `design_spec.md` 声明该 kind 实际提供什么。
 
 本文回答三个问题：
 
@@ -178,7 +178,7 @@ Strategist 会把方向拆成两个彼此独立的选择：
 
 ## 二、派生新模板（重点）
 
-把一个或多个 PPTX/SVG、图片/PDF、文档/网站、品牌资产或直接文字要求，做成 PPT Master 可调用的模板。参考材料可以混合使用，也可以不提供外部来源，仅根据确认后的简报从零设计。这是本文的核心。
+把一个或多个 PPTX/SVG、图片/PDF、文档/网站、品牌资产或直接文字要求，做成 ppt-master 可调用的模板。参考材料可以混合使用，也可以不提供外部来源，仅根据确认后的简报从零设计。这是本文的核心。
 
 ### 入口：`/create-template` 工作流
 

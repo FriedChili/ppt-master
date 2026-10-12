@@ -6,13 +6,13 @@
 
 ## Design Philosophy — AI-Directed Workflow, Human-Controlled Draft
 
-PPT Master produces a **high-quality editable PowerPoint draft**, not a sealed final deck. The workflow reasons about the message, designs the pages, and authors or preserves native PowerPoint objects under an explicit route contract. The user reviews the direction and owns the final-mile judgment in PowerPoint. Ordinary Generate should leave refinement of a real deck rather than reconstruction from slide images or a thin editable skin. The **Image to PPTX** [`image-to-pptx`](../skills/ppt-master/workflows/profiles/image-to-pptx.md) profile is the narrow exception: it currently requires Codex, always activates Quick, normalizes one or more input images into an ordered page-frame roster, restores ordinary text natively, reconstructs low-resolution identity or decorative graphics under strict visual locks when needed, and rebuilds scene imagery as registered layers. It still rejects a whole-slide screenshot skin as editable reconstruction.
+ppt-master produces a **high-quality editable PowerPoint draft**, not a sealed final deck. The workflow reasons about the message, designs the pages, and authors or preserves native PowerPoint objects under an explicit route contract. The user reviews the direction and owns the final-mile judgment in PowerPoint. Ordinary Generate should leave refinement of a real deck rather than reconstruction from slide images or a thin editable skin. The **Image to PPTX** [`image-to-pptx`](../skills/ppt-master/workflows/profiles/image-to-pptx.md) profile is the narrow exception: it currently requires Codex, always activates Quick, normalizes one or more input images into an ordered page-frame roster, restores ordinary text natively, reconstructs low-resolution identity or decorative graphics under strict visual locks when needed, and rebuilds scene imagery as registered layers. It still rejects a whole-slide screenshot skin as editable reconstruction.
 
 The workflow supplies presentation-specific reasoning, state, contracts, and quality gates; deterministic tools handle conversion, validation, packaging, and repeatable file operations. **The selected model still sets the quality ceiling**, while the user's taste and judgment guide review and finishing.
 
 ### SVG Is a Project-Specific Intermediate Language
 
-PPT Master does not aim to convert arbitrary SVG into PPTX. `svg_output/` uses a **project-canonical SVG intermediate language**: it borrows SVG's XML syntax and two-dimensional graphics model, while the project contract closes the allowed elements, attributes, units, metadata, structural contracts, and DrawingML mappings. The direction is intentional: **SVG adapts to PPT Master; PPT Master does not expand to follow the entire SVG standard**.
+ppt-master does not aim to convert arbitrary SVG into PPTX. `svg_output/` uses a **project-canonical SVG intermediate language**: it borrows SVG's XML syntax and two-dimensional graphics model, while the project contract closes the allowed elements, attributes, units, metadata, structural contracts, and DrawingML mappings. The direction is intentional: **SVG adapts to ppt-master; ppt-master does not expand to follow the entire SVG standard**.
 
 The intermediate language distinguishes three input states:
 
@@ -397,7 +397,7 @@ These invariants are stronger than ordinary implementation preferences. If a cha
 
 ## Canvas Format System
 
-PPT Master is not PPT-only — the same SVG → DrawingML pipeline produces square posters, 9:16 stories, A4 prints. Format-specific conventions (ratios, safe zones, brand areas) live in [`references/canvas-formats.md`](../skills/ppt-master/references/canvas-formats.md).
+ppt-master is not PPT-only — the same SVG → DrawingML pipeline produces square posters, 9:16 stories, A4 prints. Format-specific conventions (ratios, safe zones, brand areas) live in [`references/canvas-formats.md`](../skills/ppt-master/references/canvas-formats.md).
 
 The architectural choice worth flagging: **viewBox is in pixels, not absolute units.** Pixel space makes layout reasoning unambiguous for the AI Executor (`x="100"` is unambiguously left + 100px) and inspectable in any browser. Conversion to PowerPoint's EMU happens once at export — picking pixels means the rest of the pipeline (Strategist, Executor, quality checker, post-processing) never thinks in EMU, which would be hostile both to AI generation and to human debugging.
 
@@ -488,7 +488,7 @@ When several roots are selected, each distinct root is installed once and every 
 
 ## Role System: Specialized Modes in a Single Pipeline
 
-PPT Master keeps deck-state roles—Strategist, Image_Generator, and Executor—inside one main agent rather than distributing them across parallel sub-agents. They are instruction scopes loaded on demand, not independent agents with stale copies of the deck state. A supporting stage may use a bounded sub-agent only when its authority defines a durable artifact hand-off that does not depend on shared deck state. The core choice has three connected reasons:
+ppt-master keeps deck-state roles—Strategist, Image_Generator, and Executor—inside one main agent rather than distributing them across parallel sub-agents. They are instruction scopes loaded on demand, not independent agents with stale copies of the deck state. A supporting stage may use a bounded sub-agent only when its authority defines a durable artifact hand-off that does not depend on shared deck state. The core choice has three connected reasons:
 
 **Why one agent, not parallel sub-agents.** Page design depends on the full upstream context — Strategist's color choices, the image resources that actually got acquired (vs failed and substituted), prior pages' visual rhythm. Sub-agents would start with a stale partial snapshot of that context and produce visually drifting decks. The same logic forbids batched page generation (e.g., five pages per turn): batching accelerates context compression and the deck's visual consistency degrades faster than the speed gain is worth.
 
@@ -596,7 +596,7 @@ The cooking analogy is the canonical ownership model for the default Generate
 pipeline, not just explanatory prose. `quick-generate` removes the separate
 Strategist and confirmation layer; it does not remove preparation.
 
-| Restaurant | PPT Master | Authority |
+| Restaurant | ppt-master | Authority |
 |---|---|---|
 | Customer and initial ingredients | User confirmation and supplied sources/assets | Defines facts, intent, exclusions, acquisition permissions, and how specific the requested outcome is |
 | Service coordinator | Generate workflow | Sequences the declared stages, gates, role switches, and handoffs without taking over any role's decisions or deterministic tool's checks |
@@ -639,7 +639,7 @@ Several architectural decisions shape this phase:
 
 **Provider-specific config keys, not a generic `IMAGE_API_KEY`.** Every backend takes its own `OPENAI_API_KEY` / `MINIMAX_API_KEY` / etc. and the active one is selected by an explicit `IMAGE_BACKEND=<name>`. A unified `IMAGE_API_KEY` field looks tidier on first glance but causes silent confusion when a user has multiple providers configured at once and isn't sure which one is active — the kind of fault that surfaces only as "image generation gives weird results" with no clear failure point. Forcing per-provider keys makes "which backend am I using" a config-readable fact, not an inference.
 
-**Permissive-by-default license filter, with strict mode for credit-incompatible layouts.** Web image search defaults to allowing CC BY / CC BY-SA images with inline attribution — most slides have visual room for a credit element. `--strict-no-attribution` is the escape hatch for full-bleed hero images and tight composition where there's no place to put a credit without breaking the design. Non-commercial (CC BY-NC*) and no-derivatives (CC BY-ND*) licenses are auto-rejected because the typical PPT Master output is shared in commercial or modified contexts; a permissive default with that floor is the failure mode users actually want.
+**Permissive-by-default license filter, with strict mode for credit-incompatible layouts.** Web image search defaults to allowing CC BY / CC BY-SA images with inline attribution — most slides have visual room for a credit element. `--strict-no-attribution` is the escape hatch for full-bleed hero images and tight composition where there's no place to put a credit without breaking the design. Non-commercial (CC BY-NC*) and no-derivatives (CC BY-ND*) licenses are auto-rejected because the typical ppt-master output is shared in commercial or modified contexts; a permissive default with that floor is the failure mode users actually want.
 
 **Manifest-first acquisition.** In-pipeline AI generation always writes `images/image_prompts.json` and renders the sidecar `image_prompts.md`, even for one image. The positional `image_gen.py "prompt"` form is intentionally limited to one-off debugging because it leaves no manifest/sidecar audit trail. Web acquisition mirrors this with `images/image_queries.json` for multi-row batches and `image_sources.json` for attribution/source tracking.
 
@@ -901,7 +901,7 @@ playback remains in the audio/video workflows.
 **Why recorded narration drives auto-advance from clip duration.** Recorded-narration mode targets video export, where no presenter clicks through the deck. It probes each clip's real duration and sets slide auto-advance to `audio duration + --narration-padding`; padding defaults to 0.5 seconds so the tail is not cut off. It does not use estimated reading speed or a fixed per-slide duration.
 
 **Why recorded narration rejects on-click object animation.** PowerPoint can
-record click timings during a real rehearsal, but PPT Master does not synthesize
+record click timings during a real rehearsal, but ppt-master does not synthesize
 object-level click events. The recorded narration path writes page-level audio
 and slide auto-advance timings only, so click-driven object effects would leave
 the export dependent on extra manual PowerPoint rehearsal. Decks exported with
@@ -948,14 +948,14 @@ The tempting simplifications below have explicit costs. Treat them as negative c
 
 ## Routes and Supporting Runbooks
 
-[`workflows/index.md`](../skills/ppt-master/workflows/index.md) is a maintainer-only inventory and does not enter the task-loading chain. Runtime route selection is authoritative in [`workflows/routing.md`](../skills/ppt-master/workflows/routing.md). PPT Master has exactly three top-level artifact routes: Generate PPTX, Create Template, and Edit Native PPTX. A user request enters one of those routes; no supporting runbook competes with them.
+[`workflows/index.md`](../skills/ppt-master/workflows/index.md) is a maintainer-only inventory and does not enter the task-loading chain. Runtime route selection is authoritative in [`workflows/routing.md`](../skills/ppt-master/workflows/routing.md). ppt-master has exactly three top-level artifact routes: Generate PPTX, Create Template, and Edit Native PPTX. A user request enters one of those routes; no supporting runbook competes with them.
 
 Supporting files stay separate only to keep route contracts focused and load optional context on demand:
 
 | Class | Runbooks | Owning route |
 |---|---|---|
 | Generation profiles | `image-to-pptx`, `beautify-pptx`, `quick-generate` | Image to PPTX currently requires Codex, always activates Quick, normalizes page frames, restores ordinary text natively, reconstructs low-resolution identity/decorative graphics under strict visual locks when needed, keeps charts/tables/data graphics native and verifiable, exact-source, or `manual_required`, and rebuilds scenes as at least clean-base plus subject/foreground layers; Beautify preserves wording/pages while redesigning layout and selects Quick only from explicit intent; Quick owns the direct SVG-to-PPTX lifecycle |
-| Template child workflows | `create-brand`, `create-style`, `create-layout`, `create-deck` | Create Template dispatches exactly one for identity-only, roster-free direction/method, brand-neutral/application-neutral structure, or a recurring application with integrated identity/structure |
+| Template child workflows | `create-style`, `create-style`, `create-layout`, `create-deck` | Create Template dispatches exactly one for identity-only, roster-free direction/method, brand-neutral/application-neutral structure, or a recurring application with integrated identity/structure |
 | Template-input stage | `apply-template-workspace` | Runs after Default Stage 1 confirms at least one workspace and before Stage 2; free design skips installation, while Quick may provide direct exact-root input |
 | Generation stages | `topic-research`, `resume-execute`, `refine-spec`, `verify-charts`, `visual-review`, `live-preview`, `customize-animations` | Generate PPTX at their defined intake, planning, editing, quality, or post-processing points |
 | Shared stage | `generate-audio` | Generate PPTX post-processing or Edit Native PPTX narration integration |

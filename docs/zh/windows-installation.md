@@ -4,7 +4,7 @@
 
 ---
 
-本指南将手把手教你在 Windows 上安装 PPT Master。按顺序操作，10 分钟内即可跑通第一份 PPT。
+本指南将手把手教你在 Windows 上安装 ppt-master。按顺序操作，10 分钟内即可跑通第一份 PPT。
 
 ---
 
@@ -32,7 +32,6 @@ Python 是唯一的硬性要求。
 
 **方式 A — 下载 ZIP**（最简单）：
 
-1. 打开 [GitHub](https://github.com/hugohe3/ppt-master)（中国大陆也可使用 [AtomGit 镜像](https://atomgit.com/hugohe3/ppt-master)）
 2. 点击绿色 **Code** 按钮 → **Download ZIP**
 3. 解压到 `C:\Users\你的用户名\ppt-master`
 
@@ -40,12 +39,10 @@ Python 是唯一的硬性要求。
 
 ```powershell
 # GitHub
-git clone https://github.com/hugohe3/ppt-master.git
 ```
 
 ```powershell
 # AtomGit 镜像
-git clone https://atomgit.com/hugohe3/ppt-master.git
 ```
 
 然后进入克隆出的目录：
@@ -172,5 +169,3 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ## 还是搞不定？
 
 - 📖 [常见问题 (FAQ)](./faq.md)
-- 🐛 [GitHub Issues](https://github.com/hugohe3/ppt-master/issues) — 附上 Python 版本、Windows 版本和完整报错
-- 💬 [GitHub Discussions](https://github.com/hugohe3/ppt-master/discussions)

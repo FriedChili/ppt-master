@@ -14,7 +14,7 @@
 
 | 分类 | 全局库工作区根目录 | 写什么 | 不写什么 | 出处工作流 |
 |---|---|---|---|---|
-| **Brand** | `templates/brands/<id>/` | 仅身份段：color / typography / logo / voice / icon style | 不写 canvas、page structure、SVG roster | `workflows/create-template/create-brand.md` |
+| **Brand** | `templates/brands/<id>/` | 仅身份段：color / typography / logo / voice / icon style | 不写 canvas、page structure、SVG roster | `workflows/create-template/create-style.md` |
 | **Style** | `templates/styles/<id>/` | 可移植方向/方法段：沟通方法、页面角色词汇、证据/数据表达、视觉默认值、图片/图标方向、审阅关注点 | 不写身份真值、应用契约、canvas、页面结构或 SVG roster | `workflows/create-template/create-style.md` |
 | **Layout** | `templates/layouts/<id>/` | 仅品牌中立的结构段：canvas / page structure / 语义文字角色 / page types / SVG roster | 不写品牌身份，也不拥有可重复沟通场景 | `workflows/create-template/create-layout.md` |
 | **Deck** | `templates/decks/<id>/` | 一类可重复演示：描述性应用语境 + 一体化身份与结构 | —— | `workflows/create-template/create-deck.md` |
@@ -446,7 +446,7 @@ Default 确认一段自然语言 `template_application`；Quick 形成同样的�
 | 路线或子工作流 | 产出 |
 |---|---|
 | `workflows/create-template.md` | 固定 Create Template 入口，以及范围、确认、预检、结构创作、注册、完成和交接的共享合同；只分派一个子工作流 |
-| `workflows/create-template/create-brand.md` | 仅身份的 Brand 工作区；无 SVG roster，空的可选目录省略 |
+| `workflows/create-template/create-style.md` | 仅身份的 Brand 工作区；无 SVG roster，空的可选目录省略 |
 | `workflows/create-template/create-style.md` | 仅方向/方法的 Style 工作区；无 SVG roster、身份真值、应用契约、原生结构或预览 PPTX |
 | `workflows/create-template/create-layout.md` | 品牌中立、带结构化 SVG roster 的 Layout 工作区 |
 | `workflows/create-template/create-deck.md` | 应用契约与身份/结构一体化、带结构化 SVG roster 的 Deck 工作区；可复用成果带品牌身份或场景语义时选择，不能只因来源是一份完整 PPTX 就默认选择 |

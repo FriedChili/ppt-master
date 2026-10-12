@@ -4,7 +4,7 @@
 
 ---
 
-A PPT Master template is a reusable workspace with one of four explicit kinds: **Brand** owns identity, **Style** owns portable communication method and visual defaults, **Layout** owns brand-neutral reusable page structure, and **Deck** owns a recurring presentation application together with integrated identity and structure. Layout and Deck workspaces include complete SVG prototypes with declared Master / Layout / slot contracts; Brand and Style intentionally have no SVG roster. Each workspace's `design_spec.md` declares exactly what that kind contributes.
+A ppt-master template is a reusable workspace with one of four explicit kinds: **Brand** owns identity, **Style** owns portable communication method and visual defaults, **Layout** owns brand-neutral reusable page structure, and **Deck** owns a recurring presentation application together with integrated identity and structure. Layout and Deck workspaces include complete SVG prototypes with declared Master / Layout / slot contracts; Brand and Style intentionally have no SVG roster. Each workspace's `design_spec.md` declares exactly what that kind contributes.
 
 This guide answers three questions:
 
@@ -198,7 +198,7 @@ Any mode can pair with any visual style. Terms such as "Keynote-style product la
 
 ## 2. Derive a new template (the focus)
 
-Turn one or more PPTX/SVG files, images/PDFs, documents/websites, brand assets, or direct written requirements into a PPT Master template. References may be combined, and a template may also be designed from a confirmed brief with no external source. This is the core of this guide.
+Turn one or more PPTX/SVG files, images/PDFs, documents/websites, brand assets, or direct written requirements into a ppt-master template. References may be combined, and a template may also be designed from a confirmed brief with no external source. This is the core of this guide.
 
 ### Entry point: the `/create-template` workflow
 

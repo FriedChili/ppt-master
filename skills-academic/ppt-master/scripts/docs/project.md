@@ -4,7 +4,7 @@
 > `projects/` tree. Copy every other local path, even when `--move` is supplied.
 > Use `--copy` to preserve a projects-local source.
 
-Project tools create, validate, and inspect the standard PPT Master workspace.
+Project tools create, validate, and inspect the standard ppt-master workspace.
 
 ## `project_manager.py`
 
@@ -253,7 +253,6 @@ Use this for multi-project health checks before release or cleanup.
 ## `generate_examples_index.py`
 
 Rebuild the examples `README.md` index. The example projects live in the separate
-[ppt-master-examples](https://github.com/hugohe3/ppt-master-examples) repository.
 
 ```bash
 python3 scripts/generate_examples_index.py <path-to>/ppt-master-examples/examples

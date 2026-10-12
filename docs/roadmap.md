@@ -4,7 +4,7 @@
 
 ---
 
-> PPT Master is a solo-maintained open source project, driven by **priority rather than fixed timelines**. This roadmap aligns expectations: the direction of travel, what's in motion now, what may come when real demand shows, and what's intentionally out of scope. Priorities shift with user feedback and real usage signals — no committed delivery windows.
+> ppt-master is a solo-maintained open source project, driven by **priority rather than fixed timelines**. This roadmap aligns expectations: the direction of travel, what's in motion now, what may come when real demand shows, and what's intentionally out of scope. Priorities shift with user feedback and real usage signals — no committed delivery windows.
 
 ---
 
@@ -18,7 +18,7 @@ Today that axis is expressed through three explicit artifact routes: **Generate 
 
 ## Coverage map
 
-A presentation is four layers: what is on the slide, how it is arranged, how it behaves, and how the document itself is structured. The tables below map each layer against what PPT Master does today.
+A presentation is four layers: what is on the slide, how it is arranged, how it behaves, and how the document itself is structured. The tables below map each layer against what ppt-master does today.
 
 **Read this as a map, not a backlog.** *Bounded by design* and *Asymmetric by design* are settled shapes, not unfinished cells — a blank there is a decision, not a debt. *Not planned* rows say in the row why they are not being worked on. Only *Signal-driven* rows lean open, and their reasoning lives in [Future directions](#future-directions--signal-driven) rather than being repeated here. Positions that have actually been argued out live in [Non-goals](#non-goals); this map describes, it does not adjudicate.
 
@@ -45,7 +45,7 @@ A presentation is four layers: what is on the slide, how it is arranged, how it 
 | Charts | Systematized | Dedicated authoring reference; SVG by default, native Chart replacement available as an explicit opt-in |
 | Tables | Systematized | Dedicated authoring reference; six reusable cell-grid references, with custom grids still available; native Table replacement uses the same opt-in |
 | Diagrams | Systematized | Six relationship atoms — `order`, `link`, `parent`, `membership`, `contrast`, `overlap` |
-| Formulas | Systematized | Standalone block and same-paragraph inline formulas compile every explicitly documented Microsoft 365 LaTeX / mhchem input to editable OMML, with documented native normalizations and fail-closed handling outside the profile. PPTX import rebuilds validator-clean, PPT Master-owned OMML into normalized formula markers with visible SVG previews; arbitrary third-party OMML and original LaTeX spelling recovery remain outside the contract. No image fallback is emitted. The package target remains PowerPoint 2010+; the executable profile is pinned to the stated Microsoft documentation versions, while repository verification is compiler/OMML/package-level rather than complete Microsoft 365 UI certification. Non-PowerPoint clients remain outside the contract |
+| Formulas | Systematized | Standalone block and same-paragraph inline formulas compile every explicitly documented Microsoft 365 LaTeX / mhchem input to editable OMML, with documented native normalizations and fail-closed handling outside the profile. PPTX import rebuilds validator-clean, ppt-master-owned OMML into normalized formula markers with visible SVG previews; arbitrary third-party OMML and original LaTeX spelling recovery remain outside the contract. No image fallback is emitted. The package target remains PowerPoint 2010+; the executable profile is pinned to the stated Microsoft documentation versions, while repository verification is compiler/OMML/package-level rather than complete Microsoft 365 UI certification. Non-PowerPoint clients remain outside the contract |
 | Narration & animation audio | Systematized | Per-slide narration audio, plus native transition and object sounds drawn from the bundled CC0 catalog |
 | Arbitrary video & background music | Not planned | A one-off, content-specific insert that is faster to place by hand in PowerPoint, and the AI cannot pick the file for you. Background music additionally pulls in narration-mixing decisions that are out of scope. Media already present in a source deck is preserved unchanged through the Fill and Enhance routes |
 | SmartArt | Asymmetric by design | Source diagram parts are read for their content and structure; generated decks redraw that content through the ordinary shape pipeline. DiagramML is never edited and native SmartArt regeneration is not promised |
@@ -120,16 +120,11 @@ Candidates already evaluated as "worth doing when real demand shows", listed so 
 
 ## Shipped milestones
 
-One line per month. Full detail lives in the [release notes](https://github.com/hugohe3/ppt-master/releases) and the commit log.
 
 | When | Theme |
 |---|---|
 | 2026-03 | **Native PPTX route takes shape** — the SVG → DrawingML chain becomes usable; chart/layout template indexes ship |
 | 2026-04 | **Pipeline at scale** — topic-only generation, 70 chart templates + three icon libraries, the `spec_lock` cross-page consistency contract, per-element animation and narration/video export |
-| 2026-05 | **Visual editing + AI-image systematization** — Live Preview with deterministic in-place editing (built on [@WodenJay](https://github.com/WodenJay)'s [PR #85](https://github.com/hugohe3/ppt-master/pull/85)), template workspaces from PPTX, the rendering × palette × type image system, and the legacy raster LaTeX renderer |
-| 2026-06 | **Mode & visual-style dual catalogs + intake expansion** — 5 narrative modes × 18 visual styles (+ `custom`), content-faithful beautify profile, multi-deck intake, composable-illustration pipeline, web-image quality gates, source-conversion fidelity gains (caption recognition from [@suay1113](https://github.com/suay1113)'s [PR #191](https://github.com/hugohe3/ppt-master/pull/191), hyperlink preservation distilled from [@ZhaoZuohong](https://github.com/ZhaoZuohong)'s [PR #155](https://github.com/hugohe3/ppt-master/pull/155)) |
-| 2026-07 | **Positioning charter + native masters & layouts + token efficiency** ([v4.0.0](https://github.com/hugohe3/ppt-master/releases/tag/v4.0.0)) — three-pass staged confirmation UI, real `p:sldMaster` / `p:sldLayout` export, `--native-charts-and-tables` opt-in, motion-export hardening, chart template library compacted |
-| 2026-08 | **Template library + page-image reconstruction + native math and links + AI imagery as composition** ([v4.5.0](https://github.com/hugohe3/ppt-master/releases/tag/v4.5.0), [v4.6.0](https://github.com/hugohe3/ppt-master/releases/tag/v4.6.0), [v4.7.0](https://github.com/hugohe3/ppt-master/releases/tag/v4.7.0), [v4.8.0](https://github.com/hugohe3/ppt-master/releases/tag/v4.8.0)) — brand / style / layout workspace library, visualizations split by information model with structure as a composition grammar, the Codex-supported `image-to-pptx` profile, video delivery carrying native animation sound, three editable whole-solution design directions, editable OMML formulas across the documented Microsoft 365 profile, native hyperlink authoring, composable AI illustration families and decorative lettering, task-driven image sourcing with isolated thumbnail review, transition and object-animation reverse import, and the four-layer coverage map |
 
 ---
 
@@ -139,7 +134,6 @@ The directions below come up repeatedly and have been evaluated as **not on the 
 
 ### Blindly refill arbitrary PPTX placeholder systems
 
-**Issues**: [#53](https://github.com/hugohe3/ppt-master/issues/53), [#118](https://github.com/hugohe3/ppt-master/issues/118)
 
 The Generate PPTX route is built around full control of newly authored shapes, text, and layout. A structured PPTX can inform a reviewed reusable package in two explicit ways: `standard` / `fidelity` author new complete Slide SVG prototypes and a Master/Layout system from the full source evidence, while `mirror` materializes source Slides with only their reachable Layout/Master chains. Neither path modifies the source PPTX or recovers absent design intent. Generic "open any PPTX and blindly refill every placeholder" remains a different product shape.
 
@@ -149,21 +143,17 @@ The Generate PPTX route is built around full control of newly authored shapes, t
 
 ### Make native PowerPoint charts the default
 
-**Issues**: [#99](https://github.com/hugohe3/ppt-master/issues/99), [#100](https://github.com/hugohe3/ppt-master/issues/100)-class
 
 Pixel-fidelity across the four renderers (PowerPoint / Keynote / LibreOffice / WPS) is the project's spine. Switching the default route to native PowerPoint charts breaks that — the same PPTX renders different chart layouts across renderers. Charts as SVG is **by design**, not a capability gap.
 
-The narrow exception is the `data-pptx-replace-with` marker: independently planned supported data charts and pure text-grid tables can carry a PowerPoint-native Chart/Table replacement payload when their semantic object key is recorded as `<object-key>=yes` in the Design Spec §IX `Native-ready` map; `no` and incidental microvisuals remain ordinary shapes. §VII only records selected reusable references. Exporting with `--native-charts-and-tables` activates prepared markers for users who deliberately trade cross-renderer fidelity for a data-backed object and its chart/table-specific editing model — the activated objects preserve the deck's chart-area / plot / axis / gridline / label colors and native table formatting rather than snapping to PowerPoint's default theme (see the [v4.0.0 release notes](https://github.com/hugohe3/ppt-master/releases/tag/v4.0.0)). The default export path and editable SVG-derived shape system are unchanged.
 
 ### uv as default / required dependency
 
-**Issue**: [#111](https://github.com/hugohe3/ppt-master/issues/111)
 
 `pip + requirements.txt` is the only official install path because it works in every Python environment with no extra learning cost. uv is a fine tool, but making it default raises the bar for new users. If you personally prefer uv, use it in your fork — it won't affect the main line.
 
 ### Pure speed optimization
 
-**Issue**: [#97](https://github.com/hugohe3/ppt-master/issues/97)
 
 In the cost / speed / quality triangle this project picks **quality**. ~20 minutes for a high-quality PPTX is the current reasonable point.
 
@@ -197,8 +187,6 @@ Won't do: standalone CLI (`ppm`-style), SaaS web service, Electron shell. Any "m
 
 ## Feedback channels
 
-- **Issues**: [github.com/hugohe3/ppt-master/issues](https://github.com/hugohe3/ppt-master/issues) — bugs / proposals
-- **Discussions**: [github.com/hugohe3/ppt-master/discussions](https://github.com/hugohe3/ppt-master/discussions) — usage / experience sharing
 - **Email**: heyug3@gmail.com
 
 Before proposing a new direction, scan the **Non-goals** above. If your request falls there, it's unlikely to land — but we're happy to discuss other paths to your underlying need.
