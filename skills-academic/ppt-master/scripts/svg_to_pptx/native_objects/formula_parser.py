@@ -84,10 +84,10 @@ _BIG_DELIMITER_RE = re.compile(
     r"\\(?:big|Big|bigg|Bigg)([lrm]?)(?![A-Za-z])\s*"
     r"(\\[A-Za-z]+|\\[{}|]|[()\[\]{}|.])"
 )
-_BIG_LEFT_COMMAND = "pptmasterbigleft"
-_BIG_RIGHT_COMMAND = "pptmasterbigright"
-_BIG_MIDDLE_COMMAND = "pptmasterbigmiddle"
-_BIG_SYMMETRIC_COMMAND = "pptmasterbigsymmetric"
+_BIG_LEFT_COMMAND = "deckbigleft"
+_BIG_RIGHT_COMMAND = "deckbigright"
+_BIG_MIDDLE_COMMAND = "deckbigmiddle"
+_BIG_SYMMETRIC_COMMAND = "deckbigsymmetric"
 _MIDDLE_DELIMITER_COMMANDS = ("middle", _BIG_MIDDLE_COMMAND)
 _RIGHT_DELIMITER_COMMANDS = ("right", _BIG_RIGHT_COMMAND)
 _WHITE_OPEN_RE = re.compile(

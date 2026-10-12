@@ -209,7 +209,7 @@ For a Python helper whose arguments and working directory do not identify the
 active project, set the routing signal on the same command:
 
 ```bash
-PPT_MASTER_PROJECT_PATH="<project_path>" python3 scripts/<helper>.py <args...>
+DECK_PROJECT_PATH="<project_path>" python3 scripts/<helper>.py <args...>
 ```
 
 This variable selects only the destination transcript; it does not authorize

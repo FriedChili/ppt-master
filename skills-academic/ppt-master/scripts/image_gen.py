@@ -27,7 +27,7 @@ Configuration source (process env wins, `.env` is the fallback layer):
      - Current working directory
      - Skill directory (e.g. `~/.agents/skills-academic/ppt-master/.env`)
      - Repo root (when running from a clone)
-     - `~/.ppt-master/.env` (user-level config)
+     - `~/.ppt-deck/.env` (user-level config)
 
 Supported keys:
   IMAGE_BACKEND    (required) backend name
