@@ -177,25 +177,6 @@ class EditNativeBatchATests(unittest.TestCase):
         self.assertIsNone(self._slide(output).find('p:timing', NS))
         self.assertEqual(ET.tostring(self._slide(output, 2)), ET.tostring(self._slide(source, 2)))
 
-    def test_a3_narration_accepts_minimal_native_timing(self) -> None:
-        project = self._import(self._source(timing=MINIMAL_TIMING))
-        self._audio(project)
-        output, *_ = self._export(project, '--recorded-narration', 'audio')
-        self.assertEqual(len(self._slide(output).findall('.//p:audio', NS)), 1)
-
-    def test_a4_preserved_unreconstructed_click_timing_blocks_recording(self) -> None:
-        timing = create_sequence_timing_xml([(2, 0, 'entrance_fade')], trigger='on-click')
-        timing = timing.replace('presetID="10"', 'presetID="999"')
-        project = self._import(self._source(timing=timing))
-        self._audio(project)
-        _, result, _, error = self._export(project, '--recorded-narration', 'audio', success=False)
-        self.assertNotEqual(result, 0)
-        self.assertIn('slide_01', error)
-        self.assertIn('source slide 1', error)
-        self.assertIn('shape', error)
-        self.assertIn('2', error)
-        self._config(project, slides={'slide_01': {'animation': {'effect': 'none'}}})
-        self._export(project, '--recorded-narration', 'audio')
 
     def test_a5_effect_only_changes_preserve_native_advance(self) -> None:
         source = self._source(advance=True)
@@ -212,47 +193,6 @@ class EditNativeBatchATests(unittest.TestCase):
                 self.assertEqual((transition.get('advClick'), transition.get('advTm')), ('0', '4200'))
                 self.assertIsNotNone(transition.find('p:fade', NS))
 
-    def test_a5_imported_narration_matches_output_stems(self) -> None:
-        project = self._import(self._source())
-        self._audio(project)
-        narrated, *_ = self._export(project, '--recorded-narration', 'audio')
-        imported = self._import(narrated, 'narrated_import')
-        matched = narration.find_narration_files(imported / 'audio', [imported / 'slide_01.svg'])
-        self.assertEqual(set(matched), {'slide_01'})
-        self._audio(imported, stem='01', sample=200)
-        self.assertEqual(
-            narration.find_narration_files(imported / 'audio', [imported / 'slide_01.svg']), matched,
-        )
-        replacement = self._audio(imported, sample=100)
-        self.assertEqual(
-            narration.find_narration_files(imported / 'audio', [imported / 'slide_01.svg']),
-            {'slide_01': replacement},
-        )
-        repeated, *_ = self._export(imported, '--recorded-narration', 'audio')
-        with zipfile.ZipFile(repeated) as archive:
-            # The earlier narration part is replaced in place: one narration
-            # media part, carrying the replacement bytes, no `_1` suffix growth.
-            narration_parts = [
-                name for name in archive.namelist()
-                if name.startswith('ppt/media/narration') and name.endswith('.wav')
-            ]
-            self.assertEqual(narration_parts, ['ppt/media/narration1.wav'])
-            self.assertEqual(archive.read('ppt/media/narration1.wav'), replacement.read_bytes())
-            self.assertEqual(len(self._slide(repeated).findall('.//p:audio', NS)), 1)
-
-    def test_a5_full_overlay_preserves_advance_and_explicit_advance_wins(self) -> None:
-        source = self._source(advance=True)
-        project = self._import(source)
-        self._audio(project)
-        output, *_ = self._export(project, '-t', 'none', '--narration-audio-dir', 'audio')
-        transition = self._slide(output).find('p:transition', NS)
-        self.assertEqual((transition.get('advClick'), transition.get('advTm')), ('0', '4200'))
-        self.assertEqual(list(transition), [])
-        self._config(project, slides={'slide_01': {'transition': {'auto_advance': 2.3}}})
-        output, *_ = self._export(project, name='advance.pptx')
-        transition = self._slide(output).find('p:transition', NS)
-        self.assertEqual((transition.get('advClick'), transition.get('advTm')), ('1', '2300'))
-        self.assertIsNotNone(transition.find('p:random', NS))
 
     def test_a6_repeated_injection_replaces_owned_audio_only(self) -> None:
         root = self._slide(self._source())
@@ -267,44 +207,6 @@ class EditNativeBatchATests(unittest.TestCase):
         self.assertEqual(len(final.findall('.//p:pic', NS)), 1)
         self.assertEqual(len(final.findall('.//p:audio', NS)), 1)
 
-    def test_a6_second_export_does_not_overwrite_source_media(self) -> None:
-        project = self._import(self._source())
-        self._audio(project)
-        narrated, *_ = self._export(project, '--recorded-narration', 'audio')
-        imported = self._import(narrated, 'second')
-        # Keep an unrelated audio shape sharing the original audio part.
-        source = imported / 'sources/source.pptx'
-        with zipfile.ZipFile(source) as archive:
-            entries = {name: archive.read(name) for name in archive.namelist()}
-        root = ET.fromstring(entries['ppt/slides/slide1.xml'])
-        other = copy.deepcopy(root.find('.//p:pic', NS))
-        other.find('p:nvPicPr/p:cNvPr', NS).attrib.update(id='99', name='Unrelated sound')
-        # This shape deliberately has neither the new marker nor the legacy geometry.
-        for ext in other.findall('.//p:ext', NS):
-            if 'ppt-master' in ext.get('uri', ''):
-                other.find('.//p:extLst', NS).remove(ext)
-        other.find('p:spPr/a:xfrm/a:off', NS).set('x', '0')
-        root.find('p:cSld/p:spTree', NS).append(other)
-        other_timing = copy.deepcopy(root.find('.//p:audio', NS))
-        other_timing.find('.//p:cTn', NS).set('id', '99')
-        other_timing.find('.//p:spTgt', NS).set('spid', '99')
-        root.find('.//p:cTn[@nodeType="tmRoot"]/p:childTnLst', NS).append(other_timing)
-        entries['ppt/slides/slide1.xml'] = ET.tostring(root)
-        shared_source = self.root / 'shared_audio.pptx'
-        with zipfile.ZipFile(shared_source, 'w') as archive:
-            for name, data in entries.items():
-                archive.writestr(name, data)
-        shared = self._import(shared_source, 'shared')
-        self._audio(shared, sample=100)
-        output, *_ = self._export(shared, '--recorded-narration', 'audio')
-        with zipfile.ZipFile(output) as archive:
-            self.assertEqual(archive.read('ppt/media/narration1.wav'), entries['ppt/media/narration1.wav'])
-            final = ET.fromstring(archive.read('ppt/slides/slide1.xml'))
-            self.assertEqual(len(final.findall('.//p:pic', NS)), 2)
-            self.assertEqual(len(final.findall('.//p:audio', NS)), 2)
-            retained = next(node for node in final.findall('.//p:audio', NS)
-                            if node.find('.//p:spTgt', NS).get('spid') == '99')
-            self.assertEqual(ET.tostring(retained), ET.tostring(other_timing))
 
     def test_a7_sparse_notes_and_copied_page_are_independent(self) -> None:
         project = self._import(self._source(count=4, notes=(3, 4)))

@@ -1997,30 +1997,6 @@ Transition effects (-t/--transition):
     scripts/pptx_animations.py --list for the categorized registry and
     --describe-transition <effect> for its Effect Options.
 
-Per-element object animation (-a/--animation, native shapes mode):
-    Use PowerPoint-native entrance_*, emphasis_*, path_*, and exit_* keys for
-    new animation choices. The 29 old short names remain accepted only as
-    compatibility inputs. Run scripts/pptx_animations.py --list for the
-    complete categorized 232-key input registry.
-    Notes: applied to top-level <g id="..."> SVG groups in z-order. Default is
-           "none" (no auto element builds; page transitions still apply). Use
-           "-a auto" to map effects from group id: chart→entrance_wipe,
-           card-/step-/pillar-→entrance_fly,
-           title/takeaway→entrance_fade; image-like ids
-           hero/figure-/image/img-/kpi cycle canonical entrance presets;
-           unmatched ids cycle entrance_fade/entrance_wipe/entrance_fly/
-           entrance_zoom. Start mode set by --animation-trigger, matching
-           PowerPoint's Start dropdown:
-             on-click              one presenter click per group
-             with-previous         all groups start together on slide entry
-             after-previous (default)  cascade on slide entry;
-                                       gap = --animation-stagger seconds
-           mixed (compatible mode name) cycles a larger 16-preset canonical
-           PowerPoint entrance pool by group order; random samples from the
-           same entrance pool. Use explicit canonical keys for emphasis,
-           motion-path, or exit duties. Use "-a none" to disable element
-           builds explicitly.
-
 Speaker notes:
     - Automatically reads Markdown notes files from the notes/ directory
     - Supports two naming conventions:
@@ -2028,25 +2004,6 @@ Speaker notes:
       2. Match by index: slide01.md corresponds to the 1st SVG (backward compatible)
     - Enabled by default outside Quick Generate; use --no-notes to disable
     - Disabled by default in Quick Generate; use --with-notes to enable
-
-Recorded narration:
-    %(prog)s projects/ppt169_demo --recorded-narration audio \\
-      --inherit-motion-from validation/<base>.report.json
-    - Keeps speaker notes when enabled
-    - Prepares PowerPoint recorded timings and narrations
-    - Requires one m4a/mp3/wav file per slide
-    - Unless --no-animations is set, recorded narration without an explicit
-      config selects narration_animations.json when either sidecar exists
-    - With no sidecar, --inherit-motion-from may restore base-report deck motion
-    - Use --animation-config animations.json for narration-independent custom motion
-    - Use --no-animations for narration and timings without animation motion
-    - Embeds per-slide audio matched by SVG filename / slide number
-    - Sets slide auto-advance from audio duration so video export can use
-      "recorded timings and narrations"
-    - Rejects on-click object animations; use after-previous or with-previous
-    %(prog)s projects/ppt169_demo --narration-audio-dir audio
-    - Lower-level audio embedding: embeds matched files but allows partial matches
-    - Use only when you do not need a complete recorded-timings export
 ''',
     )
 
@@ -2233,55 +2190,10 @@ Recorded narration:
                              'keyboard advance, so only --auto-advance timings and hyperlinks '
                              'move between slides')
 
-    parser.add_argument('-a', '--animation', type=str, choices=animation_choices,
-                        default=None,
-                        help='Per-element object animation (native shapes mode '
-                             'only). Default "none" (no auto element builds; page '
-                             'transitions still apply). Pick a native entrance_*/'
-                             'emphasis_*/path_*/exit_* key or "auto" '
-                             '(map effect from group id — image-like ids cycle a '
-                             'richer canonical pool for visual variation, fallback '
-                             'cycles entrance_fade/entrance_wipe/entrance_fly/'
-                             'entrance_zoom), "mixed" (canonical 16-preset entrance '
-                             'pool), or "random" (the same entrance pool). Use '
-                             'explicit keys for emphasis/path/exit. Legacy short '
-                             'names remain accepted only for compatibility.')
     parser.add_argument('--animation-duration', type=positive_float, default=None,
                         help='Per-element object-animation duration in seconds '
                              '(default: 0.4; instantaneous native presets keep their '
                              'PowerPoint-authored duration)')
-    parser.add_argument('--animation-trigger', type=str,
-                        choices=['on-click', 'with-previous', 'after-previous'],
-                        default=None,
-                        help='Per-element Start mode (matches PowerPoint Start dropdown): '
-                             '"on-click" (one click per element), '
-                             '"with-previous" (all start together on slide entry), '
-                             '"after-previous" (default, cascade after the previous element).')
-    parser.add_argument('--animation-stagger', type=non_negative_float, default=None,
-                        help='Delay between elements in --animation-trigger=after-previous '
-                             '(seconds, default 0.5). Ignored in other modes.')
-    animation_source = parser.add_mutually_exclusive_group()
-    animation_source.add_argument(
-        '--animation-config',
-        type=str,
-        default=None,
-        help=(
-            'Per-slide/per-object animation config. While motion remains enabled, '
-            'recorded narration without an explicit config selects '
-            '<project>/narration_animations.json when either animation sidecar '
-            'exists, or may inherit base postflight motion with '
-            '--inherit-motion-from when neither exists. '
-            'Other exports default to <project>/animations.json when present.'
-        ),
-    )
-    animation_source.add_argument(
-        '--no-animations',
-        action='store_true',
-        help=(
-            'Export without object animations or page-transition motion. '
-            'Narration audio and slide advance timings are preserved.'
-        ),
-    )
 
     notes_mode = parser.add_mutually_exclusive_group()
     notes_mode.add_argument(
@@ -2294,38 +2206,6 @@ Recorded narration:
         action='store_true',
         help='Disable speaker notes embedding (enabled by default outside Quick Generate)',
     )
-    parser.add_argument('--narration-audio-dir', type=str, default=None,
-                        help='Low-level audio embedding from this directory; allows partial matches. '
-                             'Default-flow exports get the _narrated name suffix.')
-    parser.add_argument('--use-narration-timings', action='store_true',
-                        help='Set slide auto-advance timings from narration audio durations')
-    parser.add_argument('--recorded-narration', type=str, default=None,
-                        help='Prepare PowerPoint recorded timings and narrations from a complete audio '
-                             'directory. Default-flow exports get the _narrated name suffix '
-                             '(<project>_<ts>_narrated.pptx) to tell them apart from silent exports.')
-    parser.add_argument('--narration-padding', type=non_negative_float, default=0.5,
-                        help='Seconds to add after each narration before auto-advance (default: 0.5)')
-    parser.add_argument(
-        '--narration-start-floor',
-        type=non_negative_float,
-        default=DEFAULT_NARRATION_START_FLOOR,
-        help=(
-            'Minimum seconds from slide-transition start to narration start; '
-            'set 0 to start immediately after the transition '
-            f'(default: {DEFAULT_NARRATION_START_FLOOR})'
-        ),
-    )
-    parser.add_argument(
-        '--inherit-motion-from',
-        type=str,
-        default=None,
-        metavar='BASE_POSTFLIGHT_REPORT',
-        help=(
-            'For recorded narration, inherit source-bound deck-wide transition, '
-            'animation, and advance settings from a successful base export report'
-        ),
-    )
-
     raw_argv = list(argv) if argv is not None else sys.argv[1:]
     legacy_native_objects = '--native-objects' in raw_argv
     args = parser.parse_args(raw_argv)
@@ -2336,19 +2216,19 @@ Recorded narration:
             '--native-charts-and-tables.',
             file=sys.stderr,
         )
-    if args.animation_config is not None and not args.animation_config.strip():
+    if None is not None and not None.strip():
         print(
             'Error: --animation-config must be a non-empty file path',
             file=sys.stderr,
         )
         return 1
-    if args.inherit_motion_from and not args.recorded_narration:
+    if None and not None:
         print(
             'Error: --inherit-motion-from requires --recorded-narration',
             file=sys.stderr,
         )
         return 1
-    if args.inherit_motion_from and args.no_animations:
+    if None and False:
         print(
             'Error: --inherit-motion-from cannot be combined with --no-animations',
             file=sys.stderr,
@@ -2864,19 +2744,19 @@ Recorded narration:
     roundtrip_slide_patches: dict[int, RoundtripSlidePatch] = {}
     roundtrip_passthrough_overridden = any((
         args.no_notes,
-        args.no_animations,
+        False,
         args.transition is not None,
         args.transition_duration is not None,
         args.auto_advance is not None,
-        args.animation is not None,
+        None is not None,
         args.animation_duration is not None,
-        args.animation_stagger is not None,
-        args.animation_trigger is not None,
-        args.animation_config is not None,
-        args.recorded_narration is not None,
-        args.narration_audio_dir is not None,
-        args.use_narration_timings,
-        args.inherit_motion_from is not None,
+        None is not None,
+        None is not None,
+        None is not None,
+        None is not None,
+        None is not None,
+        False,
+        None is not None,
         args.image_sizing == 'display',
         args.text_flow != TEXT_FLOW_PRESERVE,
     ))
@@ -2906,8 +2786,8 @@ Recorded narration:
             }
     if args.roundtrip:
         roundtrip_external_animation_config = False
-        if args.animation_config is not None:
-            requested_animation_config = Path(args.animation_config)
+        if None is not None:
+            requested_animation_config = Path(None)
             if not requested_animation_config.is_absolute():
                 requested_animation_config = (
                     project_path / requested_animation_config
@@ -2917,44 +2797,44 @@ Recorded narration:
                 != (project_path / 'animations.json').resolve()
             )
         roundtrip_motion_overridden = any((
-            args.no_animations,
+            False,
             args.transition is not None,
             args.transition_duration is not None,
             args.auto_advance is not None,
-            args.animation is not None,
+            None is not None,
             args.animation_duration is not None,
-            args.animation_stagger is not None,
-            args.animation_trigger is not None,
-            args.animation_config is not None,
-            args.recorded_narration is not None,
-            args.narration_audio_dir is not None,
-            args.use_narration_timings,
-            args.inherit_motion_from is not None,
+            None is not None,
+            None is not None,
+            None is not None,
+            None is not None,
+            None is not None,
+            False,
+            None is not None,
         ))
         roundtrip_transition_overridden = any((
-            args.no_animations,
+            False,
             args.transition is not None,
             args.transition_duration is not None,
             args.auto_advance is not None,
-            args.recorded_narration is not None,
-            args.narration_audio_dir is not None,
-            args.use_narration_timings,
-            args.inherit_motion_from is not None,
+            None is not None,
+            None is not None,
+            False,
+            None is not None,
         ))
         roundtrip_transition_replaced = any((
-            args.no_animations,
+            False,
             args.transition is not None,
             args.transition_duration is not None,
-            args.inherit_motion_from is not None,
+            None is not None,
         ))
         roundtrip_animation_overridden = any((
-            args.no_animations,
-            args.animation is not None,
+            False,
+            None is not None,
             args.animation_duration is not None,
-            args.animation_stagger is not None,
-            args.animation_trigger is not None,
+            None is not None,
+            None is not None,
             roundtrip_external_animation_config,
-            args.inherit_motion_from is not None,
+            None is not None,
         ))
         try:
             roundtrip_slide_patches = _roundtrip_slide_patches(
@@ -2974,9 +2854,9 @@ Recorded narration:
                 force_notes_changed=args.no_notes,
                 force_advance_changed=any((
                     args.auto_advance is not None,
-                    args.recorded_narration is not None,
-                    args.use_narration_timings,
-                    args.inherit_motion_from is not None,
+                    None is not None,
+                    False,
+                    None is not None,
                 )),
             )
         except RuntimeError as exc:
@@ -3268,7 +3148,7 @@ Recorded narration:
         # auto-advance timings). Flag-driven (not content-sniffed) so the name
         # is predictable; an explicit -o keeps the caller's exact name untouched.
         native_tag = "_native_charts_tables" if args.native_objects else ""
-        narrated_tag = "_narrated" if (args.recorded_narration or args.narration_audio_dir) else ""
+        narrated_tag = "_narrated" if (None or None) else ""
         kiosk_tag = "_kiosk" if args.kiosk else ""
         native_path = exports_dir / f"{project_name}_{timestamp}{native_tag}{narrated_tag}{kiosk_tag}.pptx"
         # Preserve svg_output/ only when it is the actual source. A custom -s
@@ -3291,13 +3171,13 @@ Recorded narration:
             return 1
 
     narration_audio: dict[str, Path] = {}
-    narration_audio_dir_arg = args.recorded_narration or args.narration_audio_dir
-    use_narration_timings = args.use_narration_timings or bool(args.recorded_narration)
+    narration_audio_dir_arg = None or None
+    use_narration_timings = False or bool(None)
     if narration_audio_dir_arg:
         narration_audio_dir = Path(narration_audio_dir_arg)
         if not narration_audio_dir.is_absolute():
             narration_audio_dir = project_path / narration_audio_dir
-        if args.recorded_narration and not narration_audio_dir.is_dir():
+        if None and not narration_audio_dir.is_dir():
             print(
                 f"Error: Recorded narration directory does not exist: {narration_audio_dir}",
                 file=sys.stderr,
@@ -3314,7 +3194,7 @@ Recorded narration:
         if verbose:
             print(f"  Narration audio directory: {narration_audio_dir}")
             print(f"  Narration audio matched: {len(narration_audio)}/{len(ref_files)} slide(s)")
-        if args.recorded_narration:
+        if None:
             missing = [path.stem for path in ref_files if path.stem not in narration_audio]
             if missing:
                 print(
@@ -3352,15 +3232,15 @@ Recorded narration:
                     "unmatched slides will export without audio."
                 )
 
-    if args.no_animations and any(
+    if False and any(
         value is not None
         for value in (
             args.transition,
             args.transition_duration,
-            args.animation,
+            None,
             args.animation_duration,
-            args.animation_trigger,
-            args.animation_stagger,
+            None,
+            None,
         )
     ):
         print(
@@ -3372,9 +3252,9 @@ Recorded narration:
 
     effective_animation_config = _resolve_animation_config_source(
         project_path,
-        args.animation_config,
-        recorded_narration=bool(args.recorded_narration),
-        no_animations=args.no_animations,
+        None,
+        recorded_narration=bool(None),
+        no_animations=False,
         roundtrip=args.roundtrip,
     )
 
@@ -3388,8 +3268,8 @@ Recorded narration:
                 file=sys.stderr,
             )
             if (
-                args.recorded_narration
-                and args.animation_config is None
+                None
+                and None is None
                 and config_path.name == 'narration_animations.json'
             ):
                 print(
@@ -3403,7 +3283,7 @@ Recorded narration:
     try:
         animation_config = (
             None
-            if args.no_animations
+            if False
             else load_animation_config(
                 project_path,
                 effective_animation_config,
@@ -3459,22 +3339,22 @@ Recorded narration:
         print(f"  Animation config: {config_label}")
         for warning in config_warnings:
             print(f"  [warn] {warning}")
-    elif args.no_animations and verbose:
+    elif False and verbose:
         print("  Animations: disabled")
 
     inherited_motion: dict[str, object] = {}
-    if args.inherit_motion_from:
+    if None:
         try:
             inherited_motion = _load_deck_motion_handoff(
                 project_path,
-                args.inherit_motion_from,
+                None,
                 native_files,
             )
         except ValueError as exc:
             print(f"Error: {exc}", file=sys.stderr)
             return 1
         if verbose:
-            print(f"  Deck motion handoff: {args.inherit_motion_from}")
+            print(f"  Deck motion handoff: {None}")
 
     defaults = animation_config.get('defaults', {}) if animation_config else {}
     transition_defaults = _as_dict(defaults.get('transition')) if isinstance(defaults, dict) else {}
@@ -3486,7 +3366,7 @@ Recorded narration:
     transition_arg = args.transition
     transition_effect = (
         'none'
-        if args.no_animations
+        if False
         else (
             transition_arg
             if transition_arg is not None
@@ -3503,7 +3383,7 @@ Recorded narration:
                 transition_effect,
                 (
                     None
-                    if transition_arg is not None or args.no_animations
+                    if transition_arg is not None or False
                     else (
                         inherited_transition.get('effect_options')
                         if 'effect' in inherited_transition
@@ -3553,7 +3433,7 @@ Recorded narration:
             )
         transition_sound = (
             None
-            if args.no_animations
+            if False
             else (
                 inherited_transition['sound']
                 if 'sound' in inherited_transition
@@ -3574,10 +3454,10 @@ Recorded narration:
     try:
         animation_effect = (
             'none'
-            if args.no_animations
+            if False
             else (
-                args.animation
-                if args.animation is not None
+                None
+                if None is not None
                 # Per-element object motion is opt-in by default: unsolicited
                 # auto-firing builds read as the "AI deck" tell. Page transitions
                 # stay on; enable objects with -a or animations.json.
@@ -3617,8 +3497,8 @@ Recorded narration:
         )
         animation_stagger = validate_seconds(
             (
-                args.animation_stagger
-                if args.animation_stagger is not None
+                None
+                if None is not None
                 else (
                     inherited_animation['stagger']
                     if 'stagger' in inherited_animation
@@ -3634,8 +3514,8 @@ Recorded narration:
             allow_zero=True,
         )
         animation_trigger = normalize_animation_trigger(
-            args.animation_trigger
-            if args.animation_trigger is not None
+            None
+            if None is not None
             else (
                 inherited_animation['trigger']
                 if 'trigger' in inherited_animation
@@ -3662,7 +3542,7 @@ Recorded narration:
         ),
         'transition_sound': 'sound' in inherited_transition,
         'animation': (
-            args.animation is not None
+            None is not None
             or inherited_overrides.get('animation') is True
         ),
         'animation_duration': (
@@ -3670,11 +3550,11 @@ Recorded narration:
             or inherited_overrides.get('animation_duration') is True
         ),
         'animation_stagger': (
-            args.animation_stagger is not None
+            None is not None
             or inherited_overrides.get('animation_stagger') is True
         ),
         'animation_trigger': (
-            args.animation_trigger is not None
+            None is not None
             or inherited_overrides.get('animation_trigger') is True
         ),
     }
@@ -3698,7 +3578,7 @@ Recorded narration:
         'narration_timings': use_narration_timings,
     }
 
-    if args.recorded_narration:
+    if None:
         on_click_slides = _recorded_narration_on_click_slides(
             ref_files,
             animation_config,
@@ -3768,8 +3648,8 @@ Recorded narration:
         animation_cli_overrides=animation_cli_overrides,
         narration_audio=narration_audio,
         use_narration_timings=use_narration_timings,
-        narration_padding=args.narration_padding,
-        narration_start_floor=args.narration_start_floor,
+        narration_padding=0.5,
+        narration_start_floor=DEFAULT_NARRATION_START_FLOOR,
         text_flow=args.text_flow,
         image_optimize=not args.no_image_optimize,
         image_max_dimension=args.image_max_dimension,
