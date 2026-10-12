@@ -11,7 +11,7 @@
 PyYAML>=6.0
 
 # ─────────────────────────────────────────────────────────────
-# SVG to PPTX tool / SVG 转 PPTX 工具 (skills/ppt-master/scripts/svg_to_pptx.py)
+# SVG to PPTX tool / SVG 转 PPTX 工具 (skills-academic/ppt-master/scripts/svg_to_pptx.py)
 # ─────────────────────────────────────────────────────────────
 # Batch-convert SVG files to PowerPoint presentations.
 # 用于将 SVG 文件批量转换为 PowerPoint 演示文稿
@@ -28,7 +28,7 @@ uharfbuzz>=0.50.0
 edge-tts>=7.2.8
 
 # ─────────────────────────────────────────────────────────────
-# PDF to Markdown tool / PDF 转 Markdown 工具 (skills/ppt-master/scripts/source_to_md/pdf_to_md.py)
+# PDF to Markdown tool / PDF 转 Markdown 工具 (skills-academic/ppt-master/scripts/source_to_md/pdf_to_md.py)
 # ─────────────────────────────────────────────────────────────
 # Converts PDF to Markdown with text, image, and table extraction.
 # 用于将 PDF 文件转换为 Markdown 格式，支持文本、图片、表格提取
@@ -40,7 +40,7 @@ edge-tts>=7.2.8
 PyMuPDF>=1.23.0
 
 # ─────────────────────────────────────────────────────────────
-# Document to Markdown tool / 文档转 Markdown 工具 (skills/ppt-master/scripts/source_to_md/doc_to_md.py)
+# Document to Markdown tool / 文档转 Markdown 工具 (skills-academic/ppt-master/scripts/source_to_md/doc_to_md.py)
 # ─────────────────────────────────────────────────────────────
 # Native (pure-Python) paths — no external binary required:
 # 原生路径（纯 Python，无需外部程序）：
@@ -54,7 +54,7 @@ ebooklib>=0.18
 nbconvert>=7.0.0
 
 # ─────────────────────────────────────────────────────────────
-# Excel to Markdown tool / Excel 转 Markdown 工具 (skills/ppt-master/scripts/source_to_md/excel_to_md.py)
+# Excel to Markdown tool / Excel 转 Markdown 工具 (skills-academic/ppt-master/scripts/source_to_md/excel_to_md.py)
 # ─────────────────────────────────────────────────────────────
 # Converts .xlsx/.xlsm workbooks to Markdown while preserving sheet structure.
 # 用于将 .xlsx/.xlsm 工作簿转换为 Markdown，并保留工作表结构。
@@ -81,7 +81,7 @@ Pillow>=9.0.0
 numpy>=1.20.0
 
 # ─────────────────────────────────────────────────────────────
-# Web to Markdown tool / 网页转 Markdown 工具 (skills/ppt-master/scripts/source_to_md/web_to_md.py)
+# Web to Markdown tool / 网页转 Markdown 工具 (skills-academic/ppt-master/scripts/source_to_md/web_to_md.py)
 # ─────────────────────────────────────────────────────────────
 requests>=2.31.0
 beautifulsoup4>=4.12.0
@@ -94,7 +94,7 @@ beautifulsoup4>=4.12.0
 curl_cffi>=0.7.0
 
 # ─────────────────────────────────────────────────────────────
-# AI image generation tool / AI 图片生成工具 (skills/ppt-master/scripts/image_gen.py)
+# AI image generation tool / AI 图片生成工具 (skills-academic/ppt-master/scripts/image_gen.py)
 # ─────────────────────────────────────────────────────────────
 # Gemini backend / Gemini 后端 (IMAGE_BACKEND=gemini)
 google-genai>=1.0.0
@@ -102,7 +102,7 @@ google-genai>=1.0.0
 # OpenAI 兼容后端复用上方网页工具所需的 requests。
 
 # ─────────────────────────────────────────────────────────────
-# SVG Editor / SVG 编辑器 (skills/ppt-master/scripts/svg_editor/server.py)
+# SVG Editor / SVG 编辑器 (skills-academic/ppt-master/scripts/svg_editor/server.py)
 # ─────────────────────────────────────────────────────────────
 # Localhost web editor for annotating SVG elements with edit instructions.
 # 本地 Web 编辑器，用于在 SVG 元素上添加编辑标注指令
