@@ -71,7 +71,7 @@ python3 ${SKILL_DIR}/scripts/shape_boolean_svg.py render <svg-file> \
 | Pass | Action | Result |
 |---|---|---|
 | Topology / page job | Retain the resolved topology and its relationship duties; name the page-scale move and its jobs — surface, boundary, focal mark, shared region, counterweight, or a source-backed direction / reveal | Duties plus one composition direction and a few functional zones; no shape names |
-| Decompose | Split components needing independent editing, movement, paint, animation, or reuse; separately identify contour / region semantics that need one object or retained Boolean paths | Editable siblings plus any explicit Boolean operand set |
+| Decompose | Split components needing independent editing, movement, paint, or reuse; separately identify contour / region semantics that need one object or retained Boolean paths | Editable siblings plus any explicit Boolean operand set |
 | Select | For each component choose the family, then the exact member from job, full vocabulary, and edge / corner / opening behavior; retain the reader effect when the result is generic or undrawn | Page-fit atoms without syntax bias |
 | Compose | Assemble the topology from its atoms; set page frame, scale, z-order, and negative space; keep text, images, icons, data marks, and non-merged accents outside Boolean operands | One relationship-faithful geometry system |
 | Materialize | Preset helper per adopted preset; Boolean helper only for contours needing Merge Shapes semantics | Valid authoring SVG |

@@ -16,7 +16,7 @@ Produces one import workspace (default `<pptx_stem>_template_import/` beside the
 | `analysis/native_structure.json` | Stable Master/Layout keys, picker names, placeholder type/index/geometry, inherited-shape visibility, source hash, source-graph quality facts |
 | `sources/source.pptx` | Byte-preserved backing package for cross-checking and identity validation; never copied into a template |
 | `images/` | PowerPoint image media including SVG/EMF/WMF; SVG `href` values reuse the manifest asset map |
-| `sounds/`, `audio/`, `video/`, `native-payloads/` | Conditional semantic resource directories, created only when populated |
+| `sounds/`, `native-payloads/` | Conditional semantic resource directories, created only when populated |
 | `validation/conversion-report.json` | Source-recovery and fidelity diagnostics not duplicated in the structural manifests |
 | `svg/master_*.svg`, `svg/layout_*.svg`, `svg/slide_NN.svg`, `svg/inheritance.json` | Immutable layered lossless view: every master and layout rendered once (including ones no sample slide uses), each slide's own shapes only, and the Slide → Layout → Master consumption map with `showInheritedShapes` / `showMasterShapes` (Layout shapes follow the Slide flag; Master shapes need both; backgrounds are independent) |
 | `svg-flat/slide_NN.svg` | Optional (`--inheritance-mode both`) self-contained verification view of each complete page |

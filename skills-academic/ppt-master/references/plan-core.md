@@ -16,7 +16,7 @@ Six answers describe what the deck must do. Default seeds them as Stage-1 recomm
 | `communication_intent` | What must the presentation accomplish? It may combine several purposes and state priority or sequence. |
 | `audience_outcome` | What observable change means the communication succeeded — what will the audience know, understand, believe, decide, or do? |
 | `core_message` | Which claim(s), decision ask(s), or action(s) must land even if little else is remembered? |
-| `delivery_context` | What is primary — presenter-led, reader-led, hybrid (which leads), or recorded/self-running (no live presenter; narration, timing, transitions, playback)? What secondary use, occasion, and time constraint remain? One open field, never an enum. |
+| `delivery_context` | What is primary — presenter-led, reader-led, or hybrid (which leads)? What secondary use, occasion, and time constraint remain? One open field, never an enum. |
 | `artifact_afterlife` | What must the file support afterward — review, approval, audit, archive, hand-off, reuse, or nothing? |
 
 **Communication intent is open-ended**: *inform / explain / persuade / decide / align / teach / report and account / mobilize / record and hand off* are prompts, never a checkbox list or a `primary_job`; several purposes keep their relationship in prose ("report progress and expose risk first; then obtain a decision"). The contract is not the narrative mode: intent says what change is needed, `mode` is one Stage-2 way to organize the argument.

@@ -36,7 +36,7 @@ Artifact roles follow [`artifact-ownership.md`](../../references/artifact-owners
 
 | Signal | Action |
 |---|---|
-| No signal | Keep `fade` transitions and object animation `none`; load nothing |
+| No signal | Keep `fade` transitions and object effect `none`; load nothing |
 
 
 ---
@@ -115,7 +115,7 @@ Read ${SKILL_DIR}/templates/tables/table-vocabulary.md
 
 **Mandatory — whole-roster rhythm check, cover impact, closing impact**: [`plan-core.md`](../../references/plan-core.md) §4, applied to the transient roster in place; no artifact or second pass.
 
-**Prepared final narration**: an explicit final/literal script for notes or audio is segmented by scene while resolving the roster, every word preserved, and written once before P01 to `notes/total.md` (`# Slide <number>` headings, `---` separators) as production input, split only after the roster exists. Draft narration stays source material for the ordinary notes branch.
+**Prepared final script**: an explicit final/literal notes script is segmented by scene while resolving the roster, every word preserved, and written once before P01 to `notes/total.md` (`# Slide <number>` headings, `---` separators) as production input, split only after the roster exists. Draft wording stays source material for the ordinary notes branch.
 
 **Resource need per page**: decide it under [`plan-core.md`](../../references/plan-core.md) §5 before resources. SVG/emoji icons keep their curated-pool boundary, and the page's carrier mix is §3's authoring decision, not a preparation decision. The resolved style controls treatment and recurrence but never eligibility, source, or the native vocabulary. A compact icon cue does not discharge a scene, subject, or visual-weight job a photo or illustration family would serve. The communication-job menu never satisfies the per-page topology decision in §3.
 
@@ -207,7 +207,7 @@ python3 ${SKILL_DIR}/scripts/svg_quality_checker.py <project_path> \
 
 **Mandatory — final carrier-receipt review**: run the review in [`executor-base.md`](../../references/executor-base.md) §3 Checkpoints against the retained page jobs, deck shape language, motif, resource roles, and geometry signatures; a repair reruns this checker once.
 
-**Notes** (when enabled): load [`executor-notes.md`](../../references/executor-notes.md) after the passing check, validate a frozen script or pre-SVG narration without regenerating it or otherwise generate `notes/total.md` from the final roster, then split:
+**Notes** (when enabled): load [`executor-notes.md`](../../references/executor-notes.md) after the passing check, validate a frozen script or a pre-SVG notes draft without regenerating it or otherwise generate `notes/total.md` from the final roster, then split:
 
 ```bash
 python3 ${SKILL_DIR}/scripts/total_md_split.py <project_path>
@@ -222,7 +222,7 @@ python3 ${SKILL_DIR}/scripts/svg_to_pptx.py <project_path> --quick-generate --wi
 python3 ${SKILL_DIR}/scripts/svg_to_pptx.py <project_path> --quick-generate --no-notes     # Speaker Notes disabled
 ```
 
-**Exporter behavior**: `--quick-generate` reads `svg_output/`, resolves project-local assets, infers one canvas and one all-page structure mode (no metadata → flat; complete Master/Layout/slot metadata → structured), and needs no lock. Notes, Custom Animations, and narration stay off unless the agent enabled them or the video rule requires them; append `--native-charts-and-tables` for an explicit native Chart/Table delivery decision or any structured `chart` / `table` placeholder slot (the exporter refuses to compile a typed slot as a fallback). Never run `finalize_svg.py`. The exporter requires a passing `final` report whose fingerprint matches the current `svg_output/`; the default output path keeps backup and postflight, an explicit `-o <path>.pptx` skips backup.
+**Exporter behavior**: `--quick-generate` reads `svg_output/`, resolves project-local assets, infers one canvas and one all-page structure mode (no metadata → flat; complete Master/Layout/slot metadata → structured), and needs no lock. Notes stay off unless the agent enabled them; append `--native-charts-and-tables` for an explicit native Chart/Table delivery decision or any structured `chart` / `table` placeholder slot (the exporter refuses to compile a typed slot as a fallback). Never run `finalize_svg.py`. The exporter requires a passing `final` report whose fingerprint matches the current `svg_output/`; the default output path keeps backup and postflight, an explicit `-o <path>.pptx` skips backup.
 
 **On failure**: repair the owning SVG, resource, or capability input, rerun the checker, and export again — never create a Design Spec or lock.
 
@@ -240,5 +240,5 @@ python3 ${SKILL_DIR}/scripts/svg_to_pptx.py <project_path> --quick-generate --no
 - [x] The carrier receipt was compared with the retained page jobs and contradictions repaired; the lockless final report passes and matches the current SVGs
 - [x] The §1 motion gate was evaluated before P01 (the row hit, or none); enabled notes were validated/generated and split; enabled custom motion ran through its owning stage
 - [x] One native PPTX exists under `exports/` or the explicit output path; no Strategist, confirmation, root Design Spec, or lock artifact was created
-- [ ] **Next**: report the base PPTX and any narrated PPTX, MP4, or capture-ready handoff, plus the resolved mode, visual style, and image sources actually used; for every no-AI replan, report the affected job, attempted path, concrete error, replacement carrier, and that retaining AI imagery requires repairing generation capability and a new Quick run
+- [ ] **Next**: report the base PPTX, plus the resolved mode, visual style, and image sources actually used; for every no-AI replan, report the affected job, attempted path, concrete error, replacement carrier, and that retaining AI imagery requires repairing generation capability and a new Quick run
 ```

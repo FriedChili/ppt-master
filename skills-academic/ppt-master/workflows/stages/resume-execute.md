@@ -22,13 +22,13 @@ The user opens a new chat naming a project path with continuation intent — "�
 
 ## Step 2: Load the Generate authority, proceed from Step 6
 
-Read `skills-academic/ppt-master/workflows/generate-pptx.md` and jump to `### Step 6: Executor Phase`, which loads `executor-base.md` and applies its context policy: read the complete Design Spec, then the complete lock, once; resolve the effective Speaker Notes / Custom Animations / Narration Audio outcomes from `design_spec.md §I` (missing outcomes default `enabled` / `disabled` / `disabled`; never from the lock).
+Read `skills-academic/ppt-master/workflows/generate-pptx.md` and jump to `### Step 6: Executor Phase`, which loads `executor-base.md` and applies its context policy: read the complete Design Spec, then the complete lock, once; resolve the effective Speaker Notes outcome from `design_spec.md §I` (a missing outcome defaults to `enabled`; never from the lock).
 
 Before the first SVG, verify every conditional dependency discoverable from that pair:
 
 | File / Directory | Required when | Recovery when missing |
 |---|---|---|
-| `notes/total.md` | §X records a supplied final/literal narration script | Return to Step 4's prepared final narration branch; never rewrite the script from memory |
+| `notes/total.md` | §X records a supplied final/literal notes script | Return to Step 4's prepared final script branch; never rewrite the script from memory |
 | `images/` plus files whose row status requires existence (`Existing` / `Generated` / `Sourced`; an absent `Needs-Manual` file is allowed until the Step 7 gate) | `spec_lock images` references any image | By provenance: `Acquire Via: user` / `Existing` is a required manual artifact (`failure-recovery.md` §2, wait for the exact file); a template-bundled bitmap returns to Step 3 to restore the workspace; AI, web, or slice output uses its `failure-recovery.md` §1 row. Formula markers never create a required image file |
 | `templates/` | `spec_lock page_layouts` references any prototype | Restore the workspace through Step 3 and [`apply-template-workspace`](apply-template-workspace.md); if unavailable or invalid, run Create Template again rather than reconstructing a template here |
 | Resolver-returned Chart/Table SVG | `page_visualizations` or legacy `page_charts` references a live key | Failed, missing, or ambiguous resolution is a missing planning dependency and stops this stage |
@@ -40,7 +40,7 @@ python3 skills-academic/ppt-master/scripts/visualization_recall.py validate <fam
 python3 skills-academic/ppt-master/scripts/visualization_recall.py validate --legacy-bare <legacy-key> [...]
 ```
 
-Then continue the documented Step 6–7 pipeline exactly as `generate-pptx.md` lists it: read the frozen `notes/total.md` once when §X declares a final/literal script; when mid-deck, read the latest completed SVG and current image metadata after their paths are verified; read the Step 6 construction core and one locked preset file or only the exact `*_references` of a custom, never reopening the mode or visual-style catalogs; load only the branches the condition table selects; make the per-page topology decision from retained §IX before any geometry; when structured, read the template Design Spec and each selected prototype once. Use `page-context` only for explicit diagnostics or an unresolved path-SHA question ([`artifact-ownership.md`](../../references/artifact-ownership.md) §1), never as a routine pre-page load. Then the quality gate, conditional notes, conditional custom animation, Step 7 (`total_md_split` → `finalize_svg` → `svg_to_pptx`; disabled notes use `--no-notes`), and `generate-audio` when Narration Audio is enabled.
+Then continue the documented Step 6–7 pipeline exactly as `generate-pptx.md` lists it: read the frozen `notes/total.md` once when §X declares a final/literal script; when mid-deck, read the latest completed SVG and current image metadata after their paths are verified; read the Step 6 construction core and one locked preset file or only the exact `*_references` of a custom, never reopening the mode or visual-style catalogs; load only the branches the condition table selects; make the per-page topology decision from retained §IX before any geometry; when structured, read the template Design Spec and each selected prototype once. Use `page-context` only for explicit diagnostics or an unresolved path-SHA question ([`artifact-ownership.md`](../../references/artifact-ownership.md) §1), never as a routine pre-page load. Then the quality gate, conditional notes, Step 7 (`total_md_split` → `finalize_svg` → `svg_to_pptx`; disabled notes use `--no-notes`).
 
 A newer explicit instruction after final Stage 2 updates only its effective outcome and provenance in `design_spec.md §I`, then resumes at the owning step — no Confirm UI, no lock entry; apply Generate's notes/audio dependency gate before writing and its sidecar suppression rules at export.
 

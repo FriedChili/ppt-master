@@ -10,7 +10,7 @@ Rendering-neutral compiler hints, used only where ordinary SVG cannot express Po
 | `data-pptx-master` / `-master-name`, `data-pptx-layout` / `-layout-name` | Root `<svg>` on structured pages | Bind the page to one named Master and one Layout under it |
 | `data-pptx-layer="master\|layout"` | Direct atomic child of root | Promote one fixed visual object to the Master or Layout |
 | `data-pptx-placeholder` | Direct child `<g id>` of root | Declare one reusable Layout slot whose visible content stays Slide-local |
-| `data-pptx-role` | Structural page-frame element | Package, page-number, or animation behavior no specialized metadata already expresses |
+| `data-pptx-role` | Structural page-frame element | Package or page-number behavior no specialized metadata already expresses |
 
 **Hard rule — route boundary**: free-design and `template_reuse_scope: style` pages use `pptx_structure.mode: flat`, declare one root `data-pptx-page-role`, and omit every Master/Layout/layer/placeholder marker. Only Default `template_reuse_scope: mirror|layout` pages or Quick pages authoring an installed Layout/Deck owner's structure declare Master and Layout before drawing and omit `data-pptx-page-role`; the exporter compiles that contract and never selects, clusters, distills, or infers it.
 
@@ -61,8 +61,8 @@ Use `data-pptx-role` only when no specialized marker owns the behavior:
 
 | Value | Compiler behavior |
 |---|---|
-| `background` | Treat an otherwise unmarked background as static page framing for animation |
-| `decoration` | Exclude decorative framing from automatic entrance animation |
+| `background` | Treat an otherwise unmarked background as static page framing |
+| `decoration` | Exclude decorative framing from automatic effects |
 | `header`, `footer`, `logo`, `watermark`, `chrome` | Slide-local static framing without Master/Layout ownership |
 | `page-number` | Slide-local number when no `slide-number` placeholder exists |
 

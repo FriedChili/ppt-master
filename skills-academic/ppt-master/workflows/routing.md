@@ -30,7 +30,7 @@ Route selection authority for ppt-master. Select exactly one top-level route, th
 |---|---|---|---|---|---|
 | Generate PPTX | Create, reconstruct, or visually regenerate a presentation from sources or a topic; templates optional | Image to PPTX: [`image-to-pptx`](./profiles/image-to-pptx.md), always Quick; Beautify: [`beautify-pptx`](./profiles/beautify-pptx.md), Default or Quick; ordinary [`generate-pptx`](./generate-pptx.md) / [`quick-generate`](./profiles/quick-generate.md) | Facts exist or research can gather them; Image to PPTX also requires Codex and an ordered page-frame roster | Author SVG pages and export a new PPTX | Default: spec/lock/SVG/PPTX; Quick: optional source/resource artifacts, no spec/lock, SVG/PPTX |
 | Create Template | Create a reusable style/layout/deck template from PPTX/SVG files, images/PDFs, direct or file-based text, documents/websites, brand assets, or a mixed bundle | [`create-template`](./create-template.md) | A reusable-template request; reference material optional; project scope also requires an initialized target project | Author a new portable workspace; never modify a reference file in place | Workspace with required `templates/`, optional `images/` / `icons/`, optional review `exports/` |
-| Edit Native PPTX | Keep an existing PPTX's native design: fill with new content, edit or restructure selected pages, or add notes, narration, timings, or transitions with visible slides untouched | [`edit-native-pptx`](./edit-native-pptx.md) | Source PPTX exists; new material only when content changes | `pptx_to_svg.py --roundtrip` workspace: unchanged pages restore byte-for-byte, edited pages rebuild only edited objects, notes/motion overlay | New PPTX in workspace `exports/` |
+| Edit Native PPTX | Keep an existing PPTX's native design: fill with new content, edit or restructure selected pages, or add notes or transitions with visible slides untouched | [`edit-native-pptx`](./edit-native-pptx.md) | Source PPTX exists; new material only when content changes | `pptx_to_svg.py --roundtrip` workspace: unchanged pages restore byte-for-byte, edited pages rebuild only edited objects, notes overlay | New PPTX in workspace `exports/` |
 
 ---
 
@@ -91,7 +91,7 @@ Create Template remains the fixed route name and owns the shared contract; these
 
 ## 6. Native and Shared Post-Processing Boundary
 
-A finished PPTX whose visible slides must be preserved goes to Edit Native PPTX; a generated SVG project owns its own post-processing through [`generate-pptx.md`](./generate-pptx.md) Step 7. This fork ships static decks: neither route adds narration, audio, or animation.
+A finished PPTX whose visible slides must be preserved goes to Edit Native PPTX; a generated SVG project owns its own post-processing through [`generate-pptx.md`](./generate-pptx.md) Step 7. This fork ships static decks.
 
 ---
 

@@ -84,7 +84,7 @@ complete-page `authoring-svg-flat/` bundle is the user's editable source for an
 imported-deck round-trip. `pptx_template_import.py` publishes its compact
 layered authoring bundle and decoration inventory in the same transaction as
 its immutable backing. `pptx_to_svg.py --roundtrip` places image media in
-`images/`, decoration-only vectors in `icons/imported/`, cues/audio/video/notes in their named
+`images/`, decoration-only vectors in `icons/imported/`, cues/notes in their named
 directories, opaque payloads in `native-payloads/`, the source package in
 `sources/`, and tool-owned backing/contracts in `analysis/`; `assets/` is
 invalid. `svg_to_pptx.py --roundtrip` always reads `authoring-svg-flat/`,
@@ -158,7 +158,7 @@ destinations fail, except that a source self-jump follows its own output copy.
 An adopted link still targets its source destination. Removed/replaced object
 links do not block the source-package preflight; surviving links still do.
 External links remain unchanged.
-Omitting a source slide deliberately drops its private video, audio, or opaque
+Omitting a source slide deliberately drops its private or opaque
 native payloads; a kept slide still fails if rebuilding it would discard such
 relationships.
 With a plan present, presentation-level `sectionLst` and custom-show rosters
@@ -182,17 +182,14 @@ different bytes override them, and matching bytes remain unchanged. A canonical
 page without source notes treats a present stem-keyed file as an addition. For
 a copied SVG, a present `notes/<svg-stem>.md` overrides its inherited source
 notes and an absent file keeps them. Deleting inherited source notes only on a
-copy is not supported in v1. The same output-stem rule applies to narration
-audio.
+copy is not supported in v1.
 
 When a round-trip recorded-narration export omits `--animation-config`, it reads the workspace `animations.json` the importer wrote; that sidecar is part of the workspace contract, so deleting it fails export rather than restoring source motion.
 
-Narration audio is keyed by the output SVG stem. A copied output page uses its
-own stem-keyed notes when present and otherwise inherits the declared source
-slide's canonical notes.
+A copied output page uses its own stem-keyed notes when present and otherwise
+inherits the declared source slide's canonical notes.
 
-`-t`, `-a`, `--recorded-narration`, `--use-narration-timings`,
-`--no-animations`, and `--no-notes` continue to resolve per output page.
+`-t`, `-a`, and `--no-notes` continue to resolve per output page.
 
 Import and export from the repository root:
 
@@ -685,7 +682,7 @@ referenced-resource hashes against
 the prototype.
 
 The output routes reusable decoration vectors once to `icons/imported/`, image media to
-`images/`, audio and video to their semantic directories, and opaque referenced
+`images/` and opaque referenced
 files to `native-payloads/imported/`. The JSON report
 reports payload occurrence, native-record, unique-byte, and compressed-store
 counts and is written to stdout only. It also writes a factual Design Spec
@@ -728,7 +725,7 @@ Nested selections are accepted only through metadata-only `<g>` ancestors.
 When an ancestor carries a transform, style, clip, opacity, or other visual
 attribute, select that outer group instead; this prevents applying the ancestor
 effect once inside the SVG asset and again to the replacement `<image>`.
-Scripts, `foreignObject`, SVG animation, remote resources, and external SVG
+Scripts, `foreignObject`, remote resources, and external SVG
 fragment references fail closed; local image/CSS resources must stay inside
 the declared `--resource-root` and are embedded into the asset.
 An in-place rewrite inside an authoring bundle refreshes
@@ -799,7 +796,7 @@ EMF/WMF images referenced by a page are preserved as external references, never 
 
 Convert project SVGs into PPTX. EMF/WMF images referenced from `svg_output/` are embedded as native `image/x-emf` / `image/x-wmf` media at full vector fidelity.
 
-Each exported object is named after `data-pptx-shape-name`, else its SVG `id` (or `data-name`), else a positional `Group N` / `TextBox N`; forced-Morph `!!` names still win. The PowerPoint Selection and Animation panes therefore read like the source SVG.
+Each exported object is named after `data-pptx-shape-name`, else its SVG `id` (or `data-name`), else a positional `Group N` / `TextBox N`; forced-Morph `!!` names still win. The PowerPoint Selection pane therefore reads like the source SVG.
 
 The deck language — the lock's `primary_language`, else the first page's root `<svg lang="...">` (Quick's channel), else `--primary-language TAG` — tags base-template default text (new text boxes, master and layout placeholders) and docProps; a right-to-left language also makes those defaults right-to-left and right-aligned, and the theme's script font for that language (`Arab`, `Hebr`, `Thai`, `Deva`, ...) points at the locked face, which a lockless roster takes from its pages. A run of Latin letters inside a non-Latin deck is tagged `en-US`; the tag is per run, so an English phrase sharing one run with CJK text (`中文 · English` in a single `<text>` with one style) takes the deck language — give it its own `<tspan>` with a distinct attribute when spell-check and hyphenation should treat it as English.
 
@@ -845,7 +842,6 @@ python3 scripts/svg_to_pptx.py <project_path> -s final
 python3 scripts/svg_to_pptx.py <project_path> --no-notes
 python3 scripts/svg_to_pptx.py <project_path> -t none
 python3 scripts/svg_to_pptx.py <project_path> --auto-advance 3
-python3 scripts/svg_to_pptx.py <project_path> --animation mixed --animation-duration 0.8
 python3 scripts/svg_to_pptx.py <project_path> --reflow-text  # opt-in PowerPoint reflow
 python3 scripts/svg_to_pptx.py <project_path> --no-merge    # one text frame per visual line
 python3 scripts/svg_to_pptx.py <project_path> --recorded-narration audio
@@ -886,10 +882,9 @@ canvas, and does not read or require `spec_lock.md`. It infers one all-page PPTX
 structure mode from the authored SVGs: no structure metadata creates clean flat
 package scaffolding; any structure metadata requires every page to satisfy the
 complete Master/Layout/slot contract and creates structured output. A mixed or
-partial roster fails closed. Notes, motion, narration, native objects, conversion
-trace, and other ordinary exporter capabilities remain available; notes,
-custom object animation, and narration start off in Quick and may be enabled
-when needed. The exporter refuses a missing, blocking, non-final, or stale
+partial roster fails closed. Notes, native objects, conversion
+trace, and other ordinary exporter capabilities remain available; notes start off in
+Quick and may be enabled when needed. The exporter refuses a missing, blocking, non-final, or stale
 Quick final report before PPTX creation. Default-path output retains the normal
 postflight report and `backup/` snapshot; explicit `-o` retains the ordinary
 no-backup behavior. Existing source, analysis, image/icon, and resource-manifest
@@ -905,7 +900,7 @@ Behavior:
 - In both Generate profiles, explicit `-o/--output` changes the native PPTX destination and skips `backup/`; the postflight report still uses the output stem under the project `validation/` directory.
 - A custom `-s/--source` also skips `backup/`: that directory remains the caller-owned SVG source and is never copied under a misleading `backup/<timestamp>/svg_output/` name. Default or explicit `-s output` export retains the normal SVG backup behavior.
 - Postflight reruns ZIP integrity and published Slide count. Internal relationships,
-  structured-package validation, transitions, and animations are enforced before the
+  structured-package validation and transitions are enforced before the
   builder publishes the PPTX and are reported as `enforced-at-build`, not as repeated
   postflight checks.
 - `font_portability` warns when a complete font stack has no concrete family or when
@@ -923,13 +918,12 @@ Behavior:
   - `--no-merge`: each dy-stacked line becomes an independent frame with its own placement.
   - Detection is conservative: mixed-layout `<text>` falls back to per-line frames. Use `--reflow-text` only for resizable body copy and `--no-merge` only for independent line objects or absolute line positions.
 - Native release export reads `svg_output/`; `-s <directory>` selects another project-relative SVG source. `-s final` remains an explicit diagnostic comparison against post-processed SVGs and does not change artifact ownership. `--enable-dangerous-nonconforming-svg-export` is a separate, explicitly requested flat compatibility path for either the default or selected source; it forces flat structure, restores no imported source object, and cannot combine with `--roundtrip` or `--quick-generate`.
-- `--roundtrip` accepts only `authoring-svg-flat/` and the source/contracts emitted by `pptx_to_svg.py --roundtrip`; predecessor root sidecars and alternate `-s` inputs fail. It restores unchanged refs from `analysis/roundtrip-svg/`, preserves unchanged Slide XML/relationships and source resources byte-for-byte, rebuilds a page whose authoring changed, and rebuilds every output page that references a changed resource. Closed unchanged chart packages recover exactly; editing their fallback disables stale replacement. Optional root `page_plan.json` uses the versioned deck-plan contract above; the no-plan path remains the identity export. Motion fields are compared independently with the import baseline: omitted slide `transition` preserves source motion even when importer defaults say `none`, while changed `defaults.animation` participates in animation replacement. Effect-only changes preserve source `advClick` / `advTm`; explicit advance settings or narration timings replace them. Explicit `-t <effect>` without `--transition-duration` on a source without transitions uses the default duration.
+- `--roundtrip` accepts only `authoring-svg-flat/` and the source/contracts emitted by `pptx_to_svg.py --roundtrip`; predecessor root sidecars and alternate `-s` inputs fail. It restores unchanged refs from `analysis/roundtrip-svg/`, preserves unchanged Slide XML/relationships and source resources byte-for-byte, rebuilds a page whose authoring changed, and rebuilds every output page that references a changed resource. Closed unchanged chart packages recover exactly; editing their fallback disables stale replacement. Optional root `page_plan.json` uses the versioned deck-plan contract above; the no-plan path remains the identity export. Motion fields are compared independently with the import baseline: omitted slide `transition` preserves source motion even when importer defaults say `none`, while changed `defaults.animation` participates in animation replacement. Effect-only changes preserve source `advClick` / `advTm`; explicit advance settings replace them. Explicit `-t <effect>` without `--transition-duration` on a source without transitions uses the default duration.
 - `svg_final/` may be opened directly or inserted into PowerPoint as an SVG picture. PowerPoint's manual Convert-to-Shape operation is outside the compatibility contract.
 - On every SVG-authoring route, each file in `svg_output/` is the complete visible
   page-design source. Templates and locks may guide authoring, but finalize/export
-  never use them to overlay visible content missing from the SVG. Notes, animation,
-  narration, transitions, and direct native-PPTX workflows keep their separate
-  inputs and package-level processing.
+  never use them to overlay visible content missing from the SVG. Notes and direct
+  native-PPTX workflows keep their separate inputs and package-level processing.
 - For PPTX template-import workspaces, use `-s svg-flat` when you need a visual round-trip check. The layered `svg/` tree is the machine-readable template source and intentionally does not inline inherited master / layout decoration into each slide.
 - Native mode is strict about unsupported visual SVG elements: if a visual element cannot be represented or safely preserved, export fails with the SVG file, element tag, and position instead of silently dropping content. Dangerous compatibility export first applies the registry in `svg_compatibility.py`; it currently lowers a filter on an otherwise attribute-free one-child group whose child is a supported native filter target. The complete strict preflight then runs normally; every remaining contract, resource, conversion, relationship, or package error still blocks export.
 - Default export omitting `--pptx-structure` reads `spec_lock.md`. Free-design and `template_reuse_scope: style` releases declare `mode: flat`, omit Master/Layout mappings and SVG structure metadata, and materialize one clean project-owned Master plus one Blank Layout from the current lock. Deck/layout templates use `mode: structured` only for `template_reuse_scope: mirror|layout`, with explicit registered `pptx_masters` / `pptx_layouts` sets and one `page_pptx_layouts` assignment per page. Only Layouts listed in `pptx_layouts` register; this may be a subset of installed prototypes. Every page assignment must reference that set. An unused prototype registers only when explicitly listed; Quick without a lock registers only Layouts used by its pages. The checker uses the same dependency set for typed chart/table export hints.
@@ -946,7 +940,7 @@ Behavior:
 - `--conversion-trace` without a path writes `validation/<output_stem>.trace.json`. `--conversion-trace <path>` respects the explicit destination; relative paths are resolved from the project root, so `exports/<name>.trace.json` remains available when intentionally requested.
 - Formal default and `--quick-generate` release export compute the exact SVG source fingerprint and refuse a missing, unreadable, unsupported, non-final, blocking, stale, or unverifiable final quality report before PPTX creation. A project without `validation/svg_quality_report.json` exits nonzero with the `not-provided` gate status; run the final checker against its current `svg_output/` first. An explicit non-`output` `--source` remains outside this release gate. Dangerous compatibility export also stays outside it even when reading the default `svg_output/`: it automatically writes a conversion trace, marks postflight `passed-with-warnings`, and records its normalization count; it never claims that the source passed the normal authoring quality gate.
 - The final quality report carries an informational `carrier_receipt` aggregate plus each page's `files[].info.carrier_receipt`: actual text/image/icon counts, SVG geometry, native preset names, marker use, native Chart/Table/Formula markers, largest image-frame share, and effect use. `effects.inline_emphasis_runs` counts `<tspan>` elements inside `<text>` with no `x`/`y`/`dx`/`dy` that set `fill`, `font-weight`, `font-size`, `font-style`, `text-decoration`, or `letter-spacing`; `effects.gradient_uses` counts visible fill/stroke references that resolve to same-document linear/radial gradients; `effects.filter_uses` counts visible filter references that resolve to same-document filters; and `effects.text_effects` counts visible `<text>`/`<tspan>` elements with gradient/pattern paint, a filter, or a non-`none` stroke. Content inside `defs`, `clipPath`, `mask`, `pattern`, `marker`, or `symbol` is excluded. The terminal prints only the compact aggregate. These facts never affect exit status, create coverage quotas, or score design; the active Generate profile compares them with its retained page decisions before export.
-- After publication, native export writes `validation/<output_stem>.report.json`. The report distinguishes authored Slides from internal Layout definitions, reruns ZIP integrity and published Slide-count checks, records slide/layout/master/notes part counts, labels relationship/structured/transition/animation validation as enforced at build time, links the final SVG quality report only when its SHA-256 source fingerprint matches the exact export inputs, and surfaces stale/unverified gates, unresolved template tokens, generic-only font stacks, and external image references. A matching final quality report with introduced warnings yields `passed-with-warnings` and a `quality_introduced_warnings=<N>` receipt instead of a clean `passed` claim.
+- After publication, native export writes `validation/<output_stem>.report.json`. The report distinguishes authored Slides from internal Layout definitions, reruns ZIP integrity and published Slide-count checks, records slide/layout/master/notes part counts, labels relationship/structured validation as enforced at build time, links the final SVG quality report only when its SHA-256 source fingerprint matches the exact export inputs, and surfaces stale/unverified gates, unresolved template tokens, generic-only font stacks, and external image references. A matching final quality report with introduced warnings yields `passed-with-warnings` and a `quality_introduced_warnings=<N>` receipt instead of a clean `passed` claim.
 - By default, a successful command also prints a compact receipt instead of requiring a report read: `[POSTFLIGHT] status=<...> quality_gate=<...> slides=<N> warning_categories=<N>`, followed by one compact line per warning category and the `[PPTX]` / `[REPORT]` paths. Resource-warning lines carry counts; a non-passing quality gate carries its status. Routine agents use this receipt and do not load either complete validation JSON into model context. Full reports remain cold audit artifacts; failure investigation and explicit audits extract only the required fields. `--quiet` keeps suppressing successful-run output.
 - Before publishing structured template output, export reopens the temporary PPTX and validates the Slide → Layout → Master graph and registrations, Layout identity, placeholder identity, reusable bounds, and prompt/level-one sizes. A mismatch aborts publication. Flat release instead validates its single referenced Master/Layout shell and exact date/footer/slide-number hook roster before packaging.
 - Authored SVG clip-path restrictions remain. Crop wrappers use an
@@ -955,22 +949,17 @@ Behavior:
   Both map to native picture crop/geometry when possible.
 - The default Generate flow embeds speaker notes automatically unless `--no-notes` is used; Quick Generate defaults them off and enables them with `--with-notes`
 - Recorded narration is opt-in:
-  - Narration text is read strictly from the matching `notes/*.md` file; the script only skips Markdown heading lines (`# ...`) and does not summarize, rewrite, or filter delivery notes
   - `--recorded-narration audio` prepares PowerPoint's "recorded timings and narrations": every slide must have matching `m4a` / `mp3` / `wav` audio, `ffprobe` must read every duration, and `--animation-trigger on-click` is rejected
   - `--recorded-narration audio` keeps speaker notes, embeds each matching audio file, and writes slide auto-advance timings from page-start lead-in + audio duration + page-tail padding. `--narration-start-floor` and `--narration-padding` are independent optional seconds; their defaults are `0.8` and `0.5`, and the post-transition lead-in is `max(0, start floor - transition duration)`
   - While motion remains enabled, narrated export without an explicit `--animation-config` selects `<project>/narration_animations.json` when either animation sidecar exists; canonical-only cue synchronization therefore blocks until the derived file exists. Narration-independent custom motion explicitly passes `--animation-config animations.json`, even when a derived sidecar also exists
-  - Without animation sidecars, Generate narration may inherit base-report deck motion via `--inherit-motion-from`; direct low-level omission keeps legacy `fade` / no object builds. Use `--no-animations` to remove object/page motion while retaining narration timings
   - Non-narrated export keeps the existing optional `<project>/animations.json` default
   - Narration timing merges into the existing slide timing DOM. While motion remains enabled, object-animation rows and the resolved page transition are preserved rather than regenerated; inherited `-a none` suppresses object rows, and `--no-animations` removes both motion layers
   - `--narration-audio-dir audio` is the lower-level embedding path: it embeds whatever files match and allows partial audio coverage
-  - Either narration flag names the default-flow export `<project_name>_<timestamp>_narrated.pptx`, telling it apart from silent exports in the same directory
-  - This is intended for direct PowerPoint video export with "Use recorded timings and narrations"
-  - Long-audio import and automatic long-audio splitting are not supported; keep narration assets page-level
 - Page transitions are controlled by `-t/--transition`; per-element object animations are controlled by `-a/--animation`
-- Per-element animation applies to ordinary top-level SVG `<g id="...">` groups; each group is a PowerPoint shape-target anchor, not necessarily one Animation Pane row. Use one group per logical Slide-local content unit rather than targeting a group count
+- Each ordinary top-level SVG `<g id="...">` group is a PowerPoint shape-target anchor. Use one group per logical Slide-local content unit rather than targeting a group count
 - Start mode is set globally by `--animation-trigger`, mirroring PowerPoint's Start dropdown: `after-previous` (default, cascade with `--animation-stagger` spacing on slide entry), `on-click` (presenter-paced), or `with-previous` (all together on slide entry). A sidecar row may override it with `trigger`; the slide value is only the inherited Start mode
-- `on-click` is for live presentations only; recorded narration rejects every row that resolves to it, including `trigger_shape` and preserved native click/interactive timing that could not be reconstructed into the sidecar. Diagnostics identify the output stem, source slide, and shape ids; the tool does not generate object-level click timings
-- Flat SVG roots without top-level groups fall back to at most 8 visible primitives; beyond that, animation is skipped on the slide
+- `on-click` timing is for live presentations only: the tool does not generate object-level click timings. Diagnostics identify the output stem, source slide, and shape ids
+- Flat SVG roots without top-level groups fall back to at most 8 visible primitives; beyond that, the slide is left ungrouped
 - Per-element animation defaults to `none`. `auto` is opt-in (`-a auto`) and maps
   generic entrance effects from the group's SVG id: information-dense elements
   get a stable entrance (chart→wipe, card-/step-/pillar-→fly,
@@ -983,10 +972,10 @@ Behavior:
   supplies the default gap between successive non-trigger-shape rows in
   `after-previous` mode (default `0.5`)
 - Optional object-level overrides live in `<project>/animations.json` or a path passed via `--animation-config`; build and validate them with `animation_config.py scaffold|validate`. The scaffold is neutral (`defaults.animation.effect: none`, untouched groups `{}`). A populated group uses either the fully compatible legacy single-effect fields or a non-empty `effects[]`, never both; every `effects[]` row names an explicit effect
-- One `effects[]` row becomes one Animation Pane record on the group's shape target. Each row may independently set sequence `order`, `delay`, `duration`, `trigger`, and `trigger_shape`; ordinary rows use page-wide order, while `trigger_shape` rows keep relative order in separate interactive sequences and imply `on-click`
+- One `effects[]` row becomes one record on the group's shape target. Each row may independently set sequence `order`, `delay`, `duration`, `trigger`, and `trigger_shape`; ordinary rows use page-wide order, while `trigger_shape` rows keep relative order in separate interactive sequences and imply `on-click`
 - Animation configuration is strict: unknown effects/modes/triggers, invalid finite/range/order values, missing slides/groups, and structural-layer targets fail export without fallback or silent omission
 - Generated export reads every slide back and verifies animation row order, including repeated rows on one shape target, trigger, shape target, resolved effect tuple and native behavior signature, duration, and offset. Package validation then checks timing placement, `p:cTn` ids, and `p:spTgt` references before publication
-- The animation writer does not emit paragraph/text-range builds (`p:bldP`), custom freeform motion paths, native Chart/SmartArt build sequences, or media playback commands for grouped SVG content. Direct-PPTX routes preserve source object animation and perform structural package validation only; they do not author effects
+- The writer does not emit paragraph/text-range builds (`p:bldP`), custom freeform motion paths, native Chart/SmartArt build sequences, or media playback commands for grouped SVG content. Direct-PPTX routes preserve source object behavior and perform structural package validation only; they do not author effects
 
 Dependency:
 

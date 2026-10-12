@@ -28,7 +28,7 @@ description: Quick-only Generate profile for reconstructing one or more source i
 
 **Hard rule — mutually exclusive fidelity profiles**: Image to PPTX and Beautify never compose — Beautify preserves semantic PPTX content while redesigning layout; this profile preserves a rendered surface while rebuilding object and image-layer boundaries.
 
-**Hard rule — flat final deck**: output stays `pptx_structure.mode: flat`. Pixels do not prove Master/Layout identity, placeholders, theme ancestry, hidden objects, notes, animations, chart data sources, or authoring history; never infer them.
+**Hard rule — flat final deck**: output stays `pptx_structure.mode: flat`. Pixels do not prove Master/Layout identity, placeholders, theme ancestry, hidden objects, notes, chart data sources, or authoring history; never infer them.
 
 ---
 
@@ -75,7 +75,7 @@ Classify visible regions by what they are, not by how easy they are to crop.
 
 Decide per page the smallest stack that makes the intended objects independent; never split merely to maximize layer count. Typical bottom-to-top order: `base` (clean full-canvas background with every planned removable subject, foreground object, and editable text removed, hidden pixels reconstructed where necessary) → `midground-*` → `subject-*` (independently movable cutouts) → `foreground-*` (effects, foliage, particles, framing that cross the subject or native objects) → `source-graphic-*` (exact or reconstructed marks plus exact/native data graphics at their z-order) → `native-text-*` and exact native shapes.
 
-**Registered-group rule**: every base/midground/subject/foreground layer in a group stays registered to the same canonical page or scene bbox; source-derived members keep recorded geometry, every Codex-derived member starts from that canonical source with canvas, position, scale, pose, lighting, and style preserved; never trim registered full-canvas layers. When scene layers need reference editing, use [`image-generator.md`](../../references/image-generator.md) §4.4's registered reconstruction group: one clean base with all separately realized subjects, graphics, and text removed and only the exposed background reconstructed; at least one independent subject/foreground output from the same canonical source whenever the page holds scene content that must be independently editable (base plus that output are the minimum two layers); every additional layer derived independently from the canonical source, never from the base or another generated layer; original pose, scale, and coordinates on RGBA transparency; further layers only for genuine independent movement, overlap, or animation.
+**Registered-group rule**: every base/midground/subject/foreground layer in a group stays registered to the same canonical page or scene bbox; source-derived members keep recorded geometry, every Codex-derived member starts from that canonical source with canvas, position, scale, pose, lighting, and style preserved; never trim registered full-canvas layers. When scene layers need reference editing, use [`image-generator.md`](../../references/image-generator.md) §4.4's registered reconstruction group: one clean base with all separately realized subjects, graphics, and text removed and only the exposed background reconstructed; at least one independent subject/foreground output from the same canonical source whenever the page holds scene content that must be independently editable (base plus that output are the minimum two layers); every additional layer derived independently from the canonical source, never from the base or another generated layer; original pose, scale, and coordinates on RGBA transparency; further layers only for genuine independent movement or overlap.
 
 **Batch non-overlapping objects**: when several subjects, props, effects, or graphic reconstructions have pairwise-disjoint padded bboxes (including shadows and effects) and share one isolation treatment, ask Codex for one `layer-plate` holding all of them with clear separation — either a full-canvas registered plate followed by one nested-SVG picture crop per recorded bbox, or a regular isolated-cell sheet sliced with `slice_images.py --grid ... --names ... --trim --alpha` and placed at the recorded bboxes. Without transparency, use one exact flat key color for the whole plate (`slice_images.py` as a `1x1` sheet with `--alpha` and without `--trim` for a registered plate) and remove it once; never a separate green-background image per object. Overlapping objects or different z-orders use separate plates.
 
@@ -97,7 +97,7 @@ When any `image_layer` or low-resolution `source_graphic` needs reference editin
 
 ## 7. SVG Authoring and Release Gate
 
-Follow Quick after normalization and preparation: hand-author pages serially from the base, registered layers, source graphics, native shapes, and native text, giving independently movable layers stable direct-root group ids for later animation.
+Follow Quick after normalization and preparation: hand-author pages serially from the base, registered layers, source graphics, native shapes, and native text, giving independently movable layers stable direct-root group ids.
 
 **Forbidden — screenshot skin**: never use the complete source page as the sole full-slide picture with token editable text above it; the source page is comparison evidence, not a hidden backing layer.
 
@@ -110,7 +110,7 @@ Follow Quick after normalization and preparation: hand-author pages serially fro
 | Layer registration | Generated layers share canvas/placement with no jumps, seams, halos, or crop drift |
 | Visible fidelity | Subject identity, pose, crop, lighting, color relationships, and z-order preserved |
 | Honest reconstruction | AI-recovered hidden pixels identified as reconstruction |
-| Independent objects | Every layer requested for editing or animation is a distinct picture object (shared plates allowed for disjoint members) |
+| Independent objects | Every layer requested for editing is a distinct picture object (shared plates allowed for disjoint members) |
 | Reference exclusion | Canonical full-page source images are not referenced or packaged as slide media |
 | Package quality | Quick's lockless final checker and PPTX postflight pass |
 

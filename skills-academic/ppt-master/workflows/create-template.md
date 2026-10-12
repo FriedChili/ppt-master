@@ -261,7 +261,7 @@ Never encode package repair in SVGs. Do not package `native_structure.json` or `
 | Mirror detail | Rule |
 |---|---|
 | Filenames | `<NNN>_<page_type>.svg` (3-digit source order; type from `pageTypeCandidates`, else `content`) |
-| Assets | Route through the common contract — media from `<import_workspace>/images/` copied once into `images/` with `../images/<name>` references and semantic directories for audio/video/payloads, keeping stable source asset identity |
+| Assets | Route through the common contract — media from `<import_workspace>/images/` copied once into `images/` with `../images/<name>` references and semantic directories for payloads, keeping stable source asset identity |
 | Decoration vectors | Copy once to `icons/imported/` as `<use data-icon="imported/<name>" data-pptx-asset-role="decoration"/>` (never `templates/icons/`, never inlined by hand) |
 | Spec | Write `<design_spec_path>` per template-designer §1; for mirror, finish the tool-generated skeleton. `replication_mode: mirror` records creation, never a 1:1 downstream sequence |
 

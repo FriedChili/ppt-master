@@ -23,7 +23,7 @@ Canvas formats and their typography scale start: [`canvas-formats.md`](canvas-fo
 | Stage | Items | Role |
 |---|---|---|
 | **1 — communication contract + template choice** | `primary_language` · `c` audience · open-ended communication intent · audience outcome · core message / delivery context (primary + optional secondary) / artifact afterlife · `content_divergence` (all prose may be blank) · `a` canvas · explicit `free_design` or `templates` choice and selected roots | confirmed together; candidates never influence the communication recommendation |
-| **2 — final solution + production** (authored once from the user's *actual* Stage 1) | reading mode (`delivery_purpose`, PPT only) · `d` mode + visual style · `b` page count · `e` color · `f` icon · `g` typography · `h` image source + generated-image rendering · conditional template application · conditional AI-image acquisition path · generation mode · refine-spec toggle · `design_spec_depth` · proactive speaker notes / custom animations / narration audio | one coherent plan from the confirmed contract; exporter reuse/adherence stays internal |
+| **2 — final solution + production** (authored once from the user's *actual* Stage 1) | reading mode (`delivery_purpose`, PPT only) · `d` mode + visual style · `b` page count · `e` color · `f` icon · `g` typography · `h` image source + generated-image rendering · conditional template application · conditional AI-image acquisition path · generation mode · refine-spec toggle · `design_spec_depth` · proactive speaker notes | one coherent plan from the confirmed contract; exporter reuse/adherence stays internal |
 
 **Stage 1 fields**: record composite intent in prose, never one catalog label. Editable prose fields are drafts: confirmation keeps the current text and blanks, and a cleared field is never repopulated.
 
@@ -31,7 +31,7 @@ Canvas formats and their typography scale start: [`canvas-formats.md`](canvas-fo
 
 **Selected direction**: `design_directions.selected` is the actual zero-based index (`0`, `1`, or `2`) of the strongest fit, chosen after all three §d directions are complete. With an installed template it is the viable direction that best expresses its resolved context under [`strategist-template.md`](./strategist-template.md). Array order never determines preference.
 
-**Production defaults**: proactive defaults are notes `true`. An earlier explicit instruction overrides the matching recommendation; narration requires notes. Recommend `design_spec_depth: brief` (the same author draws the pages); recommend `complete` only for `split`, `refine_spec: true`, a preservation profile, or a requested hand-off document. Author each stage once; launch/wait mechanics are [`generate-pptx.md`](../workflows/generate-pptx.md) Step 4.
+**Production defaults**: the proactive default is notes `true`. An earlier explicit instruction overrides the matching recommendation. Recommend `design_spec_depth: brief` (the same author draws the pages); recommend `complete` only for `split`, `refine_spec: true`, a preservation profile, or a requested hand-off document. Author each stage once; launch/wait mechanics are [`generate-pptx.md`](../workflows/generate-pptx.md) Step 4.
 
 **Hard rule — Stage-1 goal boundary**: what a template may inform in Stage 1 is fixed by [`generate-pptx.md`](../workflows/generate-pptx.md) Step 4; template controls on the same surface are confirmation state, never a reason to reshape the contract. Load [`strategist-template.md`](./strategist-template.md) only after Stage 1 is confirmed and the selection installed.
 
@@ -230,7 +230,7 @@ Outline and, when enabled, notes strategy follow the locked mode ([`modes/_index
 
 ### 6.2 Planning Artifact Content
 
-Generate Step 4 owns the sequence: `design_spec.md` is the complete human-readable decision, `spec_lock.md` its context-selected execution subset; `result.json` is consumed once and never reopened; refinement edits the same Design Spec, and the files are never parallel interpretations. A later explicit notes/animation/narration instruction updates only the affected §I outcome and provenance, after Generate's notes/audio dependency gate, without reopening Confirm UI or touching the lock. Animation provenance is final Stage 2 `false`, explicit objects-off, or explicit all-motion-off; only the last includes transitions.
+Generate Step 4 owns the sequence: `design_spec.md` is the complete human-readable decision, `spec_lock.md` its context-selected execution subset; `result.json` is consumed once and never reopened; refinement edits the same Design Spec, and the files are never parallel interpretations. A later explicit notes instruction updates only the affected §I outcome and provenance, after Generate's notes dependency gate, without reopening Confirm UI or touching the lock.
 
 1. With the retained final confirmation, read `${SKILL_DIR}/templates/design_spec_reference.md`.
 2. Compose the whole Design Spec in context and create `design_spec.md` once from the schema marker through §X. §I records production mechanics — one effective outcome plus provenance for Speaker Notes (latest explicit instruction → final Stage-2 proactive value → default enabled). §IX is the complete ordered roster: title, core message, **Audience move**, **Relationships** (the page's semantic units and their source-stated relationship, or `none`, at every depth), content at the confirmed depth, optional Composition Reference, exact mathematics, capability recommendations, visualization/image references, sourced `Fact IDs`, and `Data class: scenario` for invented data. After Gate 1 and any refine approval, roster ids/count/order and semantic content are authoritative (a continuous run may repair within the confirmed range per `executor-base.md` §2.1); everything else in a block is a Reference under §1 Confirmed-value semantics unless labeled `(binding)`.
@@ -249,7 +249,7 @@ Generate Step 4 owns the sequence: `design_spec.md` is the complete human-readab
 | Natural-language template application | §I records it; layout/prototype choices realize it without dropping a requested use or exclusion |
 | AI-image path, generation mode, refine-spec toggle | §I records them as production mechanics for their owning stage |
 | Proactive speaker notes | §I records the effective outcome with provenance; §X records note requirements or `Generation: disabled`; none enters the lock |
-| Explicit final/literal narration script | §IX segments by scene with a supporting visible state each; §X records source and verbatim policy; Generate freezes `notes/total.md` after Gate 2 |
+| Explicit final/literal notes script | §IX segments by scene with a supporting visible state each; §X records source and verbatim policy; Generate freezes `notes/total.md` after Gate 2 |
 
 ⛔ **GATE 1 — active-decision fidelity**: no lock until the Design Spec passes that comparison and any refinement is approved. Missing or substituted values, unapplied revisions, or silently changed semantic types block despite schema validity; bounded Reference adaptation and unused Permission remain valid.
 

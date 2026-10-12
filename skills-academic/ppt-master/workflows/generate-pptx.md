@@ -15,7 +15,7 @@ description: Default Generate PPTX authority for source intake, planning, SVG au
 - Page authoring stays with the current main agent ([`executor-base.md`](../references/executor-base.md) §3); the checker cadence is Step 6's.
 - Gate checklists are internal: on success continue with at most one compact status line; on failure report only the blocking items and required recovery.
 
-**SVG page-design boundary**: `svg_output/` is the complete page-design source — every visible element of the exported slide is in the page SVG or referenced by it; templates, `design_spec.md`, and `spec_lock.md` never supply content at export ([`shared-standards-core.md`](../references/shared-standards-core.md) §4.0). Export compiles only the selected route's explicit structure contract (`flat` Slide-local; `structured` Master/Layout/Slide parts) and never infers structure. `svg_final/` is an optional preview release export never reads. Notes, animations, narration, and Edit Native PPTX stay outside this closure.
+**SVG page-design boundary**: `svg_output/` is the complete page-design source — every visible element of the exported slide is in the page SVG or referenced by it; templates, `design_spec.md`, and `spec_lock.md` never supply content at export ([`shared-standards-core.md`](../references/shared-standards-core.md) §4.0). Export compiles only the selected route's explicit structure contract (`flat` Slide-local; `structured` Master/Layout/Slide parts) and never infers structure. `svg_final/` is an optional preview release export never reads. Notes and Edit Native PPTX stay outside this closure.
 
 ## Cross-Cutting Authorities
 
@@ -172,7 +172,7 @@ If the user selects chat after launch, apply `confirm-surface.md`'s in-run switc
 **Formulas and hyperlinks** are §IX content, not confirmation fields or resources: Strategist records the delimiter-free LaTeX body or the exact URI / 1-based slide target, and Executor chooses the realization (text, inline, or block math; inline or whole-object link carrier) under [`native-formula.md`](../references/native-formula.md) / [`native-hyperlinks.md`](../references/native-hyperlinks.md). No manifest or lock entry exists for either.
 
 
-**Output**: `design_spec.md`, `spec_lock.md`, and `notes/total.md` only on the narration branch.
+**Output**: `design_spec.md`, `spec_lock.md`, and `notes/total.md`.
 
 **✅ Internal checkpoint** — facts read; confirmation consumed once; production fields, mathematics, per-page `Relationships`, and §VIII resource jobs resolved; Gate 1 passed; refinement approved when enabled; lock derived; split handling resolved; every §IX `Audience move` present. Do not print; auto-proceed.
 
@@ -302,7 +302,7 @@ python3 ${SKILL_DIR}/scripts/svg_quality_checker.py <project_path> \
 
 **Mandatory — final carrier-receipt review**: run the review in [`executor-base.md`](../references/executor-base.md) §3 Checkpoints against the retained §IX page jobs, resource roles, and geometry signatures; a repair reruns the final checker once.
 
-**Logic Construction Phase (conditional)**: when the effective Speaker Notes outcome in §I is enabled, load [`executor-notes.md`](../references/executor-notes.md): validate a frozen `notes/total.md` against every information-bearing final SVG group (repair the page or the plan, never the script), or otherwise ground each page's narration in its final SVG and write `notes/total.md`. When disabled, load nothing and create no notes.
+**Logic Construction Phase (conditional)**: when the effective Speaker Notes outcome in §I is enabled, load [`executor-notes.md`](../references/executor-notes.md): validate a frozen `notes/total.md` against every information-bearing final SVG group (repair the page or the plan, never the script), or otherwise ground each page's notes in its final SVG and write `notes/total.md`. When disabled, load nothing and create no notes.
 
 **✅ Internal checkpoint** — preview launched in time, early gate after P05 (skipped on a roster of six or fewer pages), uninterrupted remaining pages, consolidated repair, exact §IX coverage, one-frame prose, final checker 0 errors, `notes/total.md` only when enabled. Do not print. Then run the applicable conditional gates and proceed to Step 7.
 
