@@ -215,7 +215,7 @@ python3 ${SKILL_DIR}/scripts/total_md_split.py <project_path>
 
 **Success criterion**: per-slide files under `notes/` cover every published slide; the command exits non-zero on a missing slide or failed write — repair and rerun, and never let leftover files satisfy it.
 
-**Motion and sound**: deck-wide-only motion uses exporter flags. Quick video delivery completes the Custom Animations stage and validates `animations.json` before export unless the user asked for static or transition-only playback; direct narrated video derives cue timing only when narration governs groups. `generate-audio` completes narrated MP4 delivery through the verified native mix or an explicit slideshow capture, never both.
+**Motion**: deck-wide-only motion uses exporter flags.
 
 ```bash
 python3 ${SKILL_DIR}/scripts/svg_to_pptx.py <project_path> --quick-generate --with-notes   # Speaker Notes enabled
@@ -226,7 +226,7 @@ python3 ${SKILL_DIR}/scripts/svg_to_pptx.py <project_path> --quick-generate --no
 
 **On failure**: repair the owning SVG, resource, or capability input, rerun the checker, and export again — never create a Design Spec or lock.
 
-**Revision after delivery**: a Quick project that comes back with a change has no spec or lock to update — edit the owning SVG (and every page repeating the line), `notes/total.md`, and `animations.json` directly; a page inserted, dropped, or moved renumbers files, footers, contents-page numbers, `notes/total.md` headings, sidecar keys, same-deck hyperlink targets, and each Morph `from` first; a deck-wide colour or family is substituted by hand across `svg_output/` (`update_spec.py` reads a lock); a generated image that painted the old accent does not follow, and regenerating it redraws the composition, so report it instead of regenerating unprompted. Then rerun the same final check, the notes split when notes changed, `animation_config.py validate`, and the export; earlier exports stay.
+**Revision after delivery**: a Quick project that comes back with a change has no spec or lock to update — edit the owning SVG (and every page repeating the line) and `notes/total.md` directly; a page inserted, dropped, or moved renumbers files, footers, contents-page numbers, `notes/total.md` headings, sidecar keys, same-deck hyperlink targets, and each Morph `from` first; a deck-wide colour or family is substituted by hand across `svg_output/` (`update_spec.py` reads a lock); a generated image that painted the old accent does not follow, and regenerating it redraws the composition, so report it instead of regenerating unprompted. Then rerun the same final check, the notes split when notes changed, `animation_config.py validate`, and the export; earlier exports stay.
 
 ```markdown
 ## ✅ Quick Generate Complete

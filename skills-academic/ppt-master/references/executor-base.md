@@ -162,7 +162,7 @@ Repeating symmetric card grids without a page job is the failure mode these stru
 |---|---|
 | Missing state | A deck exported without both states cannot gain the motion by a flag |
 | Extra page | Adding a page is a §IX roster change and returns to Strategist |
-| Endpoint id | Fix the first endpoint's direct-root `<g id>` when that page is drawn and record the intended partner id with `workflow_log.py` (never in `notes/total.md`, which is read verbatim by TTS); the next page reuses it, so no endpoint is renamed after both pages exist (a rename reruns the gate) |
+| Endpoint id | Fix the first endpoint's direct-root `<g id>` when that page is drawn and record the intended partner id with `workflow_log.py` (never in `notes/total.md`, which is read verbatim); the next page reuses it, so no endpoint is renamed after both pages exist (a rename reruns the gate) |
 
 ---
 
