@@ -6,11 +6,9 @@ description: >
   workspaces, filling native PPTX templates, and enhancing finished PPTX files.
   Use when the user asks to create, generate, reconstruct, regenerate, beautify,
   redesign, template, fill, or enhance a presentation, PPT, PPTX, slide deck, or
-  courseware — including adding narration or animation to one — requests a
-  presentation-authored narrated/self-running video, or mentions ppt-master.
+  courseware.
 metadata:
   version: "6.7.0"
-  copyright: "Copyright (c) 2025-2026 Hugo He"
   license: "MIT"
 ---
 

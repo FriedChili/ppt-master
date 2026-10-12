@@ -53,21 +53,6 @@ Keep all three steps even though they have different consumers: Step 7.2 creates
 
 PowerPoint's manual Convert-to-Shape behavior is unsupported. `svg_final/` is supported only as a visual preview / SVG picture. Use the native PPTX generated from `svg_output/` when editable DrawingML shapes are required.
 
-## Recorded Narration Missing
-
-1. Generate audio after `total_md_split.py`, so filenames in `audio/` can match split `notes/*.md` files.
-2. Export with the project-relative audio directory:
-
-```bash
-python3 scripts/svg_to_pptx.py <project_path> --recorded-narration audio
-```
-
-`--recorded-narration` prepares PowerPoint recorded timings and narrations. If it fails, check:
-- every slide has a matching `m4a`, `mp3`, or `wav` file in `audio/`
-- `ffprobe` is installed and can read each audio duration
-- the deck is not using `--animation-trigger on-click`
-
-Use `--narration-audio-dir audio` only when you intentionally want lower-level, partial audio embedding instead of PowerPoint recorded timings.
 
 ## Dependency Checklist
 

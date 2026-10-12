@@ -4,7 +4,7 @@
 > `svg_final/` preview and in-memory native PPTX conversion. Check both
 > consumers before changing or removing a step.
 
-These tools cover post-processing, SVG validation, speaker notes, recorded narration, and PPTX export.
+These tools cover post-processing, SVG validation, speaker notes, and PPTX export.
 
 The normal release contract has one PPTX path: `svg_output/` → the project
 SVG-to-DrawingML converter → native PPTX. An explicit dangerous compatibility

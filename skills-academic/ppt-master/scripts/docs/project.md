@@ -260,15 +260,6 @@ python3 scripts/batch_validate.py projects --export
 
 Use this for multi-project health checks before release or cleanup.
 
-## `generate_examples_index.py`
-
-Rebuild the examples `README.md` index. The example projects live in the separate
-[ppt-master-examples](https://github.com/hugohe3/ppt-master-examples) repository.
-
-```bash
-python3 scripts/generate_examples_index.py <path-to>/ppt-master-examples/examples
-```
-
 ## `pptx_template_import.py`
 
 Unified PPTX preparation entry point for `/create-template`.
