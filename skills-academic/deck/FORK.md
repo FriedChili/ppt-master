@@ -20,7 +20,7 @@ git clean -fd skills-academic/deck                    # 清掉多余文件（先
 
 - 基线提交：`90e4370 baseline: deck 6.7.0 as extracted (pristine, before academic slimming)`
 - `skills-academic/deck` 在本分支的所有提交里始终未被触碰。
-- 另有 `_pristine/skills/` 一份纯拷贝作为第二重保险（可删）。
+- 另有 `已删除的旧副本/skills/` 一份纯拷贝作为第二重保险（可删）。
 
 ---
 
@@ -138,7 +138,7 @@ git clean -fd skills-academic/deck                    # 清掉多余文件（先
 ### 7.1 `prompt_audit` — **exit 0**
 
 `prompt_audit.py` 的路径约定是 `<root>/skills-academic/deck/...`，所以需要造一个安装后布局的根。
-用 `_audit-staging/`（**真实拷贝，不能用 junction** —— junction 会被 `resolve()` 穿透，破坏相对路径计算）。
+临时建一个即可，用完删掉（**必须是真实拷贝，不能用 junction** —— junction 会被 `resolve()` 穿透，破坏相对路径计算）。
 
 ```powershell
 python skills-academic/deck/scripts/prompt_audit.py --root <staging> --skip-near-duplicates
@@ -221,8 +221,7 @@ N8 已装资产漂移使交接失效。修复后 batch1 22 tests OK、batch3 15 
 
 ### 7.3 导出链端到端（安装后布局）
 
-在 `_audit-staging`（`skills-academic/deck` + `projects/` 的真实安装布局）下，用已有的 18 页
-Default 项目跑完整 checker + exporter 链：
+在一次临时的安装布局根（`skills-academic/deck` + `projects/` 的真实拷贝）下，用一个 Default 项目跑完整 checker + exporter 链：
 
 ```
 svg_quality_checker.py --canonical-authoring --stage final   exit=0
@@ -557,10 +556,9 @@ template_use_desc: "选择一个或多个 Brand、Style、Layout、Deck 或指�
 | `node --check app.js` | 语法 OK |
 | 三个索引重建 | layout 4 / deck 2，`[OK]` |
 
-**流程教训**：上一轮把 `app.js` / `style.css` 的改动写进了 `_audit-staging`，
-随后 `robocopy /MIR` 从 fork 覆盖过去，改动被自己抹掉。**约定：改 fork，再同步。**
-本轮及之后所有改动均在 `skills-academic/` 下完成后再同步；同步后已复核 fork 与 staging
-逐字节一致（0 差异）。
+**流程教训**：早期存在两份技能副本（`skills/` 与 `skills-academic/`），改动写错一侧就会被
+同步覆盖掉。现在已收敛为**单副本**：`skills-academic/deck/` 是唯一工作副本，`skills/` 与
+已删除的旧副本 均已删除，上游原版只存在于 `pristine-6.7.0` 标签里。**约定：只改这一份。**
 
 ---
 
