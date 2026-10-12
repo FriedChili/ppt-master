@@ -72,7 +72,7 @@ native_structure_mode: structured
 
 | 范围 | 工作区根目录 | 核心结构 | 发现行为 |
 |---|---|---|---|
-| `library`（默认） | `skills-academic/ppt-master/templates/<kind>/<id>/` | 必需 `templates/`；可选 `images/`、`icons/` 与按需 `exports/` | 写入对应全局索引 |
+| `library`（默认） | `skills-academic/deck/templates/<kind>/<id>/` | 必需 `templates/`；可选 `images/`、`icons/` 与按需 `exports/` | 写入对应全局索引 |
 | `project` | `projects/<name>/` | 完全相同的路由合同 | 不更新全局索引 |
 
 两种根目录都保持相同的核心形态：
@@ -269,7 +269,7 @@ Template Overview 写明可重复演示类型、目标受众与结果、交付/�
 
 ## 三、四套 index 文件
 
-这四份 index 都与各自物理目录一一对应，字段只保留 Strategist 选择可复用 workspace 所需的信息。Visualization 采用另一条边界：规划读取客观的 [`chart-vocabulary.md`](../../skills-academic/ppt-master/templates/charts/chart-vocabulary.md) 与 [`table-vocabulary.md`](../../skills-academic/ppt-master/templates/tables/table-vocabulary.md)，[`charts_index.json`](../../skills-academic/ppt-master/templates/charts/charts_index.json) 和 [`tables_index.json`](../../skills-academic/ppt-master/templates/tables/tables_index.json) 只保留为机器 registry。定性 Structure 没有 index，因为 Executor 会根据当前页关系现场生成。
+这四份 index 都与各自物理目录一一对应，字段只保留 Strategist 选择可复用 workspace 所需的信息。Visualization 采用另一条边界：规划读取客观的 [`chart-vocabulary.md`](../../skills-academic/deck/templates/charts/chart-vocabulary.md) 与 [`table-vocabulary.md`](../../skills-academic/deck/templates/tables/table-vocabulary.md)，[`charts_index.json`](../../skills-academic/deck/templates/charts/charts_index.json) 和 [`tables_index.json`](../../skills-academic/deck/templates/tables/tables_index.json) 只保留为机器 registry。定性 Structure 没有 index，因为 Executor 会根据当前页关系现场生成。
 
 四套索引只覆盖全局库范围。项目根工作区有意不进入任何索引，仍可通过显式 `projects/<name>/` 路径使用。因为两种范围采用相同工作区形态，完整核心工作区可在两者之间移动或复制，不需要重写素材路径；只有全局库注册不同。
 
@@ -352,7 +352,7 @@ Step 3 确认已注册和/或指定工作区根目录后，会解析每个 root 
 正文原样复制，只在 H1 下补一行来源标注：
 
 ```markdown
-> **Installed from**: `skills-academic/ppt-master/templates/brands/mckinsey/` (library)
+> **Installed from**: `skills-academic/deck/templates/brands/mckinsey/` (library)
 ```
 
 不存在合并后的项目 spec，也没有组合出来的能力标签。裸的
@@ -413,7 +413,7 @@ Logo / Voice / Icon Style 五段从 brand 拿，**不做字段级混搭**（即�
 
 ## 五、与 Generate PPTX Stage 1 的关系
 
-Default Generate 的 [Step 3](../../skills-academic/ppt-master/workflows/generate-pptx.md#step-3-template-candidate-preparation)
+Default Generate 的 [Step 3](../../skills-academic/deck/workflows/generate-pptx.md#step-3-template-candidate-preparation)
 只准备候选输入。Stage 1 把沟通契约与可切换的自由设计/使用模板选择同屏呈现。
 普通请求默认自由设计并收起详细控件；明确要求使用模板或提供任意精确 root 时
 默认展开模板模式。只提供一个 root 时会预选，多 root 仍只作为未选候选。裸

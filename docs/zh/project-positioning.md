@@ -8,7 +8,7 @@
 
 本文是[英文规范源](../project-positioning.md)的同步中文译本，不形成第二套产品政策；定位变化必须在同一次修改中同步两种语言，如有歧义以英文规范源为准。
 
-当前具体如何选择路线，仍以 [`workflows/routing.md`](../../skills-academic/ppt-master/workflows/routing.md) 为准。本文回答的是更根本的问题：一个方向究竟是否应该属于 deck。
+当前具体如何选择路线，仍以 [`workflows/routing.md`](../../skills-academic/deck/workflows/routing.md) 为准。本文回答的是更根本的问题：一个方向究竟是否应该属于 deck。
 
 ## 一、项目定位
 
@@ -171,5 +171,5 @@ deck 不以成为以下产品为目标：
 | 本文 | 长期产品定位、产品承诺、能力边界和准入判据 |
 | [`why-deck.md`](./why-deck.md) | 面向用户的差异化和选择理由 |
 | [`technical-design.md`](./technical-design.md) | 当前技术架构和实现不变量 |
-| [`workflows/routing.md`](../../skills-academic/ppt-master/workflows/routing.md) | 当前可执行路线选择 |
+| [`workflows/routing.md`](../../skills-academic/deck/workflows/routing.md) | 当前可执行路线选择 |
 | [`roadmap.md`](./roadmap.md) | 已交付能力、当前优先级和明确推迟的方向 |

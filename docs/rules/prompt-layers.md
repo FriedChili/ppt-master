@@ -1,6 +1,6 @@
 # Prompt Content Layers
 
-> Which content belongs in a prompt file at all, and where each kind lives. Applies to every file the runtime loads: `skills-academic/ppt-master/references/`, `skills-academic/ppt-master/workflows/`, `skills-academic/ppt-master/templates/*.md`, `SKILL.md`, and `AGENTS.md`. [`prompt-style.md`](prompt-style.md) governs how those files are written; this rule governs what goes into them.
+> Which content belongs in a prompt file at all, and where each kind lives. Applies to every file the runtime loads: `skills-academic/deck/references/`, `skills-academic/deck/workflows/`, `skills-academic/deck/templates/*.md`, `SKILL.md`, and `AGENTS.md`. [`prompt-style.md`](prompt-style.md) governs how those files are written; this rule governs what goes into them.
 
 The prompt files are read by a model before it plans a deck and hand-writes SVG slides. Everything in them competes for the model's attention with the design decisions it is about to make. A paragraph earns its place only by being craft, minimal contract, or the owning statement of a procedure; the fourth kind never enters a prompt file.
 
@@ -13,7 +13,7 @@ The prompt files are read by a model before it plans a deck and hand-writes SVG 
 | **Craft** — design judgment | Changing it changes what the page looks like or says | The prompt file of the phase that makes the decision, once | The Visual Job Router, the elevation table and one-light-source default, overlay recipes, the contour-before-encoding gate, the communication-contract table, the cover and closing rules |
 | **Contract** — minimal form | The one canonical form the model must write, plus a boundary the tools cannot enforce | Beside the craft that uses it, as one example and one line | One XML example per effect; "a gradient stroke needs a path with both width and height"; "never put `filter` and `clip-path` on the same `<image>`" |
 | **Procedure** — what to run, in what order, with which gate | It is a step, command, gate, or checkpoint of one route or stage, and the model executes it rather than judges it | The route authority or stage runbook that owns that step, once; every other file points to the step | `project_manager.py init` in Generate Step 2, the early/final gate commands and their cadence, the confirm-server launch/wait/shutdown sequence, `[TEMPLATE_BRIEF_CONFIRMED]` |
-| **Tool documentation** — converter and importer behavior | The checker or exporter already enforces it, or it describes import/normalization/`--strict` behavior, or it restates a procedure another file already owns | `skills-academic/ppt-master/scripts/docs/`, never a prompt file | Accepted-but-warned spellings, DrawingML numeric ranges, crop-transport quantization, closed transform/path grammars, server lifecycle, sidecar schemas |
+| **Tool documentation** — converter and importer behavior | The checker or exporter already enforces it, or it describes import/normalization/`--strict` behavior, or it restates a procedure another file already owns | `skills-academic/deck/scripts/docs/`, never a prompt file | Accepted-but-warned spellings, DrawingML numeric ranges, crop-transport quantization, closed transform/path grammars, server lifecycle, sidecar schemas |
 
 **Hard rule — enforced grammar is not prose**: a rule that `svg_quality_checker.py` or `svg_to_pptx` preflight already rejects needs nothing in the prompt beyond its canonical form. The failing check teaches the boundary at the moment it matters, with the exact message; a paragraph read before authoring cannot compete with that.
 
@@ -25,7 +25,7 @@ The prompt files are read by a model before it plans a deck and hand-writes SVG 
 
 | Location | Holds | Loaded by |
 |---|---|---|
-| `references/<role>*.md` | Craft and contract, one owner per rule, organized by the phase that decides it (Plan: Strategist / Quick §2; Do·Check·Act: Executor / Quick §3–4 — see [`SKILL.md`](../../skills-academic/ppt-master/SKILL.md) Phase Frame) | The runtime load sets in `scripts/prompt_audit_manifest.json` |
+| `references/<role>*.md` | Craft and contract, one owner per rule, organized by the phase that decides it (Plan: Strategist / Quick §2; Do·Check·Act: Executor / Quick §3–4 — see [`SKILL.md`](../../skills-academic/deck/SKILL.md) Phase Frame) | The runtime load sets in `scripts/prompt_audit_manifest.json` |
 | `workflows/**.md` | Procedure — the route's steps, commands, gates, and checkpoints — plus the craft that only that route decides; the owner of each cross-file rule is recorded in [`rule-owners.md`](rule-owners.md) | The runtime load sets |
 | `scripts/docs/<topic>.md` | Tool documentation. A contract reference that mirrors a prompt file keeps that file's section numbers (`svg-contract.md` §1.1–§2.2 mirror `shared-standards-core.md`, Part II §6.2–§6.10 mirror `svg-effects.md`) so a pointer resolves in either direction | Nobody during generation; `coverage.exempt` in the manifest with a reason |
 | `templates/*_reference.md`, `templates/schemas/*.json` | Artifact grammar the model authors against (`design_spec.md`, `spec_lock.md`) | Read at authoring time by the owning Step |
@@ -61,7 +61,7 @@ Run this procedure paragraph by paragraph; do not classify by section heading.
 3. **Keep the canonical form**: one example, the generated spelling, nothing about accepted alternatives.
 4. **Sweep references** after removing or renumbering a section: `grep -rn "<file>.*§<n>"` across `skills/` and `docs/`. A pointer to a section that no longer exists is a silent loss.
 5. **Update the manifest**: move the file between load sets if its role changed, add a `coverage.exempt` entry with a reason for a new tool document, lower the file budget to the new size (budgets are fixed upper bounds; 1000-token increments for large files), and refresh or remove any `schema_grammars` projection whose paragraph you edited.
-6. **Run `python3 skills-academic/ppt-master/scripts/prompt_audit.py`** and record the per-file and per-load-set numbers in the commit message.
+6. **Run `python3 skills-academic/deck/scripts/prompt_audit.py`** and record the per-file and per-load-set numbers in the commit message.
 7. **Review for strength and reach** ([`prompt-style.md`](prompt-style.md) §13): a `Hard rule` that vanished from both the prompt and the tool document, a positive capability statement that no loaded file carries any more, and a Quick-only gap (Quick loads no Strategist module) are the three regressions this kind of edit produces.
 
 ---

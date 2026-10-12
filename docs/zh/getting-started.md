@@ -20,7 +20,7 @@
 
 | 目录 | 它是什么 | 怎样产生 |
 |---|---|---|
-| **Skill 安装目录** | 包含 `SKILL.md`、`requirements.txt`、工作流与脚本的 deck 包 | 完整仓库 clone 或仓库 ZIP 中是 `skills-academic/ppt-master/`；marketplace/plugin 安装或 skill-only release ZIP 则使用自己的安装或解压位置 |
+| **Skill 安装目录** | 包含 `SKILL.md`、`requirements.txt`、工作流与脚本的 deck 包 | 完整仓库 clone 或仓库 ZIP 中是 `skills-academic/deck/`；marketplace/plugin 安装或 skill-only release ZIP 则使用自己的安装或解压位置 |
 | **工作目录** | 你在 Agent 中打开的、可持久保存且可写的目录 | 完整仓库 clone 或仓库 ZIP 通常使用仓库根目录；skill-only 安装则自行选择，不必是 skill 安装目录 |
 | **活动项目** | 一次生成任务的来源、SVG、报告、备份与导出物所在目录 | Agent 会在 `<工作目录>/projects/<生成的项目名>/` 下初始化，并报告精确路径 |
 
@@ -50,7 +50,7 @@ python3 -m pip install -r "<installed-skill-dir>/requirements.txt"
 | **用这份 deck 的原生页面壳承载新内容** | Edit Native PPTX | 导入 round-trip 工作区；未改页面逐字节恢复，`page_plan.json` 可选页、重排、重复或省略，且只编辑计划中的页面。 |
 | **先建立可复用设计系统，再生成新 deck** | Create Template → Generate PPTX | 从参考材料创建经过验证的 Brand、Style、Layout 或 Deck 工作区，再创作一份新 deck。新故事、结构与页数都可以不同于来源。 |
 
-前者：把 `.pptx` 连同素材（或一个主题）给 AI，说「套模板」——见 [Edit Native PPTX 工作流](../../skills-academic/ppt-master/workflows/edit-native-pptx.md)。本节其余部分讲 create-template。
+前者：把 `.pptx` 连同素材（或一个主题）给 AI，说「套模板」——见 [Edit Native PPTX 工作流](../../skills-academic/deck/workflows/edit-native-pptx.md)。本节其余部分讲 create-template。
 
 **想把某份现成 PowerPoint 做成可复用工作区，必须显式请求 Create Template 路线。** 原生 `.pptx` 加新材料默认属于 Edit Native PPTX，并不是 Generate 可以直接消费的模板工作区。先创建工作区：
 
@@ -66,13 +66,13 @@ Create Template 会分析参考材料，确认结果属于 Brand、Style、Layou
 
 | 位置 | 路径 | 说明 |
 |---|---|---|
-| **注册进 skill 库** | `skills-academic/ppt-master/templates/<kind>/<id>/` | 可移植工作区并执行全局注册；问“有哪些模板”时会被列出来 |
+| **注册进 skill 库** | `skills-academic/deck/templates/<kind>/<id>/` | 可移植工作区并执行全局注册；问“有哪些模板”时会被列出来 |
 | **放在 projects 下** | `projects/<name>/` | 不执行全局注册的共享限定名 spec root；四种 kind 均可共存，结构由 Layout 优先于 Deck |
 
 Default Generate 把模板选择放在 Stage 1，与沟通契约同屏确认；沟通推荐在此之前不会读取任何模板。普通请求默认自由设计；用户明确要求模板或提供任意精确 root 时，默认进入模板模式，但界面始终允许切换。未注册 root 会进入指定地址下拉框；与注册 canonical root 完全相同的路径会归回对应 kind 下拉框。只提供一个 root 时可预选它；提供多个 root 时都只作为候选、不预选。完整选择中每个 kind 最多一份；Layout 与 Deck 可以共存，结构由 Layout 提供。多 kind project root 必须原子选择。一次确认同时闭合沟通与模板选择，随后才校验、安装所选 root；最终 Stage 2 才读取安装结果。裸模板名不会被解析为工作区。Project root 可直接被其他项目复用；把其中一项迁入 library 时，需要改变 spec 文件名落点并完成注册。
 
 ```
-你：用 sources/report.pdf 做 deck,模板用 skills-academic/ppt-master/templates/layouts/presentation_core/
+你：用 sources/report.pdf 做 deck,模板用 skills-academic/deck/templates/layouts/presentation_core/
 ```
 
 完整说明 → [模板指南](./templates-guide.md)
@@ -84,7 +84,7 @@ Default Generate 把模板选择放在 Stage 1，与沟通契约同屏确认；�
 准备好上面的环境和工作目录后，整个流程就三步：
 
 1. **把 Agent 可读取的源材料交给它**——PDF、DOCX、Markdown、网址，或直接粘贴的文字都可以。放在 `<工作目录>/inputs/` 之类的目录即可，不需要先手工创建最终的 `projects/<name>/`。
-2. **在对话里告诉 AI** 要把什么做成 deck。[Default Generate Step 2](../../skills-academic/ppt-master/workflows/generate-pptx.md)或[Quick 初始化](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)会在工作目录的 `projects/` 下创建活动项目，并报告精确项目路径。存在文件型材料时才导入；直接粘贴的文字保留在对话上下文，不需要导入。Default 随后进入 Stage 1，同时确认沟通契约与自由设计/模板使用；Quick 会跳过这些确认阶段。Default 只附上一个精确工作区 root 时，页面可默认进入模板模式并预选该路径：
+2. **在对话里告诉 AI** 要把什么做成 deck。[Default Generate Step 2](../../skills-academic/deck/workflows/generate-pptx.md)或[Quick 初始化](../../skills-academic/deck/workflows/profiles/quick-generate.md)会在工作目录的 `projects/` 下创建活动项目，并报告精确项目路径。存在文件型材料时才导入；直接粘贴的文字保留在对话上下文，不需要导入。Default 随后进入 Stage 1，同时确认沟通契约与自由设计/模板使用；Quick 会跳过这些确认阶段。Default 只附上一个精确工作区 root 时，页面可默认进入模板模式并预选该路径：
    ```
    你：用 <报告文件路径.pdf> 做一份 PPT
    你：把这份内容做成 PPT：<粘贴你的文字>
@@ -119,7 +119,7 @@ Layout / slot 元数据会保留，并编译成可复用原生结构。P01 前�
 
 快速模式是一次性生成,不是缩短后的可续接流程。它不产生 Strategist 记录、`design_spec.md`、`spec_lock.md` 或替代性的页面计划;内容、设计和资源决策只存在于 AI 的当前上下文。交付前一旦丢失该上下文,就重新运行 Quick。资源 manifest、质量报告、postflight 与冷 Python 审计日志可以保留,但无法还原 AI 为什么这样设计。该 profile 省掉的是交互和持久规划,不是 PPT 能力或预期质量标准。
 
-完整说明 → [快速模式 profile](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)
+完整说明 → [快速模式 profile](../../skills-academic/deck/workflows/profiles/quick-generate.md)
 
 ---
 
@@ -132,7 +132,7 @@ Layout / slot 元数据会保留，并编译成可复用原生结构。P01 前�
 - **或写注解交给 AI** —— 点选元素写一句要改成什么，点 **Add annotation** 暂存，再点 **Apply changes** 把注解标记写入 `svg_output/`；回到对话说“应用注解”（或 “apply my annotations”），AI 会改写那块区域并重新导出 PPTX。
 
 
-完整说明 → [实时预览阶段](../../skills-academic/ppt-master/workflows/stages/live-preview.md)
+完整说明 → [实时预览阶段](../../skills-academic/deck/workflows/stages/live-preview.md)
 
 ---
 
@@ -142,7 +142,7 @@ Layout / slot 元数据会保留，并编译成可复用原生结构。P01 前�
 
 | 情况 | 先试这个 |
 |---|---|
-| AI 跑偏或漏了步骤 | 让它重新读 `skills-academic/ppt-master/SKILL.md`、`skills-academic/ppt-master/workflows/routing.md` 和已选路线的权威文档。 |
+| AI 跑偏或漏了步骤 | 让它重新读 `skills-academic/deck/SKILL.md`、`skills-academic/deck/workflows/routing.md` 和已选路线的权威文档。 |
 | 视觉质量不理想 | 换成大上下文 Claude 模型 + `gpt-image-2`——harness 决定下限,模型决定上限。 |
 | 文字溢出或元素重叠 | 重跑那一页,或用实时预览修;详见 [FAQ](./faq.md)。 |
 | 没有生图 API key | Agent host 提供原生生图时直接使用,否则零配置网络图片搜索仍可用;见 [FAQ](./faq.md)。 |

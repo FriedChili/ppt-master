@@ -19,7 +19,7 @@ deck 模板是一种可复用工作区，明确分为四类：**Brand** 只拥�
 | 起点与目标 | 路线 | 可直接复制的请求 |
 |---|---|---|
 | 手里是原始 `.pptx`，想保留现有页面壳并替换内容 | **Edit Native PPTX** | `把 projects/source/content.md 的内容套进 projects/source/template.pptx；保留原设计，只选适合的页面。` |
-| 已有可复用 Brand/Style/Layout/Deck 工作区，想生成一份全新 deck | **Generate PPTX → Stage 1 模板选择控件** | `用 sources/report.pdf 做 deck，模板用 skills-academic/ppt-master/templates/layouts/presentation_core/。` |
+| 已有可复用 Brand/Style/Layout/Deck 工作区，想生成一份全新 deck | **Generate PPTX → Stage 1 模板选择控件** | `用 sources/report.pdf 做 deck，模板用 skills-academic/deck/templates/layouts/presentation_core/。` |
 | 手里是 PPTX、SVG、品牌手册、网站、图片或混合参考，想先建立可复用系统 | **Create Template → Generate PPTX** | `用 /create-template 从 projects/brand/our_deck.pptx 创建一个可复用 Deck 工作区。` |
 
 不要把原始 `.pptx` 当作 Generate PPTX 的模板路径。想沿用它的现有页面就直接回填；想建立可复用系统，就先运行 Create Template。
@@ -37,7 +37,7 @@ Theme、Slide Master、Slide Layout 与 Placeholder 是 PowerPoint 原生对象�
 
 最容易避免误用的两条规则：
 
-1. Default Generate 的 [Step 3](../../skills-academic/ppt-master/workflows/generate-pptx.md#step-3-template-candidate-preparation) 只准备候选；Stage 1 在同一次提交中确认沟通契约与自由设计/使用模板。
+1. Default Generate 的 [Step 3](../../skills-academic/deck/workflows/generate-pptx.md#step-3-template-candidate-preparation) 只准备候选；Stage 1 在同一次提交中确认沟通契约与自由设计/使用模板。
 2. 普通请求默认自由设计；明确要求使用模板或提供任意精确工作区 root 时默认展开模板模式。只提供一个 root 时会预选，多 root 仍只作为未选候选。非自由设计选择在 Stage 1 后、模板感知的最终 Stage 2 前安装。
 
 ---
@@ -71,11 +71,11 @@ Layout 提供结构。指定地址最多选一个，并原子携带
 目录。需要默认展开模板模式并预选某个 Brand/Style/Layout/Deck 工作区时，
 直接在对话里写出精确 root（位置不重要，只要明确即可）：
 
-> "用这个模板做：`skills-academic/ppt-master/templates/layouts/presentation_core/`" ✅
+> "用这个模板做：`skills-academic/deck/templates/layouts/presentation_core/`" ✅
 > "用上次那个模板：`projects/last_deck/`" ✅
 > "做一份产品介绍，模板用 `/Users/me/Desktop/our_brand_v3/`" ✅
 
-对于当前所有模板类型，显式路径都是**模板工作区根目录**。若精确路径与索引中的注册 root 一致，页面可以把它显示为 `library`；未注册 root 则单独标为 `explicit`，并由服务端解析其中真实的限定名 spec。`explicit` 只是来源，不是第五种类型，也不提高优先级。Stage 1 会原子校验每个已选 root；确认后，每个不同 root 的 spec 和真实包自有 `images/`、`icons/` 只映射一次，并只安装有效结构 roster（有 Layout 时用 Layout，否则用 Deck），始终不复制 `exports/`。Deck/Layout root 会在应用优先级前各自校验 structured SVG 合同；Brand/Style 校验各自无 roster 的 spec。路径可以指向 `skills-academic/ppt-master/templates/<kind>/<id>/` 下的内置库工作区、`projects/<name>/` 下的项目工作区，或其他保持同样路由的工作区。当前对话刚完成 Create Template 时，可把精确的已验证工作区根目录直接交给下一次 Stage-1 选择器。
+对于当前所有模板类型，显式路径都是**模板工作区根目录**。若精确路径与索引中的注册 root 一致，页面可以把它显示为 `library`；未注册 root 则单独标为 `explicit`，并由服务端解析其中真实的限定名 spec。`explicit` 只是来源，不是第五种类型，也不提高优先级。Stage 1 会原子校验每个已选 root；确认后，每个不同 root 的 spec 和真实包自有 `images/`、`icons/` 只映射一次，并只安装有效结构 roster（有 Layout 时用 Layout，否则用 Deck），始终不复制 `exports/`。Deck/Layout root 会在应用优先级前各自校验 structured SVG 合同；Brand/Style 校验各自无 roster 的 spec。路径可以指向 `skills-academic/deck/templates/<kind>/<id>/` 下的内置库工作区、`projects/<name>/` 下的项目工作区，或其他保持同样路由的工作区。当前对话刚完成 Create Template 时，可把精确的已验证工作区根目录直接交给下一次 Stage-1 选择器。
 
 模板选择与 Stage 1 共用页面和提交动作，但仍作为独立 sidecar 决策保存。
 沟通推荐只使用当前请求、源材料事实、对话约束和项目初始化状态；候选元数据、
@@ -110,15 +110,15 @@ Layout 提供结构。指定地址最多选一个，并原子携带
 
 ```text
 用 projects/q3-report/sources/report.pdf 做一份 deck。
-模板工作区：skills-academic/ppt-master/templates/layouts/presentation_core/
+模板工作区：skills-academic/deck/templates/layouts/presentation_core/
 ```
 
 组合身份与结构：
 
 ```text
 用 projects/launch/sources/brief.md 做产品发布 deck。
-Brand 工作区：skills-academic/ppt-master/templates/brands/anthropic/
-Layout 工作区：skills-academic/ppt-master/templates/layouts/presentation_core/
+Brand 工作区：skills-academic/deck/templates/brands/anthropic/
+Layout 工作区：skills-academic/deck/templates/layouts/presentation_core/
 ```
 
 使用之前创建的项目级模板：
@@ -136,10 +136,10 @@ Layout 工作区：skills-academic/ppt-master/templates/layouts/presentation_cor
 
 模板按四种 kind 分目录，并分别由发现索引维护：
 
-- [`brands_index.json`](../../skills-academic/ppt-master/templates/brands/brands_index.json) — 仅身份工作区：color / typography / logo / voice / icon style，不含 SVG 页面 roster
-- [`styles_index.json`](../../skills-academic/ppt-master/templates/styles/styles_index.json) — 仅方向/方法工作区：沟通方法、证据/数据表达、视觉默认值与审阅关注点，不含 SVG 页面 roster
-- [`layouts_index.json`](../../skills-academic/ppt-master/templates/layouts/layouts_index.json) — 仅结构工作区：canvas / 页面语法 / page types / SVG roster，身份系统下游再选
-- [`decks_index.json`](../../skills-academic/ppt-master/templates/decks/decks_index.json) — 可重复演示应用，包含一体化身份、结构与原型事实描述
+- [`brands_index.json`](../../skills-academic/deck/templates/brands/brands_index.json) — 仅身份工作区：color / typography / logo / voice / icon style，不含 SVG 页面 roster
+- [`styles_index.json`](../../skills-academic/deck/templates/styles/styles_index.json) — 仅方向/方法工作区：沟通方法、证据/数据表达、视觉默认值与审阅关注点，不含 SVG 页面 roster
+- [`layouts_index.json`](../../skills-academic/deck/templates/layouts/layouts_index.json) — 仅结构工作区：canvas / 页面语法 / page types / SVG roster，身份系统下游再选
+- [`decks_index.json`](../../skills-academic/deck/templates/decks/decks_index.json) — 可重复演示应用，包含一体化身份、结构与原型事实描述
 
 这四个索引是 Default Stage 1 模板控件与聊天发现共用的完整已注册模板来源；
 目录永远不会被扫描。直接问“有哪些模板可以用？”即可得到带精确工作区路径的
@@ -172,7 +172,7 @@ Strategist 会把方向拆成两个彼此独立的选择：
 - **Mode** 决定 deck 怎么表达：`pyramid`、`narrative`、`instructional`、`briefing`，或经过确认的 `custom`。
 - **Visual style** 决定页面怎么呈现：内置方向包括 `swiss-minimal`、`editorial`、`dark-tech`、`data-journalism`、`ink-wash` 等，也支持 `custom`。
 
-任意 mode 都可以搭配任意 visual style。“Keynote 风产品发布”这类描述可能同时影响两条轴，例如形成 `pyramid` 叙事与高留白视觉系统，但它永远不是模板查找词。生成前，用户会确认最终组合。规范目录位于 [`references/modes/`](../../skills-academic/ppt-master/references/modes/) 与 [`references/visual-styles/`](../../skills-academic/ppt-master/references/visual-styles/)。
+任意 mode 都可以搭配任意 visual style。“Keynote 风产品发布”这类描述可能同时影响两条轴，例如形成 `pyramid` 叙事与高留白视觉系统，但它永远不是模板查找词。生成前，用户会确认最终组合。规范目录位于 [`references/modes/`](../../skills-academic/deck/references/modes/) 与 [`references/visual-styles/`](../../skills-academic/deck/references/visual-styles/)。
 
 ---
 
@@ -182,7 +182,7 @@ Strategist 会把方向拆成两个彼此独立的选择：
 
 ### 入口：`/create-template` 工作流
 
-完整规范见 [`workflows/create-template.md`](../../skills-academic/ppt-master/workflows/create-template.md)。本节是面向用户的简要版本——你只需要在 IDE 对话里说：
+完整规范见 [`workflows/create-template.md`](../../skills-academic/deck/workflows/create-template.md)。本节是面向用户的简要版本——你只需要在 IDE 对话里说：
 
 ```
 请用 /create-template 工作流，基于下面的参考材料生成一个新模板。
@@ -243,7 +243,7 @@ Layout/Deck frontmatter 仍会记录 `replication_mode: standard|fidelity|mirror
 对于 PPTX 来源的 Type A mirror，完成作者审阅后，最终校验/发布统一使用一个确定性命令：
 
 ```bash
-python3 skills-academic/ppt-master/scripts/mirror_template_materialize.py \
+python3 skills-academic/deck/scripts/mirror_template_materialize.py \
   "<import_workspace>" "<template_workspace>"
 ```
 
@@ -264,11 +264,11 @@ Design Spec 对每个输出 Slide 原型按正常 roster 说明。若来源还�
 
 ### 第四步：验证、预览导出、注册与发现
 
-模板生成完，两种范围都会先跑 [`svg_quality_checker.py`](../../skills-academic/ppt-master/scripts/svg_quality_checker.py) 作为硬门：Brand 校验 identity-only 规范，Style 校验 method/direction-only 规范，Layout/Deck 校验 SVG roster 和 structured 合同。Brand/Style 不生成预览 PPTX；Layout/Deck 可按需创建 `exports/<id>_template_preview.pptx`，多 Master 时必须创建。创作型模板只在临时预览副本中使用简短占位示例，避免较长的 canonical marker 换行，不会修改源 SVG。唯一按范围分流的动作是全局注册：
+模板生成完，两种范围都会先跑 [`svg_quality_checker.py`](../../skills-academic/deck/scripts/svg_quality_checker.py) 作为硬门：Brand 校验 identity-only 规范，Style 校验 method/direction-only 规范，Layout/Deck 校验 SVG roster 和 structured 合同。Brand/Style 不生成预览 PPTX；Layout/Deck 可按需创建 `exports/<id>_template_preview.pptx`，多 Master 时必须创建。创作型模板只在临时预览副本中使用简短占位示例，避免较长的 canonical marker 换行，不会修改源 SVG。唯一按范围分流的动作是全局注册：
 
 | 范围 | 工作区根目录 | 预览 | 发现行为 |
 |---|---|---|---|
-| `library`（默认） | `skills-academic/ppt-master/templates/<kind>/<id>/` | Create Brand/Create Style：不适用；Create Layout/Create Deck：单 Master 可选、多 Master 必须 | 校验后注册到对应 `brands_index.json`、`styles_index.json`、`layouts_index.json` 或 `decks_index.json` |
+| `library`（默认） | `skills-academic/deck/templates/<kind>/<id>/` | Create Brand/Create Style：不适用；Create Layout/Create Deck：单 Master 可选、多 Master 必须 | 校验后注册到对应 `brands_index.json`、`styles_index.json`、`layouts_index.json` 或 `decks_index.json` |
 | `project` | `projects/<name>/` | 沿用同一套 kind-specific 审阅规则 | 跳过全局索引注册 |
 
 全局注册会让模板出现在 Default Stage-1 模板控件中，也可在聊天中发现，因为两者都读取同一个索引。项目范围或精确交接则提供工作区 root，例如 `用这个模板：projects/<name>/`；这会默认展开模板模式，只提供一个 root 时页面会预选，多 root 保持未选候选，未注册 root 仍标记为 `explicit`。项目 root 可被其他项目直接复用，并原子贡献其中全部限定名 spec。要把其中一项移入单 kind 全局库，则保持 spec 内容不变，把它放到该库工作区的裸 `templates/design_spec.md` 路径后再注册。
@@ -295,7 +295,7 @@ Master/Layout 行为以 Microsoft PowerPoint 为验收目标。Keynote、WPS 与
 
 ### 派生后的模板工作区长什么样
 
-全局库与项目范围使用相同的 spec schema 和素材路由；库工作区用裸 spec，项目共享根则用限定名 spec。把下面的 `<template_workspace>` 替换为 `skills-academic/ppt-master/templates/<kind>/<id>/` 或 `projects/<name>/` 即可：
+全局库与项目范围使用相同的 spec schema 和素材路由；库工作区用裸 spec，项目共享根则用限定名 spec。把下面的 `<template_workspace>` 替换为 `skills-academic/deck/templates/<kind>/<id>/` 或 `projects/<name>/` 即可：
 
 Brand 与 Style 只写 `templates/design_spec.md`（Brand 可带真实身份资产），
 不会生成下面的 SVG 或 `exports/` 行。
@@ -326,7 +326,7 @@ Brand 与 Style 只写 `templates/design_spec.md`（Brand 可带真实身份资�
 
 ### 全局注册与项目放置
 
-- **全局库范围（`library`，默认）**把工作区写入 `skills-academic/ppt-master/templates/<kind>/<id>/`，并完成全局注册。
+- **全局库范围（`library`，默认）**把工作区写入 `skills-academic/deck/templates/<kind>/<id>/`，并完成全局注册。
 - **项目范围（`project`）**把限定名 spec 写入 `projects/<name>/templates/design_spec.<kind>.<id>.md` 并跳过注册，因此同一个项目根可以分多次积累四种 kind 各一份，并把整套 bundle 交给任何指向该 root 的项目。Layout 与 Deck 同时存在时，Layout 拥有有效 roster。
 
 项目范围不是私有或缩减格式。提供精确工作区根目录会把它加入 Step 3
@@ -351,7 +351,7 @@ Brand 与 Style 只写 `templates/design_spec.md`（Brand 可带真实身份资�
 
 ## 相关文档
 
-- [`workflows/create-template.md`](../../skills-academic/ppt-master/workflows/create-template.md) — 完整工作流规范（面向 AI 执行）
-- [`templates/README.md`](../../skills-academic/ppt-master/templates/README.md) — 四类模板及其发现索引
-- [`references/template-designer.md`](../../skills-academic/ppt-master/references/template-designer.md) — 模板设计师角色定义和 SVG 技术约束
+- [`workflows/create-template.md`](../../skills-academic/deck/workflows/create-template.md) — 完整工作流规范（面向 AI 执行）
+- [`templates/README.md`](../../skills-academic/deck/templates/README.md) — 四类模板及其发现索引
+- [`references/template-designer.md`](../../skills-academic/deck/references/template-designer.md) — 模板设计师角色定义和 SVG 技术约束
 - [常见问题：如何制作自定义模板](./faq.md#q-如何制作自定义模板) — FAQ 简版

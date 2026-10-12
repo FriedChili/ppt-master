@@ -1,6 +1,6 @@
 # Reference Document Style Guide
 
-> Style rules for every file the runtime loads: `skills-academic/ppt-master/SKILL.md`, `references/**/*.md`, `workflows/**/*.md`, and `templates/*.md`. Follow these when writing or reviewing role definitions, route authorities, stages, and shared specs. [`prompt-layers.md`](prompt-layers.md) says what may go into such a file; [`ownership.md`](ownership.md) says which role decides it; this file says how it is written.
+> Style rules for every file the runtime loads: `skills-academic/deck/SKILL.md`, `references/**/*.md`, `workflows/**/*.md`, and `templates/*.md`. Follow these when writing or reviewing role definitions, route authorities, stages, and shared specs. [`prompt-layers.md`](prompt-layers.md) says what may go into such a file; [`ownership.md`](ownership.md) says which role decides it; this file says how it is written.
 
 These files drive runtime LLM behavior. Style consistency across them matters as much as correctness — divergent voice / structure forces the model to re-interpret each file from scratch and bloats the loaded context. The house pattern that has proved readable is the catalog format of `references/visual-styles/*.md`: one file per subject, a fixed section skeleton shared by every sibling, short labelled paragraphs written as positive vocabulary, and one example where a form is easier shown than told.
 
@@ -66,7 +66,7 @@ A pointer exists so the model knows which file to read next — `[`svg-effects.m
 
 ### 3.3 One Meaning per Term
 
-Every term used in a rule has exactly one meaning across the loaded corpus, defined once in the vocabulary section of [`SKILL.md`](../../skills-academic/ppt-master/SKILL.md) or in the section that owns it. Do not give an existing term a second meaning; when two concepts share a word, rename one (record the rename in [`rule-owners.md`](rule-owners.md) with every file it touches). A term used in a `Hard rule` or `Mandatory` that no loaded file defines is a defect: the obligation cannot be followed.
+Every term used in a rule has exactly one meaning across the loaded corpus, defined once in the vocabulary section of [`SKILL.md`](../../skills-academic/deck/SKILL.md) or in the section that owns it. Do not give an existing term a second meaning; when two concepts share a word, rename one (record the rename in [`rule-owners.md`](rule-owners.md) with every file it touches). A term used in a `Hard rule` or `Mandatory` that no loaded file defines is a defect: the obligation cannot be followed.
 
 ---
 
@@ -241,11 +241,11 @@ The canonical exemplars to model new or rewritten files after:
 
 | If you're writing... | Model after |
 |---|---|
-| A catalog entry (one style, mode, rendering, type) | [`visual-styles/swiss-minimal.md`](../../skills-academic/ppt-master/references/visual-styles/swiss-minimal.md), [`modes/pyramid.md`](../../skills-academic/ppt-master/references/modes/pyramid.md) |
-| A construction module loaded on a trigger | [`executor-structure.md`](../../skills-academic/ppt-master/references/executor-structure.md), [`native-formula.md`](../../skills-academic/ppt-master/references/native-formula.md) |
-| A technical / format spec | [`canvas-formats.md`](../../skills-academic/ppt-master/references/canvas-formats.md), [`semantic-svg.md`](../../skills-academic/ppt-master/references/semantic-svg.md) |
-| A route authority | [`workflows/edit-native-pptx.md`](../../skills-academic/ppt-master/workflows/edit-native-pptx.md) |
-| Stage runbook | [`workflows/stages/verify-charts.md`](../../skills-academic/ppt-master/workflows/stages/verify-charts.md), [`workflows/stages/web-image-review.md`](../../skills-academic/ppt-master/workflows/stages/web-image-review.md) |
+| A catalog entry (one style, mode, rendering, type) | [`visual-styles/swiss-minimal.md`](../../skills-academic/deck/references/visual-styles/swiss-minimal.md), [`modes/pyramid.md`](../../skills-academic/deck/references/modes/pyramid.md) |
+| A construction module loaded on a trigger | [`executor-structure.md`](../../skills-academic/deck/references/executor-structure.md), [`native-formula.md`](../../skills-academic/deck/references/native-formula.md) |
+| A technical / format spec | [`canvas-formats.md`](../../skills-academic/deck/references/canvas-formats.md), [`semantic-svg.md`](../../skills-academic/deck/references/semantic-svg.md) |
+| A route authority | [`workflows/edit-native-pptx.md`](../../skills-academic/deck/workflows/edit-native-pptx.md) |
+| Stage runbook | [`workflows/stages/verify-charts.md`](../../skills-academic/deck/workflows/stages/verify-charts.md), [`workflows/stages/web-image-review.md`](../../skills-academic/deck/workflows/stages/web-image-review.md) |
 
 ---
 

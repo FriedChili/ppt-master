@@ -8,7 +8,7 @@ This document defines deck's long-term product position and the test for adding,
 
 This English file is the canonical policy source. The [Chinese version](./zh/project-positioning.md) is a synchronized translation, not an independent policy; update both in the same change.
 
-[`workflows/routing.md`](../skills-academic/ppt-master/workflows/routing.md) remains authoritative for current route selection. This document answers the more fundamental question: whether a proposed direction belongs in deck at all.
+[`workflows/routing.md`](../skills-academic/deck/workflows/routing.md) remains authoritative for current route selection. This document answers the more fundamental question: whether a proposed direction belongs in deck at all.
 
 ## 1. Positioning
 
@@ -171,5 +171,5 @@ Future work should improve this outcome in the following priority order:
 | This document | Long-term product position, promises, capability boundary, and admission test |
 | [`why-deck.md`](./why-deck.md) | User-facing differentiation and reasons to choose the project |
 | [`technical-design.md`](./technical-design.md) | Current architecture and implementation invariants |
-| [`workflows/routing.md`](../skills-academic/ppt-master/workflows/routing.md) | Current executable route selection |
+| [`workflows/routing.md`](../skills-academic/deck/workflows/routing.md) | Current executable route selection |
 | [`roadmap.md`](./roadmap.md) | Shipped work, active priorities, and explicitly deferred directions |

@@ -8,7 +8,7 @@ Conventions and style guides for contributors and AI agents working in this repo
 | [`prompt-layers.md`](./prompt-layers.md) | What belongs in a prompt file — craft, minimal contract, procedure, or tool documentation — where each lives, and how to move content out without losing a rule |
 | [`ownership.md`](./ownership.md) | Which role decides what — the plan / execution / Reference tiers, capability before selection, the core volume ceiling, preparation timing |
 | [`rule-owners.md`](./rule-owners.md) | Registry of every cross-file rule: its one owner section and the files that may only point to it |
-| [`code-style.md`](./code-style.md) | Style guide for Python under `skills-academic/ppt-master/scripts/` — file headers, imports, CLI entry points, error handling, no-tests rule |
+| [`code-style.md`](./code-style.md) | Style guide for Python under `skills-academic/deck/scripts/` — file headers, imports, CLI entry points, error handling, no-tests rule |
 | [`language.md`](./language.md) | Language rule for agent-facing Markdown and `docs/` — one language per file, non-English as content but never as a rule, no hard-coded output language |
 
 When adding a new rule file:

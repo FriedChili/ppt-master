@@ -6,7 +6,7 @@
 
 ## 设计哲学 —— AI 驱动工作流，人掌握最终判断
 
-deck 交付的是一份**高质量、可继续编辑的 PowerPoint 草稿**，而不是封闭的最终成品。工作流先推理信息与论证，再设计页面，并按照明确的路线合同创作或保留 PowerPoint 原生对象。用户负责确认方向，并在 PowerPoint 中掌握最后一公里的判断。普通 Generate 的后续工作应当是对真实 deck 的精修，而不是从整页图片或浅层可编辑外壳重新搭建。**图片还原为 PPTX** [`image-to-pptx`](../../skills-academic/ppt-master/workflows/profiles/image-to-pptx.md) profile 是一条窄例外：它当前要求 Codex，始终直接启用 Quick，先把一张或多张输入图片规范化为有序页面画面清单，原生还原普通文字，必要时在严格视觉锁下重建低清身份图形，再把场景图片重建成注册图层。它仍不允许把整页截图皮肤冒充为可编辑还原。
+deck 交付的是一份**高质量、可继续编辑的 PowerPoint 草稿**，而不是封闭的最终成品。工作流先推理信息与论证，再设计页面，并按照明确的路线合同创作或保留 PowerPoint 原生对象。用户负责确认方向，并在 PowerPoint 中掌握最后一公里的判断。普通 Generate 的后续工作应当是对真实 deck 的精修，而不是从整页图片或浅层可编辑外壳重新搭建。**图片还原为 PPTX** [`image-to-pptx`](../../skills-academic/deck/workflows/profiles/image-to-pptx.md) profile 是一条窄例外：它当前要求 Codex，始终直接启用 Quick，先把一张或多张输入图片规范化为有序页面画面清单，原生还原普通文字，必要时在严格视觉锁下重建低清身份图形，再把场景图片重建成注册图层。它仍不允许把整页截图皮肤冒充为可编辑还原。
 
 工作流提供演示文稿专用的推理、状态、合同与质量门；确定性工具负责转换、校验、打包和可重复文件操作。**最终质量上限仍由所选模型决定**，用户的审美与判断则负责评审和收尾。
 
@@ -128,7 +128,7 @@ deck 不以“任意 SVG 都能转成 PPTX”为目标。`svg_output/` 使用的
 | 领域 | 权威来源 |
 |---|---|
 | SVG 创作路线中的可见页面内容与布局 | `svg_output/` 中的最终页面 SVG |
-| 项目规范化 SVG 的语法、兼容形式与映射边界 | 由 [`references/shared-standards.md`](../../skills-academic/ppt-master/references/shared-standards.md) 选择的拆分权威集 |
+| 项目规范化 SVG 的语法、兼容形式与映射边界 | 由 [`references/shared-standards.md`](../../skills-academic/deck/references/shared-standards.md) 选择的拆分权威集 |
 | Master/Layout/Slide 打包与原生对象映射 | SVG 到 PPTX 的翻译；可以重组 SVG 已表达的内容，但不能创造新的可见内容 |
 | 转场和讲稿 | 各自的 sidecar / 资源与 PPTX package 后处理 |
 | 原生 PPTX 保留式编辑 | Edit Native PPTX round-trip 工作区与保留来源的导出合同 |
@@ -148,7 +148,7 @@ deck 不以“任意 SVG 都能转成 PPTX”为目标。`svg_output/` 使用的
 
 ## 路线判定速查表
 
-可执行路线判定以 [`workflows/routing.md`](../../skills-academic/ppt-master/workflows/routing.md) 为准；本节只是面向技术设计的速查和解释，不是第二份路线矩阵。
+可执行路线判定以 [`workflows/routing.md`](../../skills-academic/deck/workflows/routing.md) 为准；本节只是面向技术设计的速查和解释，不是第二份路线矩阵。
 
 先用这张表判定路线，再讨论实现细节。大多数失败执行不是命令错了，而是一开始就走错了路线。
 
@@ -191,7 +191,7 @@ Executor 角色逐页生成演示文稿的视觉内容，输出为 SVG 文件。
 
 ## 产物流
 
-Artifact 的来源 / 派生所有权以 [`artifact-ownership.md`](../../skills-academic/ppt-master/references/artifact-ownership.md) 为准；本节只把同一数据流可视化成架构说明。
+Artifact 的来源 / 派生所有权以 [`artifact-ownership.md`](../../skills-academic/deck/references/artifact-ownership.md) 为准；本节只把同一数据流可视化成架构说明。
 
 维护这套系统时，把文件夹理解成数据流会比“这些目录刚好存在”更清楚：
 
@@ -256,7 +256,7 @@ SVG 胜出，因为它与 DrawingML 拥有相同的世界观：两者都是绝�
 | `linearGradient` / `radialGradient` | `<a:gradFill>` |
 | `fill-opacity` / `stroke-opacity` | `<a:alpha>` |
 
-这张表只展示概念对应关系，不是对整个 SVG 标准的承诺，也不承诺所有映射语义无损。每项受支持能力都必须在 [`shared-standards.md`](../../skills-academic/ppt-master/references/shared-standards.md) 路由到的适用模块中拥有明确映射，说明项目规范写法、允许的兼容输入、目标 DrawingML 表达、保真度和拒绝条件；涉及 PPTX 回导的能力还要说明来源 PPTX / OOXML 语义。映射状态可以是精确、确定性归一化、显式 fallback、sidecar 或 unsupported；讲稿、relationships 等 package 语义不必强行塞进 SVG，但必须明确由哪条路线承载。
+这张表只展示概念对应关系，不是对整个 SVG 标准的承诺，也不承诺所有映射语义无损。每项受支持能力都必须在 [`shared-standards.md`](../../skills-academic/deck/references/shared-standards.md) 路由到的适用模块中拥有明确映射，说明项目规范写法、允许的兼容输入、目标 DrawingML 表达、保真度和拒绝条件；涉及 PPTX 回导的能力还要说明来源 PPTX / OOXML 语义。映射状态可以是精确、确定性归一化、显式 fallback、sidecar 或 unsupported；讲稿、relationships 等 package 语义不必强行塞进 SVG，但必须明确由哪条路线承载。
 
 如需从 PowerPoint 功能出发逐项查看这些关系，请参阅 [PowerPoint 功能 ↔ 项目 SVG 映射指南](./powerpoint-svg-mapping.md)。该文档负责公开能力与 PPTX 导入语义映射；由 `shared-standards.md` 路由的权威集负责生成 SVG 创作。
 
@@ -298,7 +298,7 @@ SVG 也是唯一同时满足流程中所有角色需要的格式：**AI 能可�
 `--quick-generate` 时创建 `svg_output/` 与冷审计日志
 `validation/workflow.log`，省略项目 README，其他目录按需产生。
 显式
-[`quick-generate`](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)
+[`quick-generate`](../../skills-academic/deck/workflows/profiles/quick-generate.md)
 profile 省略规划产物与 `svg_final/`，但项目中仍可按需存在已转换来源、分析结果、
 图片、图标及必要资源 manifest；它会手写 `svg_output/` 及其中的原生公式 marker，生成无锁最终
 质量报告，并围绕最终 PPTX 保留普通 postflight 与默认路径备份。审计日志和报告只保留
@@ -325,7 +325,7 @@ CLI 支持 `--move`、`--copy` 和自动默认，但共享同一条固定的所�
 
 ## 架构不变量
 
-可执行的 artifact ownership 不变量以 [`artifact-ownership.md`](../../skills-academic/ppt-master/references/artifact-ownership.md) 为准；本节解释这些边界为什么在架构上重要。
+可执行的 artifact ownership 不变量以 [`artifact-ownership.md`](../../skills-academic/deck/references/artifact-ownership.md) 为准；本节解释这些边界为什么在架构上重要。
 
 这些不变量强于普通实现偏好。如果某个改动破坏了其中一条，它很可能是在改变架构，而不是做重构。
 
@@ -348,7 +348,7 @@ CLI 支持 `--move`、`--copy` 和自动默认，但共享同一条固定的所�
 
 ## Canvas 格式系统
 
-deck 不只服务 PPT——同一套 SVG → DrawingML 流水线还能产出方形海报、9:16 故事、A4 印刷品。各格式特定的约定（比例、安全区、品牌区等）住在 [`references/canvas-formats.md`](../../skills-academic/ppt-master/references/canvas-formats.md)。
+deck 不只服务 PPT——同一套 SVG → DrawingML 流水线还能产出方形海报、9:16 故事、A4 印刷品。各格式特定的约定（比例、安全区、品牌区等）住在 [`references/canvas-formats.md`](../../skills-academic/deck/references/canvas-formats.md)。
 
 值得标注的架构选择：**viewBox 是像素，不是绝对单位。** 像素空间让 AI Executor 思考布局没有歧义（`x="100"` 就是左缘 +100px），人类在浏览器里检查也直接。到 EMU 的换算只在导出时发生一次——选像素意味着流水线的其余环节（Strategist、Executor、质量检查、后处理）永远不需要在 EMU 思维下工作，那对 AI 生成和人类调试都是敌对的。
 
@@ -376,7 +376,7 @@ deck 不只服务 PPT——同一套 SVG → DrawingML 流水线还能产出方�
 Style 只贡献自己的 Design Spec，不携带素材或审阅 payload；项目中既有的
 脚手架及其他 kind 文件都不属于 Style 输入。
 
-`<template_workspace>` 可以是 `skills-academic/ppt-master/templates/<kind>/<id>/`，也
+`<template_workspace>` 可以是 `skills-academic/deck/templates/<kind>/<id>/`，也
 可以是 `projects/<name>/` 等其他精确 root。Step 3 只把它记录为候选输入，
 不读取模板内容；Stage 1 选中后，apply 阶段才逐个校验 root，把每份选中 `spec`
 作为独立的项目本地贡献安装到当前项目的 `templates/`，并把对应的真实素材
@@ -463,9 +463,9 @@ relationship；带页计划时只在输出目标唯一时重映射内部跳转�
 
 ## 执行纪律
 
-Generate 路由会在加载流程前选定一份运行时权威：[`workflows/generate-pptx.md`](../../skills-academic/ppt-master/workflows/generate-pptx.md) 拥有默认 Step 1–7，[`quick-generate.md`](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md) 拥有自足的 Quick 生命周期；[`image-to-pptx.md`](../../skills-academic/ppt-master/workflows/profiles/image-to-pptx.md) 与 [`beautify-pptx.md`](../../skills-academic/ppt-master/workflows/profiles/beautify-pptx.md) 是互斥的 fidelity profile。图片还原为 PPTX 当前要求 Codex，无需独立 Quick 信号就会直接启用 Quick；其他 Agent host 尚未适配，暂不支持。Beautify 则继续根据显式 Quick 意图在 Default 与 Quick 中选择。`SKILL.md` 只拥有全局执行纪律，以及交接到 `routing.md` 的强制入口。这些规则整体看起来很官僚，但存在的理由是：LLM 默认行为是“让我在这一 turn 里把整个问题搞定”，而这恰好是串行流水线最不该有的形状——串行流水线要求每一步的输出都是有界、过 checkpoint、被下一步消费的。它们共同关闭了实际反复出现的失败模式：乱序执行、AI 代为做用户设计决策、跨阶段打包、前置条件未满足、投机预先准备、子代理上下文丢失、分批漂移、长 deck 色彩字体漂移、脚本批量生成 SVG 漂移，以及路由歧义。
+Generate 路由会在加载流程前选定一份运行时权威：[`workflows/generate-pptx.md`](../../skills-academic/deck/workflows/generate-pptx.md) 拥有默认 Step 1–7，[`quick-generate.md`](../../skills-academic/deck/workflows/profiles/quick-generate.md) 拥有自足的 Quick 生命周期；[`image-to-pptx.md`](../../skills-academic/deck/workflows/profiles/image-to-pptx.md) 与 [`beautify-pptx.md`](../../skills-academic/deck/workflows/profiles/beautify-pptx.md) 是互斥的 fidelity profile。图片还原为 PPTX 当前要求 Codex，无需独立 Quick 信号就会直接启用 Quick；其他 Agent host 尚未适配，暂不支持。Beautify 则继续根据显式 Quick 意图在 Default 与 Quick 中选择。`SKILL.md` 只拥有全局执行纪律，以及交接到 `routing.md` 的强制入口。这些规则整体看起来很官僚，但存在的理由是：LLM 默认行为是“让我在这一 turn 里把整个问题搞定”，而这恰好是串行流水线最不该有的形状——串行流水线要求每一步的输出都是有界、过 checkpoint、被下一步消费的。它们共同关闭了实际反复出现的失败模式：乱序执行、AI 代为做用户设计决策、跨阶段打包、前置条件未满足、投机预先准备、子代理上下文丢失、分批漂移、长 deck 色彩字体漂移、脚本批量生成 SVG 漂移，以及路由歧义。
 
-全路由通用的停止 / 继续规则以 [`failure-recovery.md`](../../skills-academic/ppt-master/workflows/governance/failure-recovery.md) 为准；其中具体故障矩阵与续跑入口目前覆盖 Generate PPTX。本节不复制这些规则。
+全路由通用的停止 / 继续规则以 [`failure-recovery.md`](../../skills-academic/deck/workflows/governance/failure-recovery.md) 为准；其中具体故障矩阵与续跑入口目前覆盖 Generate PPTX。本节不复制这些规则。
 
 其中三条边界尤其关键。第一，页面 SVG 必须由当前主代理逐页手写；禁止写 Python / Node / shell 生成器批量吐 SVG，因为这种输出会丢失跨页判断和视觉连续性。第二，流程节奏是 `P01–P05 → early gate（roster 不超过 6 页时跳过）→ 不间断生成其余页面 → final gate`。前五页是方法样本：执行者先输出 `gate-signal`，再把已解决的方法规则带入后续页面；其余页面之间不分批，也不插入 checker，每次 checker 调用都必须紧跟一个 gate 点或一轮合并修复。`quick-generate` 仍串行手写并以 P01 为视觉锚点，在 7 页及以上 roster 上共用同一道 early gate，并在完整 roster 生成后运行一次无锁 final gate。第三，路由是确定性的：原生 PPTX 模板、beautify、Edit Native PPTX、live preview 等触发条件已经在仓库里定义清楚时，不再额外抛给用户一个开放式路线选择题。
 
@@ -480,7 +480,7 @@ Generate 路由会在加载流程前选定一份运行时权威：[`workflows/ge
 - `design_spec.md` —— 人类可读叙述；deck 的「为什么」（沟通意图、受众变化、叙事 / 模板 / 视觉理由、页面大纲）
 - `spec_lock.md` —— 机器可读执行契约；包含紧凑的 `audience` / `objective` / `core_message` 沟通锚点，以及跨页稳定的身份/复用角色和路由值（核心 HEX/字体角色、图标库、图片资源与结构映射）
 
-为什么两份都要？`design_spec.md` 保存完整的确认方案与理由；`spec_lock.md` 只命名必须跨页稳定或参与路由的子集。它根据 Design Spec 与页面/资源/模板上下文编写，不再逐字段复制 UI JSON 或聊天摘要等确认通道原始载荷。[Generate PPTX Step 6](../../skills-academic/ppt-master/workflows/generate-pptx.md#step-6-executor-phase) 在有效执行上下文中只保留并复用这两份产物。fresh/resumed/restarted、上下文压缩或只剩摘要时重新完整读取一次；未变化的连续上下文不重复读取。局部色阶、渐变/效果色与零星的非结构性展示字体属于页面判断；一旦重复出现或形成稳定语义，就必须先提升为上游 lock 角色。
+为什么两份都要？`design_spec.md` 保存完整的确认方案与理由；`spec_lock.md` 只命名必须跨页稳定或参与路由的子集。它根据 Design Spec 与页面/资源/模板上下文编写，不再逐字段复制 UI JSON 或聊天摘要等确认通道原始载荷。[Generate PPTX Step 6](../../skills-academic/deck/workflows/generate-pptx.md#step-6-executor-phase) 在有效执行上下文中只保留并复用这两份产物。fresh/resumed/restarted、上下文压缩或只剩摘要时重新完整读取一次；未变化的连续上下文不重复读取。局部色阶、渐变/效果色与零星的非结构性展示字体属于页面判断；一旦重复出现或形成稳定语义，就必须先提升为上游 lock 角色。
 
 该视图省略 Executor core 已经恒定加载的通用 SVG/图标禁令，只保留项目专属 forbidden 行。图片从当前页 brief、图片资源表中的显式页分配和 mirror 原型引用中选择；已分配给其他页面的图片会被排除，仍无法归属的 legacy 图片保留在兼容子集中，只有所有锁定图片都能确定归属到其他页面时才记录 `confirmed-none`。
 
@@ -521,7 +521,7 @@ Generate 路由会在加载流程前选定一份运行时权威：[`workflows/ge
 
 **点缀只能保持局部。** 零星的页面级字体或颜色可以用于增加层级、区分和氛围，但不能发展成第二套视觉系统。默认流程中，结构性或重复出现的字体、色板角色、资源与跨页身份 pattern 仍属于 Strategist 决策，复用前必须先更新 Design Spec/lock；快速生成由当前 Agent 在上下文中建立这些锚点，并在跨页创作中保持。默认流程的页面级 §VIII 图片 pattern 仍是首选构图参考。
 
-**提示词重构不变量。** 默认流程压缩提示词时，必须继续区分初始材料、用户确认、Strategist 负责的备料、策略规划和执行自由。把材料获取下放给 Executor、把许可变成配额、把灵活实现变成静默更换资源 / 身份，或把精确的约束计划降级成近似目标，均属于语义回归。显式快速生成 profile 会把前几层合并到当前 Agent，但不会删除来源、资源、美学、数据可视化、定性 Structure 或原生形状能力。默认流程的运行时权威位于 [`strategist.md`](../../skills-academic/ppt-master/references/strategist.md) 与 [`executor-base.md`](../../skills-academic/ppt-master/references/executor-base.md)；快速生成从 [`quick-generate.md`](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md) 开始，直接加载适用的共享与条件执行参考，不继承 Default 的持久计划前置条件。提示词编写规则位于 [`prompt-style.md`](../rules/prompt-style.md)。
+**提示词重构不变量。** 默认流程压缩提示词时，必须继续区分初始材料、用户确认、Strategist 负责的备料、策略规划和执行自由。把材料获取下放给 Executor、把许可变成配额、把灵活实现变成静默更换资源 / 身份，或把精确的约束计划降级成近似目标，均属于语义回归。显式快速生成 profile 会把前几层合并到当前 Agent，但不会删除来源、资源、美学、数据可视化、定性 Structure 或原生形状能力。默认流程的运行时权威位于 [`strategist.md`](../../skills-academic/deck/references/strategist.md) 与 [`executor-base.md`](../../skills-academic/deck/references/executor-base.md)；快速生成从 [`quick-generate.md`](../../skills-academic/deck/workflows/profiles/quick-generate.md) 开始，直接加载适用的共享与条件执行参考，不继承 Default 的持久计划前置条件。提示词编写规则位于 [`prompt-style.md`](../rules/prompt-style.md)。
 
 ---
 
@@ -549,7 +549,7 @@ Generate 路由会在加载流程前选定一份运行时权威：[`workflows/ge
 
 ## 图文构图：P / M / A / C
 
-只要图片分支被触发，就会把 [`references/image-layout-patterns.md`](../../skills-academic/ppt-master/references/image-layout-patterns.md) 的精简版式词汇与布局计算规范一起读入。原生公式使用普通页面构图及 marker 自身边界，不走图片资源 pattern。当前图片模式按构图责任组织：
+只要图片分支被触发，就会把 [`references/image-layout-patterns.md`](../../skills-academic/deck/references/image-layout-patterns.md) 的精简版式词汇与布局计算规范一起读入。原生公式使用普通页面构图及 marker 自身边界，不走图片资源 pattern。当前图片模式按构图责任组织：
 
 - **P · Primary Structures** —— 单图、图作画布与多图系统构成页面骨架。
 - **M · Modifier Layers** —— 在既有骨架上加入裁切 / 揭示、色调 / 焦点或框饰 / 摆放 / 层次处理。
@@ -564,13 +564,13 @@ Generate 路由会在加载流程前选定一份运行时权威：[`workflows/ge
 
 **为什么构图意图走 Strategist 资源列表。** `§VIII 图片资源列表` 的 `Image pattern` 列承载一句非空自由格式建议，也可以按需引用灵感库的两级编号；图片主导的 `adaptive` 行还会写出该图要解决的页面职能，使到达 Executor 的构图自带选它的理由；`Crop Policy` 独立记录 `adaptive` 或 `no-crop`。这让可用的构图起点通过 lock 投影在 session 重入后继续存在，但不要求使用编号。Executor 可以调整尺寸、位置、流向与权重，也可以替换建议或使用其他构图。资源身份、必用 / 内容义务、`no-crop` 和显式用户 / 模板约束仍具有约束力；只有改变这些边界才需要先更新 Design Spec。
 
-**为什么真正的硬约束留在上游。** 跨切的 SVG 创作与 PPTX 兼容性例外属于 [`shared-standards.md`](../../skills-academic/ppt-master/references/shared-standards.md) 路由的权威集。版式词表只指向该路由，不再复述合同；每条规则仍只有一个所属模块，词表里也不会留下过期副本。
+**为什么真正的硬约束留在上游。** 跨切的 SVG 创作与 PPTX 兼容性例外属于 [`shared-standards.md`](../../skills-academic/deck/references/shared-standards.md) 路由的权威集。版式词表只指向该路由，不再复述合同；每条规则仍只有一个所属模块，词表里也不会留下过期副本。
 
 ---
 
 ## 项目规范化 SVG 与兼容性边界
 
-SVG 与 DrawingML 的表达模型并不等价，因此主编译路径不把“浏览器可以渲染”视为“项目可以导出”。只有在 [`references/shared-standards.md`](../../skills-academic/ppt-master/references/shared-standards.md) 路由到的适用模块中登记了项目规范表达或显式兼容形式，并且拥有确定 DrawingML 映射的词汇，才属于可接受输入。该拆分权威集负责语法、结构、单位、metadata、兼容别名、保真度和拒绝条件；本架构文档只定义分层原则，不复制具体规则。
+SVG 与 DrawingML 的表达模型并不等价，因此主编译路径不把“浏览器可以渲染”视为“项目可以导出”。只有在 [`references/shared-standards.md`](../../skills-academic/deck/references/shared-standards.md) 路由到的适用模块中登记了项目规范表达或显式兼容形式，并且拥有确定 DrawingML 映射的词汇，才属于可接受输入。该拆分权威集负责语法、结构、单位、metadata、兼容别名、保真度和拒绝条件；本架构文档只定义分层原则，不复制具体规则。
 
 **为什么本地复用是编译期复用，不是 PowerPoint 保留对象。** 接受的创作形式由权威合同定义、共享校验器执行。校验通过后，流水线会递归实体化引用子树并重写克隆局部 ID 后再导出；PPTX 回导因此只返回展开后的原语，不重建创作期复用图。
 
@@ -737,7 +737,7 @@ ChartEx 导入被有意限制为 7 个已验证数据模型：`treemap`、`sunbu
 
 ## 顶层路线与支撑文档
 
-[`workflows/index.md`](../../skills-academic/ppt-master/workflows/index.md) 是仅供维护者使用的目录，不进入任务加载链。运行时路线选择以 [`workflows/routing.md`](../../skills-academic/ppt-master/workflows/routing.md) 为权威。deck 只有三条顶层产物路线：Generate PPTX、Create Template、Edit Native PPTX。用户请求只能进入其中一条；任何支撑文档都不与它们竞争。
+[`workflows/index.md`](../../skills-academic/deck/workflows/index.md) 是仅供维护者使用的目录，不进入任务加载链。运行时路线选择以 [`workflows/routing.md`](../../skills-academic/deck/workflows/routing.md) 为权威。deck 只有三条顶层产物路线：Generate PPTX、Create Template、Edit Native PPTX。用户请求只能进入其中一条；任何支撑文档都不与它们竞争。
 
 支撑文件保持拆分，只是为了收紧路线合同，并在需要时加载可选上下文：
 

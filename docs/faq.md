@@ -12,17 +12,17 @@ Almost anything: **PDF**, **DOCX**, **PPTX**, **EPUB**, **HTML**, **LaTeX**, **R
 
 DOCX conversion extracts embedded image assets into a companion asset directory and records an image manifest; when the source exposes the information, that record includes displayed dimensions, pixel dimensions, and aspect ratios. Project import makes those companion assets available to the active project. Planning uses source position, surrounding text, captions, alt text, filenames, and geometry to decide whether an extracted asset is used; it does not have to inspect or use every extracted image. A selected image may be shown complete or placed with a focal-safe crop. Extraction and registration do **not** mean that the image is regenerated.
 
-See the [source-conversion output contract](../skills-academic/ppt-master/scripts/docs/conversion.md) for companion assets and the [image-planning contract](../skills-academic/ppt-master/references/strategist-image.md) for selection and geometry evidence.
+See the [source-conversion output contract](../skills-academic/deck/scripts/docs/conversion.md) for companion assets and the [image-planning contract](../skills-academic/deck/references/strategist-image.md) for selection and geometry evidence.
 
 ## Q: Can deck batch-redraw every image in a DOCX to one ratio and style?
 
 No. There is currently no user-facing Generate route that reference-redraws every embedded DOCX image as a batch and automatically replaces the originals. Manifest mode can batch **new** image jobs from prompts, but the built-in CLI's `--reference-image` editing is a narrow single-image path, is not manifest mode, and is available only through supported image backends. The Image to PPTX profile does not fill this gap: it applies when raster inputs represent whole slide pages to reconstruct, not when ordinary photos or illustrations are source assets inside a Word document.
 
-These boundaries are defined by the [image-generation contract](../skills-academic/ppt-master/references/image-generator.md), [Generate Step 5](../skills-academic/ppt-master/workflows/generate-pptx.md), and the [Image to PPTX profile](../skills-academic/ppt-master/workflows/profiles/image-to-pptx.md).
+These boundaries are defined by the [image-generation contract](../skills-academic/deck/references/image-generator.md), [Generate Step 5](../skills-academic/deck/workflows/generate-pptx.md), and the [Image to PPTX profile](../skills-academic/deck/workflows/profiles/image-to-pptx.md).
 
 ## Q: What is the difference between cropping an image and generating one at a requested aspect ratio?
 
-They change different things. `crop=adaptive` permits but never requires cropping. Executor may use `meet` to show the complete source or a focal-safe `slice` to fill the chosen container; both reuse source pixels. An AI job's `aspect_ratio` requests a newly generated canvas. A reference edit transforms one supplied image through the separate single-image path; it is not a manifest batch operation. See the [image resource-list rules](../skills-academic/ppt-master/references/strategist-image.md), [Executor crop policy](../skills-academic/ppt-master/references/executor-image.md), [SVG image placement contract](../skills-academic/ppt-master/references/svg-image-embedding.md), and [image manifest schema](../skills-academic/ppt-master/references/image-generator.md).
+They change different things. `crop=adaptive` permits but never requires cropping. Executor may use `meet` to show the complete source or a focal-safe `slice` to fill the chosen container; both reuse source pixels. An AI job's `aspect_ratio` requests a newly generated canvas. A reference edit transforms one supplied image through the separate single-image path; it is not a manifest batch operation. See the [image resource-list rules](../skills-academic/deck/references/strategist-image.md), [Executor crop policy](../skills-academic/deck/references/executor-image.md), [SVG image placement contract](../skills-academic/deck/references/svg-image-embedding.md), and [image manifest schema](../skills-academic/deck/references/image-generator.md).
 
 ## Q: Can I generate a deck with just a topic, no source materials?
 
@@ -54,7 +54,7 @@ It depends on how you installed deck:
 
 | Install method | Update method |
 |---|---|
-| Git clone | Run `python3 skills-academic/ppt-master/scripts/update_repo.py` inside the `deck` folder |
+| Git clone | Run `python3 skills-academic/deck/scripts/update_repo.py` inside the `deck` folder |
 | Download ZIP | Download the latest ZIP, unzip it into a new folder, copy your old `.env` and `projects/` folder into the new folder, then run `pip install -r requirements.txt` |
 | Skill marketplace | Reinstall or update through the matching marketplace / skills tool |
 
@@ -63,7 +63,7 @@ For long-term use, Git clone is recommended. ZIP is fine for a quick trial, but 
 If you are not sure which install method you used, ask the AI to run this from the project folder:
 
 ```bash
-python3 skills-academic/ppt-master/scripts/update_repo.py
+python3 skills-academic/deck/scripts/update_repo.py
 ```
 
 If the folder is not a Git clone, the script will tell you how to migrate a ZIP install.
@@ -81,7 +81,7 @@ Neither path carries a `.git` directory, so `git describe` cannot report the ver
 ## Q: I installed from a skill marketplace. What prerequisites and working directory do I need?
 
 
-The installed skill directory and your working folder are different roles. Install Python dependencies from the directory that contains the installed skill's `SKILL.md` and `requirements.txt`, but start the agent in a separate persistent, writable working folder of your choice. The agent creates that folder's `projects/` directory as needed; you do not need to run it from the host-managed skill cache. See [Getting Started: Set up the installation and working folders](./getting-started.md#set-up-the-installation-and-working-folders) and the skill's [execution entry point](../skills-academic/ppt-master/SKILL.md).
+The installed skill directory and your working folder are different roles. Install Python dependencies from the directory that contains the installed skill's `SKILL.md` and `requirements.txt`, but start the agent in a separate persistent, writable working folder of your choice. The agent creates that folder's `projects/` directory as needed; you do not need to run it from the host-managed skill cache. See [Getting Started: Set up the installation and working folders](./getting-started.md#set-up-the-installation-and-working-folders) and the skill's [execution entry point](../skills-academic/deck/SKILL.md).
 
 ## Q: How can I run the same minimal installation check on macOS or Linux?
 
@@ -91,7 +91,7 @@ After installing the Python dependencies, run the same core import check used by
 python3 -c "import pptx; import fitz; print('All core dependencies OK')"
 ```
 
-Then ask the agent for a three-slide "Hello World" deck in Quick mode, with no source file. The import command checks the core Python packages; the Quick run checks project initialization, SVG authoring, validation, and export together. Success means a PPTX appears in the active project's `exports/` directory and the file opens in a presentation application. See the [Windows installation smoke test](./windows-installation.md) and the [Quick profile](../skills-academic/ppt-master/workflows/profiles/quick-generate.md).
+Then ask the agent for a three-slide "Hello World" deck in Quick mode, with no source file. The import command checks the core Python packages; the Quick run checks project initialization, SVG authoring, validation, and export together. Success means a PPTX appears in the active project's `exports/` directory and the file opens in a presentation application. See the [Windows installation smoke test](./windows-installation.md) and the [Quick profile](../skills-academic/deck/workflows/profiles/quick-generate.md).
 
 ## Q: Do I need to create `projects/<name>` manually, and which `exports/` contains my deck?
 
@@ -101,7 +101,7 @@ No. In an agent-driven run, Default Generate Step 2 or Quick initialization crea
 <active-project>/exports/<project-name>_<timestamp>.pptx
 ```
 
-That is not an unqualified `exports/` at the repository root. An explicitly supplied output path is the exception. See [Generate project initialization and export](../skills-academic/ppt-master/workflows/generate-pptx.md), the [Quick profile](../skills-academic/ppt-master/workflows/profiles/quick-generate.md), and the [working-folder explanation](./getting-started.md#set-up-the-installation-and-working-folders).
+That is not an unqualified `exports/` at the repository root. An explicitly supplied output path is the exception. See [Generate project initialization and export](../skills-academic/deck/workflows/generate-pptx.md), the [Quick profile](../skills-academic/deck/workflows/profiles/quick-generate.md), and the [working-folder explanation](./getting-started.md#set-up-the-installation-and-working-folders).
 
 ## Q: Can I use AI-generated images in my presentation?
 
@@ -111,7 +111,7 @@ Yes. When the agent host exposes a native image tool, deck can use it without a 
 
 No per-slide icon coverage is required. In Default, `No base icons` is a valid confirmed choice alongside emoji, bundled SVG icons, and custom project icons. Default's `icons.inventory` indexes its curated prepared pool without assigning icons to pages. Both profiles may use project-local prepared icons; Quick creates neither a general resource roster nor an icon-to-page assignment. The author uses an icon only when it serves that page's communication task, so a deck or page may use none. AI-generated illustrated-icon slices are image assets under a separate path and are also optional.
 
-See the [Strategist icon choice](../skills-academic/ppt-master/references/strategist.md), [Executor icon usage](../skills-academic/ppt-master/references/executor-base.md), and [Quick resource preparation](../skills-academic/ppt-master/workflows/profiles/quick-generate.md).
+See the [Strategist icon choice](../skills-academic/deck/references/strategist.md), [Executor icon usage](../skills-academic/deck/references/executor-base.md), and [Quick resource preparation](../skills-academic/deck/workflows/profiles/quick-generate.md).
 
 ## Q: I don't have an image-generation API key — can I still get images?
 
@@ -123,7 +123,7 @@ Be clear on what this buys you: **web search only finds *a* relevant, downloadab
 
 ## Q: Can I turn AI-generated slide mockups or screenshots into editable PowerPoint slides?
 
-Yes. Provide one or more images and ask to reconstruct the represented pages as an editable PPTX; deck routes that request to the **Image to PPTX** ([`image-to-pptx`](../skills-academic/ppt-master/workflows/profiles/image-to-pptx.md)) profile. It currently requires Codex. Other agent hosts have not been adapted for this profile, so their behavior is not supported or promised. Image to PPTX always activates Quick; you do not need to ask for Quick separately. It first normalizes every input into one ordered page-frame roster, so slide count follows represented pages rather than file count.
+Yes. Provide one or more images and ask to reconstruct the represented pages as an editable PPTX; deck routes that request to the **Image to PPTX** ([`image-to-pptx`](../skills-academic/deck/workflows/profiles/image-to-pptx.md)) profile. It currently requires Codex. Other agent hosts have not been adapted for this profile, so their behavior is not supported or promised. Image to PPTX always activates Quick; you do not need to ask for Quick separately. It first normalizes every input into one ordered page-frame roster, so slide count follows represented pages rather than file count.
 
 Ordinary visible text is rebuilt as native editable text. Logos, icons, badges, and decorative graphics use the source directly when it is adequate; when it is too low-resolution, Codex may reconstruct them from the reference, but identity, silhouette, proportions, colors, and wordmarks must remain fixed, and a merely similar substitute is forbidden. Charts, tables, and data graphics are never reconstructed generatively: they must be native objects with verifiable values, exact source assets, or marked `manual_required`. Photo and illustration scenes are rebuilt into at least a clean base plus subject or foreground layers. Multiple non-overlapping objects with padded bounding boxes may share one generated plate and then become independent PowerPoint picture objects through grid slicing or SVG bounding-box crops. AI may reconstruct pixels hidden by the separated layers, but it must not redesign the visible composition. A whole-slide screenshot skin with token editable overlays does not count as reconstruction.
 
@@ -140,7 +140,7 @@ By default, a mergeable multiline block exports as one editable PowerPoint text 
 To let PowerPoint reflow eligible body text, use `--reflow-text`:
 
 ```bash
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project_path> --reflow-text
+python3 skills-academic/deck/scripts/svg_to_pptx.py <project_path> --reflow-text
 ```
 
 This restores automatic paragraph reflow and may change the line count. The legacy `--merge-paragraphs` flag is a compatibility alias for `--reflow-text`.
@@ -148,7 +148,7 @@ This restores automatic paragraph reflow and may change the line count. The lega
 Use `--no-merge` only when every visual line must be an independent PowerPoint text frame:
 
 ```bash
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project_path> --no-merge
+python3 skills-academic/deck/scripts/svg_to_pptx.py <project_path> --no-merge
 ```
 
 That mode preserves independent per-line object placement, but a 12-line paragraph becomes 12 textboxes. When chatting with the AI, ask for "automatic text reflow" or "one independent text box per visual line" to select the corresponding export mode.
@@ -182,7 +182,7 @@ Any mode pairs with any visual style.
 
 deck has no documented `wireframe` runtime mode and no documented visual-equivalence guarantee between releases, so appearance alone does not identify a version regression. First record whether the run used Default or Quick, plus the actual mode, visual style, image-usage choice, base-icon choice, and prepared-resource state. Quick keeps these decisions in the active agent context rather than writing `design_spec.md` or `spec_lock.md`.
 
-Next compare the same page in the active project's `svg_output/` with the exported PPTX. If the SVG is already sparse, inspect the planning, resource, and SVG-authoring layers. If the SVG contains the intended objects but the PPTX loses or changes them, inspect the conversion or rendering layer. This boundary follows [Materials → Plan → Realization](./technical-design.md), the [Default Generate workflow](../skills-academic/ppt-master/workflows/generate-pptx.md), and the [Quick profile](../skills-academic/ppt-master/workflows/profiles/quick-generate.md).
+Next compare the same page in the active project's `svg_output/` with the exported PPTX. If the SVG is already sparse, inspect the planning, resource, and SVG-authoring layers. If the SVG contains the intended objects but the PPTX loses or changes them, inspect the conversion or rendering layer. This boundary follows [Materials → Plan → Realization](./technical-design.md), the [Default Generate workflow](../skills-academic/deck/workflows/generate-pptx.md), and the [Quick profile](../skills-academic/deck/workflows/profiles/quick-generate.md).
 
 ## Q: How is deck priced, and does template reuse reduce token usage?
 
@@ -213,7 +213,7 @@ mhchem profile: symbols, structures, environments, macros, chemistry, local
 formula colors, and the documented native normalizations. Unknown and
 explicitly unsupported input fails closed instead of appearing as raw LaTeX.
 For PPTX import, the same closed OMML validator supports a narrow reverse path:
-ppt-master-owned block and inline math becomes canonical formula markers with
+deck-owned block and inline math becomes canonical formula markers with
 visible SVG previews. This recovers normalized semantics, not the author's
 original LaTeX spelling and not arbitrary third-party OMML. Unknown OMML is
 reported and retained as readable/opaque fallback in tolerant mode.
@@ -252,8 +252,8 @@ transitions from a source deck and reports a transition it cannot reconstruct as
 `transition-not-reconstructed` instead of guessing.
 
 ```bash
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -t push --transition-duration 1.0   # replace the deck-wide transition
-python3 skills-academic/ppt-master/scripts/svg_to_pptx.py <project> -t none       # disable transitions
+python3 skills-academic/deck/scripts/svg_to_pptx.py <project> -t push --transition-duration 1.0   # replace the deck-wide transition
+python3 skills-academic/deck/scripts/svg_to_pptx.py <project> -t none       # disable transitions
 ```
 
 ## Q: Which AI model works best?
@@ -303,7 +303,7 @@ a design spec first — can I generate directly?".
 ## Q: I don't want to confirm a design spec first — can I generate directly?
 
 Yes. Explicitly request **quick generation**, and the Generate route uses the
-[`quick-generate` profile](../skills-academic/ppt-master/workflows/profiles/quick-generate.md).
+[`quick-generate` profile](../skills-academic/deck/workflows/profiles/quick-generate.md).
 
 **What it skips is the Strategist analysis, the `design_spec.md` /
 `spec_lock.md` artifacts, and the staged confirmation stop: whatever you state
@@ -376,7 +376,7 @@ Think of "using an existing PPT" as two questions: **keep its content or not**, 
 | Keep only content, redo design and pagination | **Generate PPTX** | Source facts; story structure and page count may change |
 | Keep content + keep design | No generation needed | Use the original file |
 
-Use the **beautify profile** when the source deck's page split is part of the requested output: text stays verbatim, page count and order are preserved 1:1, and layout / hierarchy / whitespace are redone. The source palette and fonts are the recommended, preselected defaults; an explicit request or final confirmation can override visual fields, but Beautify never departs from the source identity silently. Say "make this deck look better" / "re-layout this, keep the wording". See the [beautify profile](../skills-academic/ppt-master/workflows/profiles/beautify-pptx.md).
+Use the **beautify profile** when the source deck's page split is part of the requested output: text stays verbatim, page count and order are preserved 1:1, and layout / hierarchy / whitespace are redone. The source palette and fonts are the recommended, preselected defaults; an explicit request or final confirmation can override visual fields, but Beautify never departs from the source identity silently. Say "make this deck look better" / "re-layout this, keep the wording". See the [beautify profile](../skills-academic/deck/workflows/profiles/beautify-pptx.md).
 
 Use the **main pipeline** when the source PPT is just material: extract it to Markdown with `ppt_to_md`, read PPTX intake facts from `analysis/`, then let Strategist re-architect the outline freely (merge / split / reorder pages). Say "build a better deck from this one's content" or "turn this into a 10-page executive briefing".
 
@@ -392,7 +392,7 @@ There is also one orthogonal route: if you don't want to produce a deck right no
 
 Yes — this is the **Edit Native PPTX** route, separate from Generate. Give the AI your existing `.pptx` plus your material (or a topic) and ask it to "fill this deck with the new content" or "fill this back into the template". It imports the deck into a source-preserving round-trip workspace under `projects/`, treats the source pages as a native slide library, and lets you choose, reorder, repeat, or omit pages before editing selected content.
 
-Unchanged output pages are referenced and restored byte-for-byte. On an edited page, unchanged objects restore in their native form and only changed objects are rebuilt. The ordered `pages` roster in `page_plan.json` uses `source_slide` plus an optional copied `svg` filename to select, reorder, repeat, or omit source pages. Notes, narration, timings, and transitions are overlays on the preserved slide. A deck's page structure encodes its logic (lead-then-detail, comparison, progression), so pick pages whose structure already fits your content rather than forcing it in. When the source library lacks a required new structure, use ordinary Generate, or run Create Template first and then Generate from the resulting workspace. Full steps: [Edit Native PPTX workflow](../skills-academic/ppt-master/workflows/edit-native-pptx.md).
+Unchanged output pages are referenced and restored byte-for-byte. On an edited page, unchanged objects restore in their native form and only changed objects are rebuilt. The ordered `pages` roster in `page_plan.json` uses `source_slide` plus an optional copied `svg` filename to select, reorder, repeat, or omit source pages. Notes, narration, timings, and transitions are overlays on the preserved slide. A deck's page structure encodes its logic (lead-then-detail, comparison, progression), so pick pages whose structure already fits your content rather than forcing it in. When the source library lacks a required new structure, use ordinary Generate, or run Create Template first and then Generate from the resulting workspace. Full steps: [Edit Native PPTX workflow](../skills-academic/deck/workflows/edit-native-pptx.md).
 
 ---
 
@@ -403,7 +403,7 @@ Edit Native PPTX and Create Template each write a readable inventory before auth
 For **Edit Native PPTX**:
 
 ```bash
-python3 skills-academic/ppt-master/scripts/pptx_to_svg.py <deck.pptx> \
+python3 skills-academic/deck/scripts/pptx_to_svg.py <deck.pptx> \
   -o projects/<slug> --inheritance-mode both --roundtrip
 ```
 
@@ -412,7 +412,7 @@ python3 skills-academic/ppt-master/scripts/pptx_to_svg.py <deck.pptx> \
 For **Create Template**:
 
 ```bash
-python3 skills-academic/ppt-master/scripts/pptx_template_import.py <deck.pptx> --manifest-only -o <workspace>
+python3 skills-academic/deck/scripts/pptx_template_import.py <deck.pptx> --manifest-only -o <workspace>
 ```
 
 `manifest.json` reports, per slide, the layout and master paths, placeholders (`type`, `idx`, `semanticRole`, `shapeName`), image assets, text counts, and page type; `native_structure.json` adds the source structure assessment. `--manifest-only` skips SVG export, so it is cheap to run just to look.
@@ -432,13 +432,13 @@ Yes, through an explicit `/create-template` request. A complete source deck does
 | **Layout** | Brand-neutral and application-neutral Master/Layout/slot structure |
 | **Deck** | A recurring application or branded structure that integrates identity, structure, and an SVG roster |
 
-Create Template confirms the brief before writing either an indexed `library` workspace or a non-registered initialized `project` workspace. For later Generate runs, pass the resulting workspace root—not the source `.pptx` or its inner `templates/` directory. See the [Create Template route](../skills-academic/ppt-master/workflows/create-template.md) and [Templates Guide](./templates-guide.md).
+Create Template confirms the brief before writing either an indexed `library` workspace or a non-registered initialized `project` workspace. For later Generate runs, pass the resulting workspace root—not the source `.pptx` or its inner `templates/` directory. See the [Create Template route](../skills-academic/deck/workflows/create-template.md) and [Templates Guide](./templates-guide.md).
 
 ---
 
 ## Q: Does registering a template make every future deck use it automatically?
 
-No. Registration makes a workspace discoverable; it does not select it. In Default Generate, the template must still be confirmed in Stage 1. Supplying exactly one workspace root can preselect it there, but does not bypass confirmation; supplying several roots leaves them as unselected candidates. Quick has no template selector, so an exact root is validated and used directly, while no exact root means free design. A raw `.pptx`, an inner `templates/` directory, a bare template name, or a style phrase is not a workspace selection. See [How template selection works](./templates-guide.md) and the [Quick template boundary](../skills-academic/ppt-master/workflows/profiles/quick-generate.md).
+No. Registration makes a workspace discoverable; it does not select it. In Default Generate, the template must still be confirmed in Stage 1. Supplying exactly one workspace root can preselect it there, but does not bypass confirmation; supplying several roots leaves them as unselected candidates. Quick has no template selector, so an exact root is validated and used directly, while no exact root means free design. A raw `.pptx`, an inner `templates/` directory, a bare template name, or a style phrase is not a workspace selection. See [How template selection works](./templates-guide.md) and the [Quick template boundary](../skills-academic/deck/workflows/profiles/quick-generate.md).
 
 ---
 
@@ -468,10 +468,10 @@ You don't need to supply every detail upfront — the AI agent will ask follow-u
 
 **Step 3 — Wait for the Result**
 
-The AI agent will handle the rest — analyzing your references, writing the kind-specific specification, building structured layout definitions only for Layout/Deck, and validating the workspace. Brand/Style never create a preview PPTX; Layout/Deck generate `exports/<id>_template_preview.pptx` on request and require it for multiple Masters. Both scopes require `templates/`; Brand/Layout/Deck may use package-owned `images/` and `icons/`, while Style contributes only its Design Spec. Library scope writes a bare `templates/design_spec.md` under `skills-academic/ppt-master/templates/<kind>/<id>/` and registers it; project scope writes `templates/design_spec.<kind>.<id>.md` under `projects/<name>/` and skips registration, allowing one contribution of every kind to coexist. Layout owns the active SVG roster when Layout and Deck are both present. Empty optional directories are omitted. Give that workspace root to Step 3; a project root contributes all of its specs atomically, and installation never copies `exports/`. Older flat or semantic-legacy packages are reference inputs only and must be rebuilt through `create-template` before Generate can select them.
+The AI agent will handle the rest — analyzing your references, writing the kind-specific specification, building structured layout definitions only for Layout/Deck, and validating the workspace. Brand/Style never create a preview PPTX; Layout/Deck generate `exports/<id>_template_preview.pptx` on request and require it for multiple Masters. Both scopes require `templates/`; Brand/Layout/Deck may use package-owned `images/` and `icons/`, while Style contributes only its Design Spec. Library scope writes a bare `templates/design_spec.md` under `skills-academic/deck/templates/<kind>/<id>/` and registers it; project scope writes `templates/design_spec.<kind>.<id>.md` under `projects/<name>/` and skips registration, allowing one contribution of every kind to coexist. Layout owns the active SVG roster when Layout and Deck are both present. Empty optional directories are omitted. Give that workspace root to Step 3; a project root contributes all of its specs atomically, and installation never copies `exports/`. Older flat or semantic-legacy packages are reference inputs only and must be rebuilt through `create-template` before Generate can select them.
 
 > **Tip**: The more specific you are about the style and use case, the better the generated template will match your expectations.
 
 ---
 
-> For more questions, see [SKILL.md](../skills-academic/ppt-master/SKILL.md) and [AGENTS.md](../AGENTS.md)
+> For more questions, see [SKILL.md](../skills-academic/deck/SKILL.md) and [AGENTS.md](../AGENTS.md)

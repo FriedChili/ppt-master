@@ -20,7 +20,7 @@ Before starting the agent, keep these three directories separate:
 
 | Directory | What it is | Where it comes from |
 |---|---|---|
-| **Installed skill directory** | The deck package containing `SKILL.md`, `requirements.txt`, workflows, and scripts | In a full-repository clone or repository ZIP, this is `skills-academic/ppt-master/`; a marketplace/plugin installation or skill-only release ZIP has its own installed or extracted location |
+| **Installed skill directory** | The deck package containing `SKILL.md`, `requirements.txt`, workflows, and scripts | In a full-repository clone or repository ZIP, this is `skills-academic/deck/`; a marketplace/plugin installation or skill-only release ZIP has its own installed or extracted location |
 | **Working folder** | A persistent, writable folder that you open in the agent | For a full-repository clone or repository ZIP, normally the repository root; for skill-only installation, choose your own folder—it does not have to be the installed skill directory |
 | **Active project** | One generation run's sources, authored SVG, reports, backups, and exports | The agent initializes it under `<working-folder>/projects/<generated-project-name>/` and reports the exact path |
 
@@ -50,7 +50,7 @@ python3 -m pip install -r "<installed-skill-dir>/requirements.txt"
 | **Use this deck's native slide shells with new content** | Edit Native PPTX | Imports a round-trip workspace; unchanged pages restore byte-for-byte, `page_plan.json` may select/reorder/repeat/omit pages, and only planned pages are edited. |
 | **Build a reusable design system, then generate a new deck** | Create Template → Generate PPTX | Creates a validated Brand, Style, Layout, or Deck workspace from the reference, then authors a fresh deck. The new story, structure, and page count can differ from the source. |
 
-For the first, give the AI your `.pptx` plus your material (or a topic) and ask it to "fill this deck with the new content" — see the [Edit Native PPTX workflow](../skills-academic/ppt-master/workflows/edit-native-pptx.md). The rest of this section covers create-template.
+For the first, give the AI your `.pptx` plus your material (or a topic) and ask it to "fill this deck with the new content" — see the [Edit Native PPTX workflow](../skills-academic/deck/workflows/edit-native-pptx.md). The rest of this section covers create-template.
 
 **To build a reusable workspace from an existing PowerPoint, explicitly request the Create Template route.** A raw `.pptx` plus new material otherwise belongs to Edit Native PPTX; it is not a Generate template workspace. Create the workspace first:
 
@@ -66,13 +66,13 @@ A created template lives in one of two places:
 
 | Location | Path | Notes |
 |---|---|---|
-| **Registered in the skill library** | `skills-academic/ppt-master/templates/<kind>/<id>/` | Portable workspace plus global registration, so it appears when you ask "what templates are available?" |
+| **Registered in the skill library** | `skills-academic/deck/templates/<kind>/<id>/` | Portable workspace plus global registration, so it appears when you ask "what templates are available?" |
 | **Under projects** | `projects/<name>/` | A shared qualified-spec root without global registration; all four kinds may coexist, with Layout taking structural precedence over Deck |
 
 Default Generate shows the template choice inside Stage 1, beside the communication contract. The initial communication recommendation is written without reading any template. Ordinary requests start with free design; explicit template intent or any exact root starts in template mode, and the user can always switch. To offer another result, supply its exact **workspace-root path** in chat: an unregistered root appears in the specified-root dropdown, while an exact registered match resolves back to its kind dropdown. Exactly one supplied root may be preselected; multiple supplied roots remain unselected candidates. Each kind may appear once; Layout and Deck may coexist, with Layout supplying structure. A multi-kind project root is selected atomically. One confirmation closes communication and template choice together. Only then are selected roots validated and installed; template-aware planning begins in final Stage 2. A bare template name never resolves to a workspace. A project root can be reused directly by another project; moving one contribution into the library changes its spec filename placement and adds registration.
 
 ```
-You: Make a deck from sources/report.pdf with template skills-academic/ppt-master/templates/layouts/presentation_core/
+You: Make a deck from sources/report.pdf with template skills-academic/deck/templates/layouts/presentation_core/
 ```
 
 Full guide → [Templates Guide](./templates-guide.md)
@@ -84,7 +84,7 @@ Full guide → [Templates Guide](./templates-guide.md)
 Once the environment and working folder above are ready, the whole loop is three steps:
 
 1. **Give the agent source material it can read** — a PDF, DOCX, Markdown file, a URL, or text pasted into chat. A folder such as `<working-folder>/inputs/` is fine; you do not need to pre-create the final `projects/<name>/` directory.
-2. **Tell the AI in chat** what to turn into a deck. [Default Generate Step 2](../skills-academic/ppt-master/workflows/generate-pptx.md) or [Quick initialization](../skills-academic/ppt-master/workflows/profiles/quick-generate.md) creates the active project under the working folder's `projects/` directory and reports its exact path. File-based material is imported when present; pasted text stays in the conversation context and needs no import. Default then opens Stage 1 to confirm the communication contract together with free design or template use; Quick skips those confirmation stages. For Default, add one exact workspace root when you want template mode and that path preselected:
+2. **Tell the AI in chat** what to turn into a deck. [Default Generate Step 2](../skills-academic/deck/workflows/generate-pptx.md) or [Quick initialization](../skills-academic/deck/workflows/profiles/quick-generate.md) creates the active project under the working folder's `projects/` directory and reports its exact path. File-based material is imported when present; pasted text stays in the conversation context and needs no import. Default then opens Stage 1 to confirm the communication contract together with free design or template use; Quick skips those confirmation stages. For Default, add one exact workspace root when you want template mode and that path preselected:
    ```
    You: Make a deck from <path-to-report.pdf>
    You: Turn this text into a deck: <paste your text>
@@ -121,7 +121,7 @@ It does not skip capabilities: source conversion, research on identified factual
 
 Quick is a one-pass profile, not a shortened resumable workflow. It creates no Strategist record, `design_spec.md`, `spec_lock.md`, or substitute page plan; its content/design/resource decisions exist only in the active AI context. If that context is lost before delivery, start Quick again. Operational manifests, quality reports, postflight, and the cold Python audit log may remain, but they cannot reconstruct why the AI designed the deck that way. The profile reduces interaction and durable planning, not the available presentation toolbox or the intended quality bar.
 
-Full guide → [quick-generate profile](../skills-academic/ppt-master/workflows/profiles/quick-generate.md)
+Full guide → [quick-generate profile](../skills-academic/deck/workflows/profiles/quick-generate.md)
 
 ---
 
@@ -134,7 +134,7 @@ A browser preview opens at the URL reported by the launcher while the deck is be
 - **Or annotate for the AI** — click an element, type what you want changed, click **Add annotation** to stage it, then click **Apply changes** to write the annotation markers to `svg_output/`. Return to chat and say "apply my annotations"; the AI rewrites that region and re-exports the PPTX.
 
 
-Full guide → [Live Preview Stage](../skills-academic/ppt-master/workflows/stages/live-preview.md)
+Full guide → [Live Preview Stage](../skills-academic/deck/workflows/stages/live-preview.md)
 
 ---
 
@@ -144,7 +144,7 @@ The [FAQ](./faq.md) is the living troubleshooting reference — continuously upd
 
 | Situation | First thing to try |
 |---|---|
-| The AI drifts or forgets a step | Ask it to re-read `skills-academic/ppt-master/SKILL.md`, `skills-academic/ppt-master/workflows/routing.md`, and the selected route authority. |
+| The AI drifts or forgets a step | Ask it to re-read `skills-academic/deck/SKILL.md`, `skills-academic/deck/workflows/routing.md`, and the selected route authority. |
 | Visual quality disappoints | Switch to a large-context Claude model + `gpt-image-2` — the harness sets the floor, the model sets the ceiling. |
 | Text overflows or elements overlap | Re-run that page, or fix it in live preview; see the [FAQ](./faq.md). |
 | No image-generation API key | Use the host's native image tool when available; otherwise zero-config web search still works. See the [FAQ](./faq.md). |

@@ -1,13 +1,13 @@
 # 对接 Pepper 工作区
 
-本文说明**如何把一份 Pepper 上游工作区喂给 `skills-academic/ppt-master`**：
+本文说明**如何把一份 Pepper 上游工作区喂给 `skills-academic/deck`**：
 为什么需要这一步、工作区长什么样、解析器怎么做、命令怎么跑、哪些设计被放弃了。
 
 > **本文不含任何具体课题内容。** 存在性数据来自 **4 个真实生产会话备份**的普查；
 > 目录名与规则引文取自上游代码（`worker/plugins/pepper-orchestrator/src/`）。
 >
 > 分支层面的其余改造（确认页文案、Stage 2 入口二选一、色彩方案重构、模板 spec 英文化等）
-> 与 Pepper 无关，见 [`skills-academic/ppt-master/FORK.md`](skills-academic/ppt-master/FORK.md)。
+> 与 Pepper 无关，见 [`skills-academic/deck/FORK.md`](skills-academic/deck/FORK.md)。
 
 ---
 
@@ -26,7 +26,7 @@
 判断从散落的 `if exists` 逻辑变成**数据**：管线加了新产物，改清单而不是改技能。
 
 ```bash
-SK=skills-academic/ppt-master
+SK=skills-academic/deck
 python3 $SK/scripts/resolve_sources.py <workspace> --stage <flat_dir>   # 探测 + 铺成扁平目录
 python3 $SK/scripts/project_manager.py init <project_name>              # 建项目
 python3 $SK/scripts/project_manager.py import-sources <project> <flat_dir> --copy   # 摄入
@@ -455,12 +455,12 @@ Step 6  逐页 SVG → 质检 → finalize_svg.py → 讲者备注
 Step 7  svg_to_pptx.py 导出
 ```
 
-完整命令与闸门由 [`skills-academic/ppt-master/workflows/generate-pptx.md`](skills-academic/ppt-master/workflows/generate-pptx.md) 拥有，本文不重复。
+完整命令与闸门由 [`skills-academic/deck/workflows/generate-pptx.md`](skills-academic/deck/workflows/generate-pptx.md) 拥有，本文不重复。
 
 ### 5.4 一条实测过的完整链路
 
 ```bash
-SK=skills-academic/ppt-master
+SK=skills-academic/deck
 
 # ① 解析
 python3 $SK/scripts/resolve_sources.py <workspace> --stage <flat_dir>
@@ -533,8 +533,8 @@ python3 $SK/scripts/svg_to_pptx.py <project>
 无图作业、纯文献作业、多语言、短论文、上游半途中止。**这些是样本给不了的。**
 
 ```bash
-python3 -m unittest discover -s skills-academic/ppt-master/scripts/tests \
-  -t skills-academic/ppt-master/scripts/tests -p 'test_source_resolution.py'
+python3 -m unittest discover -s skills-academic/deck/scripts/tests \
+  -t skills-academic/deck/scripts/tests -p 'test_source_resolution.py'
 # Ran 30 tests ... OK
 ```
 

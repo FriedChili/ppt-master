@@ -4,7 +4,7 @@
 
 这是 deck 的**科研/学术专用分支**：已移除企业品牌、商务沟通方法、音效、
 动画/配音/视频交付等非科研场景面。当前交付物是**静态**幻灯片。
-改动清单与回滚方式见 [`skills-academic/ppt-master/FORK.md`](skills-academic/ppt-master/FORK.md)。
+改动清单与回滚方式见 [`skills-academic/deck/FORK.md`](skills-academic/deck/FORK.md)。
 
 **本文档面向使用者。** 与上游写作管线对接、解析器原理与命令，见 [`pepper_use.md`](pepper_use.md)。
 
@@ -16,13 +16,13 @@
 其中每个文本框、形状、图表都是 PowerPoint **原生对象**，可以直接改，不是截图贴图。
 
 ```bash
-SK=skills-academic/ppt-master
+SK=skills-academic/deck
 
 python3 $SK/scripts/project_manager.py init my_deck
 python3 $SK/scripts/project_manager.py import-sources projects/my_deck_20261011 ./paper.pdf
 ```
 
-之后由 AI 按 [`SKILL.md`](skills-academic/ppt-master/SKILL.md) 走生成流程，
+之后由 AI 按 [`SKILL.md`](skills-academic/deck/SKILL.md) 走生成流程，
 产出在 `exports/<name>_<时间戳>.pptx`。
 
 ---
@@ -30,7 +30,7 @@ python3 $SK/scripts/project_manager.py import-sources projects/my_deck_20261011 
 ## 目录结构
 
 ```
-skills-academic/ppt-master/     ← 本分支的技能本体（唯一需要读的）
+skills-academic/deck/     ← 本分支的技能本体（唯一需要读的）
 ├── SKILL.md                    ← 全局纪律与路线入口；改任何东西前先读
 ├── workflows/                  ← 路线权威：generate-pptx / create-template / edit-native-pptx
 ├── references/                 ← 角色核心与按需加载的技术模块
@@ -42,7 +42,7 @@ docs/                           ← 面向使用者的文档
 projects/                       ← 用户项目工作区
 ```
 
-> **仓库根另有 `skills-academic/ppt-master/`，那是上游原始副本，不是本分支。**
+> **仓库根另有 `skills-academic/deck/`，那是上游原始副本，不是本分支。**
 > 不要在那边改东西。
 
 ---
@@ -52,16 +52,16 @@ projects/                       ← 用户项目工作区
 **前置**：Python 3.10+；可选 `pandoc`（转 `.tex`，缺失不影响主流程，见 [`pepper_use.md`](pepper_use.md) §8.1）。
 
 ```bash
-pip install -r skills-academic/ppt-master/requirements.txt
+pip install -r skills-academic/deck/requirements.txt
 ```
 
 ### 三条路线
 
 | 路线 | 用在什么时候 | 权威文档 |
 |---|---|---|
-| **Generate PPTX** | 从材料做一份新稿 | [generate-pptx.md](skills-academic/ppt-master/workflows/generate-pptx.md) |
-| **Create Template** | 从 PPTX / SVG / 图片 / 文档做 `style`、`layout`、`deck` 模板 | [create-template.md](skills-academic/ppt-master/workflows/create-template.md) |
-| **Edit Native PPTX** | 改一份已有的原生 PPTX | [edit-native-pptx.md](skills-academic/ppt-master/workflows/edit-native-pptx.md) |
+| **Generate PPTX** | 从材料做一份新稿 | [generate-pptx.md](skills-academic/deck/workflows/generate-pptx.md) |
+| **Create Template** | 从 PPTX / SVG / 图片 / 文档做 `style`、`layout`、`deck` 模板 | [create-template.md](skills-academic/deck/workflows/create-template.md) |
+| **Edit Native PPTX** | 改一份已有的原生 PPTX | [edit-native-pptx.md](skills-academic/deck/workflows/edit-native-pptx.md) |
 
 Generate 有两个互斥运行时：默认的 **Strategist → Image_Generator → Executor**（含确认环节），
 以及**无独立策略与确认**的 Quick。
@@ -81,7 +81,7 @@ Step 7    导出 PPTX
 ### 命令速查
 
 ```bash
-SK=skills-academic/ppt-master
+SK=skills-academic/deck
 
 python3 $SK/scripts/project_manager.py init <project_name>
 python3 $SK/scripts/project_manager.py import-sources <project_path> <sources...>
@@ -93,7 +93,7 @@ python3 $SK/scripts/svg_to_pptx.py <project_path>
 ```
 
 其余命令（模板物化与预览、切片、创作视图刷新等）由拥有它的路线或阶段列出，
-并见 [`scripts/docs/svg-pipeline.md`](skills-academic/ppt-master/scripts/docs/svg-pipeline.md)。
+并见 [`scripts/docs/svg-pipeline.md`](skills-academic/deck/scripts/docs/svg-pipeline.md)。
 
 ---
 
@@ -102,8 +102,8 @@ python3 $SK/scripts/svg_to_pptx.py <project_path>
 | 文档 | 内容 |
 |---|---|
 | [`pepper_use.md`](pepper_use.md) | 对接上游写作工作区、解析器原理与用法 |
-| [`FORK.md`](skills-academic/ppt-master/FORK.md) | 本分支的改动清单与回滚 |
-| [`SKILL.md`](skills-academic/ppt-master/SKILL.md) | 全局执行纪律与路线选择 |
+| [`FORK.md`](skills-academic/deck/FORK.md) | 本分支的改动清单与回滚 |
+| [`SKILL.md`](skills-academic/deck/SKILL.md) | 全局执行纪律与路线选择 |
 | [`docs/getting-started.md`](docs/getting-started.md) | 做出第一份稿 |
 | [`docs/templates-guide.md`](docs/templates-guide.md) | 模板怎么用 |
 | [`docs/faq.md`](docs/faq.md) | 常见问题 |

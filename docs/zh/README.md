@@ -4,7 +4,7 @@
 
 ---
 
-用户文档集中在 `docs/` 目录：英文文件为规范源，本目录（`docs/zh/`）是同步中文译本。AI 自身消费的工作流与技术参考位于 [`skills-academic/ppt-master/`](../../skills-academic/ppt-master/SKILL.md)。
+用户文档集中在 `docs/` 目录：英文文件为规范源，本目录（`docs/zh/`）是同步中文译本。AI 自身消费的工作流与技术参考位于 [`skills-academic/deck/`](../../skills-academic/deck/SKILL.md)。
 
 ## 快速上手
 

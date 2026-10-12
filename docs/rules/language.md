@@ -1,6 +1,6 @@
 # Language Rule
 
-> Applies to every agent-facing file in the package — `skills-academic/ppt-master/SKILL.md`, `references/*.md`, `workflows/**/*.md` — and to repository documentation under `docs/`.
+> Applies to every agent-facing file in the package — `skills-academic/deck/SKILL.md`, `references/*.md`, `workflows/**/*.md` — and to repository documentation under `docs/`.
 
 ## 1. One Language Per File
 
@@ -20,7 +20,7 @@ Inside an English file, a non-English string is allowed only when it *is* the su
 | A proper noun with English context (`印章`, `新中式`) | A prose paragraph of instructions in Chinese |
 | A directory or brand name that is genuinely Chinese | |
 
-**Hard rule**: an instruction the model must follow is written in the file's own language. A rule written in one language biases the model's output toward that language and silently overrides [`SKILL.md`](../../skills-academic/ppt-master/SKILL.md)'s "match the user's language" discipline.
+**Hard rule**: an instruction the model must follow is written in the file's own language. A rule written in one language biases the model's output toward that language and silently overrides [`SKILL.md`](../../skills-academic/deck/SKILL.md)'s "match the user's language" discipline.
 
 ## 3. Never Hard-Code the Output Language
 

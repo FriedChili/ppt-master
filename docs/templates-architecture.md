@@ -81,7 +81,7 @@ and fonts are proposal seeds, not Theme identity truth.
 
 | Scope | Workspace root | Core workspace | Discovery |
 |---|---|---|---|
-| `library` (default) | `skills-academic/ppt-master/templates/<kind>/<id>/` | Required `templates/`; optional `images/`, `icons/`, and on-demand `exports/` | Register in the matching global index |
+| `library` (default) | `skills-academic/deck/templates/<kind>/<id>/` | Required `templates/`; optional `images/`, `icons/`, and on-demand `exports/` | Register in the matching global index |
 | `project` | `projects/<name>/` | The same routing contract | No global index update |
 
 Both roots have the same core shape:
@@ -316,7 +316,7 @@ kind owns this segment”.
 
 ## 3. The four index files
 
-Each of these four indexes maps one-to-one with its physical directory, and its fields are trimmed to what Strategist needs to select a reusable workspace. Visualization uses a separate boundary: planning reads the objective [`chart-vocabulary.md`](../skills-academic/ppt-master/templates/charts/chart-vocabulary.md) and [`table-vocabulary.md`](../skills-academic/ppt-master/templates/tables/table-vocabulary.md), while [`charts_index.json`](../skills-academic/ppt-master/templates/charts/charts_index.json) and [`tables_index.json`](../skills-academic/ppt-master/templates/tables/tables_index.json) remain machine registries. Qualitative Structure has no index because Executor generates it from page relationships.
+Each of these four indexes maps one-to-one with its physical directory, and its fields are trimmed to what Strategist needs to select a reusable workspace. Visualization uses a separate boundary: planning reads the objective [`chart-vocabulary.md`](../skills-academic/deck/templates/charts/chart-vocabulary.md) and [`table-vocabulary.md`](../skills-academic/deck/templates/tables/table-vocabulary.md), while [`charts_index.json`](../skills-academic/deck/templates/charts/charts_index.json) and [`tables_index.json`](../skills-academic/deck/templates/tables/tables_index.json) remain machine registries. Qualitative Structure has no index because Executor generates it from page relationships.
 
 These indexes cover library scope only. A project-root workspace is intentionally absent from all four indexes and remains usable through its explicit `projects/<name>/` path. Because both scopes use the same workspace shape, moving or copying the complete core workspace between them does not require asset-path rewriting; only library registration changes.
 
@@ -401,7 +401,7 @@ The body of each file is copied unchanged; only one provenance line is
 prepended under its H1:
 
 ```markdown
-> **Installed from**: `skills-academic/ppt-master/templates/brands/mckinsey/` (library)
+> **Installed from**: `skills-academic/deck/templates/brands/mckinsey/` (library)
 ```
 
 There is no merged project spec and no combined capability label. A bare
@@ -476,7 +476,7 @@ directory listing, not a merge reconstruction.
 
 ## 5. Relationship with Generate PPTX Stage 1
 
-Default Generate [Step 3](../skills-academic/ppt-master/workflows/generate-pptx.md#step-3-template-candidate-preparation)
+Default Generate [Step 3](../skills-academic/deck/workflows/generate-pptx.md#step-3-template-candidate-preparation)
 only prepares candidate input. Stage 1 presents the communication contract and
 the switchable free-design/template choice together. Ordinary requests start in
 free design with detailed controls collapsed; explicit template intent or any

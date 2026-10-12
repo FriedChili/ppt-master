@@ -1,16 +1,16 @@
 # AGENTS.md
 
-> **本仓库为科研/学术专用分支（academic fork）。** 已移除企业品牌、商务沟通方法、音效、动画/配音/视频交付等非科研场景面。改动清单与回滚方式见 [`FORK.md`](ppt-master/FORK.md)。
+> **本仓库为科研/学术专用分支（academic fork）。** 已移除企业品牌、商务沟通方法、音效、动画/配音/视频交付等非科研场景面。改动清单与回滚方式见 [`FORK.md`](deck/FORK.md)。
 
 This file is the project entry point for general AI agents.
 
-**You MUST read [`ppt-master/SKILL.md`](ppt-master/SKILL.md) before any PPT generation task or repo modification.** It owns global execution discipline and points to the route selector; after routing, the selected runtime authority owns its steps, gates, and commands.
+**You MUST read [`deck/SKILL.md`](deck/SKILL.md) before any PPT generation task or repo modification.** It owns global execution discipline and points to the route selector; after routing, the selected runtime authority owns its steps, gates, and commands.
 
 **Repository execution anchor**: resolve the absolute repository root from this
-file's supplied path and retain the absolute `skills-academic/ppt-master` root before the
+file's supplied path and retain the absolute `skills-academic/deck` root before the
 first command. Paths in this file are repository-relative notation only; invoke
 them through those absolute roots, retain the absolute project path returned by
-initialization, and never issue `cd skills-academic/ppt-master` or `cd projects/...`.
+initialization, and never issue `cd skills-academic/deck` or `cd projects/...`.
 When parsing machine-readable stdout, keep stderr separate and never place
 `2>&1` upstream of a JSON or XML parser. Invoke each such command once per
 concrete argument set; never encode its executable or flag list in scalar shell
@@ -21,69 +21,69 @@ command provides a compact view.
 
 deck turns source material into natively editable DrawingML PPTX. Generate has two mutually exclusive runtimes: Default Strategist → Image_Generator → Executor, and self-contained Quick without separate strategy/confirmation. Beautify selects from explicit Quick intent; Image to PPTX always uses Quick.
 
-**Route selection authority**: [`ppt-master/workflows/routing.md`](ppt-master/workflows/routing.md) owns the three top-level artifact routes: Generate PPTX, Create Template, and Edit Native PPTX. Child workflows, profiles, stages, and governance documents refine one selected route; they are not competing top-level routes.
+**Route selection authority**: [`deck/workflows/routing.md`](deck/workflows/routing.md) owns the three top-level artifact routes: Generate PPTX, Create Template, and Edit Native PPTX. Child workflows, profiles, stages, and governance documents refine one selected route; they are not competing top-level routes.
 
-- Topic-only or fact-insufficient inputs run [`topic-research`](ppt-master/workflows/stages/topic-research.md) inside the selected Generate profile's source intake; its facts URLs are not auto-expanded. After normal image search fails, one relevant webpage may be fetched as a source package and only reviewed selections enter the runtime image pool.
+- Topic-only or fact-insufficient inputs run [`topic-research`](deck/workflows/stages/topic-research.md) inside the selected Generate profile's source intake; its facts URLs are not auto-expanded. After normal image search fails, one relevant webpage may be fetched as a source package and only reviewed selections enter the runtime image pool.
 - Default Generate prepares template candidates internally in Step 3, then confirms the communication contract and free-design/template choice together in Stage 1. A template never rewrites the confirmed communication contract; selected roots are installed before template-aware Stage 2. Quick skips this interaction.
-- Raw PPTX template plus new material/topic routes to [`edit-native-pptx`](ppt-master/workflows/edit-native-pptx.md): a `pptx_to_svg.py --roundtrip` workspace where unchanged pages are referenced byte-for-byte and only planned pages are edited; it never enters Generate.
-- Raw PPTX cannot be consumed as a Generate template workspace; run [`create-template`](ppt-master/workflows/create-template.md) first and return with the generated workspace root as a Stage-1 candidate. Never add Master/Layout structure directly to an existing PPTX/SVG; generate new structured SVG pages from the workspace.
-- Explicit quick/fast or skip-strategy generation uses [`quick-generate`](ppt-master/workflows/profiles/quick-generate.md): prepare sources/resources as needed, decide without interaction, omit Strategist/confirmation/spec/lock, hand-author `svg_output/`, pass its lockless final checker, and export.
-- PPTX beautify is a strict 1:1 Generate [`profile`](ppt-master/workflows/profiles/beautify-pptx.md), not a separate route. Explicit Quick intent uses the Quick runtime; otherwise it uses Default. Any split/merge/drop/reorder disables Beautify and returns to ordinary Generate in the selected runtime.
-- Page-image reconstruction uses the Codex-supported, Quick-only [`image-to-pptx`](ppt-master/workflows/profiles/image-to-pptx.md) profile. Normalize input page frames; one frame becomes one slide. Restore text natively, reconstruct low-resolution graphics without changing identity, and derive registered clean-base/scene layers. Padded-bbox-disjoint objects may share a generated plate and become independent crops. Never use a full-slide screenshot skin. Other hosts are unsupported.
-- Finished PPTX notes / timings with visible slides untouched also use [`edit-native-pptx`](ppt-master/workflows/edit-native-pptx.md); export must report `rebuilt=0`.
+- Raw PPTX template plus new material/topic routes to [`edit-native-pptx`](deck/workflows/edit-native-pptx.md): a `pptx_to_svg.py --roundtrip` workspace where unchanged pages are referenced byte-for-byte and only planned pages are edited; it never enters Generate.
+- Raw PPTX cannot be consumed as a Generate template workspace; run [`create-template`](deck/workflows/create-template.md) first and return with the generated workspace root as a Stage-1 candidate. Never add Master/Layout structure directly to an existing PPTX/SVG; generate new structured SVG pages from the workspace.
+- Explicit quick/fast or skip-strategy generation uses [`quick-generate`](deck/workflows/profiles/quick-generate.md): prepare sources/resources as needed, decide without interaction, omit Strategist/confirmation/spec/lock, hand-author `svg_output/`, pass its lockless final checker, and export.
+- PPTX beautify is a strict 1:1 Generate [`profile`](deck/workflows/profiles/beautify-pptx.md), not a separate route. Explicit Quick intent uses the Quick runtime; otherwise it uses Default. Any split/merge/drop/reorder disables Beautify and returns to ordinary Generate in the selected runtime.
+- Page-image reconstruction uses the Codex-supported, Quick-only [`image-to-pptx`](deck/workflows/profiles/image-to-pptx.md) profile. Normalize input page frames; one frame becomes one slide. Restore text natively, reconstruct low-resolution graphics without changing identity, and derive registered clean-base/scene layers. Padded-bbox-disjoint objects may share a generated plate and become independent crops. Never use a full-slide screenshot skin. Other hosts are unsupported.
+- Finished PPTX notes / timings with visible slides untouched also use [`edit-native-pptx`](deck/workflows/edit-native-pptx.md); export must report `rebuilt=0`.
 
 ## Execution Requirements
 
-- For any `style`, `layout`, or `deck` workspace creation from PPTX/SVG, images/PDFs, documents/websites, direct text, or mixed references, enter [`ppt-master/workflows/create-template.md`](ppt-master/workflows/create-template.md); it keeps the fixed Create Template name and dispatches exactly one of [`create-style`](ppt-master/workflows/create-template/create-style.md), [`create-layout`](ppt-master/workflows/create-template/create-layout.md), or [`create-deck`](ppt-master/workflows/create-template/create-deck.md).
-- Always-on SVG constraints and shared visual-quality defaults live in [`ppt-master/references/shared-standards-core.md`](ppt-master/references/shared-standards-core.md). Default and Quick Generate load [`svg-effects.md`](ppt-master/references/svg-effects.md) on the executor-base routing trigger (the everyday effects live in the executor core); other routes load it, [`native-data-interface.md`](ppt-master/references/native-data-interface.md), and [`pptx-structure-interface.md`](ppt-master/references/pptx-structure-interface.md) only when their documented execution triggers apply.
-- Canvas choices live in [`ppt-master/references/canvas-formats.md`](ppt-master/references/canvas-formats.md).
-- Icon library details live in [`ppt-master/templates/icons/README.md`](ppt-master/templates/icons/README.md).
+- For any `style`, `layout`, or `deck` workspace creation from PPTX/SVG, images/PDFs, documents/websites, direct text, or mixed references, enter [`deck/workflows/create-template.md`](deck/workflows/create-template.md); it keeps the fixed Create Template name and dispatches exactly one of [`create-style`](deck/workflows/create-template/create-style.md), [`create-layout`](deck/workflows/create-template/create-layout.md), or [`create-deck`](deck/workflows/create-template/create-deck.md).
+- Always-on SVG constraints and shared visual-quality defaults live in [`deck/references/shared-standards-core.md`](deck/references/shared-standards-core.md). Default and Quick Generate load [`svg-effects.md`](deck/references/svg-effects.md) on the executor-base routing trigger (the everyday effects live in the executor core); other routes load it, [`native-data-interface.md`](deck/references/native-data-interface.md), and [`pptx-structure-interface.md`](deck/references/pptx-structure-interface.md) only when their documented execution triggers apply.
+- Canvas choices live in [`deck/references/canvas-formats.md`](deck/references/canvas-formats.md).
+- Icon library details live in [`deck/templates/icons/README.md`](deck/templates/icons/README.md).
 
 ## Required Conventions
 
-- **Repo-wide style rules** — when editing prompt files under [`ppt-master/references/`](ppt-master/references/), Python under [`ppt-master/scripts/`](ppt-master/scripts/), or any other code/prose in the repo, follow the matching style rule in [`docs/rules/`](docs/rules/).
-- **Prompt content layers** — follow [`docs/rules/prompt-layers.md`](docs/rules/prompt-layers.md): a prompt file holds craft (design judgment) and the minimal contract the model writes; enforced grammar, importer behavior, and restated procedure live in [`scripts/docs/`](ppt-master/scripts/docs/), one owner per rule with pointers elsewhere.
+- **Repo-wide style rules** — when editing prompt files under [`deck/references/`](deck/references/), Python under [`deck/scripts/`](deck/scripts/), or any other code/prose in the repo, follow the matching style rule in [`docs/rules/`](docs/rules/).
+- **Prompt content layers** — follow [`docs/rules/prompt-layers.md`](docs/rules/prompt-layers.md): a prompt file holds craft (design judgment) and the minimal contract the model writes; enforced grammar, importer behavior, and restated procedure live in [`scripts/docs/`](deck/scripts/docs/), one owner per rule with pointers elsewhere.
 - **Prompt decision ownership** — follow [`docs/rules/ownership.md`](docs/rules/ownership.md); every cross-file rule has one owner recorded in [`docs/rules/rule-owners.md`](docs/rules/rule-owners.md). Default Strategist prepares project-local resources and Executor realizes them; Quick's current agent decides and prepares before SVG authoring. This is not downstream acquisition. Every project icon is prepared material; `icons.inventory` indexes the default plan's curated bundled pool, not page usage or an execution whitelist.
 - **Markdown language consistency** — follow [`docs/rules/language.md`](docs/rules/language.md): one language per file, mirroring the siblings in that directory; a non-English string may appear in an English file only as quoted content (user trigger text, sample values, rendered labels, proper nouns), never as the wording of a rule; never hard-code which language the model replies in. Chat replies are unaffected.
 
 ## Compatibility Boundary
 
 - This repository is a workflow/skill package, not an app or service scaffold.
-- Do NOT assume generic-project conventions like `.worktrees/`, CI, or mandatory branch setup unless the user explicitly requests them. The only test location is `ppt-master/scripts/tests/` under the conditions in [`docs/rules/code-style.md`](docs/rules/code-style.md) §11.
-- On conflict with a generic coding skill, prioritize [`ppt-master/SKILL.md`](ppt-master/SKILL.md) inside this repository.
+- Do NOT assume generic-project conventions like `.worktrees/`, CI, or mandatory branch setup unless the user explicitly requests them. The only test location is `deck/scripts/tests/` under the conditions in [`docs/rules/code-style.md`](docs/rules/code-style.md) §11.
+- On conflict with a generic coding skill, prioritize [`deck/SKILL.md`](deck/SKILL.md) inside this repository.
 
 ## Command Quick Reference
 
-Convenience summary only — route selection starts in [`SKILL.md`](ppt-master/SKILL.md). Image to PPTX always uses [`quick-generate.md`](ppt-master/workflows/profiles/quick-generate.md); Beautify uses it only when Quick is explicit, otherwise [`generate-pptx.md`](ppt-master/workflows/generate-pptx.md).
+Convenience summary only — route selection starts in [`SKILL.md`](deck/SKILL.md). Image to PPTX always uses [`quick-generate.md`](deck/workflows/profiles/quick-generate.md); Beautify uses it only when Quick is explicit, otherwise [`generate-pptx.md`](deck/workflows/generate-pptx.md).
 
 ```bash
-python3 ppt-master/scripts/source_to_md.py <file_or_URL_or_dir> [...]          # source conversion
-python3 ppt-master/scripts/project_manager.py init <project_name>              # --format only for an exact registered canvas
-python3 ppt-master/scripts/project_manager.py import-sources <project_path> <sources...>
-python3 ppt-master/scripts/project_manager.py validate <project_path>
-python3 ppt-master/scripts/icon_sync.py <project_path> <lib/name> [...]        # missing names -> non-zero = re-pick
-python3 ppt-master/scripts/confirm_ui/server.py <project_path> --daemon        # then --wait-only --wait-stage stage1
-python3 ppt-master/scripts/analyze_images.py <project_path>/images
-python3 ppt-master/scripts/image_gen.py --manifest <project_path>/images/image_prompts.json   # in-pipeline AI images, even for 1
-python3 ppt-master/scripts/svg_editor/server.py <project_path> --live --daemon
-python3 ppt-master/scripts/svg_quality_checker.py <project_path> --canonical-authoring --stage final --json   # Quick adds --quick-generate; --json writes the report the exporter reads, stdout stays the summary
-python3 ppt-master/scripts/pptx_to_svg.py <source.pptx> -o projects/<slug>_<YYYYMMDD> --inheritance-mode both --roundtrip   # Edit Native PPTX
-python3 ppt-master/scripts/svg_to_pptx.py projects/<slug>_<YYYYMMDD> --roundtrip
+python3 deck/scripts/source_to_md.py <file_or_URL_or_dir> [...]          # source conversion
+python3 deck/scripts/project_manager.py init <project_name>              # --format only for an exact registered canvas
+python3 deck/scripts/project_manager.py import-sources <project_path> <sources...>
+python3 deck/scripts/project_manager.py validate <project_path>
+python3 deck/scripts/icon_sync.py <project_path> <lib/name> [...]        # missing names -> non-zero = re-pick
+python3 deck/scripts/confirm_ui/server.py <project_path> --daemon        # then --wait-only --wait-stage stage1
+python3 deck/scripts/analyze_images.py <project_path>/images
+python3 deck/scripts/image_gen.py --manifest <project_path>/images/image_prompts.json   # in-pipeline AI images, even for 1
+python3 deck/scripts/svg_editor/server.py <project_path> --live --daemon
+python3 deck/scripts/svg_quality_checker.py <project_path> --canonical-authoring --stage final --json   # Quick adds --quick-generate; --json writes the report the exporter reads, stdout stays the summary
+python3 deck/scripts/pptx_to_svg.py <source.pptx> -o projects/<slug>_<YYYYMMDD> --inheritance-mode both --roundtrip   # Edit Native PPTX
+python3 deck/scripts/svg_to_pptx.py projects/<slug>_<YYYYMMDD> --roundtrip
 ```
 
-Every other command (slicing, template materialization and preview, authoring-view refresh) is listed by the route or stage that owns it and in [`svg-pipeline.md`](ppt-master/scripts/docs/svg-pipeline.md).
+Every other command (slicing, template materialization and preview, authoring-view refresh) is listed by the route or stage that owns it and in [`svg-pipeline.md`](deck/scripts/docs/svg-pipeline.md).
 
-For Generate PPTX serial post-processing and export, follow [`generate-pptx.md`](ppt-master/workflows/generate-pptx.md) Step 7 exactly; Edit Native PPTX exports through its own §7. See [`svg-pipeline.md`](ppt-master/scripts/docs/svg-pipeline.md) for tool flags and behavior.
+For Generate PPTX serial post-processing and export, follow [`generate-pptx.md`](deck/workflows/generate-pptx.md) Step 7 exactly; Edit Native PPTX exports through its own §7. See [`svg-pipeline.md`](deck/scripts/docs/svg-pipeline.md) for tool flags and behavior.
 
 ## Core Directories
 
-- `ppt-master/SKILL.md` — global discipline and route-entry authority.
-- `ppt-master/workflows/generate-pptx.md` — Generate PPTX Step 1–7 authority.
-- `ppt-master/references/` — role cores plus conditionally loaded role and technical modules.
-- `ppt-master/scripts/` — runnable tool scripts.
-- `ppt-master/scripts/docs/` — topic-focused script docs.
-- `ppt-master/templates/` — layout templates, chart templates, icon library.
-- `ppt-master/workflows/` — top-level route authorities plus supporting child workflows, profiles, stages, and governance runbooks.
+- `deck/SKILL.md` — global discipline and route-entry authority.
+- `deck/workflows/generate-pptx.md` — Generate PPTX Step 1–7 authority.
+- `deck/references/` — role cores plus conditionally loaded role and technical modules.
+- `deck/scripts/` — runnable tool scripts.
+- `deck/scripts/docs/` — topic-focused script docs.
+- `deck/templates/` — layout templates, chart templates, icon library.
+- `deck/workflows/` — top-level route authorities plus supporting child workflows, profiles, stages, and governance runbooks.
 - `docs/` — user-facing documentation (FAQ, installation, technical design, templates guide).
 - `docs/rules/` — repo-wide style rules.
 - `projects/` — user project workspace.
