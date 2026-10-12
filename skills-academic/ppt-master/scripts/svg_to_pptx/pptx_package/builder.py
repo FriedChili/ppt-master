@@ -7993,7 +7993,7 @@ def create_pptx_with_native_svg(
                             requested_media.relative_to(extract_dir).as_posix(),
                         )
                     ):
-                        # The earlier PPT Master narration for this slide was
+                        # The earlier ppt-master narration for this slide was
                         # just unlinked; reuse its name instead of growing a
                         # `_1`, `_1_1`, ... suffix with every re-recording.
                         requested_media.unlink()

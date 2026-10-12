@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Explicit SVG Picture Asset Extractor
+ppt-master - Explicit SVG Picture Asset Extractor
 
 Extract explicitly selected ``<g id>`` elements from one SVG into tight,
 self-contained SVG picture assets. Each selected group is replaced in place by

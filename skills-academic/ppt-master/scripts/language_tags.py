@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Language Tag Helpers
+ppt-master - Language Tag Helpers
 
 Normalize and inspect the project primary-language tag shared by confirmation
 and export tooling.

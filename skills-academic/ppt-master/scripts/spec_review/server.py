@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Spec Review Server
+ppt-master - Spec Review Server
 
 Serve a local Markdown review surface with staged edits and sidecar comments.
 See scripts/docs/spec_review.md for commands, APIs, and runtime files.

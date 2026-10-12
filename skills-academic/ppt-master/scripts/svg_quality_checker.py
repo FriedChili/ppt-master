@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PPT Master - SVG Quality Check Tool
+"""ppt-master - SVG Quality Check Tool
 
 Stable CLI entry point and compatibility import surface for SVG validation.
 Implementation lives in ``svg_quality/``.

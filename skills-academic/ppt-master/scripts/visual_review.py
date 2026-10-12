@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Visual Review Renderer
+ppt-master - Visual Review Renderer
 
 Renders project SVGs at their root viewBox dimensions to PNGs that match the
 live-preview browser view (inlined <use data-icon>, resolved <image href>, full

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - LaTeX Formula Renderer
+ppt-master - LaTeX Formula Renderer
 
 Render project-declared LaTeX formulas to transparent PNG assets.
 The script reads an explicit manifest; it never scans spec_lock.md or source
@@ -195,7 +195,7 @@ def _render_codecogs(
     """Render one formula through CodeCogs."""
     payload = _build_codecogs_payload(latex, dpi, color)
     url = CODECOGS_ENDPOINT + urllib.parse.quote(payload)
-    req = urllib.request.Request(url, headers={"User-Agent": "PPT-Master/1.0"})
+    req = urllib.request.Request(url, headers={"User-Agent": "ppt-master/1.0"})
     data, content_type = _request_bytes(req)
     return _assert_png(data, "codecogs", content_type)
 
@@ -215,7 +215,7 @@ def _render_wikimedia(
         data=payload,
         headers={
             "Content-Type": "application/x-www-form-urlencoded",
-            "User-Agent": "PPT-Master/1.0",
+            "User-Agent": "ppt-master/1.0",
         },
         method="POST",
     )
@@ -231,7 +231,7 @@ def _render_wikimedia(
 
     render_req = urllib.request.Request(
         f"{WIKIMEDIA_RENDER_ENDPOINT}/{resource}",
-        headers={"User-Agent": "PPT-Master/1.0"},
+        headers={"User-Agent": "ppt-master/1.0"},
     )
     data, content_type = _request_bytes(render_req)
     return _assert_png(data, "wikimedia", content_type)
@@ -261,7 +261,7 @@ def _render_quicklatex(
         data=urllib.parse.urlencode(params).encode("utf-8"),
         headers={
             "Content-Type": "application/x-www-form-urlencoded",
-            "User-Agent": "PPT-Master/1.0",
+            "User-Agent": "ppt-master/1.0",
         },
         method="POST",
     )
@@ -275,7 +275,7 @@ def _render_quicklatex(
     image_url = lines[1].split()[0]
     image_req = urllib.request.Request(
         image_url,
-        headers={"User-Agent": "PPT-Master/1.0"},
+        headers={"User-Agent": "ppt-master/1.0"},
     )
     image_data, content_type = _request_bytes(image_req)
     return _assert_png(image_data, "quicklatex", content_type)
@@ -299,7 +299,7 @@ def _render_mathpad(
         "bg": f"#{background or 'FFFFFF'}",
     }
     url = MATHPAD_ENDPOINT + "?" + urllib.parse.urlencode(params)
-    req = urllib.request.Request(url, headers={"User-Agent": "PPT-Master/1.0"})
+    req = urllib.request.Request(url, headers={"User-Agent": "ppt-master/1.0"})
     data, content_type = _request_bytes(req)
     return _assert_png(data, "mathpad", content_type)
 

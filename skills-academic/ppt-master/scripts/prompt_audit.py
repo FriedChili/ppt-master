@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Prompt Budget Audit Tool
+ppt-master - Prompt Budget Audit Tool
 
 Audits the repository's agent-facing documents without modifying them. Reports
 exact o200k_base token counts, declared load-set budgets, Markdown references,
@@ -2220,7 +2220,7 @@ def render_text(report: dict[str, Any]) -> str:
     """Render the stable JSON report as a maintainer-oriented text summary."""
     summary = report["summary"]
     lines = [
-        "PPT Master Prompt Audit",
+        "ppt-master Prompt Audit",
         "=======================",
         "Manifest: audit-only | runtime loading: disabled | budgets: fixed upper bounds",
         (
@@ -2326,7 +2326,7 @@ def render_text(report: dict[str, Any]) -> str:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Audit PPT Master's prompt budget and governance metadata without writes.",
+        description="Audit ppt-master's prompt budget and governance metadata without writes.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     default_root = Path(__file__).resolve().parents[3]

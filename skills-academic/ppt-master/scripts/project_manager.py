@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Project Management Tool
+ppt-master - Project Management Tool
 
 Stable CLI entry point for project creation, source import, validation, and
 page-context diagnostics. Implementation lives in ``project_management/``.

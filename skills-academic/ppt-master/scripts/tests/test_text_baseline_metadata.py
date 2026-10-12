@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Imported Text Baseline Metadata Regression Tests
+ppt-master - Imported Text Baseline Metadata Regression Tests
 
 Keep the imported baseline convention through text flattening and the
 authoring projection used when rebuilding native shapes.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Slide Roster Helpers
+ppt-master - Slide Roster Helpers
 
 Orders slide SVG filenames by numeric segments for consistent page rosters.
 

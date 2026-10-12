@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - PowerPoint Video Export
+ppt-master - PowerPoint Video Export
 
 Export a narrated PPTX through the installed Windows PowerPoint application and
 wait until its native video encoder finishes.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Video Motion Plan
+ppt-master - Video Motion Plan
 
 Derive an effect-aware video motion plan from one resolved SVG-to-PPTX
 conversion trace. The plan preserves animation order, direction, duration,

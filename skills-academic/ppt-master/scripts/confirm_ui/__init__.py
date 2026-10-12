@@ -1,1 +1,1 @@
-"""PPT Master - interactive Strategist confirmation stage UI (Step 4)."""
+"""ppt-master - interactive Strategist confirmation stage UI (Step 4)."""

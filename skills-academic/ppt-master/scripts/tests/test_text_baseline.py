@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Native Text Baseline Regression Tests
+ppt-master - Native Text Baseline Regression Tests
 
 Check exported frame positions against PowerPoint-rendered baseline samples.
 Fixtures are self-contained and never read installed fonts.

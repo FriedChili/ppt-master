@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PPT Master - Offline web content preservation regressions.
+"""ppt-master - Offline web content preservation regressions.
 
 Usage: python3 -m unittest tests.test_source_to_md_content_loss_web
 Dependencies: beautifulsoup4, requests

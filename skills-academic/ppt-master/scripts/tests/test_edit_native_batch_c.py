@@ -5,7 +5,7 @@ Usage:
     python3 -m unittest tests.test_edit_native_batch_c
 
 Dependencies:
-    Standard library and local PPT Master conversion modules.
+    Standard library and local ppt-master conversion modules.
 """
 
 from __future__ import annotations

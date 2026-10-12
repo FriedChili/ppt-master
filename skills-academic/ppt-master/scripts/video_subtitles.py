@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Final Video Subtitles
+ppt-master - Final Video Subtitles
 
 Align the exact narration text frozen in page-local narration SRT files against
 the audio track of a finished PowerPoint-exported or slideshow-captured video.

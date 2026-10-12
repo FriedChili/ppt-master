@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Project Specification Helpers
+ppt-master - Project Specification Helpers
 
 Scaffold and validate the Markdown planning artifacts used by project_manager.py.
 The module keeps schema parsing and deterministic scaffold rendering independent

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PPT Master SVG quality-check implementation.
+"""ppt-master SVG quality-check implementation.
 
 Owns SVG, project-contract, template, and report validation. The stable CLI and
 compatibility import surface remain in ``scripts/svg_quality_checker.py``.
@@ -11,7 +11,7 @@ Examples:
     from svg_quality_checker import SVGQualityChecker
 
 Dependencies:
-    Standard library plus local PPT Master validation modules.
+    Standard library plus local ppt-master validation modules.
 """
 
 import copy
@@ -10061,7 +10061,7 @@ class SVGQualityChecker:
     def export_report(self, output_file: str = 'svg_quality_report.txt'):
         """Export check report"""
         with open(output_file, 'w', encoding='utf-8') as f:
-            f.write("PPT Master SVG Quality Check Report\n")
+            f.write("ppt-master SVG Quality Check Report\n")
             f.write("=" * 80 + "\n\n")
 
             for result in self.results:

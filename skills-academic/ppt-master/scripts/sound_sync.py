@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Sound Sync
+ppt-master - Sound Sync
 
 Inspect the bundled CC0 sound catalog or copy explicitly selected sounds into a
 project-local `sounds/` directory. Review `templates/sounds/sound-vocabulary.md`

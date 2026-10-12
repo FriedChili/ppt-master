@@ -1,4 +1,4 @@
-"""Import the finite PPT Master-owned object-animation contract.
+"""Import the finite ppt-master-owned object-animation contract.
 
 The importer deliberately projects only canonical effect identity, pane order,
 Start trigger, duration, relative delay, and one top-level SVG group target.

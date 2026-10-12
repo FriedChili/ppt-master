@@ -1,2 +1,2 @@
-"""Text-to-speech backend helpers for PPT Master narration audio."""
+"""Text-to-speech backend helpers for ppt-master narration audio."""
 

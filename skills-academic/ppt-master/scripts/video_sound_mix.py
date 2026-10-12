@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Video Sound Mix
+ppt-master - Video Sound Mix
 
 Recover transition and object-animation sound cues from the final narrated
 PPTX, calibrate them to a PowerPoint-exported video, render an independent SFX
@@ -1482,7 +1482,7 @@ def build_parser() -> argparse.ArgumentParser:
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    parser.add_argument("project_path", help="PPT Master project directory")
+    parser.add_argument("project_path", help="ppt-master project directory")
     parser.add_argument(
         "--pptx",
         required=True,

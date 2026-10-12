@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - PPTX Semantic Workspace
+ppt-master - PPTX Semantic Workspace
 
 Own the semantic on-disk paths and package-resource inventory shared by PPTX
 import, template preparation, and source-preserving SVG round trips.

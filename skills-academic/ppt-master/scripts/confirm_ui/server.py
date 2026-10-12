@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - Template and Strategist confirmation UI Server (Steps 3-4)
+ppt-master - Template and Strategist confirmation UI Server (Steps 3-4)
 
 Lightweight Flask backend for the Default template choice and interactive
 Strategist confirmation page. Stage 1 combines template selection with the
@@ -2782,7 +2782,7 @@ def create_app(
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description='PPT Master template and Strategist confirmation UI',
+        description='ppt-master template and Strategist confirmation UI',
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument('project_dir', help='Path to project directory')

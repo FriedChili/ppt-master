@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PPT Master - Custom Show Reference Validation
+"""ppt-master - Custom Show Reference Validation
 
 Check custom-show selections and actions against the presentation roster.
 Usage: Imported by the page-plan cloner and delivery checker.

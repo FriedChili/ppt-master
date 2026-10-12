@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PPT Master - PPTX Animation Module
+ppt-master - PPTX Animation Module
 
 Provides one strict object-animation registry plus OOXML read/write helpers.
 
