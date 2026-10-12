@@ -187,6 +187,5 @@ Won't do: standalone CLI (`ppm`-style), SaaS web service, Electron shell. Any "m
 
 ## Feedback channels
 
-- **Email**: heyug3@gmail.com
 
 Before proposing a new direction, scan the **Non-goals** above. If your request falls there, it's unlikely to land — but we're happy to discuss other paths to your underlying need.

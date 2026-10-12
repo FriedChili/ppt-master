@@ -15,7 +15,6 @@ We provide security updates for the latest version of ppt-master.
 
 If you discover a security issue, please report it privately by emailing:
 
-**heyug3@gmail.com**
 
 Include in your report:
 

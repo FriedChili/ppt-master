@@ -45,7 +45,6 @@ This Code of Conduct applies in all project spaces, including but not limited to
 
 If you experience or witness behavior that violates this Code of Conduct, please report it to:
 
-**heyug3@gmail.com**
 
 Please include, when possible:
 
