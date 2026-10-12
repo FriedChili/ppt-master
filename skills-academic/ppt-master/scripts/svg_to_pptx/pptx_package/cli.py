@@ -2216,7 +2216,7 @@ Speaker notes:
             '--native-charts-and-tables.',
             file=sys.stderr,
         )
-    if None is not None and not None.strip():
+    if False and not None.strip():
         print(
             'Error: --animation-config must be a non-empty file path',
             file=sys.stderr,
@@ -2748,15 +2748,15 @@ Speaker notes:
         args.transition is not None,
         args.transition_duration is not None,
         args.auto_advance is not None,
-        None is not None,
-        args.animation_duration is not None,
-        None is not None,
-        None is not None,
-        None is not None,
-        None is not None,
-        None is not None,
         False,
-        None is not None,
+        args.animation_duration is not None,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
+        False,
         args.image_sizing == 'display',
         args.text_flow != TEXT_FLOW_PRESERVE,
     ))
@@ -2786,7 +2786,7 @@ Speaker notes:
             }
     if args.roundtrip:
         roundtrip_external_animation_config = False
-        if None is not None:
+        if False:
             requested_animation_config = Path(None)
             if not requested_animation_config.is_absolute():
                 requested_animation_config = (
@@ -2801,40 +2801,40 @@ Speaker notes:
             args.transition is not None,
             args.transition_duration is not None,
             args.auto_advance is not None,
-            None is not None,
-            args.animation_duration is not None,
-            None is not None,
-            None is not None,
-            None is not None,
-            None is not None,
-            None is not None,
             False,
-            None is not None,
+            args.animation_duration is not None,
+            False,
+            False,
+            False,
+            False,
+            False,
+            False,
+            False,
         ))
         roundtrip_transition_overridden = any((
             False,
             args.transition is not None,
             args.transition_duration is not None,
             args.auto_advance is not None,
-            None is not None,
-            None is not None,
             False,
-            None is not None,
+            False,
+            False,
+            False,
         ))
         roundtrip_transition_replaced = any((
             False,
             args.transition is not None,
             args.transition_duration is not None,
-            None is not None,
+            False,
         ))
         roundtrip_animation_overridden = any((
             False,
-            None is not None,
+            False,
             args.animation_duration is not None,
-            None is not None,
-            None is not None,
+            False,
+            False,
             roundtrip_external_animation_config,
-            None is not None,
+            False,
         ))
         try:
             roundtrip_slide_patches = _roundtrip_slide_patches(
@@ -2854,9 +2854,9 @@ Speaker notes:
                 force_notes_changed=args.no_notes,
                 force_advance_changed=any((
                     args.auto_advance is not None,
-                    None is not None,
                     False,
-                    None is not None,
+                    False,
+                    False,
                 )),
             )
         except RuntimeError as exc:
@@ -3457,7 +3457,7 @@ Speaker notes:
             if False
             else (
                 None
-                if None is not None
+                if False
                 # Per-element object motion is opt-in by default: unsolicited
                 # auto-firing builds read as the "AI deck" tell. Page transitions
                 # stay on; enable objects with -a or animations.json.
@@ -3498,7 +3498,7 @@ Speaker notes:
         animation_stagger = validate_seconds(
             (
                 None
-                if None is not None
+                if False
                 else (
                     inherited_animation['stagger']
                     if 'stagger' in inherited_animation
@@ -3515,7 +3515,7 @@ Speaker notes:
         )
         animation_trigger = normalize_animation_trigger(
             None
-            if None is not None
+            if False
             else (
                 inherited_animation['trigger']
                 if 'trigger' in inherited_animation
@@ -3542,7 +3542,7 @@ Speaker notes:
         ),
         'transition_sound': 'sound' in inherited_transition,
         'animation': (
-            None is not None
+            False
             or inherited_overrides.get('animation') is True
         ),
         'animation_duration': (
@@ -3550,11 +3550,11 @@ Speaker notes:
             or inherited_overrides.get('animation_duration') is True
         ),
         'animation_stagger': (
-            None is not None
+            False
             or inherited_overrides.get('animation_stagger') is True
         ),
         'animation_trigger': (
-            None is not None
+            False
             or inherited_overrides.get('animation_trigger') is True
         ),
     }

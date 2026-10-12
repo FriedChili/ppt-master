@@ -29,7 +29,7 @@ A useful deck has two layers: the reasoning that makes the argument work, and th
 | Axis | Position | Product consequence |
 |---|---|---|
 | Logic first | Settle the core message, narrative mode, outline, hierarchy, and evidence before drawing slides | The deck's structure is reasoned about, not blindly inherited from source order |
-| Native depth | Editability is table stakes; the real question is how much of PowerPoint the result actually contains | Author or preserve genuine PowerPoint shapes, text, pictures, charts, tables, slide masters and layouts, notes, transitions, animation, and package behavior where the selected route supports them |
+| Native depth | Editability is table stakes; the real question is how much of PowerPoint the result actually contains | Author or preserve genuine PowerPoint shapes, text, pictures, charts, tables, slide masters and layouts, notes, transitions, and package behavior where the selected route supports them |
 | Honest editability | The output is a draft the user keeps editing, not a flattened image and not a promise of one-shot perfection | Trade-offs between visual fidelity, data-backed objects, cross-app rendering, and preservation stay explicit |
 | User control | The workflow, project state, and output belong to the user | Costs remain transparent, data stays local apart from chosen provider calls, and no editor, model, or platform becomes mandatory |
 
@@ -74,7 +74,7 @@ The capability model is broader than one generation pipeline, but deliberately n
 | Native presentation authoring | Create new slide visuals and compile them into a real, natively editable PowerPoint deck |
 | Reusable presentation design | Distill, create, combine, validate, and apply Brand, Style, Layout, and Deck workspaces |
 | Existing-deck adaptation | Redesign an existing deck, fill native slide shells with new content, or add native behaviors under distinct preservation contracts |
-| PowerPoint expression | Use images, diagrams, charts, tables, formulas, notes, narration, transitions, and animation when they serve the communication goal |
+| PowerPoint expression | Use images, diagrams, charts, tables, formulas, notes, and transitions when they serve the communication goal |
 | Review and delivery | Preview, inspect, validate, repair, export, read back, and retain enough local project state for later refinement or re-export |
 
 These are product responsibilities, not a mandate to expose every responsibility as a top-level route or a separate workflow file. Routes exist only when inputs, mutation rules, invariants, or output lifecycles genuinely differ.
@@ -87,7 +87,6 @@ ppt-master may integrate general-purpose capabilities without becoming a general
 |---|---|---|
 | Research | Decide what evidence the deck needs, preserve provenance, and turn findings into presentation content | A general web-research engine for tasks unrelated to presentations |
 | Images | Decide whether an image is needed and own its role, style, source, placement, provenance, and readiness | A universal image-generation or photo-management platform |
-| Audio | Own speaker notes, voice choice in presentation context, per-slide narration, timing, and PowerPoint embedding | A general audio studio, podcast platform, or speech-provider marketplace |
 | Data visualization | Choose the visual form, preserve values, validate geometry, and expose the editability / fidelity trade-off | A general business-intelligence or spreadsheet product |
 | Templates and brands | Define reusable presentation identity, Master / Layout structure, slots, assets, and composition contracts | Recover historical design intent that is absent from the source file |
 | PowerPoint editing | Own presentation-specific generation, filling, redesign, and scoped native enhancement | Replace the complete PowerPoint editing surface or support arbitrary OOXML mutation |
@@ -101,7 +100,7 @@ The technical architecture serves the positioning; it is not the positioning its
 - **Constrained SVG → DrawingML** is the primary authoring and compilation path for newly designed slides: the AI works in a model-friendly visual language, and deterministic tools build native PowerPoint objects.
 - **Direct OOXML operations** preserve an existing PowerPoint package when that package — rather than a regenerated visual design — is the artifact the user wants to keep.
 - **Template workspaces** declare reusable brand identity and, where applicable, Master / Layout, slot, and asset structure before new slides are authored; structure is not guessed after the fact.
-- **Sidecars and package-level stages** own notes, narration, transitions, animation, and other presentation behavior that does not belong in static page SVG.
+- **Sidecars and package-level stages** own notes, transitions, and other presentation behavior that does not belong in static page SVG.
 - **Project artifacts and validation gates** keep the process inspectable, resumable, testable, and safe to re-export.
 
 The implementation may evolve, but these invariants remain stable:

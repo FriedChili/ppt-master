@@ -169,10 +169,10 @@ Layout 工作区：skills-academic/ppt-master/templates/layouts/presentation_cor
 
 Strategist 会把方向拆成两个彼此独立的选择：
 
-- **Mode** 决定 deck 怎么表达：`pyramid`、`narrative`、`instructional`、`showcase`、`briefing`，或经过确认的 `custom`。
+- **Mode** 决定 deck 怎么表达：`pyramid`、`narrative`、`instructional`、`briefing`，或经过确认的 `custom`。
 - **Visual style** 决定页面怎么呈现：内置方向包括 `swiss-minimal`、`editorial`、`dark-tech`、`data-journalism`、`ink-wash` 等，也支持 `custom`。
 
-任意 mode 都可以搭配任意 visual style。“Keynote 风产品发布”这类描述可能同时影响两条轴，例如形成 `showcase` 叙事与高留白视觉系统，但它永远不是模板查找词。生成前，用户会确认最终组合。规范目录位于 [`references/modes/`](../../skills-academic/ppt-master/references/modes/) 与 [`references/visual-styles/`](../../skills-academic/ppt-master/references/visual-styles/)。
+任意 mode 都可以搭配任意 visual style。“Keynote 风产品发布”这类描述可能同时影响两条轴，例如形成 `pyramid` 叙事与高留白视觉系统，但它永远不是模板查找词。生成前，用户会确认最终组合。规范目录位于 [`references/modes/`](../../skills-academic/ppt-master/references/modes/) 与 [`references/visual-styles/`](../../skills-academic/ppt-master/references/visual-styles/)。
 
 ---
 

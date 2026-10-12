@@ -34,7 +34,7 @@ capability — the everyday device menu and effects, the complete preset
 vocabulary, the topology decision, and one routing row per deeper module —
 while the deeper module itself (effects beyond the everyday block, native-shape
 authoring, relationship grammar and topology assembly, and the rarer formula,
-hyperlink, chart/table, structured-template, video, animation, and web-image
+hyperlink, chart/table, structured-template, and web-image
 files) is loaded when its observable trigger appears — evaluated once over the
 whole roster before P01, or at the page that first reaches an unforeseen
 capability — read completely, and kept for the run. The owning rule is
@@ -84,14 +84,6 @@ adopted page become a Markdown + companion-image source package; review it and
 promote accepted files individually, never the whole package. Image_Generator,
 Image_Searcher, and icon-sync tooling execute Strategist-owned preparation;
 they are not independent decision owners.
-
-**Post-motion sound exception**: optional transition/object sound is not a
-page-authoring ingredient and never enters Strategist planning,
-`design_spec.md`, or `spec_lock.md`. After the SVG roster and visual motion
-solution are complete, the active animation/export stage may discover bundled
-sound ids and sync only a concretely selected cue into the project. With no
-selected cue, it creates no `<project>/sounds/` directory. This exception does
-not permit Executor to acquire visual resources.
 
 **Hard rule — default pipeline**: downstream freedom exists in every dimension the plan leaves open, and every Reference is open by definition. A named binding outcome retains identity; a broad semantic request or expression recommendation permits in-class choice. Once the plan resolves a plan-only choice or a `(binding)` Reference, execution cannot reopen or substitute it. For icons, library/stroke and the prepared-project boundary bind, while per-page choice within the prepared pool is realization. Executor never searches, generates, downloads, syncs, invents, or replaces a resource; missing material returns to Strategist-owned preparation or upstream repair.
 

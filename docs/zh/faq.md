@@ -32,17 +32,13 @@ DOCX 转换会把内嵌图片素材抽取到配套素材目录，并写入图片
 
 ## Q: 除了 PPT 还能生成其他格式吗？
 
-可以。除了标准的 **16:9** 和 **4:3** 演示文稿格式，ppt-master 还内置了社交媒体和营销类格式：
+可以。除了标准的 **16:9** 和 **4:3** 演示文稿格式，ppt-master 还支持印刷格式：
 
 | 格式 | 适用场景 |
 |------|----------|
-| 小红书 3:4 | 图文分享、知识帖 |
-| 微信朋友圈 / IG 1:1 | 方形海报、品牌展示 |
-| Story / 抖音 9:16 | 竖版故事、短视频封面 |
-| 微信文章头图 | 公众号文章封面 |
 | A4 印刷 | 印刷海报、传单 |
 
-实际画布与已注册格式完全一致时，初始化可传对应键（如 `--format xhs`）。
+实际画布与已注册格式完全一致时，初始化可传对应键（如 `--format ppt169`）。
 其他画布应省略 `--format`；Default Generate 会把确认后的 viewBox 记录到
 `spec_lock.md`，Quick Generate 则以第一张 SVG 为画布真值。输出仍然是包含原生形状的
 `.pptx` 文件。
@@ -176,14 +172,14 @@ PowerPoint 最终显示的是 pt，所以**导出时**自动把 px 换成 pt（`
 
 在第 d 项确认时锁定两个独立维度：
 
-- **Mode（怎么讲）**：`pyramid` / `narrative` / `instructional` / `showcase` / `briefing` —— 见 `references/modes/`
+- **Mode（怎么讲）**：`pyramid` / `narrative` / `instructional` / `briefing` —— 见 `references/modes/`
 - **Visual style（长什么样）**：`swiss-minimal` / `editorial` / `soft-rounded` / `dark-tech` … + `custom` —— 见 `references/visual-styles/`
 
 任意 mode 可与任意 visual style 自由组合。
 
 ## Q: 结果看起来只有框和线，应该先核对哪些运行事实？
 
-ppt-master 没有文档化的 `wireframe` 运行模式，也没有跨版本视觉等价保证，因此不能只凭观感判定版本回归。先记录本次使用 Default 还是 Quick，以及实际的 mode、visual style、图片方案、基础图标选择、Custom Animations 设置和资源备妥状态。Quick 不写 `design_spec.md` 或 `spec_lock.md`，这些决定只保留在 Agent 的当前上下文。
+ppt-master 没有文档化的 `wireframe` 运行模式，也没有跨版本视觉等价保证，因此不能只凭观感判定版本回归。先记录本次使用 Default 还是 Quick，以及实际的 mode、visual style、图片方案、基础图标选择和资源备妥状态。Quick 不写 `design_spec.md` 或 `spec_lock.md`，这些决定只保留在 Agent 的当前上下文。
 
 再比较活动项目 `svg_output/` 中的同一页与导出的 PPTX。SVG 本身已经稀疏时，应检查规划、资源与 SVG 创作层；SVG 中存在预期对象、PPTX 却丢失或改变时，才检查转换或渲染层。这个分界依据 [Materials → Plan → Realization](./technical-design.md)、[Default Generate 工作流](../../skills-academic/ppt-master/workflows/generate-pptx.md)与[快速模式 profile](../../skills-academic/ppt-master/workflows/profiles/quick-generate.md)。
 

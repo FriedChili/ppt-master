@@ -32,18 +32,14 @@ Quality depends on what's on the open web. If you already have specialized mater
 
 ## Q: Can ppt-master produce formats other than PowerPoint?
 
-Yes. Besides the standard **16:9** and **4:3** presentation formats, ppt-master supports social media and marketing formats out of the box:
+Yes. Besides the standard **16:9** and **4:3** presentation formats, ppt-master also supports print:
 
 | Format | Use Case |
 |--------|----------|
-| Xiaohongshu (RED) 3:4 | Image-text sharing, knowledge posts |
-| WeChat Moments / IG 1:1 | Square posters, brand showcases |
-| Story / TikTok 9:16 | Vertical stories, short video covers |
-| WeChat Article Header | WeChat article cover images |
 | A4 Print | Print posters, flyers |
 
 When the canvas exactly matches a registered format, pass that key during
-initialization (for example, `--format xhs`). For any other canvas, omit
+initialization (for example, `--format ppt169`). For any other canvas, omit
 `--format`; Default Generate records the confirmed viewBox in `spec_lock.md`,
 and Quick Generate uses the first SVG as the canvas authority. The output is
 still a `.pptx` file containing native shapes.
@@ -177,14 +173,14 @@ Title, subtitle, footnote and the other roles derive from the body by ratio and 
 
 Two independent choices, locked at confirmation `d`:
 
-- **Mode** (how the deck argues): `pyramid` / `narrative` / `instructional` / `showcase` / `briefing` — see `references/modes/`
+- **Mode** (how the deck argues): `pyramid` / `narrative` / `instructional` / `briefing` — see `references/modes/`
 - **Visual style** (how it looks): `swiss-minimal` / `editorial` / `soft-rounded` / `dark-tech` … + `custom` — see `references/visual-styles/`
 
 Any mode pairs with any visual style.
 
 ## Q: The result looks like only boxes and lines. What run facts should I check first?
 
-ppt-master has no documented `wireframe` runtime mode and no documented visual-equivalence guarantee between releases, so appearance alone does not identify a version regression. First record whether the run used Default or Quick, plus the actual mode, visual style, image-usage choice, base-icon choice, Custom Animations setting, and prepared-resource state. Quick keeps these decisions in the active agent context rather than writing `design_spec.md` or `spec_lock.md`.
+ppt-master has no documented `wireframe` runtime mode and no documented visual-equivalence guarantee between releases, so appearance alone does not identify a version regression. First record whether the run used Default or Quick, plus the actual mode, visual style, image-usage choice, base-icon choice, and prepared-resource state. Quick keeps these decisions in the active agent context rather than writing `design_spec.md` or `spec_lock.md`.
 
 Next compare the same page in the active project's `svg_output/` with the exported PPTX. If the SVG is already sparse, inspect the planning, resource, and SVG-authoring layers. If the SVG contains the intended objects but the PPTX loses or changes them, inspect the conversion or rendering layer. This boundary follows [Materials → Plan → Realization](./technical-design.md), the [Default Generate workflow](../skills-academic/ppt-master/workflows/generate-pptx.md), and the [Quick profile](../skills-academic/ppt-master/workflows/profiles/quick-generate.md).
 

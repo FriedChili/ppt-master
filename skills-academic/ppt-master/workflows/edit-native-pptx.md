@@ -143,7 +143,7 @@ Skip when no §4.2 module beyond preserving source notes is enabled.
 python3 skills-academic/ppt-master/scripts/svg_to_pptx.py "projects/<slug>_<YYYYMMDD>" --roundtrip
 ```
 
-Add `-t <effect> [--transition-duration <s>]` to replace transition effects deck-wide (source auto-advance stays); `--animation-config animations.json` for per-slide motion; `-a <preset>` (default `none`) for object animation policy; `--no-notes` to strip notes; `--native-charts-and-tables` when chart/table data was edited; `--primary-language <tag>` to declare the deck language the imported SVG roots lack (otherwise per-run detection, harmless for a monolingual deck). Export writes into `exports/`, prints the exact output path (a `_native_charts_tables` suffix may apply — use the printed path afterwards), and one receipt:
+Add `-t <effect> [--transition-duration <s>]` to replace transition effects deck-wide (source auto-advance stays); `--animation-config animations.json` for per-slide motion; `--no-notes` to strip notes; `--native-charts-and-tables` when chart/table data was edited; `--primary-language <tag>` to declare the deck language the imported SVG roots lack (otherwise per-run detection, harmless for a monolingual deck). Export writes into `exports/`, prints the exact output path (a `_native_charts_tables` suffix may apply — use the printed path afterwards), and one receipt:
 
 ```text
 Round-trip export summary: output_pages=N passthrough=P cloned_passthrough=C patched=M rebuilt=R

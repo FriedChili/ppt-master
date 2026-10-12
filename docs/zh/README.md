@@ -10,7 +10,7 @@
 
 | 文档 | 说明 |
 |---|---|
-| [快速入门](./getting-started.md) | 三步做出第一份 deck，外加模板、实时预览、动画、旁白、声音复刻的用法 |
+| [快速入门](./getting-started.md) | 三步做出第一份 deck，外加模板与实时预览的用法 |
 | [Windows 安装指南](./windows-installation.md) | Windows 用户手把手安装教程 |
 | [常见问题](./faq.md) | 模型选择、费用、排版问题排查、自定义模板——基于真实用户反馈持续更新 |
 

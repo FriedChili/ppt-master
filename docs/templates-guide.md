@@ -189,10 +189,10 @@ A style description and a Style workspace still go through different machinery: 
 
 The Strategist separates two independent choices:
 
-- **Mode** controls how the deck communicates: `pyramid`, `narrative`, `instructional`, `showcase`, `briefing`, or a confirmed `custom` direction.
+- **Mode** controls how the deck communicates: `pyramid`, `narrative`, `instructional`, `briefing`, or a confirmed `custom` direction.
 - **Visual style** controls how the pages look: built-ins such as `swiss-minimal`, `editorial`, `dark-tech`, `data-journalism`, `ink-wash`, and others, plus `custom`.
 
-Any mode can pair with any visual style. Terms such as "Keynote-style product launch" may influence both axes — for example, a `showcase` narrative with a restrained high-whitespace visual system — but they are never a template lookup token. The user confirms the resulting choices before generation. The canonical catalogs live under [`references/modes/`](../skills-academic/ppt-master/references/modes/) and [`references/visual-styles/`](../skills-academic/ppt-master/references/visual-styles/).
+Any mode can pair with any visual style. Terms such as "Keynote-style product launch" may influence both axes — for example, a `pyramid` narrative with a restrained high-whitespace visual system — but they are never a template lookup token. The user confirms the resulting choices before generation. The canonical catalogs live under [`references/modes/`](../skills-academic/ppt-master/references/modes/) and [`references/visual-styles/`](../skills-academic/ppt-master/references/visual-styles/).
 
 ---
 

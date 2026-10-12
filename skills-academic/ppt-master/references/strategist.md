@@ -98,7 +98,7 @@ Seed the six contract fields of [`plan-core.md`](./plan-core.md) §1 as open-pro
 
 🚧 **GATE**: [`modes/_index.md`](./modes/_index.md) is the sole mode-basis authority; basis selection follows the §d Hard rule.
 
-The narrative + persuasion skeleton: one preset from `pyramid` / `narrative` / `instructional` / `showcase` / `briefing`, or `custom` with behavior — one value per deck, never several simultaneous modes.
+The narrative + persuasion skeleton: one preset from `pyramid` / `narrative` / `instructional` / `briefing`, or `custom` with behavior — one value per deck, never several simultaneous modes.
 
 | Input | Mode derivation |
 |---|---|
@@ -127,7 +127,7 @@ Record the style and rationale in `design_spec.md`, then project `- visual_style
 
 **Conditional template workspace**: when the Stage-1 choice is installed under `<project_path>/templates/`, read [`strategist-template.md`](./strategist-template.md) before completing Stage 2 — installed spec and prototypes only, never the library root. It covers the editable application plan, confirmed-value consumption, prototype selection, reuse/adherence derivation, inherited precedence, and structured-lock planning; it decides how to use the template, never which one.
 
-**Downstream effect**: e / f / g / h realize mode + style — e.g. `showcase` + `dark-tech` → one luminous accent on a dark field, a clean sans paired with mono, minimal glow icons, the `digital-dashboard` rendering.
+**Downstream effect**: e / f / g / h realize mode + style — e.g. `pyramid` + `dark-tech` → one luminous accent on a dark field, a clean sans paired with mono, minimal glow icons, the `digital-dashboard` rendering.
 
 ### e. Color Scheme Recommendation
 
@@ -202,7 +202,7 @@ Note files match SVG names (`01_cover.svg` → `notes/01_cover.md`; `notes/slide
 
 ## 2. Mode & Visual-Style Catalogs (Reference for Confirmation Item d)
 
-Mode: [`modes/_index.md`](./modes/_index.md) → `pyramid` / `narrative` / `instructional` / `showcase` / `briefing`. Visual style: [`visual-styles/_index.md`](./visual-styles/_index.md) → presets + `custom`. Basis selection follows the §d Hard rule; Executor later reads one locked preset file or a custom's exact references ([`generate-pptx`](../workflows/generate-pptx.md) Step 6).
+Mode: [`modes/_index.md`](./modes/_index.md) → `pyramid` / `narrative` / `instructional` / `briefing`. Visual style: [`visual-styles/_index.md`](./visual-styles/_index.md) → presets + `custom`. Basis selection follows the §d Hard rule; Executor later reads one locked preset file or a custom's exact references ([`generate-pptx`](../workflows/generate-pptx.md) Step 6).
 
 ---
 

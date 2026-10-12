@@ -117,7 +117,7 @@
           "mode_references": "^[a-z0-9][a-z0-9-]*(?:\\s*,\\s*[a-z0-9][a-z0-9-]*)*$"
         },
         "field_enums": {
-          "mode": ["pyramid", "narrative", "instructional", "showcase", "briefing", "custom"]
+          "mode": ["pyramid", "narrative", "instructional", "briefing", "custom"]
         }
       },
       {
